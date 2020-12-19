@@ -10,42 +10,42 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const result = await graphql(`
-        {
-            allGhostPost(sort: { order: ASC, fields: published_at }) {
-                edges {
-                    node {
-                        slug
-                    }
-                }
-            }
-            allGhostTag(sort: { order: ASC, fields: name }) {
-                edges {
-                    node {
-                        slug
-                        url
-                        postCount
-                    }
-                }
-            }
-            allGhostAuthor(sort: { order: ASC, fields: name }) {
-                edges {
-                    node {
-                        slug
-                        url
-                        postCount
-                    }
-                }
-            }
-            allGhostPage(sort: { order: ASC, fields: published_at }) {
-                edges {
-                    node {
-                        slug
-                        url
-                    }
-                }
-            }
+    {
+      allGhostPost(sort: { order: ASC, fields: published_at }) {
+        edges {
+          node {
+            slug
+          }
         }
-    `);
+      }
+      allGhostTag(sort: { order: ASC, fields: name }) {
+        edges {
+          node {
+            slug
+            url
+            postCount
+          }
+        }
+      }
+      allGhostAuthor(sort: { order: ASC, fields: name }) {
+        edges {
+          node {
+            slug
+            url
+            postCount
+          }
+        }
+      }
+      allGhostPage(sort: { order: ASC, fields: published_at }) {
+        edges {
+          node {
+            slug
+            url
+          }
+        }
+      }
+    }
+  `);
 
   // Check for any errors
   if (result.errors) {
@@ -78,7 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
       const currentPage = i + 1;
       const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
       const nextPageNumber =
-                currentPage + 1 > numberOfPages ? null : currentPage + 1;
+        currentPage + 1 > numberOfPages ? null : currentPage + 1;
       const previousPagePath = prevPageNumber
         ? prevPageNumber === 1
           ? node.url
@@ -121,7 +121,7 @@ exports.createPages = async ({ graphql, actions }) => {
       const currentPage = i + 1;
       const prevPageNumber = currentPage <= 1 ? null : currentPage - 1;
       const nextPageNumber =
-                currentPage + 1 > numberOfPages ? null : currentPage + 1;
+        currentPage + 1 > numberOfPages ? null : currentPage + 1;
       const previousPagePath = prevPageNumber
         ? prevPageNumber === 1
           ? node.url

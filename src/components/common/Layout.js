@@ -29,17 +29,17 @@ const DefaultLayout = ({ data, children, bodyClass }) => {
         <body className={bodyClass} />
       </Helmet>
 
-      <div className="container mx-auto px-4 max-w-prose">
+      <div className="container mx-auto px-4 max-w-2xl">
         {/* The main header section on top of the screen */}
         <header className="flex justify-between w-full mt-5 mb-5">
           <div className="flex">
-            <div className="font-bold text-gray-500 text-md">
+            <div className="font-bold text-gray-500 text-lg">
               <Link to="/">{site.title}</Link>
             </div>
           </div>
-          <nav className="flex">
+          <nav className="flex items-center">
             <a
-              className="text-gray-500 flex flex-col justify-center"
+              className="text-gray-500 flex items-center"
               href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
               target="_blank"
               rel="noopener noreferrer"
@@ -49,14 +49,14 @@ const DefaultLayout = ({ data, children, bodyClass }) => {
             {site.twitter && (
               <a
                 href={twitterUrl}
-                className="h-5 text-gray-500 ml-1"
+                className="h-5 text-gray-500 ml-1 flex items-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img src="/images/icons/twitter.svg" alt="Twitter" />
               </a>
             )}
-            <Link className="font-bold text-gray-500 text-md ml-1" to="/about">
+            <Link className="font-bold text-gray-500 text-lg ml-1" to="/about">
               About
             </Link>
           </nav>

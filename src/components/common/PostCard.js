@@ -2,40 +2,35 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { Tags } from "@tryghost/helpers-gatsby";
-import { readingTime as readingTimeHelper } from "@tryghost/helpers";
 
 const PostCard = ({ post }) => {
   const url = `/${post.slug}/`;
-  const readingTime = readingTimeHelper(post);
 
   return (
-    <Link to={url} className="">
-      <header className="">
-        {post.feature_image && (
-          <div
-            className=""
-            style={{
-              backgroundImage: `url(${post.feature_image})`,
-            }}
-          ></div>
-        )}
+    <article className="mt-10">
+      <header className="mb-4">
         {post.tags && (
           <div className="">
-            {` `}
             <Tags post={post} visibility="public" autolink={false} />
           </div>
         )}
-        {post.featured && <span>Featured</span>}
-        <h2 className="">{post.title}</h2>
+        <Link to={url} className="no-underline">
+          <h2 className="mt-2 mb-1 text-3xl font-bold">{post.title}</h2>
+        </Link>
+        <time
+          className="text-gray-500 font-normal mb-3"
+          dateTime={post.updated_at}
+        >
+          {post.updated_at_pretty}
+        </time>
       </header>
-      <section className="">{post.excerpt}</section>
-      <footer className="">
-        <div className=""></div>
-        <div className="">
-          <div>{readingTime}</div>
-        </div>
-      </footer>
-    </Link>
+      <section className="prose prose-lg mb-3">
+        <section
+          className="load-external-scripts"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
+      </section>
+    </article>
   );
 };
 
@@ -50,11 +45,13 @@ PostCard.propTypes = {
         name: PropTypes.string,
       })
     ),
-    excerpt: PropTypes.string.isRequired,
+    html: PropTypes.string.isRequired,
     primary_author: PropTypes.shape({
       name: PropTypes.string.isRequired,
       profile_image: PropTypes.string,
     }).isRequired,
+    updated_at: PropTypes.string.isRequired,
+    updated_at_pretty: PropTypes.string.isRequired,
   }).isRequired,
 };
 
