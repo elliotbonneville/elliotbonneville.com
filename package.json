@@ -1,13 +1,13 @@
 {
-  "name": "gatsby-starter-ghost",
-  "description": "A starter template to build lightning fast websites with Ghost and Gatsby",
+  "name": "elliotbonnneville.com",
+  "description": "Elliot Bonneville's personal blog.",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "Ghost Foundation",
-  "homepage": "https://docs.ghost.org/api/gatsby/",
+  "author": "Elliot Bonneville",
+  "homepage": "https://elliotbonneville.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tryghost/gatsby-starter-ghost.git"
+    "url": "git+https://github.com/elliotbonneville/elliotbonneville.com"
   },
   "resolutions": {
     "sharp": "0.26.0"
@@ -16,7 +16,7 @@
     "node": ">= 10.13.0"
   },
   "bugs": {
-    "url": "https://github.com/tryghost/gatsby-starter-ghost/issues"
+    "url": "https://github.com/elliotbonneville/elliotbonneville.com/issues"
   },
   "keywords": [
     "gatsby",
@@ -49,15 +49,18 @@
     "gatsby-plugin-force-trailing-slashes": "1.0.4",
     "gatsby-plugin-manifest": "2.5.2",
     "gatsby-plugin-offline": "3.3.3",
+    "gatsby-plugin-postcss": "^3.4.0",
     "gatsby-plugin-react-helmet": "3.3.14",
     "gatsby-plugin-sharp": "2.7.1",
     "gatsby-source-filesystem": "2.4.2",
     "gatsby-source-ghost": "4.2.2",
     "gatsby-transformer-sharp": "2.5.21",
     "lodash": "4.17.20",
+    "postcss": "^8.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-helmet": "6.1.0",
-    "tailwind": "^4.0.0"
+    "stylelint-config-recommended": "^3.0.0",
+    "tailwindcss": "^2.0.2"
   }
 }
