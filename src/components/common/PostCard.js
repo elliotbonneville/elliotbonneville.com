@@ -25,11 +25,14 @@ const PostCard = ({ post }) => {
         </time>
       </header>
       <section className="prose prose-lg mb-3">
-        <section
-          className="load-external-scripts"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
+        {post.excerpt.split(` `).slice(0, 50).join(` `) + `...`}
       </section>
+      <Link
+        to={url}
+        className="no-underline hover:underline font-bold text-gray-500"
+      >
+        Read more →
+      </Link>
     </article>
   );
 };
@@ -52,6 +55,7 @@ PostCard.propTypes = {
     }).isRequired,
     updated_at: PropTypes.string.isRequired,
     updated_at_pretty: PropTypes.string.isRequired,
+    excerpt: PropTypes.string.isRequired,
   }).isRequired,
 };
 
