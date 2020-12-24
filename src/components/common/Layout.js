@@ -33,13 +33,13 @@ const DefaultLayout = ({ data, children, bodyClass }) => {
         {/* The main header section on top of the screen */}
         <header className="flex justify-between w-full mt-5 mb-5">
           <div className="flex">
-            <div className="font-bold text-gray-500 text-lg">
+            <div className="font-bold text-gray-500 text-lg hover:text-gray-800">
               <Link to="/">{site.title}</Link>
             </div>
           </div>
           <nav className="flex items-center">
             <a
-              className="text-gray-500 flex items-center"
+              className="flex items-center"
               href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
               target="_blank"
               rel="noopener noreferrer"
@@ -49,14 +49,17 @@ const DefaultLayout = ({ data, children, bodyClass }) => {
             {site.twitter && (
               <a
                 href={twitterUrl}
-                className="h-5 text-gray-500 ml-1 flex items-center"
+                className="h-5  ml-1 flex items-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img src="/images/icons/twitter.svg" alt="Twitter" />
               </a>
             )}
-            <Link className="font-bold text-gray-500 text-lg ml-1" to="/about">
+            <Link
+              className="font-bold text-gray-500 text-lg ml-1 hover:text-gray-800"
+              to="/about"
+            >
               About
             </Link>
           </nav>

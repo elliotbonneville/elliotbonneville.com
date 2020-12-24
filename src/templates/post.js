@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 
 import { Layout } from "../components/common";
 import { MetaData } from "../components/common/meta";
+import MailingListSignup from "../components/common/MailingListSignup";
 
 /**
  * Single post view (/:slug)
@@ -45,6 +46,7 @@ const Post = ({ data, location }) => {
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
           </section>
+          <MailingListSignup />
         </article>
       </Layout>
     </>

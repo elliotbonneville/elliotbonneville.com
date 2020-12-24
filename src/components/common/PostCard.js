@@ -15,7 +15,9 @@ const PostCard = ({ post }) => {
           </div>
         )}
         <Link to={url} className="no-underline">
-          <h2 className="mt-2 mb-1 text-3xl font-bold">{post.title}</h2>
+          <h2 className="mt-2 mb-1 text-3xl font-bold hover:text-gray-500">
+            {post.title}
+          </h2>
         </Link>
         <time
           className="text-gray-500 font-normal mb-3"
@@ -29,7 +31,7 @@ const PostCard = ({ post }) => {
       </section>
       <Link
         to={url}
-        className="no-underline hover:underline font-bold text-gray-500"
+        className="no-underline hover:text-gray-800 font-bold text-gray-500"
       >
         Read more →
       </Link>
