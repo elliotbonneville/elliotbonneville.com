@@ -7,7 +7,7 @@ const PostCard = ({ post }) => {
   const url = `/${post.slug}/`;
 
   return (
-    <article className="mt-10">
+    <article className="my-5">
       <header className="mb-4">
         {post.tags && (
           <div className="">
