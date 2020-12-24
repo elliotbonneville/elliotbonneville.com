@@ -6,7 +6,7 @@ const MailingListSignup = () => {
   const [signedUp, setSignedUp] = React.useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!emailInputRef.current) {
+    if (!emailInputRef.current || !emailInputRef.value) {
       return;
     }
 
@@ -21,7 +21,7 @@ const MailingListSignup = () => {
   ) : (
     <form className="flex my-8 flex-col sm:flex-row" onSubmit={handleSubmit}>
       <input
-        className="outline-none p-4 sm:mr-4 mb-4 sm:mb-0 flex-1 border border-gray-300 focus:border-gray-500 hover:border-gray-500"
+        className="outline-none p-4 sm:mr-4 mb-4 sm:mb-0 flex-1 border border-gray-300 focus:border-gray-500 hover:border-gray-500 rounded-none"
         placeholder="steve@apple.com"
         type="email"
         ref={emailInputRef}
