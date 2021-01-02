@@ -6,7 +6,7 @@ const MailingListSignup = () => {
   const [signedUp, setSignedUp] = React.useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!emailInputRef.current || !emailInputRef.value) {
+    if (!emailInputRef.current || !emailInputRef.current.value) {
       return;
     }
 
