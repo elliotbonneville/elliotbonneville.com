@@ -1,10 +1,10 @@
 {
   "development": {
-    "apiUrl": "https://elliotbonneville.ghost.io",
-    "contentApiKey": "741c0e7f143a55a5e50720a01e"
+    "apiUrl": "https://elliot-bonneville.ghost.io",
+    "contentApiKey": "a293dd079203843c84988731fc"
   },
   "production": {
-    "apiUrl": "https://elliotbonneville.ghost.io",
-    "contentApiKey": "741c0e7f143a55a5e50720a01e"
+    "apiUrl": "https://elliot-bonneville.ghost.io",
+    "contentApiKey": "a293dd079203843c84988731fc"
   }
 }
