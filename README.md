@@ -2,7 +2,7 @@
 
 A brutalist, minimal static blog generator that prioritizes readability, durability, and speed.
 
-**Live at:** http://167.99.122.111
+**Live at:** https://elliotbonneville.com
 
 ## Features
 
@@ -107,12 +107,14 @@ Add interactive JavaScript directly in your markdown:
 
 ## Deployment
 
-### Current Setup (DigitalOcean)
+### Current Setup
 
-The blog is deployed on a $6/month DigitalOcean droplet:
+The blog is deployed on DigitalOcean:
+- **Domain:** elliotbonneville.com (registered at Namecheap)
+- **Server:** DigitalOcean droplet ($6/month)
 - **IP:** 167.99.122.111
 - **OS:** Ubuntu 24.10
-- **Server:** Nginx
+- **Web Server:** Nginx with HTTPS (Let's Encrypt)
 
 To deploy updates:
 ```bash

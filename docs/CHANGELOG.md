@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0] - 2024-08-16
+
+### Added
+- Custom domain support (elliotbonneville.com)
+- HTTPS with Let's Encrypt
+- Auto-renewal for SSL certificates
+- Domain setup documentation
+- Reorganized project structure (bin/ and docs/ folders)
+
+### Changed
+- Updated deployment confirmation to show live domain
+- Moved scripts to bin/ directory
+- Moved documentation to docs/ directory
+
 ## [1.0.0] - 2024-08-16
 
 ### Initial Release

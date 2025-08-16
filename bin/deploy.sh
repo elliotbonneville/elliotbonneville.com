@@ -22,7 +22,7 @@ rsync -avz --delete public/ $SERVER:$REMOTE_PATH/public/
 
 if [ $? -eq 0 ]; then
     echo "✅ Deployed successfully!"
-    echo "🌐 Your site is live at http://${SERVER#root@}"
+    echo "🌐 Your site is live at https://elliotbonneville.com"
 else
     echo "❌ Deployment failed!"
     echo "Make sure to:"

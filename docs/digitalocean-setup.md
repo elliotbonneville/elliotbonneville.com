@@ -1,5 +1,7 @@
 # DigitalOcean Setup - Simple Guide
 
+> **Note:** For current domain and HTTPS configuration, see [domain-setup.md](./domain-setup.md)
+
 ## Step 1: Create Droplet (2 minutes)
 
 1. Log into DigitalOcean
