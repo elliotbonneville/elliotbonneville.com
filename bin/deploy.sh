@@ -9,7 +9,7 @@ echo "🚀 Deploying to DigitalOcean..."
 
 # Build the site
 echo "📦 Building site..."
-node build.js
+node bin/build.js
 
 if [ $? -ne 0 ]; then
     echo "❌ Build failed!"

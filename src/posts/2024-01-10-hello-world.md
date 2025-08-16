@@ -4,8 +4,6 @@ date: 2024-01-10
 description: Welcome to my minimal coding blog - exploring code with interactive examples
 ---
 
-# Hello World
-
 Welcome to my coding blog! This is a place where I share thoughts about programming, demonstrate concepts with interactive examples, and explore the art of minimal, purposeful code.
 
 ## The Philosophy

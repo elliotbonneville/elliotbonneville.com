@@ -4,8 +4,6 @@ date: 2024-01-20
 description: Master asynchronous JavaScript with practical async/await patterns and interactive examples
 ---
 
-# Async/Await Patterns You Should Know
-
 Async/await transformed how we write asynchronous JavaScript. It makes async code look and behave more like synchronous code, eliminating "callback hell" and making error handling straightforward.
 
 ## The Fundamentals
