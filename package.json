@@ -1,0 +1,14 @@
+{
+  "name": "elliotbonneville-blog",
+  "version": "1.0.0",
+  "description": "Minimal brutalist blog",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node watch.js"
+  },
+  "devDependencies": {
+    "marked": "^12.0.0",
+    "prismjs": "^1.29.0"
+  }
+}
