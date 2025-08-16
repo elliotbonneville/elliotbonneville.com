@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Deployment script that reads from config.js
-# Extracts server and path from config.js
-SERVER=$(node -e "const {config} = require('../config.js'); console.log(config.deploy.server)")
-REMOTE_PATH=$(node -e "const {config} = require('../config.js'); console.log(config.deploy.path)")
-SITE_URL=$(node -e "const {config} = require('../config.js'); console.log(config.site.url)")
+# Extracts server and path from config.js using ES modules
+SERVER=$(node -e "import('./config.js').then(m => console.log(m.config.deploy.server))")
+REMOTE_PATH=$(node -e "import('./config.js').then(m => console.log(m.config.deploy.path))")
+SITE_URL=$(node -e "import('./config.js').then(m => console.log(m.config.site.url))")
 
 echo "🚀 Deploying to server..."
 
