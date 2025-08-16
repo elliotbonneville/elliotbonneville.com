@@ -24,7 +24,7 @@ A brutalist, minimal blog that prioritizes:
 ## Project Structure
 
 ```
-elliotbonneville.com/
+your-blog/
 ├── build.js                    # Build script (~50 lines)
 ├── watch.js                    # Dev mode auto-rebuild
 ├── README.md                   # Documentation

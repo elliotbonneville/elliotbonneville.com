@@ -1,11 +1,12 @@
 {
-  "name": "elliotbonneville-blog",
+  "name": "minimal-blog",
   "version": "1.0.0",
   "description": "Minimal brutalist blog",
   "type": "module",
   "scripts": {
     "build": "node bin/build.js",
-    "watch": "node bin/watch.js"
+    "dev": "node bin/watch.js",
+    "deploy": "./bin/deploy.sh"
   },
   "devDependencies": {
     "marked": "^12.0.0",

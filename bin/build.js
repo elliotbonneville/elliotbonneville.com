@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 
 import { join, basename } from 'path';
 import { marked } from 'marked';
 import Prism from 'prismjs';
+import { config } from '../config.js';
 
 // Import language support for syntax highlighting
 import 'prismjs/components/prism-javascript.js';
@@ -73,19 +74,19 @@ function generateRSS(posts) {
     <item>
       <title>${post.title}</title>
       <description>${post.description || ''}</description>
-      <link>https://elliotbonneville.com/${post.slug}/</link>
-      <guid>https://elliotbonneville.com/${post.slug}/</guid>
+      <link>${config.site.url}/${post.slug}/</link>
+      <guid>${config.site.url}/${post.slug}/</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
     </item>`).join('');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Elliot Bonneville</title>
-    <description>A minimal coding blog</description>
-    <link>https://elliotbonneville.com</link>
+    <title>${config.site.name}</title>
+    <description>${config.site.description}</description>
+    <link>${config.site.url}</link>
     <lastBuildDate>${now}</lastBuildDate>
-    <language>en-US</language>
+    <language>${config.site.language}</language>
     ${items}
   </channel>
 </rss>`;
@@ -132,6 +133,7 @@ function build() {
     // Generate individual post HTML
     const postHtml = template
       .replace(/\{\{title\}\}/g, post.title)
+      .replace(/\{\{siteName\}\}/g, config.site.name)
       .replace(/\{\{description\}\}/g, post.description)
       .replace(/\{\{date\}\}/g, formattedDate)
       .replace(/\{\{content\}\}/g, html)
@@ -157,6 +159,8 @@ function build() {
     </div>`).join('');
   
   const indexHtml = indexTemplate
+    .replace(/\{\{siteName\}\}/g, config.site.name)
+    .replace(/\{\{siteDescription\}\}/g, config.site.description)
     .replace(/\{\{posts\}\}/g, postsList)
     .replace(/\{\{css\}\}/g, css);
   

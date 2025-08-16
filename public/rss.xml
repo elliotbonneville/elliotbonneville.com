@@ -4,29 +4,15 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Sat, 16 Aug 2025 18:50:02 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 16 Aug 2025 19:47:33 GMT</lastBuildDate>
     <language>en-US</language>
     
     <item>
-      <title>Async/Await Patterns You Should Know</title>
-      <description>Master asynchronous JavaScript with practical async/await patterns and interactive examples</description>
-      <link>https://elliotbonneville.com/async-await-patterns/</link>
-      <guid>https://elliotbonneville.com/async-await-patterns/</guid>
-      <pubDate>Sat, 20 Jan 2024 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>Understanding JavaScript Closures</title>
-      <description>Learn how closures work with interactive examples and practical patterns</description>
-      <link>https://elliotbonneville.com/understanding-closures/</link>
-      <guid>https://elliotbonneville.com/understanding-closures/</guid>
-      <pubDate>Mon, 15 Jan 2024 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>Hello World</title>
-      <description>Welcome to my minimal coding blog - exploring code with interactive examples</description>
-      <link>https://elliotbonneville.com/hello-world/</link>
-      <guid>https://elliotbonneville.com/hello-world/</guid>
-      <pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
+      <title>Building a Blog in 90 Minutes with 174 Lines of Code</title>
+      <description>How I built a minimal, brutalist blog that will outlive Medium</description>
+      <link>https://elliotbonneville.com/building-a-blog-in-one-hour/</link>
+      <guid>https://elliotbonneville.com/building-a-blog-in-one-hour/</guid>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>

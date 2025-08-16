@@ -3,7 +3,7 @@
 ## [1.1.0] - 2024-08-16
 
 ### Added
-- Custom domain support (elliotbonneville.com)
+- Custom domain support
 - HTTPS with Let's Encrypt
 - Auto-renewal for SSL certificates
 - Domain setup documentation
@@ -32,14 +32,14 @@
 - 🚀 One-command deployment to DigitalOcean
 
 #### Technical Details
-- Build script: 163 lines
+- Build script: 174 lines
 - CSS: 275 lines (inlined)
 - No runtime JavaScript required for reading
 - Total codebase: ~512 lines
 - Zero external dependencies in production
 
 #### Deployment
-- Deployed to DigitalOcean droplet (167.99.122.111)
+- Deployed to DigitalOcean droplet
 - Nginx configuration for clean URLs
 - rsync-based deployment script
 

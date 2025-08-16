@@ -5,3 +5,6 @@ node_modules/
 *~
 .idea/
 .vscode/
+
+# Don't commit personal config
+# config.js

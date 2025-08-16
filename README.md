@@ -2,7 +2,7 @@
 
 A brutalist, minimal static blog generator that prioritizes readability, durability, and speed.
 
-**Live at:** https://elliotbonneville.com
+**Example:** See a live demo or fork this repo to create your own
 
 ## Features
 
@@ -26,7 +26,7 @@ A brutalist, minimal static blog generator that prioritizes readability, durabil
 ## Project Structure
 
 ```
-elliotbonneville.com/
+your-blog/
 ├── src/
 │   ├── posts/           # Markdown blog posts
 │   ├── template.html    # Post template
@@ -50,17 +50,23 @@ elliotbonneville.com/
 
 ## Quick Start
 
+**For new users: See [SETUP.md](SETUP.md) for a step-by-step guide.**
+
 ### Local Development
 
 ```bash
 # Install dependencies
 npm install
 
+# Setup your config (first time only)
+cp config.example.js config.js
+# Edit config.js with your site details
+
 # Build the site
 npm run build
 
 # Development mode (auto-rebuilds on changes)
-npm run watch
+npm run dev
 
 # View locally
 python3 -m http.server 8000 --directory public
@@ -109,9 +115,9 @@ Add interactive JavaScript directly in your markdown:
 ### Current Setup
 
 The blog is deployed on DigitalOcean:
-- **Domain:** elliotbonneville.com (registered at Namecheap)
-- **Server:** DigitalOcean droplet ($6/month)
-- **IP:** 167.99.122.111
+- **Domain:** Your custom domain (optional)
+- **Server:** Any static host or VPS
+- **Free options:** GitHub Pages, Netlify, Vercel
 - **OS:** Ubuntu 24.10
 - **Web Server:** Nginx with HTTPS (Let's Encrypt)
 
