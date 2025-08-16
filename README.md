@@ -6,7 +6,6 @@ A brutalist, minimal static blog generator that prioritizes readability, durabil
 
 ## Features
 
-✅ **What We Built:**
 - **Ultra-minimal design** - System fonts, golden ratio typography (65ch width, 1.618 line height)
 - **Instant page loads** - Pure HTML, no client-side rendering
 - **Syntax highlighting** - Pre-rendered with Prism.js at build time
