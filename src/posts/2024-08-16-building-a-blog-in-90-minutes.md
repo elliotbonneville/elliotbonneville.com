@@ -1,14 +1,14 @@
 ---
-title: Building a Blog in 90 Minutes with 174 Lines of Code
+title: Building a Blog in 90 Minutes with 180 Lines of Code
 date: 2025-08-16
 description: How I built a minimal, brutalist blog that will outlive Medium
 ---
 
-I just built this blog in about 90 minutes. It's 174 lines of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it'll outlive Medium as a platform.
+I just built this blog from scratch in about 90 minutes. It's exactly 180 lines of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it'll outlive Medium as a platform.
 
-## The Tool That Changed Everything
+## 8-Ball Development
 
-I built this entire blog using Claude Code, and that's not incidental to the story - it's central to it. There's something intoxicating about starting from a blank terminal and building exactly what you need, nothing more. No starter templates, no boilerplate, no inherited decisions.
+I built this entire blog using Claude Code. That's not incidental to the story, either. It's central to it. There's something intoxicating about starting from a blank terminal and building exactly what you need, nothing more. No starter templates, no boilerplate, no inherited decisions.
 
 Claude Code let me get back to the basics. Instead of wrestling with someone else's abstraction or getting lost in documentation for a feature-heavy platform, I could just describe what I wanted: "a minimal blog that renders fast and will work forever."
 
@@ -18,7 +18,7 @@ When you build from scratch with an AI pair programmer, you're not fighting the 
 
 ## The Constraints
 
-I started with clear opinions:
+I started with several clear opinions. My goal was to build a brutalist, hyper-minimalist blog where every element serves a purpose:
 
 - **No React for reading text** - It's a blog. HTML works.
 - **No CDNs** - Everything self-contained. No link rot.
@@ -32,17 +32,19 @@ I started with clear opinions:
 
 ```javascript
 {
-  "build": "node (174 lines)",
+  "build": "node (180 lines)",
   "parse": "marked (17kb)",
   "highlight": "prism (15kb)",
   "deploy": "rsync over SSH",
   "cdn": "none",
   "bundler": "none",
-  "framework": "none"
+  "framework": "none",
+  "hosting": "DigitalOcean ($6/month)",
+  "server": "nginx on Ubuntu"
 }
 ```
 
-That's it. The entire build script is shorter than most webpack configs.
+That's it. The entire build script is shorter than most webpack configs. It runs on a vanilla Linux server - just nginx serving static files from a DigitalOcean droplet. No containers, no orchestration, no managed services. HTML files on a hard drive, the way the web started.
 
 ## How It Works
 
@@ -163,7 +165,7 @@ It's static HTML. It scales infinitely. But more importantly: it's a personal bl
 
 ## The Source
 
-[Fork this blog on GitHub](https://github.com/YOUR_USERNAME/your-blog)
+[Fork this blog on GitHub](https://github.com/elliotbonneville/elliotbonneville.com)
 
 Feel free to fork it. The entire thing is MIT licensed and documented. You can have your own blog running in 90 minutes too.
 
@@ -174,15 +176,3 @@ We've forgotten that websites can be simple. A blog doesn't need a framework. It
 Sometimes the best technical decision is to not make one. HTML is already a pretty good document format. Browsers are already pretty good at displaying it.
 
 The web is good at being the web. Let it.
-
-## Why This Matters
-
-Building from scratch with Claude Code isn't just about avoiding bloat - it's about understanding. When you build something yourself, even with AI assistance, you know every line. You can fix it, modify it, extend it. You're not at the mercy of someone else's breaking changes or deprecated features.
-
-This blog will work in 20 years because it's just HTML files. No framework to sunset, no platform to shut down, no dependencies to rot. Just files on a server, the way Tim Berners-Lee intended.
-
----
-
-*This blog runs on a $6/month VPS (or free on GitHub Pages). It has one dependency in production: a web server. That's it.*
-
-*Built with Claude Code in 90 minutes. Not because I couldn't use a framework, but because I didn't need to.*

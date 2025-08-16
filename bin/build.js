@@ -151,8 +151,9 @@ function build() {
   // Sort posts by date (newest first)
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
   
-  // Generate index page
-  const postsList = posts.map(post => `
+  // Generate index page (exclude About page from the blog list)
+  const blogPosts = posts.filter(post => post.slug !== 'about');
+  const postsList = blogPosts.map(post => `
     <div class="post-item">
       <time>${post.formattedDate}</time>
       <a href="/${post.slug}/">${post.title}</a>
@@ -167,8 +168,8 @@ function build() {
   writeFileSync('public/index.html', indexHtml);
   console.log('Generated: index.html');
   
-  // Generate RSS feed
-  const rss = generateRSS(posts);
+  // Generate RSS feed (exclude About page)
+  const rss = generateRSS(blogPosts);
   writeFileSync('public/rss.xml', rss);
   console.log('Generated: rss.xml');
   

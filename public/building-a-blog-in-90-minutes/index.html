@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Building a Blog in 90 Minutes with 179 Lines of Code - Elliot Bonneville</title>
+  <title>Building a Blog in 90 Minutes with 180 Lines of Code - Elliot Bonneville</title>
   <meta name="description" content="How I built a minimal, brutalist blog that will outlive Medium">
   <style>/* Typography - Golden ratio */
 body {
@@ -302,17 +302,17 @@ pre code {
   <main>
     <article>
       <header>
-        <h1>Building a Blog in 90 Minutes with 179 Lines of Code</h1>
+        <h1>Building a Blog in 90 Minutes with 180 Lines of Code</h1>
         <time>August 15, 2025</time>
       </header>
-      <p>I just built this blog in about 90 minutes. It&#39;s 179 lines of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it&#39;ll outlive Medium as a platform.</p>
-<h2>The Tool That Changed Everything</h2>
-<p>I built this entire blog using Claude Code, and that&#39;s not incidental to the story - it&#39;s central to it. There&#39;s something intoxicating about starting from a blank terminal and building exactly what you need, nothing more. No starter templates, no boilerplate, no inherited decisions.</p>
+      <p>I just built this blog from scratch in about 90 minutes. It&#39;s exactly 180 lines of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it&#39;ll outlive Medium as a platform.</p>
+<h2>8-Ball Development</h2>
+<p>I built this entire blog using Claude Code. That&#39;s not incidental to the story, either. It&#39;s central to it. There&#39;s something intoxicating about starting from a blank terminal and building exactly what you need, nothing more. No starter templates, no boilerplate, no inherited decisions.</p>
 <p>Claude Code let me get back to the basics. Instead of wrestling with someone else&#39;s abstraction or getting lost in documentation for a feature-heavy platform, I could just describe what I wanted: &quot;a minimal blog that renders fast and will work forever.&quot;</p>
 <p>This is the real value proposition: <strong>complete control</strong>. Every line of code exists for a reason. Every decision was intentional. There&#39;s no mystery meat in the <code>node_modules</code> folder, no configuration I&#39;m afraid to touch, no build process I don&#39;t understand.</p>
 <p>When you build from scratch with an AI pair programmer, you&#39;re not fighting the tool - you&#39;re having a conversation about what you actually need. And it turns out, for a blog, you need surprisingly little.</p>
 <h2>The Constraints</h2>
-<p>I started with clear opinions:</p>
+<p>I started with several clear opinions. My goal was to build a brutalist, hyper-minimalist blog where every element serves a purpose:</p>
 <ul>
 <li><strong>No React for reading text</strong> - It&#39;s a blog. HTML works.</li>
 <li><strong>No CDNs</strong> - Everything self-contained. No link rot.</li>
@@ -324,14 +324,16 @@ pre code {
 </ul>
 <h2>The Stack</h2>
 <pre><code class="language-javascript"><span class="token punctuation">{</span>
-  <span class="token string-property property">"build"</span><span class="token operator">:</span> <span class="token string">"node (179 lines)"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"build"</span><span class="token operator">:</span> <span class="token string">"node (180 lines)"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"parse"</span><span class="token operator">:</span> <span class="token string">"marked (17kb)"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"highlight"</span><span class="token operator">:</span> <span class="token string">"prism (15kb)"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"deploy"</span><span class="token operator">:</span> <span class="token string">"rsync over SSH"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"cdn"</span><span class="token operator">:</span> <span class="token string">"none"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"bundler"</span><span class="token operator">:</span> <span class="token string">"none"</span><span class="token punctuation">,</span>
-  <span class="token string-property property">"framework"</span><span class="token operator">:</span> <span class="token string">"none"</span>
-<span class="token punctuation">}</span></code></pre><p>That&#39;s it. The entire build script is shorter than most webpack configs.</p>
+  <span class="token string-property property">"framework"</span><span class="token operator">:</span> <span class="token string">"none"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"hosting"</span><span class="token operator">:</span> <span class="token string">"DigitalOcean ($6/month)"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"server"</span><span class="token operator">:</span> <span class="token string">"nginx on Ubuntu"</span>
+<span class="token punctuation">}</span></code></pre><p>That&#39;s it. The entire build script is shorter than most webpack configs. It runs on a vanilla Linux server - just nginx serving static files from a DigitalOcean droplet. No containers, no orchestration, no managed services. HTML files on a hard drive, the way the web started.</p>
 <h2>How It Works</h2>
 <p>Write markdown files with frontmatter in <code>src/posts/</code>:</p>
 <pre><code>---

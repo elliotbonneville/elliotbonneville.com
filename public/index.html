@@ -31,6 +31,11 @@ nav h1 {
   margin: 0;
 }
 
+nav div {
+  display: flex;
+  gap: 1em;
+}
+
 /* Links */
 a { 
   color: #0000EE; 
@@ -289,13 +294,16 @@ pre code {
 <body>
   <nav>
     <h1>Elliot Bonneville</h1>
-    <a href="/rss.xml">RSS</a>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
   </nav>
   <main>
     
     <div class="post-item">
       <time>August 15, 2025</time>
-      <a href="/building-a-blog-in-one-hour/">Building a Blog in 90 Minutes with 174 Lines of Code</a>
+      <a href="/building-a-blog-in-90-minutes/">Building a Blog in 90 Minutes with 180 Lines of Code</a>
     </div>
   </main>
 </body>

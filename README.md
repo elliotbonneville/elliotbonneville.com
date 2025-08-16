@@ -2,7 +2,7 @@
 
 A brutalist, minimal static blog generator that prioritizes readability, durability, and speed.
 
-**Example:** See a live demo or fork this repo to create your own
+**Example:** See a [live demo](www.elliotbonneville.com) or fork this repo to create your own
 
 ## Features
 
@@ -50,7 +50,7 @@ your-blog/
 
 ## Quick Start
 
-**For new users: See [SETUP.md](SETUP.md) for a step-by-step guide.**
+**For new users: See [SETUP.md](docs/SETUP.md) for a step-by-step guide.**
 
 ### Local Development
 
