@@ -7,7 +7,7 @@ const execAsync = promisify(exec);
 console.log('👁  Watching for changes...');
 
 // Initial build
-await execAsync('node build.js');
+await execAsync('node bin/build.js');
 console.log('✅ Initial build complete');
 
 // Watch for changes
@@ -19,7 +19,7 @@ const watchers = [
 async function rebuild() {
   console.log('🔄 Rebuilding...');
   try {
-    await execAsync('node build.js');
+    await execAsync('node bin/build.js');
     console.log('✅ Build complete');
   } catch (error) {
     console.error('❌ Build failed:', error.message);

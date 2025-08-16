@@ -38,9 +38,14 @@ elliotbonneville.com/
 │   ├── rss.xml
 │   └── [post-name]/
 │       └── index.html
-├── build.js            # Build script (163 lines)
-├── watch.js            # Dev mode with auto-rebuild
-├── deploy.sh           # DigitalOcean deployment
+├── bin/
+│   ├── build.js        # Build script (163 lines)
+│   ├── watch.js        # Dev mode with auto-rebuild
+│   └── deploy.sh       # DigitalOcean deployment
+├── docs/
+│   ├── PLAN.md         # Architecture plan
+│   ├── CHANGELOG.md    # Version history
+│   └── digitalocean-setup.md  # Server setup guide
 └── package.json
 ```
 
@@ -111,7 +116,7 @@ The blog is deployed on a $6/month DigitalOcean droplet:
 
 To deploy updates:
 ```bash
-./deploy.sh
+./bin/deploy.sh
 ```
 
 ### Setting Up a New Server
@@ -153,7 +158,7 @@ SERVER="root@YOUR_SERVER_IP"
 
 4. **Deploy:**
 ```bash
-./deploy.sh
+./bin/deploy.sh
 ```
 
 ## Philosophy
@@ -185,10 +190,10 @@ Potential additions that maintain minimalism:
 ## File Size Budget
 
 Keeping things minimal:
-- `build.js`: 163 lines
-- `style.css`: 275 lines  
-- `watch.js`: 42 lines
-- `deploy.sh`: 32 lines
+- `bin/build.js`: 163 lines
+- `src/style.css`: 275 lines  
+- `bin/watch.js`: 42 lines
+- `bin/deploy.sh`: 32 lines
 - **Total:** ~512 lines of code
 
 ## License
