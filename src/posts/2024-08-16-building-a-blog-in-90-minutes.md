@@ -12,6 +12,8 @@ I built this entire blog using Claude Code. That's not incidental to the story, 
 
 My humble contribution to the agentic engineering discourse is something I don't see talked about a lot: Claude Code speeds up development so much on greenfield projects that you can avoid pulling in tons of dependencies. Instead of reaching for a framework because building from scratch would take too long, you can build exactly what you need in the time it would take to configure someone else's solution.
 
+Maybe it's a naive approach. Maybe it won't scale. But honestly, that's the point. We're speed-running the iterative development cycle that platforms go through over decades - but only building what we actually want. No advertising considerations, no investor demands, no feature creep from committee decisions. Just the refined solution that serves our actual needs.
+
 There's something intoxicating about starting from a blank terminal and describing what you want: "a minimal blog that renders fast and will work forever." No starter templates, no boilerplate, no inherited decisions. Just **complete control** - every line of code exists for a reason, every decision intentional. No mystery meat in the `node_modules` folder, no configuration you're afraid to touch, no build process you don't understand.
 
 When you build from scratch with an AI pair programmer, you're not fighting the tool - you're having a conversation about what you actually need. And it turns out, for a blog, you need surprisingly little.
