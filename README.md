@@ -112,18 +112,24 @@ Add interactive JavaScript directly in your markdown:
 
 ## Deployment
 
-### Current Setup
+### Automatic Deployment (GitHub Actions)
 
-The blog is deployed on DigitalOcean:
+This blog includes automatic deployment via GitHub Actions. Push to `main` and your site deploys automatically!
+
+See [docs/github-actions-setup.md](docs/github-actions-setup.md) for setup instructions.
+
+### Manual Deployment
+
+The blog can be deployed to any static host:
 - **Domain:** Your custom domain (optional)
 - **Server:** Any static host or VPS
 - **Free options:** GitHub Pages, Netlify, Vercel
 - **OS:** Ubuntu 24.10
 - **Web Server:** Nginx with HTTPS (Let's Encrypt)
 
-To deploy updates:
+To deploy manually from your local machine:
 ```bash
-./bin/deploy.sh
+npm run deploy
 ```
 
 ### Setting Up a New Server
