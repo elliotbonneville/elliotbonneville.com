@@ -6,7 +6,7 @@ description: How I built a minimal, brutalist blog that will outlive Medium
 
 I just built this blog from scratch in about 90 minutes. It's exactly 180 lines of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it'll outlive Medium as a platform.
 
-## 8-Ball Development
+## Magic 8-Ball Development
 
 I built this entire blog using Claude Code. That's not incidental to the story, either. It's central to it. 
 
