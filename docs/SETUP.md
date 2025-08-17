@@ -66,7 +66,7 @@ python3 -m http.server 8000 --directory public
 2. Drag `public/` folder to netlify.com
 3. Done!
 
-### Option C: Self-Host (see docs/digitalocean-setup.md)
+### Option C: Self-Host (see [deployment/digitalocean.md](deployment/digitalocean.md))
 1. Get a VPS (DigitalOcean, Linode, etc.)
 2. Update `config.js` with your server details
 3. Run: `npm run deploy`
@@ -79,4 +79,4 @@ You now have a blog that:
 - Looks great (golden ratio typography)
 - Supports code + interactive examples
 
-For more details, see the [README](README.md).
+For more details, see the main [README](../README.md).

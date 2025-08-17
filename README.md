@@ -27,6 +27,9 @@ A brutalist, minimal static blog generator that prioritizes readability, durabil
 
 ```
 your-blog/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml   # GitHub Actions deployment
 ├── src/
 │   ├── posts/           # Markdown blog posts
 │   ├── template.html    # Post template
@@ -40,11 +43,16 @@ your-blog/
 ├── bin/
 │   ├── build.js        # Build script (163 lines)
 │   ├── watch.js        # Dev mode with auto-rebuild
-│   └── deploy.sh       # DigitalOcean deployment
+│   └── deploy.sh       # Manual deployment script
 ├── docs/
+│   ├── README.md       # Documentation index
+│   ├── SETUP.md        # Getting started guide
 │   ├── PLAN.md         # Architecture plan
 │   ├── CHANGELOG.md    # Version history
-│   └── digitalocean-setup.md  # Server setup guide
+│   └── deployment/     # Deployment guides
+│       ├── github-actions.md  # GitHub Actions setup
+│       ├── digitalocean.md    # Server setup guide
+│       └── domain.md          # Custom domain setup
 └── package.json
 ```
 
@@ -114,9 +122,27 @@ Add interactive JavaScript directly in your markdown:
 
 ### Automatic Deployment (GitHub Actions)
 
-This blog includes automatic deployment via GitHub Actions. Push to `main` and your site deploys automatically!
+This blog includes automatic deployment via GitHub Actions. Push to `main` and your site deploys automatically to your DigitalOcean server!
 
-See [docs/github-actions-setup.md](docs/github-actions-setup.md) for setup instructions.
+**How it works:**
+1. Push code to the `main` branch
+2. GitHub Actions automatically:
+   - Builds the static site
+   - Deploys via rsync to your server
+   - No manual steps required!
+
+**Required GitHub Secrets:**
+- `SSH_PRIVATE_KEY` - Your SSH private key for server access
+- `SERVER_IP` - Your server's IP address (e.g., `167.99.122.111`)
+- `DEPLOY_USER` - SSH username (e.g., `root`)
+- `DEPLOY_PATH` - Server path (e.g., `/var/www/blog`)
+
+**Setup Instructions:**
+1. Go to Settings → Secrets and variables → Actions in your GitHub repo
+2. Add the four required secrets listed above
+3. Push to `main` branch to trigger deployment
+
+For detailed setup instructions, see [docs/deployment/github-actions.md](docs/deployment/github-actions.md).
 
 ### Manual Deployment
 
