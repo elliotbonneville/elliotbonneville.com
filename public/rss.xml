@@ -4,11 +4,11 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Sun, 17 Aug 2025 04:59:59 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 17 Aug 2025 05:16:27 GMT</lastBuildDate>
     <language>en-US</language>
     
     <item>
-      <title>Building a Blog in 90 Minutes with 180 Lines of Code</title>
+      <title>Building a Blog in 90 Minutes with 233 LOC</title>
       <description>How I built a minimal, brutalist blog that will outlive Medium</description>
       <link>https://elliotbonneville.com/building-a-blog-in-90-minutes/</link>
       <guid>https://elliotbonneville.com/building-a-blog-in-90-minutes/</guid>

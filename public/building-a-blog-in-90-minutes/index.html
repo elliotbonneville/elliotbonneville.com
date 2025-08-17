@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Building a Blog in 90 Minutes with 180 Lines of Code - Elliot Bonneville</title>
+  <title>Building a Blog in 90 Minutes with 233 LOC - Elliot Bonneville</title>
   <meta name="description" content="How I built a minimal, brutalist blog that will outlive Medium">
   <style>/* Typography - Golden ratio */
 body {
@@ -308,30 +308,31 @@ pre code {
   <main>
     <article>
       <header>
-        <h1>Building a Blog in 90 Minutes with 180 Lines of Code</h1>
+        <h1>Building a Blog in 90 Minutes with 233 LOC</h1>
         <time>August 15, 2025</time>
       </header>
-      <p>I just built this blog from scratch in about 90 minutes. It&#39;s exactly 180 lines of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it&#39;ll outlive Medium as a platform.</p>
+      <p>I just built this blog from scratch in about 90 minutes. It&#39;s exactly 233 LOC of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it&#39;ll outlive Medium as a platform.</p>
 <h2>Magic 8-Ball Development</h2>
-<p>I built this entire blog using Claude Code. That&#39;s not incidental to the story, either. It&#39;s central to it. </p>
-<p>My humble contribution to the agentic engineering discourse is something I don&#39;t see talked about a lot: Claude Code speeds up development so much on greenfield projects that you can avoid pulling in tons of dependencies. Instead of reaching for a framework because building from scratch would take too long, you can build exactly what you need in the time it would take to configure someone else&#39;s solution.</p>
-<p>Maybe it&#39;s a naive approach. Maybe it won&#39;t scale. But honestly, that&#39;s the point. We&#39;re speed-running the iterative development cycle that platforms go through over decades - but only building what we actually want. No advertising considerations, no investor demands, no feature creep from committee decisions. Just the refined solution that serves our actual needs.</p>
+<p>I did it using Claude Code.</p>
+<p>My humble contribution to the agentic engineering discourse is something I don&#39;t see talked about a lot: agentic engineering speeds up development so much on greenfield projects that you can avoid pulling in tons of dependencies. Instead of reaching for a framework because building from scratch would take too long, you can build exactly what you need in the time it would take to configure someone else&#39;s solution.</p>
+<p>Maybe it&#39;s a naive approach. Maybe it won&#39;t scale. But honestly, that&#39;s the point. You&#39;re speed-running the iterative development cycle that platforms go through over decades - but only building what you actually want. No advertising considerations, no investor demands, no feature creep from committee decisions. Just the refined solution that serves your actual needs.</p>
 <p>There&#39;s something intoxicating about starting from a blank terminal and describing what you want: &quot;a minimal blog that renders fast and will work forever.&quot; No starter templates, no boilerplate, no inherited decisions. Just <strong>complete control</strong> - every line of code exists for a reason, every decision intentional. No mystery meat in the <code>node_modules</code> folder, no configuration you&#39;re afraid to touch, no build process you don&#39;t understand.</p>
 <p>When you build from scratch with an AI pair programmer, you&#39;re not fighting the tool - you&#39;re having a conversation about what you actually need. And it turns out, for a blog, you need surprisingly little.</p>
 <h2>The Constraints</h2>
-<p>I started with several clear opinions. My goal was to build a brutalist, hyper-minimalist blog where every element serves a purpose:</p>
+<p>My goal was to build a brutalist, hyper-minimalist blog where every element serves a purpose. I started with several clear opinions:</p>
 <ul>
+<li><strong>Speed is essential</strong> - Why go slow, when you can go fast?</li>
 <li><strong>No React for reading text</strong> - It&#39;s a blog. HTML works.</li>
 <li><strong>No CDNs</strong> - Everything self-contained. No link rot.</li>
 <li><strong>No <code>.html</code> in URLs</strong> - Clean paths only</li>
 <li><strong>System fonts only</strong> - Your OS spent millions on typography</li>
 <li><strong>Golden ratio everything</strong> - 65ch width, 1.618 line height</li>
-<li><strong>Syntax highlighting that works</strong> - Pre-rendered, not client-side</li>
+<li><strong>Fast syntax highlighting</strong> - Pre-rendered, not client-side</li>
 <li><strong>Interactive demos</strong> - But only where needed</li>
 </ul>
 <h2>The Stack</h2>
 <pre><code class="language-javascript"><span class="token punctuation">{</span>
-  <span class="token string-property property">"build"</span><span class="token operator">:</span> <span class="token string">"node (180 lines)"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"build"</span><span class="token operator">:</span> <span class="token string">"node (233 LOC)"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"parse"</span><span class="token operator">:</span> <span class="token string">"marked (17kb)"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"highlight"</span><span class="token operator">:</span> <span class="token string">"prism (15kb)"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"deploy"</span><span class="token operator">:</span> <span class="token string">"rsync over SSH"</span><span class="token punctuation">,</span>

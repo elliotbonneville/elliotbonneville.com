@@ -41,18 +41,18 @@ your-blog/
 │   └── [post-name]/
 │       └── index.html
 ├── bin/
-│   ├── build.js        # Build script (163 lines)
+│   ├── build.js        # Build script (233 LOC)
 │   ├── watch.js        # Dev mode with auto-rebuild
 │   └── deploy.sh       # Manual deployment script
 ├── docs/
-│   ├── README.md       # Documentation index
-│   ├── SETUP.md        # Getting started guide
-│   ├── PLAN.md         # Architecture plan
-│   ├── CHANGELOG.md    # Version history
-│   └── deployment/     # Deployment guides
-│       ├── github-actions.md  # GitHub Actions setup
-│       ├── digitalocean.md    # Server setup guide
-│       └── domain.md          # Custom domain setup
+│   ├── README.md       # Quick start & overview
+│   ├── DEPLOYMENT.md   # Full deployment guide
+│   ├── ARCHITECTURE.md # How it works
+│   └── CHANGELOG.md    # Version history
+├── deploy/
+│   ├── nginx.conf      # Production nginx config
+│   ├── deploy.sh       # Deployment script
+│   └── README.md       # Deploy folder docs
 └── package.json
 ```
 

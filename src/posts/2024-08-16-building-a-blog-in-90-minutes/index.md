@@ -1,18 +1,18 @@
 ---
-title: Building a Blog in 90 Minutes with 180 Lines of Code
+title: Building a Blog in 90 Minutes with 233 LOC
 date: 2025-08-16
 description: How I built a minimal, brutalist blog that will outlive Medium
 ---
 
-I just built this blog from scratch in about 90 minutes. It's exactly 180 lines of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it'll outlive Medium as a platform.
+I just built this blog from scratch in about 90 minutes. It's exactly 233 LOC of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it'll outlive Medium as a platform.
 
 ## Magic 8-Ball Development
 
-I built this entire blog using Claude Code. That's not incidental to the story, either. It's central to it. 
+I did it using Claude Code.
 
-My humble contribution to the agentic engineering discourse is something I don't see talked about a lot: Claude Code speeds up development so much on greenfield projects that you can avoid pulling in tons of dependencies. Instead of reaching for a framework because building from scratch would take too long, you can build exactly what you need in the time it would take to configure someone else's solution.
+My humble contribution to the agentic engineering discourse is something I don't see talked about a lot: agentic engineering speeds up development so much on greenfield projects that you can avoid pulling in tons of dependencies. Instead of reaching for a framework because building from scratch would take too long, you can build exactly what you need in the time it would take to configure someone else's solution.
 
-Maybe it's a naive approach. Maybe it won't scale. But honestly, that's the point. We're speed-running the iterative development cycle that platforms go through over decades - but only building what we actually want. No advertising considerations, no investor demands, no feature creep from committee decisions. Just the refined solution that serves our actual needs.
+Maybe it's a naive approach. Maybe it won't scale. But honestly, that's the point. You're speed-running the iterative development cycle that platforms go through over decades - but only building what you actually want. No advertising considerations, no investor demands, no feature creep from committee decisions. Just the refined solution that serves your actual needs.
 
 There's something intoxicating about starting from a blank terminal and describing what you want: "a minimal blog that renders fast and will work forever." No starter templates, no boilerplate, no inherited decisions. Just **complete control** - every line of code exists for a reason, every decision intentional. No mystery meat in the `node_modules` folder, no configuration you're afraid to touch, no build process you don't understand.
 
@@ -20,21 +20,22 @@ When you build from scratch with an AI pair programmer, you're not fighting the 
 
 ## The Constraints
 
-I started with several clear opinions. My goal was to build a brutalist, hyper-minimalist blog where every element serves a purpose:
+My goal was to build a brutalist, hyper-minimalist blog where every element serves a purpose. I started with several clear opinions:
 
+- **Speed is essential** - Why go slow, when you can go fast?
 - **No React for reading text** - It's a blog. HTML works.
 - **No CDNs** - Everything self-contained. No link rot.
 - **No `.html` in URLs** - Clean paths only
 - **System fonts only** - Your OS spent millions on typography
 - **Golden ratio everything** - 65ch width, 1.618 line height
-- **Syntax highlighting that works** - Pre-rendered, not client-side
+- **Fast syntax highlighting** - Pre-rendered, not client-side
 - **Interactive demos** - But only where needed
 
 ## The Stack
 
 ```javascript
 {
-  "build": "node (180 lines)",
+  "build": "node (233 LOC)",
   "parse": "marked (17kb)",
   "highlight": "prism (15kb)",
   "deploy": "rsync over SSH",
