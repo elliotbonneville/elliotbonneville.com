@@ -8,6 +8,11 @@ export const config = {
     language: 'en-US'
   },
   
+  // Analytics (optional)
+  analytics: {
+    googleAnalyticsId: '' // Leave empty to disable, or add your G-XXXXXXX ID
+  },
+  
   // Deployment settings (only needed for self-hosting)
   deploy: {
     server: 'user@your-server-ip',

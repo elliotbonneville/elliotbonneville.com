@@ -8,6 +8,11 @@ export const config = {
     language: 'en-US'
   },
   
+  // Analytics
+  analytics: {
+    googleAnalyticsId: 'G-ELQ40R6NTG'
+  },
+  
   // Deployment settings
   deploy: {
     server: 'root@167.99.122.111',

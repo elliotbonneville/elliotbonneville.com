@@ -92,12 +92,28 @@ function generateRSS(posts) {
 </rss>`;
 }
 
+// Generate analytics snippet
+function generateAnalytics() {
+  if (!config.analytics?.googleAnalyticsId) {
+    return '';
+  }
+  return `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${config.analytics.googleAnalyticsId}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${config.analytics.googleAnalyticsId}');
+</script>`;
+}
+
 // Main build function
 function build() {
   // Read templates and CSS
   const template = readFileSync('src/template.html', 'utf8');
   const indexTemplate = readFileSync('src/index-template.html', 'utf8');
   const css = readFileSync('src/style.css', 'utf8');
+  const analytics = generateAnalytics();
   
   // Ensure public directory exists
   try {
@@ -137,7 +153,8 @@ function build() {
       .replace(/\{\{description\}\}/g, post.description)
       .replace(/\{\{date\}\}/g, formattedDate)
       .replace(/\{\{content\}\}/g, html)
-      .replace(/\{\{css\}\}/g, css);
+      .replace(/\{\{css\}\}/g, css)
+      .replace(/\{\{analytics\}\}/g, analytics);
     
     // Create folder with index.html for clean URLs
     const postDir = `public/${slug}`;
@@ -163,7 +180,8 @@ function build() {
     .replace(/\{\{siteName\}\}/g, config.site.name)
     .replace(/\{\{siteDescription\}\}/g, config.site.description)
     .replace(/\{\{posts\}\}/g, postsList)
-    .replace(/\{\{css\}\}/g, css);
+    .replace(/\{\{css\}\}/g, css)
+    .replace(/\{\{analytics\}\}/g, analytics);
   
   writeFileSync('public/index.html', indexHtml);
   console.log('Generated: index.html');
