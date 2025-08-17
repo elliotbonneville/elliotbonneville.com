@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
-import { join, basename } from 'path';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, statSync, copyFileSync } from 'fs';
+import { join, basename, extname } from 'path';
 import { marked } from 'marked';
 import Prism from 'prismjs';
 import { config } from '../config.js';
@@ -62,9 +62,30 @@ function formatDate(dateStr) {
   });
 }
 
-// Create slug from filename
-function createSlug(filename) {
-  return basename(filename, '.md').replace(/^\d{4}-\d{2}-\d{2}-/, '');
+// Create slug from folder name or filename
+function createSlug(name) {
+  return basename(name).replace(/^\d{4}-\d{2}-\d{2}-/, '');
+}
+
+// Copy all non-markdown files from source to destination
+function copyAssets(srcDir, destDir) {
+  const files = readdirSync(srcDir);
+  
+  for (const file of files) {
+    const srcPath = join(srcDir, file);
+    const destPath = join(destDir, file);
+    const stats = statSync(srcPath);
+    
+    if (stats.isDirectory()) {
+      // Recursively copy subdirectories
+      mkdirSync(destPath, { recursive: true });
+      copyAssets(srcPath, destPath);
+    } else if (file !== 'index.md') {
+      // Copy all files except index.md (including HTML files as-is)
+      copyFileSync(srcPath, destPath);
+      console.log(`  Copied: ${file}`);
+    }
+  }
 }
 
 // Generate RSS feed
@@ -121,15 +142,27 @@ function build() {
   }
   mkdirSync('public', { recursive: true });
   
-  // Process markdown files
+  // Process post folders
   const posts = [];
-  const postFiles = readdirSync('src/posts').filter(file => file.endsWith('.md'));
+  const postDirs = readdirSync('src/posts').filter(item => {
+    const itemPath = join('src/posts', item);
+    return statSync(itemPath).isDirectory();
+  });
   
-  for (const filename of postFiles) {
-    const content = readFileSync(join('src/posts', filename), 'utf8');
+  for (const dirName of postDirs) {
+    const postSrcDir = join('src/posts', dirName);
+    const indexPath = join(postSrcDir, 'index.md');
+    
+    // Check if index.md exists
+    if (!existsSync(indexPath)) {
+      console.warn(`Warning: No index.md found in ${dirName}, skipping...`);
+      continue;
+    }
+    
+    const content = readFileSync(indexPath, 'utf8');
     const { frontmatter, content: markdownContent } = parseFrontmatter(content);
     
-    const slug = createSlug(filename);
+    const slug = createSlug(dirName);
     const html = marked(markdownContent);
     const formattedDate = formatDate(frontmatter.date);
     
@@ -156,12 +189,15 @@ function build() {
       .replace(/\{\{analytics\}\}/g, analytics);
     
     // Create folder with index.html for clean URLs
-    const postDir = `public/${slug}`;
-    if (!existsSync(postDir)) {
-      mkdirSync(postDir, { recursive: true });
+    const postDestDir = `public/${slug}`;
+    if (!existsSync(postDestDir)) {
+      mkdirSync(postDestDir, { recursive: true });
     }
-    writeFileSync(`${postDir}/index.html`, postHtml);
+    writeFileSync(`${postDestDir}/index.html`, postHtml);
     console.log(`Generated: ${slug}/index.html`);
+    
+    // Copy additional files and assets from the post folder
+    copyAssets(postSrcDir, postDestDir);
   }
   
   // Sort posts by date (newest first)
