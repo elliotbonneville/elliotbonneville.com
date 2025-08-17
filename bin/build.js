@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
 import { join, basename } from 'path';
 import { marked } from 'marked';
 import Prism from 'prismjs';
@@ -115,12 +115,11 @@ function build() {
   const css = readFileSync('src/style.css', 'utf8');
   const analytics = generateAnalytics();
   
-  // Ensure public directory exists
-  try {
-    mkdirSync('public', { recursive: true });
-  } catch (e) {
-    // Directory already exists
+  // Clean and recreate public directory
+  if (existsSync('public')) {
+    rmSync('public', { recursive: true, force: true });
   }
+  mkdirSync('public', { recursive: true });
   
   // Process markdown files
   const posts = [];
