@@ -112,6 +112,8 @@ bind -n F1 copy-mode          # F1 enters scroll mode
 
 Termius on iOS sends PageUp when you swipe down with two fingers. Now I can scroll through output naturally, without any Ctrl-anything. Press `q` to exit scroll mode.
 
+The full config is in my [dotfiles repo](https://github.com/elliotbonneville/dotfiles): [tmux.zsh](https://github.com/elliotbonneville/dotfiles/blob/main/shell/config/tmux.zsh) for the auto-session logic, [tmux.conf](https://github.com/elliotbonneville/dotfiles/blob/main/tmux/tmux.conf) for the keybindings.
+
 ## The Point
 
 Mobile SSH doesn't have to suck. With the right config, your phone becomes a legitimate terminal into your development machine - like VNC, but faster and works over cellular. Not a toy, not emergency-only - actually usable for real work.
