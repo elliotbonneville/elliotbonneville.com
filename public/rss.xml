@@ -4,7 +4,7 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Sun, 18 Jan 2026 07:17:20 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Jan 2026 07:18:28 GMT</lastBuildDate>
     <language>en-US</language>
     
     <item>
@@ -12,6 +12,13 @@
       <description>How I set up Tailscale and tmux for true device handoff - attach to running Claude Code sessions from anywhere</description>
       <link>https://elliotbonneville.com/phone-to-mac-persistent-terminal/</link>
       <guid>https://elliotbonneville.com/phone-to-mac-persistent-terminal/</guid>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Work Is No Longer Linear</title>
+      <description>The shift from creation to verification</description>
+      <link>https://elliotbonneville.com/work-is-not-linear/</link>
+      <guid>https://elliotbonneville.com/work-is-not-linear/</guid>
       <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
