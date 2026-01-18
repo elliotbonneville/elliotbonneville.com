@@ -79,6 +79,8 @@ Now every iTerm tab starts in its own tmux session with a name like `jolly-panda
 
 The magic: I can start a long-running process in `brave-otter` on my Mac, SSH in from my phone, attach to `brave-otter`, and see exactly where I left off. Close the SSH app, reopen it later, attach again - still there.
 
+This is especially powerful with Claude Code. Normally if you want to continue a session from a different device, you'd need to use `/resume` to reload the conversation context. But with tmux, you're attaching to the *same running process* - Claude Code is still right there, mid-thought, no resume needed. True seamless handoff between devices.
+
 ## Part 3: Mobile-Friendly tmux Bindings
 
 Here's where most tutorials stop. But there's a usability problem: tmux's default prefix is `Ctrl+b`, and mobile keyboards make modifier keys painful. Scrolling is especially bad - you need `Ctrl+b` then `[` to enter copy mode, then arrow keys to scroll.
