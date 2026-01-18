@@ -6,6 +6,8 @@ description: How I set up Tailscale and tmux for true device handoff - attach to
 
 I wanted to SSH into my Mac from my phone. Not for emergencies - for actual work. Run a quick command, check on a build, continue a Claude Code session I left running. The kind of thing that seems simple until you actually try to do it.
 
+*This is part of an ongoing series where I'm building my [dotfiles](https://github.com/elliotbonneville/dotfiles) with Claude Code. I describe what I want, Claude writes the config, and we iterate until it works. The AI pair-programs my entire dev environment.*
+
 The problem is threefold:
 
 1. **Network access** - Your Mac is behind a router, probably on a dynamic IP, definitely behind NAT
