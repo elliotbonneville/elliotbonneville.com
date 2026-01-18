@@ -4,9 +4,16 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Sun, 17 Aug 2025 05:16:27 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Jan 2026 07:09:34 GMT</lastBuildDate>
     <language>en-US</language>
     
+    <item>
+      <title>SSH From Your Phone to Persistent Mac Terminal Sessions</title>
+      <description>How I set up Tailscale and tmux to access my Mac from anywhere with session persistence</description>
+      <link>https://elliotbonneville.com/phone-to-mac-persistent-terminal/</link>
+      <guid>https://elliotbonneville.com/phone-to-mac-persistent-terminal/</guid>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Building a Blog in 90 Minutes with 233 LOC</title>
       <description>How I built a minimal, brutalist blog that will outlive Medium</description>
