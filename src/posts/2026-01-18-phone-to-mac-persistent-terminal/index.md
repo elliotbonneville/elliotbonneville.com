@@ -12,18 +12,7 @@ The problem is threefold:
 2. **Session persistence** - Phone SSH is flaky. WiFi drops, cellular switches towers, apps get backgrounded
 3. **Mobile UX** - Tiny keyboard, no modifier keys, scrolling with your thumb
 
-I solved all three with about 80 lines of configuration.
-
-## The Stack
-
-```bash
-{
-  "networking": "Tailscale (free)",
-  "persistence": "tmux",
-  "mobile-client": "Termius (iOS/Android)",
-  "config": "~80 LOC total"
-}
-```
+I solved all three with about 80 lines of configuration: Tailscale for networking, tmux for persistence, and some careful keybindings for mobile usability.
 
 ## Part 1: Tailscale for Networking
 
@@ -62,20 +51,40 @@ _tmux_random_name() {
   echo "${adjectives[$RANDOM % ${#adjectives[@]} + 1]}-${animals[$RANDOM % ${#animals[@]} + 1]}"
 }
 
-# SSH: pick from existing sessions with fzf
-# Local: create new session with fun name
-if [[ -n "$SSH_CONNECTION" ]]; then
-  if tmux has-session 2>/dev/null; then
-    session=$(tmux ls | fzf --height 40% | cut -d: -f1)
-    [[ -n "$session" ]] && exec tmux attach -t "$session"
+# fzf picker with option to create new session
+_tmux_pick_session() {
+  local selection
+  if command -v fzf >/dev/null 2>&1; then
+    selection=$( (echo "+ new session"; tmux ls -F "#{session_name}: #{session_windows} windows" 2>/dev/null) | \
+      fzf --height 40% --reverse --prompt="tmux session> ")
+  else
+    selection="+ new session"
   fi
-  exec tmux new-session -s ssh
+  echo "$selection"
+}
+
+# SSH: show picker with existing sessions + new session option
+# Local: create session that auto-closes when tab closes
+if [[ -n "$SSH_CONNECTION" ]]; then
+  selection=$(_tmux_pick_session)
+  if [[ "$selection" == "+ new session" ]]; then
+    exec tmux new-session -s "$(_tmux_random_name)"
+  elif [[ -n "$selection" ]]; then
+    session=$(echo "$selection" | cut -d: -f1)
+    exec tmux attach -t "$session"
+  fi
 else
-  exec tmux new-session -s "$(_tmux_random_name)"
+  exec tmux new-session -s "$(_tmux_random_name)" \; set destroy-unattached on
 fi
 ```
 
-Now every iTerm tab starts in its own tmux session with a name like `jolly-panda` or `swift-falcon`. When I SSH in from my phone, fzf shows me all my existing sessions and I pick which one to attach to.
+Now every iTerm tab starts in its own tmux session with a name like `jolly-panda` or `swift-falcon`. When I SSH in from my phone, fzf shows me all my existing sessions plus a `+ new session` option at the top.
+
+The key insight is treating local and SSH sessions differently:
+
+**Local sessions auto-close.** The `destroy-unattached` flag means when you close an iTerm tab, the tmux session dies with it. No orphaned `swift-falcon` sessions piling up in the background.
+
+**SSH sessions persist.** When your phone connection drops (and it will), the session keeps running. Reconnect later and pick up where you left off. You can also create fresh SSH sessions with fun names by selecting `+ new session` from the picker.
 
 The magic: I can start a long-running process in `brave-otter` on my Mac, SSH in from my phone, attach to `brave-otter`, and see exactly where I left off. Close the SSH app, reopen it later, attach again - still there.
 
@@ -103,52 +112,9 @@ bind -n F1 copy-mode          # F1 enters scroll mode
 
 Termius on iOS sends PageUp when you swipe down with two fingers. Now I can scroll through output naturally, without any Ctrl-anything. Press `q` to exit scroll mode.
 
-## The NOTMUX Escape Hatch
-
-Sometimes you need a raw shell. Maybe you're debugging tmux itself, or running something that doesn't play nice with it. Set `NOTMUX=1`:
-
-```bash
-ssh -t macbook 'NOTMUX=1 zsh'
-```
-
-The config checks for this variable and skips the automatic tmux attachment.
-
-## The Workflow
-
-1. Open Termius on my phone
-2. Tap my Mac's hostname
-3. fzf shows all my iTerm sessions: `jolly-panda`, `swift-falcon`, `zen-koala`
-4. Tap the one running my build
-5. See exactly where it was, check the output, run another command
-6. Close Termius (connection drops)
-7. Open it again hours later
-8. Session is still there, still running
-
-It's like VNC for your terminal, but faster and works over cellular.
-
-## Why Not [Alternative]?
-
-**Mosh:** Great for latency, but doesn't help with session persistence. Also requires opening UDP ports.
-
-**VS Code Remote:** Heavy. I want a terminal, not an IDE on my phone.
-
-**Screen:** tmux is just better. Sorry.
-
-**Keep laptop open:** Battery dies. Laptop gets stolen. Not actually portable.
-
-## The Numbers
-
-- **Setup time:** 30 minutes
-- **Lines of config:** ~80
-- **Monthly cost:** $0 (Tailscale free tier)
-- **Latency:** Depends on network, but usually <100ms
-- **Session survival:** Indefinite (until Mac restarts)
-
 ## The Point
 
-Mobile SSH doesn't have to suck. With the right config, your phone becomes a legitimate terminal into your development machine. Not a toy, not emergency-only - actually usable for real work.
-
-The key insight: don't fight the constraints of mobile. Embrace them. Make everything persistent so dropped connections don't matter. Make scrolling work without modifier keys. Make session selection fast with fzf.
+Mobile SSH doesn't have to suck. With the right config, your phone becomes a legitimate terminal into your development machine - like VNC, but faster and works over cellular. Not a toy, not emergency-only - actually usable for real work.
 
 Your Mac is always one tap away.
 
@@ -166,7 +132,7 @@ I vibe coded this entire setup with Claude Code over about an hour. Here's the a
 
 5. **"write a blogpost in my blog about the tmux tailscale setup"** - This post. Written from my phone, over Tailscale, in a persistent tmux session, about the setup we just built.
 
-The fun Docker-style session names (`jolly-panda`, `swift-falcon`)? Claude's idea - I just said I wanted unique names per tab. The `NOTMUX` escape hatch? Claude anticipated I'd need a way to bypass it sometimes.
+The fun Docker-style session names (`jolly-panda`, `swift-falcon`)? Claude's idea - I just said I wanted unique names per tab.
 
 When I asked Claude to write this post, I told it to introspect our conversation history. It read the session index at `~/.claude/projects/` and pulled out the actual prompts I'd typed over the past hour. That's how I got the numbered list above - not from memory, but from Claude reading its own logs and reconstructing the journey.
 
