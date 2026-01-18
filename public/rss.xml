@@ -4,12 +4,12 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Sun, 18 Jan 2026 07:13:56 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Jan 2026 07:17:20 GMT</lastBuildDate>
     <language>en-US</language>
     
     <item>
-      <title>SSH From Your Phone to Persistent Mac Terminal Sessions</title>
-      <description>How I set up Tailscale and tmux to access my Mac from anywhere with session persistence</description>
+      <title>Seamless Claude Code Handoff: SSH From Your Phone With tmux</title>
+      <description>How I set up Tailscale and tmux for true device handoff - attach to running Claude Code sessions from anywhere</description>
       <link>https://elliotbonneville.com/phone-to-mac-persistent-terminal/</link>
       <guid>https://elliotbonneville.com/phone-to-mac-persistent-terminal/</guid>
       <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>

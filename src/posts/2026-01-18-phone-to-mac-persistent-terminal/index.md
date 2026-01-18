@@ -1,7 +1,7 @@
 ---
-title: SSH From Your Phone to Persistent Mac Terminal Sessions
+title: Seamless Claude Code Handoff: SSH From Your Phone With tmux
 date: 2026-01-18
-description: How I set up Tailscale and tmux to access my Mac from anywhere with session persistence
+description: How I set up Tailscale and tmux for true device handoff - attach to running Claude Code sessions from anywhere
 ---
 
 I wanted to SSH into my Mac from my phone. Not for emergencies - for actual work. Run a quick command, check on a build, continue a Claude Code session I left running. The kind of thing that seems simple until you actually try to do it.
