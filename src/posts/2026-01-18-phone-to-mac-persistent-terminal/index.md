@@ -114,7 +114,11 @@ bind -n F1 copy-mode          # F1 enters scroll mode
 
 Termius on iOS sends PageUp when you swipe down with two fingers. Now I can scroll through output naturally, without any Ctrl-anything. Press `q` to exit scroll mode.
 
-The full config is in my [dotfiles repo](https://github.com/elliotbonneville/dotfiles): [tmux.zsh](https://github.com/elliotbonneville/dotfiles/blob/main/shell/config/tmux.zsh) for the auto-session logic, [tmux.conf](https://github.com/elliotbonneville/dotfiles/blob/main/tmux/tmux.conf) for the keybindings.
+For text input, I use [Wispr Flow](https://wispr.com) - voice-to-text that runs locally on device. Instead of pecking at a tiny keyboard, I just talk. It handles technical terms and code surprisingly well. Between Wispr for input and the PageUp binding for scrolling, the phone keyboard becomes almost optional.
+
+The full config is in my [dotfiles repo](https://github.com/elliotbonneville/dotfiles):
+- [tmux.zsh](https://github.com/elliotbonneville/dotfiles/blob/main/shell/config/tmux.zsh) - auto-session logic
+- [tmux.conf](https://github.com/elliotbonneville/dotfiles/blob/main/tmux/tmux.conf) - keybindings
 
 ## The Point
 
