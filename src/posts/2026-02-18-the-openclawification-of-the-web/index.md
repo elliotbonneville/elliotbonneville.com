@@ -20,7 +20,7 @@ And none of that is the interesting part.
 
 The interesting part is what's calcifying underneath all this noise. Quietly. While everyone watches the ouroboros.
 
-We all know the intelligence is here. The models crossed "smart enough" a while ago. What we don't have is permission. Not the human kind. The infrastructure kind. The plumbing that would let you hand your credit card to a process and sleep through what it does with it.
+We all know the intelligence is here. The models crossed "smart enough" a while ago. But there's no way to hand an agent your credit card and go to bed.
 
 CrowdStrike flagged OpenClaw's broad permissions as a security nightmare. An independent researcher found [42,665 publicly exposed instances](https://www.crowdstrike.com/en-us/blog/what-security-teams-need-to-know-about-openclaw-ai-super-agent/) with 93% showing critical authentication bypass vulnerabilities. Meta banned it from company devices. And those are the obvious problems. The non-obvious ones are worse: if your agent can read your email, send messages, and access your calendar, what happens when someone poisons its context? What happens when it makes a purchase you didn't want? What happens when it's 3am and it's operating autonomously and it gets confused?
 
