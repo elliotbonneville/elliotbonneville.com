@@ -8,7 +8,7 @@ A couple days ago I vibe coded an Apple Watch button that talks to an OpenClaw s
 
 It still works. I have no idea what to use it for. I tap it sometimes just to feel something.
 
-That uselessness is the most important thing happening in tech right now. Not OpenClaw itself. Not the 208,000 GitHub stars or the bidding war that ended with Steinberger at OpenAI. The uselessness. The specific flavor of uselessness where the thing works perfectly and you have nowhere to point it.
+That uselessness is the most important thing happening in tech right now. Not OpenClaw itself. Not the 208,000 GitHub stars or the bidding war that ended with Steinberger at OpenAI. The uselessness.
 
 Because right now, OpenClaw's biggest use case is OpenClaw.
 
@@ -24,15 +24,15 @@ We all know the intelligence is here. The models crossed "smart enough" a while 
 
 CrowdStrike flagged OpenClaw's broad permissions as a security nightmare. An independent researcher found [42,665 publicly exposed instances](https://www.crowdstrike.com/en-us/blog/what-security-teams-need-to-know-about-openclaw-ai-super-agent/) with 93% showing critical authentication bypass vulnerabilities. Meta banned it from company devices. And those are the obvious problems. The non-obvious ones are worse: if your agent can read your email, send messages, and access your calendar, what happens when someone poisons its context? What happens when it makes a purchase you didn't want? What happens when it's 3am and it's operating autonomously and it gets confused?
 
-These are not hypothetical questions anymore. They're engineering problems. And the Cambrian explosion isn't happening around the AI. It's happening around the trust layer.
+Someone has to build the answers to all of that. And the Cambrian explosion everyone keeps predicting is happening around the trust layer, not the AI itself.
 
 Look at what's already moving. Visa launched [Trusted Agent Protocol](https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21961.html), an open framework for agent-driven checkout with Microsoft, Shopify, and Stripe backing it. Mastercard shipped [Agent Pay](https://www.mastercard.com/us/en/business/artificial-intelligence/mastercard-agent-pay.html), with Fiserv integrating it into merchant infrastructure. Cloudflare built an [authentication layer](https://blog.cloudflare.com/secure-agentic-commerce/) that lets networks distinguish between bots and legitimate AI agents. Privacy.com-style virtual cards for AI agents aren't a thought experiment anymore. They're being built.
 
-Then there's the hardware side. PicoClaw runs a full agent on [a $10 board](https://news.ycombinator.com/item?id=47004845). ZeroClaw rewrote the whole thing in Rust. The orchestration layer, the part that decides what the agent does, can now live on almost anything. The expensive part was never the brain. It was always the guardrails.
+Then there's the hardware side. PicoClaw runs a full agent on [a $10 board](https://news.ycombinator.com/item?id=47004845). ZeroClaw rewrote the whole thing in Rust. The orchestration layer, the part that decides what the agent does, can now live on almost anything.
 
 Here's what I think is actually happening. Everyone who set up OpenClaw in the last month just played Iron Man in their garage. They wired Jarvis to their smart home, their calendar, their messaging apps. They felt the future in their hands for a few hours. Then they put it down because there was nothing safe or structured enough to do with it at scale.
 
-But they remember what it felt like. And now a thousand companies are racing to build the missing pieces. Not better models. Not smarter agents. Sandboxed accounts. Scoped permissions. Agent-specific identities. Transaction limits. Audit trails. The boring stuff that turns a demo into a life.
+But they remember what it felt like. And now a thousand companies are racing to build everything that was missing: sandboxed accounts, scoped permissions, agent-specific identities, transaction limits, audit trails.
 
 The criticism that OpenClaw is "nothing novel" misses the point entirely. Of course it's not novel. It's a chatbot connected to APIs. The novel thing is that millions of people just experienced what it feels like to have an autonomous agent operating in their real environment, touching their real data, for the first time. That experience created demand for infrastructure that didn't need to exist six months ago.
 
