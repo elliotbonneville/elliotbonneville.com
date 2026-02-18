@@ -8,9 +8,9 @@ Every morning a few thousand people wake up and ship something. A tool, a SaaS, 
 
 This is not new. What's new is the scale. An AI can wake up (or whatever it does at 3am) and ship twelve of these before breakfast.
 
-The value of human thinking is going down. You probably knew this. What gets said less: the value of a human eyeball is going up, because there are only so many of them and there are now infinite things that want to be looked at.
+The value of human thinking is going down. You probably knew this. The corollary is rarely mentioned: the value of a human eyeball is going up, because there are only so many of them and there are now infinite things that want to be looked at.
 
-Creation used to be the scarce thing. Now attention is. Most of us are on the wrong side of that trade.
+Creation used to be the scarce thing, the filter. Now attention is. Most of us are on the wrong side of that trade.
 
 Josh Pigford has been building things on the internet for 25 years. This is the first time he's said it feels hard:
 
@@ -22,7 +22,7 @@ When someone suggested the answer was marketing:
 
 He's right. "Just do more marketing" assumes there's a channel open. Every channel I know of has gotten quietly worse. Search. Social. Newsletters. Communities. There's a thread on Hacker News right now called ["Is Show HN dead? No, but it's drowning"](https://news.ycombinator.com/item?id=47045804) — Show HN, the one place the internet was supposed to notice if you built something real.
 
-One commenter named the shape of it:
+One commenter:
 
 > One of the great benefits of AI tools is they allow anyone to build stuff, even if they have no ideas or knowledge. One of the great drawbacks is they allow anyone to build stuff.
 
