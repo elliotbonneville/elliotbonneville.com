@@ -24,7 +24,9 @@ He's right. "Just do more marketing" assumes there's a channel open. Every chann
 
 One commenter:
 
-> One of the great benefits of AI tools is they allow anyone to build stuff, even if they have no ideas or knowledge. One of the great drawbacks is they allow anyone to build stuff.
+> One of the great benefits of AI tools, is they allow anyone to build stuff... even if they have no ideas or knowledge.
+>
+> One of the great drawbacks of AI tools, is they allow anyone to build stuff... even if they have no ideas or knowledge.
 
 Another: "The vibecoder hasn't done the interesting thing, they've pulled other people's interesting things."
 
