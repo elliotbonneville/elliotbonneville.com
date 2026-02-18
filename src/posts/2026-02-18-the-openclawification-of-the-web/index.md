@@ -4,7 +4,7 @@ date: 2026-02-18
 description: Right now, OpenClaw's biggest use case is OpenClaw. That's not the interesting part.
 ---
 
-A couple days ago I vibe coded an Apple Watch button that talks to an OpenClaw server. Took one evening. I'm not a mobile developer. I don't know Swift. I used Apple Shortcuts and some duct tape and by 10:45pm I could tap my watch, dictate something, and get a voice back from an AI agent running on a DigitalOcean droplet.
+A couple days ago I vibe coded an Apple Watch button that talks to an OpenClaw server. Took one evening. I'm not a mobile developer. I don't know Swift. I used Apple Shortcuts and some duct tape and by 10:45pm I could tap my watch, dictate something, and get a voice back from an AI agent running on a DigitalOcean droplet. I think my wife thinks I'm crazy.
 
 It still works. I have no idea what to use it for. I tap it sometimes just to feel something.
 
