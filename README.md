@@ -14,7 +14,8 @@ A brutalist, minimal static blog generator that prioritizes readability, durabil
 - **Dark mode** - Respects system preferences
 - **RSS feed** - Auto-generated for subscribers
 - **No dependencies** - Will work in 20 years
-- **One-command deploy** - Push to DigitalOcean with `./deploy.sh`
+- **Deploys on commit** - Push to `main` and GitHub Actions deploys automatically
+- **One-command deploy** - Or deploy manually with `./deploy.sh`
 
 ## Tech Stack
 

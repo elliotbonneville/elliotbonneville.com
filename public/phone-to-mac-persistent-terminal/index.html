@@ -312,20 +312,15 @@ pre code {
         <time>January 17, 2026</time>
       </header>
       <p>I wanted to SSH into my Mac from my phone. Not for emergencies - for actual work. Run a quick command, check on a build, continue a Claude Code session I left running. The kind of thing that seems simple until you actually try to do it.</p>
+<p><em>This is part of an ongoing series where I&#39;m building my <a href="https://github.com/elliotbonneville/dotfiles">dotfiles</a> with Claude Code. I describe what I want, Claude writes the config, and we iterate until it works. The AI pair-programs my entire dev environment.</em></p>
 <p>The problem is threefold:</p>
 <ol>
 <li><strong>Network access</strong> - Your Mac is behind a router, probably on a dynamic IP, definitely behind NAT</li>
 <li><strong>Session persistence</strong> - Phone SSH is flaky. WiFi drops, cellular switches towers, apps get backgrounded</li>
 <li><strong>Mobile UX</strong> - Tiny keyboard, no modifier keys, scrolling with your thumb</li>
 </ol>
-<p>I solved all three with about 80 lines of configuration.</p>
-<h2>The Stack</h2>
-<pre><code class="language-bash"><span class="token punctuation">{</span>
-  <span class="token string">"networking"</span><span class="token builtin class-name">:</span> <span class="token string">"Tailscale (free)"</span>,
-  <span class="token string">"persistence"</span><span class="token builtin class-name">:</span> <span class="token string">"tmux"</span>,
-  <span class="token string">"mobile-client"</span><span class="token builtin class-name">:</span> <span class="token string">"Termius (iOS/Android)"</span>,
-  <span class="token string">"config"</span><span class="token builtin class-name">:</span> <span class="token string">"~80 LOC total"</span>
-<span class="token punctuation">}</span></code></pre><h2>Part 1: Tailscale for Networking</h2>
+<p>I solved all three with about 80 lines of configuration: Tailscale for networking, tmux for persistence, and some careful keybindings for mobile usability.</p>
+<h2>Part 1: Tailscale for Networking</h2>
 <p>Tailscale creates a private mesh network between your devices using WireGuard. No port forwarding, no dynamic DNS, no firewall rules. It just works through NAT, hotel WiFi, cellular networks - everywhere.</p>
 <p>Install it on your Mac, install it on your phone, sign in with the same account, and you can SSH between them using hostnames like <code>ssh macbook</code>.</p>
 <p>Setup takes 5 minutes:</p>
@@ -353,17 +348,34 @@ pre code {
   <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">${adjectives<span class="token punctuation">[</span>$RANDOM <span class="token operator">%</span> ${<span class="token operator">#</span>adjectives<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span> + 1]}-<span class="token variable">${animals<span class="token punctuation">[</span>$RANDOM <span class="token operator">%</span> ${<span class="token operator">#</span>animals<span class="token punctuation">[</span>@<span class="token punctuation">]</span>}</span> + 1]}"</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment"># SSH: pick from existing sessions with fzf</span>
-<span class="token comment"># Local: create new session with fun name</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$SSH_CONNECTION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-  <span class="token keyword">if</span> tmux has-session <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token assign-left variable">session</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>tmux <span class="token function">ls</span> <span class="token operator">|</span> fzf <span class="token parameter variable">--height</span> <span class="token number">40</span>% <span class="token operator">|</span> <span class="token function">cut</span> -d: <span class="token parameter variable">-f1</span><span class="token variable">)</span></span>
-    <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$session</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">exec</span> tmux attach <span class="token parameter variable">-t</span> <span class="token string">"<span class="token variable">$session</span>"</span>
+<span class="token comment"># fzf picker with option to create new session</span>
+<span class="token function-name function">_tmux_pick_session</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin class-name">local</span> selection
+  <span class="token keyword">if</span> <span class="token builtin class-name">command</span> <span class="token parameter variable">-v</span> fzf <span class="token operator">></span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token assign-left variable">selection</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span> <span class="token punctuation">(</span>echo <span class="token string">"+ new session"</span><span class="token punctuation">;</span> tmux <span class="token function">ls</span> <span class="token parameter variable">-F</span> <span class="token string">"#{session_name}: #{session_windows} windows"</span> <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">\</span>
+      fzf <span class="token parameter variable">--height</span> <span class="token number">40</span>% <span class="token parameter variable">--reverse</span> <span class="token parameter variable">--prompt</span><span class="token operator">=</span><span class="token string">"tmux session> "</span><span class="token variable">)</span></span>
+  <span class="token keyword">else</span>
+    <span class="token assign-left variable">selection</span><span class="token operator">=</span><span class="token string">"+ new session"</span>
   <span class="token keyword">fi</span>
-  <span class="token builtin class-name">exec</span> tmux new-session <span class="token parameter variable">-s</span> <span class="token function">ssh</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$selection</span>"</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment"># SSH: show picker with existing sessions + new session option</span>
+<span class="token comment"># Local: create session that auto-closes when tab closes</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$SSH_CONNECTION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token assign-left variable">selection</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>_tmux_pick_session<span class="token variable">)</span></span>
+  <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$selection</span>"</span> <span class="token operator">==</span> <span class="token string">"+ new session"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">exec</span> tmux new-session <span class="token parameter variable">-s</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>_tmux_random_name<span class="token variable">)</span></span>"</span>
+  <span class="token keyword">elif</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$selection</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token assign-left variable">session</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$selection</span>"</span> <span class="token operator">|</span> <span class="token function">cut</span> -d: <span class="token parameter variable">-f1</span><span class="token variable">)</span></span>
+    <span class="token builtin class-name">exec</span> tmux attach <span class="token parameter variable">-t</span> <span class="token string">"<span class="token variable">$session</span>"</span>
+  <span class="token keyword">fi</span>
 <span class="token keyword">else</span>
-  <span class="token builtin class-name">exec</span> tmux new-session <span class="token parameter variable">-s</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>_tmux_random_name<span class="token variable">)</span></span>"</span>
-<span class="token keyword">fi</span></code></pre><p>Now every iTerm tab starts in its own tmux session with a name like <code>jolly-panda</code> or <code>swift-falcon</code>. When I SSH in from my phone, fzf shows me all my existing sessions and I pick which one to attach to.</p>
+  <span class="token builtin class-name">exec</span> tmux new-session <span class="token parameter variable">-s</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>_tmux_random_name<span class="token variable">)</span></span>"</span> <span class="token punctuation">\</span><span class="token punctuation">;</span> <span class="token builtin class-name">set</span> destroy-unattached on
+<span class="token keyword">fi</span></code></pre><p>Now every iTerm tab starts in its own tmux session with a name like <code>jolly-panda</code> or <code>swift-falcon</code>. When I SSH in from my phone, fzf shows me all my existing sessions plus a <code>+ new session</code> option at the top.</p>
+<p>The key insight is treating local and SSH sessions differently:</p>
+<p><strong>Local sessions auto-close.</strong> The <code>destroy-unattached</code> flag means when you close an iTerm tab, the tmux session dies with it. No orphaned <code>swift-falcon</code> sessions piling up in the background.</p>
+<p><strong>SSH sessions persist.</strong> When your phone connection drops (and it will), the session keeps running. Reconnect later and pick up where you left off. You can also create fresh SSH sessions with fun names by selecting <code>+ new session</code> from the picker.</p>
 <p>The magic: I can start a long-running process in <code>brave-otter</code> on my Mac, SSH in from my phone, attach to <code>brave-otter</code>, and see exactly where I left off. Close the SSH app, reopen it later, attach again - still there.</p>
 <p>This is especially powerful with Claude Code. Normally if you want to continue a session from a different device, you&#39;d need to use <code>/resume</code> to reload the conversation context. But with tmux, you&#39;re attaching to the <em>same running process</em> - Claude Code is still right there, mid-thought, no resume needed. True seamless handoff between devices.</p>
 <h2>Part 3: Mobile-Friendly tmux Bindings</h2>
@@ -380,37 +392,14 @@ pre code {
 <span class="token comment"># No-prefix bindings - hit these keys directly</span>
 <span class="token builtin class-name">bind</span> <span class="token parameter variable">-n</span> PageUp copy-mode <span class="token parameter variable">-eu</span>  <span class="token comment"># PageUp enters scroll mode and pages up</span>
 <span class="token builtin class-name">bind</span> <span class="token parameter variable">-n</span> F1 copy-mode          <span class="token comment"># F1 enters scroll mode</span></code></pre><p>Termius on iOS sends PageUp when you swipe down with two fingers. Now I can scroll through output naturally, without any Ctrl-anything. Press <code>q</code> to exit scroll mode.</p>
-<h2>The NOTMUX Escape Hatch</h2>
-<p>Sometimes you need a raw shell. Maybe you&#39;re debugging tmux itself, or running something that doesn&#39;t play nice with it. Set <code>NOTMUX=1</code>:</p>
-<pre><code class="language-bash"><span class="token function">ssh</span> <span class="token parameter variable">-t</span> macbook <span class="token string">'NOTMUX=1 zsh'</span></code></pre><p>The config checks for this variable and skips the automatic tmux attachment.</p>
-<h2>The Workflow</h2>
-<ol>
-<li>Open Termius on my phone</li>
-<li>Tap my Mac&#39;s hostname</li>
-<li>fzf shows all my iTerm sessions: <code>jolly-panda</code>, <code>swift-falcon</code>, <code>zen-koala</code></li>
-<li>Tap the one running my build</li>
-<li>See exactly where it was, check the output, run another command</li>
-<li>Close Termius (connection drops)</li>
-<li>Open it again hours later</li>
-<li>Session is still there, still running</li>
-</ol>
-<p>It&#39;s like VNC for your terminal, but faster and works over cellular.</p>
-<h2>Why Not [Alternative]?</h2>
-<p><strong>Mosh:</strong> Great for latency, but doesn&#39;t help with session persistence. Also requires opening UDP ports.</p>
-<p><strong>VS Code Remote:</strong> Heavy. I want a terminal, not an IDE on my phone.</p>
-<p><strong>Screen:</strong> tmux is just better. Sorry.</p>
-<p><strong>Keep laptop open:</strong> Battery dies. Laptop gets stolen. Not actually portable.</p>
-<h2>The Numbers</h2>
+<p>For text input, I use <a href="https://wisprflow.ai">Wispr Flow</a> for voice-to-text. Instead of pecking at a tiny keyboard, I just talk. It handles technical terms and code surprisingly well. Between Wispr for input and the PageUp binding for scrolling, the phone keyboard becomes almost optional.</p>
+<p>The full config is in my <a href="https://github.com/elliotbonneville/dotfiles">dotfiles repo</a>:</p>
 <ul>
-<li><strong>Setup time:</strong> 30 minutes</li>
-<li><strong>Lines of config:</strong> ~80</li>
-<li><strong>Monthly cost:</strong> $0 (Tailscale free tier)</li>
-<li><strong>Latency:</strong> Depends on network, but usually &lt;100ms</li>
-<li><strong>Session survival:</strong> Indefinite (until Mac restarts)</li>
+<li><a href="https://github.com/elliotbonneville/dotfiles/blob/main/shell/config/tmux.zsh">tmux.zsh</a> - auto-session logic</li>
+<li><a href="https://github.com/elliotbonneville/dotfiles/blob/main/tmux/tmux.conf">tmux.conf</a> - keybindings</li>
 </ul>
 <h2>The Point</h2>
-<p>Mobile SSH doesn&#39;t have to suck. With the right config, your phone becomes a legitimate terminal into your development machine. Not a toy, not emergency-only - actually usable for real work.</p>
-<p>The key insight: don&#39;t fight the constraints of mobile. Embrace them. Make everything persistent so dropped connections don&#39;t matter. Make scrolling work without modifier keys. Make session selection fast with fzf.</p>
+<p>Mobile SSH doesn&#39;t have to suck. With the right config, your phone becomes a legitimate terminal into your development machine - like VNC, but faster and works over cellular. Not a toy, not emergency-only - actually usable for real work.</p>
 <p>Your Mac is always one tap away.</p>
 <h2>Meta: How This Got Built</h2>
 <p>I vibe coded this entire setup with Claude Code over about an hour. Here&#39;s the actual progression of prompts:</p>
@@ -426,7 +415,7 @@ pre code {
 <li><p><strong>&quot;write a blogpost in my blog about the tmux tailscale setup&quot;</strong> - This post. Written from my phone, over Tailscale, in a persistent tmux session, about the setup we just built.</p>
 </li>
 </ol>
-<p>The fun Docker-style session names (<code>jolly-panda</code>, <code>swift-falcon</code>)? Claude&#39;s idea - I just said I wanted unique names per tab. The <code>NOTMUX</code> escape hatch? Claude anticipated I&#39;d need a way to bypass it sometimes.</p>
+<p>The fun Docker-style session names (<code>jolly-panda</code>, <code>swift-falcon</code>)? Claude&#39;s idea - I just said I wanted unique names per tab.</p>
 <p>When I asked Claude to write this post, I told it to introspect our conversation history. It read the session index at <code>~/.claude/projects/</code> and pulled out the actual prompts I&#39;d typed over the past hour. That&#39;s how I got the numbered list above - not from memory, but from Claude reading its own logs and reconstructing the journey.</p>
 <p>Total time from &quot;I want to SSH from my phone&quot; to writing this post: maybe 90 minutes. Most of that was waiting for Tailscale to install and testing on actual hardware.</p>
 <p>The snake is eating its tail and it tastes great.</p>

@@ -4,9 +4,16 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Sun, 18 Jan 2026 07:20:33 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 15:58:35 GMT</lastBuildDate>
     <language>en-US</language>
     
+    <item>
+      <title>The Only Moat Left Is Money</title>
+      <description>The value of human thinking is going down. The value of human attention is going up. Those two facts are pointing in very different directions.</description>
+      <link>https://elliotbonneville.com/the-only-moat-left-is-money/</link>
+      <guid>https://elliotbonneville.com/the-only-moat-left-is-money/</guid>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Seamless Claude Code Handoff: SSH From Your Phone With tmux</title>
       <description>How I set up Tailscale and tmux for true device handoff - attach to running Claude Code sessions from anywhere</description>
