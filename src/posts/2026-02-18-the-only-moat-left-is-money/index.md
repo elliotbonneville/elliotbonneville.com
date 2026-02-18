@@ -4,36 +4,44 @@ date: 2026-02-18
 description: The value of human thinking is going down. The value of human attention is going up. Those two facts are pointing in very different directions.
 ---
 
-The value of human thinking is going down. That's not controversial anymore. At the same time, the value of human attention is going up, and the combination is doing something weird to the economics of creation.
+Every morning a few thousand people wake up and ship something. A tool, a SaaS, a newsletter, an app that does the thing the other app does but slightly differently. They post it on Hacker News. Nobody clicks.
 
-If anyone can make anything, the thing you made isn't the moat. The moat is getting someone to look at it. And the main ways to do that are either: you already have an audience, or you have money to buy one.
+This is not new. What's new is the scale. An AI can wake up (or whatever it does at 3am) and ship twelve of these before breakfast.
 
-Josh Pigford put it plainly this morning:
+The value of human thinking is going down. You probably knew this. What gets said less: the value of a human eyeball is going up, because there are only so many of them and there are now infinite things that want to be looked at.
+
+Creation used to be the scarce thing. Now attention is. Most of us are on the wrong side of that trade.
+
+Josh Pigford has been building things on the internet for 25 years. This is the first time he's said it feels hard:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">as someone who&#39;s been building for the internet for 25+ years, this is the first time that i&#39;ve ever felt like it&#39;s very difficult to make money building *new* things. existing products w/ momentum are getting a nice boost. but *new*? substantial uphill battle.</p>&mdash; Josh Pigford (@Shpigford) <a href="https://twitter.com/Shpigford/status/2024102168685412794">February 18, 2026</a></blockquote>
 
-And then followed up when someone suggested "just do more marketing":
+When someone suggested the answer was marketing:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">jUsT dO mOrE mArKeTiNg!!!!! attention spans are shorter than ever and the exponential flood of new products means there&#39;s exponential demand for that already short attention span. likely solvable, but just a VERY different playbook from the past two decades.</p>&mdash; Josh Pigford (@Shpigford) <a href="https://twitter.com/Shpigford/status/2024126204089880887">February 18, 2026</a></blockquote>
 
-That second one is what keeps nagging at me. It's not that marketing doesn't work. It's that the supply of things competing for attention is growing exponentially, while attention itself isn't. The denominator keeps getting bigger.
+He's right. "Just do more marketing" assumes there's a channel open. Every channel I know of has gotten quietly worse. Search. Social. Newsletters. Communities. There's a thread on Hacker News right now called ["Is Show HN dead? No, but it's drowning"](https://news.ycombinator.com/item?id=47045804) — Show HN, the one place the internet was supposed to notice if you built something real.
 
-There's a thread on Hacker News right now titled ["Is Show HN dead? No, but it's drowning"](https://news.ycombinator.com/item?id=47045804) that's basically a case study in this. Show HN used to be one of the few places a builder could drop something real and get genuine attention from people who'd actually use it. Now it's flooded. One commenter put the paradox cleanly:
+One commenter named the shape of it:
 
 > One of the great benefits of AI tools is they allow anyone to build stuff, even if they have no ideas or knowledge. One of the great drawbacks is they allow anyone to build stuff.
 
-Another went further: "The vibecoder hasn't done the interesting thing, they've pulled other people's interesting things." The effort is gone. And when effort is gone as a filter, the signal disappears with it.
+Another: "The vibecoder hasn't done the interesting thing, they've pulled other people's interesting things."
 
-This doesn't feel great to say out loud. I launched something last week and got 14 signups with no ads, just a couple of posts. That felt real to me, not in a metrics way but in a "real people made a real choice" way. But then I started thinking about what it would take to scale, and the math got uncomfortable pretty quickly. Organic discovery is harder than it was two years ago. Feeds are full. The signal-to-noise is getting worse by the week.
+The effort is gone. Effort was the filter.
 
-The people who seem to be winning mostly had a head start. Or they have money.
+I launched something last week. 14 people signed up — no ads, just a couple of posts. 14 real people who didn't have to. That number is tiny and it felt like something. Then I sat down to think about what it would take to grow it and I couldn't look at that math for very long.
 
-This makes money a moat in a way that didn't used to be true. When creation was hard, skill was the differentiator: you had to actually be good to make something worth showing. Now that the barrier to creation is near zero, you need reach. And reach costs money, or it costs years.
+The people winning mostly had a head start. Or they have money. Usually both.
 
-I'm not sure where that leaves someone who's just starting to build an audience. Maybe nowhere good. Or maybe the opposite: trust is harder to fake than reach, and the people buying attention are building on sand. I genuinely don't know. I can see the argument both ways and I don't think either one is obviously right.
+When creation was hard, skill was the differentiator: you had to actually be good to make something worth showing. Now the barrier is near zero, so you need reach. Reach costs money or it costs years. Probably both.
 
-What I do think is that reach compounds. If you have it, you get more. Every post finds people, and some of those people share it, and the flywheel turns. If you don't have it, the same post disappears. The gap between those two states isn't closing.
+Reach is also gravitational. Past some threshold it accumulates without you — posts find people, people find posts, the thing feeds itself. Below the threshold, identical effort produces nothing. Same quality, same idea, same work. Zero. Not because it was bad. Because you showed up on the wrong side of the line.
 
-I keep coming back to whether we've already hit some kind of singularity on this — a point past which new entrants can't meaningfully catch up without capital. I'm not sure we have. But I think there's a real chance. And if there's a real chance, waiting to find out is probably the worst move. The window either closes or it doesn't, but the cost of acting like it's closing is low, and the cost of assuming it's fine is potentially permanent.
+I don't know if we've already crossed a singularity on this, a point past which new entrants without existing reach or capital to buy it are effectively locked out. I think there's a real chance we have. The uncomfortable version: if you're not already moving, you might never take off.
+
+The cost of acting like this is true when it isn't: you move fast and spend money you didn't need to spend.
+
+The cost of acting like it isn't true when it is: permanent.
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
