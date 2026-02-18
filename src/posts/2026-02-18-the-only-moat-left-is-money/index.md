@@ -36,5 +36,4 @@ What I do think is that reach compounds. If you have it, you get more. Every pos
 
 I keep coming back to whether we've already hit some kind of singularity on this — a point past which new entrants can't meaningfully catch up without capital. I'm not sure we have. But I think there's a real chance. And if there's a real chance, waiting to find out is probably the worst move. The window either closes or it doesn't, but the cost of acting like it's closing is low, and the cost of assuming it's fine is potentially permanent.
 
-That's what makes "just do more marketing" feel so wrong as advice. Marketing assumes the channel is open. Maybe it is. But if you have capital and you're not deploying it right now toward building reach, you might be watching the window close from the wrong side of it.
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
