@@ -45,3 +45,7 @@ The cost of acting like this is true when it isn't: you move fast and spend mone
 The cost of acting like it isn't true when it is: permanent.
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
+**PS:** The thing I launched last week is called [Kith](https://joinkith.com) — a paid, invite-only social network where every person is verified human and there's no algorithm, no ads, no bots, and no AI. If that sounds like something you want to exist, [join the waitlist](https://joinkith.com).
