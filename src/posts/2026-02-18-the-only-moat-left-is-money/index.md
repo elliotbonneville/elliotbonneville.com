@@ -18,6 +18,12 @@ And then followed up when someone suggested "just do more marketing":
 
 That second one is what keeps nagging at me. It's not that marketing doesn't work. It's that the supply of things competing for attention is growing exponentially, while attention itself isn't. The denominator keeps getting bigger.
 
+There's a thread on Hacker News right now titled ["Is Show HN dead? No, but it's drowning"](https://news.ycombinator.com/item?id=47045804) that's basically a case study in this. Show HN used to be one of the few places a builder could drop something real and get genuine attention from people who'd actually use it. Now it's flooded. One commenter put the paradox cleanly:
+
+> One of the great benefits of AI tools is they allow anyone to build stuff, even if they have no ideas or knowledge. One of the great drawbacks is they allow anyone to build stuff.
+
+Another went further: "The vibecoder hasn't done the interesting thing, they've pulled other people's interesting things." The effort is gone. And when effort is gone as a filter, the signal disappears with it.
+
 This doesn't feel great to say out loud. I launched something last week and got 14 signups with no ads, just a couple of posts. That felt real to me, not in a metrics way but in a "real people made a real choice" way. But then I started thinking about what it would take to scale, and the math got uncomfortable pretty quickly. Organic discovery is harder than it was two years ago. Feeds are full. The signal-to-noise is getting worse by the week.
 
 The people who seem to be winning mostly had a head start. Or they have money.
