@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Nerd Snipe Hacker News - Elliot Bonneville</title>
+  <meta name="description" content="I built a free signature maker. It hit #7 on Hacker News under the title "Famous Signatures Through History.">
+  <style>/* Typography - Golden ratio */
+body {
+  font: 16px/1.618 -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  max-width: 65ch;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #000;
+  background: #fff;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: 3em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+nav h1 {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0;
+}
+
+nav div {
+  display: flex;
+  gap: 1em;
+}
+
+/* Links */
+a { 
+  color: #0000EE; 
+  text-decoration: underline;
+}
+
+a:visited { 
+  color: #551A8B; 
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.5em 0 0.5em;
+  line-height: 1.2;
+}
+
+article header h1 {
+  margin-top: 0;
+}
+
+article header time {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Code blocks */
+pre {
+  background: #f6f6f6;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em 0;
+  line-height: 1.45;
+  border-radius: 3px;
+}
+
+code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, monospace;
+  background: #f6f6f6;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Prism syntax highlighting */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #708090;
+}
+
+.token.punctuation {
+  color: #999;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #07a;
+}
+
+.token.function,
+.token.class-name {
+  color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90;
+}
+
+/* Interactive examples */
+.example {
+  margin: 2em 0;
+  border-left: 3px solid #0000EE;
+  padding-left: 1em;
+}
+
+.example button {
+  font: inherit;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.example button:hover {
+  background: #f6f6f6;
+}
+
+.example input, .example textarea {
+  font: inherit;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+.example textarea {
+  font-family: ui-monospace, monospace;
+  width: 100%;
+  min-height: 100px;
+}
+
+/* Post list */
+.post-item {
+  margin: 1.5em 0;
+}
+
+.post-item time {
+  color: #666;
+  font-size: 0.9em;
+  display: block;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body { 
+    font-size: 18px;
+    margin: 20px auto;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body { 
+    background: #000; 
+    color: #fff; 
+  }
+  
+  nav {
+    border-color: #333;
+  }
+  
+  pre, code { 
+    background: #111; 
+  }
+  
+  a { 
+    color: #6DB3F2; 
+  }
+  
+  a:visited { 
+    color: #9B79C7; 
+  }
+  
+  .example {
+    border-color: #6DB3F2;
+  }
+  
+  .example button {
+    background: #000;
+    border-color: #fff;
+    color: #fff;
+  }
+  
+  .example button:hover {
+    background: #111;
+  }
+  
+  .example input, .example textarea {
+    background: #111;
+    border-color: #333;
+    color: #fff;
+  }
+  
+  article header time, .post-item time {
+    color: #999;
+  }
+  
+  /* Syntax highlighting in dark mode */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #8292a2;
+  }
+  
+  .token.punctuation {
+    color: #a1a1a1;
+  }
+  
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol {
+    color: #f97583;
+  }
+  
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin {
+    color: #9ecbff;
+  }
+  
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: #ffab70;
+  }
+  
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #f97583;
+  }
+  
+  .token.function,
+  .token.class-name {
+    color: #b392f0;
+  }
+  
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #ffab70;
+  }
+}</style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ELQ40R6NTG');
+</script>
+</head>
+<body>
+  <nav>
+    <a href="/">Elliot Bonneville</a>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+  </nav>
+  <main>
+    <article>
+      <header>
+        <h1>How to Nerd Snipe Hacker News</h1>
+        <time>February 18, 2026</time>
+      </header>
+      <p>I needed a PNG of my signature. I was writing a manifesto for <a href="https://joinkith.com">Kith</a> and I wanted to sign it at the bottom. My actual handwriting. A real person standing behind real words.</p>
+<p>So I googled &quot;free signature maker&quot; and found what you&#39;d expect. Five SaaS products fighting for my email address before I could draw a single line. Canva loading 47 scripts. Something that watermarks your own signature and charges $12/month to remove it. Every one of them was a funnel shaped like a tool.</p>
+<p>I built <a href="https://signatory.app">Signatory</a> in an evening. One page. You draw your signature. You download it as PNG or SVG. No account, no backend, no ads.</p>
+<p>Then I posted it to Hacker News and it went to #7.</p>
+<p>The title wasn&#39;t &quot;Show HN: I Built a Signature Maker.&quot; It was <a href="https://news.ycombinator.com/item?id=47073684">&quot;Famous Signatures Through History.&quot;</a></p>
+<h3>The nerd snipe</h3>
+<p><a href="https://xkcd.com/356/">XKCD 356</a>. You present something so interesting that a specific type of person cannot walk away from it. The setup looks innocent.</p>
+<p>Signatory has a gallery of 70 historical signatures. Napoleon&#39;s jagged scrawl. Sitting Bull&#39;s pictographic self-portrait. Charlemagne&#39;s monogram, because he could barely write. King Ferdinand VII of Spain, who signed documents with just &quot;Yo el Rey.&quot; I, the king.</p>
+<p>That last one surfaced in the HN comments within the first hour. I found the SVG on Wikimedia Commons and added it live. When someone mentioned Lucas Cranach the Elder signed his paintings with a tiny winged dragon, I added that one too.</p>
+<p>Historical signatures are irresistible to the HN crowd. Every one has a story that tells you something about the person who made the mark. You open the page meaning to glance and you&#39;re still scrolling three minutes later reading about how Houdini&#39;s signature evolved throughout his career.</p>
+<p>And while you&#39;re there, you notice the drawing canvas at the top of the page. The one that uses velocity-sensitive strokes to make your mouse feel like a fountain pen. You try it. You draw your name. You draw it again because it actually feels kind of nice.</p>
+<p>The interesting thing and the useful thing were on the same page. I only linked to the interesting one.</p>
+<h3>The audience</h3>
+<p>Hacker News has strong opinions. A link titled &quot;Famous Signatures Through History&quot; is going to get clicked at 2pm on a Tuesday by people who should be working. &quot;Show HN: I Built a Free Signature Maker&quot; isn&#39;t. That title sounds like every other Show HN drowning in the new queue. I know, because I searched: at least two other signature makers have been posted to HN in the past year. Neither broke 15 points.</p>
+<p>Same product. The headline is the only variable.</p>
+<p>The other thing HN people do is participate. When commenters suggested additions, I didn&#39;t say &quot;great idea, we&#39;ll add that to the roadmap.&quot; I added them. In the thread. While the thread was still active. The post kept breathing because it was a conversation, not an announcement.</p>
+<h3>The thing underneath</h3>
+<p>Here&#39;s what I actually care about. &quot;Free signature maker&quot; gets 9,600 searches a month. &quot;Online signature maker&quot; gets 19,000. Signaturely, the company that currently owns most of those keywords, drives 180,000 organic visitors per month to their tool page. That traffic is worth an estimated $370,000 per year.</p>
+<p>All of it goes to a product that&#39;s deliberately worse than it needs to be, because the business model requires an upgrade.</p>
+<p>Signatory has nine variant landing pages generated from the same canvas: <code>/cursive-signature-maker</code>, <code>/signature-maker-for-pdf</code>, <code>/draw-signature-online</code>, each targeting a different keyword cluster with different meta tags and a paragraph of contextual copy. The Canva playbook, except the tool loads in under a second and there&#39;s nothing to upsell.</p>
+<p>The domains I&#39;m competing against have thousands of backlinks and years of authority. I have a fast page and zero ads. Google says it rewards that. I&#39;ll find out if Google means it.</p>
+<h3>The technical bait</h3>
+<p>The drawing engine uses a 3KB library called <a href="https://github.com/steveruizok/perfect-freehand">perfect-freehand</a> that simulates pen pressure from mouse velocity. It measures speed from the distance between pointer events and maps that to stroke width. Draw fast, the line thins out. Draw slow, it thickens. The physics of a fountain pen, approximated in a browser.</p>
+<p>That&#39;s a nerd snipe too, by the way. &quot;Velocity-sensitive stroke width derived from inter-event distance as a proxy for pen pressure&quot; is the kind of sentence a certain type of person reads and immediately needs to see working.</p>
+<p>Nobody had built the beautiful version of this. The whole space is tools that do the job while making you feel like you&#39;re being processed. Signatory exists because I needed a signature and got annoyed, and then I realized that annoyance was shared by roughly 19,000 people a month, and none of the results respected their time.</p>
+<p>The HN traffic is a nice spike. The real bet is whether nine clean pages can chip away at a market where every incumbent is actively hostile to their own users. I&#39;ll check back in six months. If you got here by googling &quot;free signature maker,&quot; I guess I have my answer.</p>
+
+    </article>
+  </main>
+</body>
+</html>
