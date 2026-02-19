@@ -22,7 +22,7 @@ Signatory has a gallery of 70 historical signatures. Napoleon's jagged scrawl. S
 
 That last one surfaced in the HN comments within the first hour. I found the SVG on Wikimedia Commons and added it live. When someone mentioned Lucas Cranach the Elder signed his paintings with a tiny winged dragon, I added that one too.
 
-Historical signatures belong to a class of digital artifact that is irresistible to the HN crowd: art that's digital, carries deep meaning, and is technically public domain but buried in Wikimedia's unusable browsing UI. Every one has a story that tells you something about the person who made the mark. You open the page meaning to glance and you're still scrolling three minutes later reading about how Houdini's signature evolved throughout his career.
+Historical signatures belong to a class of digital artifact that is irresistible to the HN crowd: art that's digital, carries deep meaning, and isn't easy to find in one place. Every one has a story that tells you something about the person who made the mark. You open the page meaning to glance and you're still scrolling three minutes later reading about how Houdini's signature evolved throughout his career.
 
 And while you're there, you notice the drawing canvas at the top of the page. The one that uses velocity-sensitive strokes to make your mouse feel like a fountain pen. You try it. You draw your name. You draw it again because it actually feels kind of nice.
 
