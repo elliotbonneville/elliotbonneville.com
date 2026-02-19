@@ -34,6 +34,8 @@ Hacker News has strong opinions. A link titled "Famous Signatures Through Histor
 
 Same product. The headline is the only variable.
 
+This wasn't my first time. The day before, I'd posted [a contrary take on AI and money](/the-only-moat-left-is-money/) that briefly hit #1. That's the other route: an opinion strong enough that people need to argue with it. Two different mechanisms, same principle. Know what the audience engages with and give them exactly that.
+
 The other thing HN people do is participate. When commenters suggested additions, I didn't say "great idea, we'll add that to the roadmap." I added them. In the thread. While the thread was still active. The post kept breathing because it was a conversation, not an announcement.
 
 ### The thing underneath
