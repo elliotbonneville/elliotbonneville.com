@@ -6,7 +6,7 @@ description: I built a free signature maker. It hit #7 on Hacker News under the 
 
 I needed a PNG of my signature. I was writing a manifesto for [Kith](https://joinkith.com) and I wanted to sign it at the bottom. My actual handwriting. A real person standing behind real words.
 
-So I googled "free signature maker" and found what you'd expect. Five SaaS products fighting for my email address before I could draw a single line. Canva loading 47 scripts. Something that watermarks your own signature and charges $12/month to remove it. Every one of them was a funnel shaped like a tool.
+So I decided to build one myself. I'd never tried building something purely as an experiment in SEO and AI-assisted marketing, and a single-page tool targeting a high-volume keyword seemed like the right shape for that.
 
 I built [Signatory](https://signatory.app) in an evening. One page. You draw your signature. You download it as PNG or SVG. No account, no backend, no ads.
 
@@ -22,7 +22,7 @@ Signatory has a gallery of 70 historical signatures. Napoleon's jagged scrawl. S
 
 That last one surfaced in the HN comments within the first hour. I found the SVG on Wikimedia Commons and added it live. When someone mentioned Lucas Cranach the Elder signed his paintings with a tiny winged dragon, I added that one too.
 
-Historical signatures are irresistible to the HN crowd. Every one has a story that tells you something about the person who made the mark. You open the page meaning to glance and you're still scrolling three minutes later reading about how Houdini's signature evolved throughout his career.
+Historical signatures belong to a class of digital artifact that is irresistible to the HN crowd: art that's digital, carries deep meaning, and is technically public domain but buried in Wikimedia's unusable browsing UI. Every one has a story that tells you something about the person who made the mark. You open the page meaning to glance and you're still scrolling three minutes later reading about how Houdini's signature evolved throughout his career.
 
 And while you're there, you notice the drawing canvas at the top of the page. The one that uses velocity-sensitive strokes to make your mouse feel like a fountain pen. You try it. You draw your name. You draw it again because it actually feels kind of nice.
 
