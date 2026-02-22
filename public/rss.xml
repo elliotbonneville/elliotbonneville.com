@@ -4,9 +4,16 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Thu, 19 Feb 2026 22:25:55 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 22 Feb 2026 02:03:53 GMT</lastBuildDate>
     <language>en-US</language>
     
+    <item>
+      <title>Of the Greate Liberation of Websytes</title>
+      <description>AI commoditized the boring startup landing page. What comes next is weirder, more personal, and more beautiful than anything we've had before.</description>
+      <link>https://elliotbonneville.com/the-internet-is-about-to-get-weird-and-beautiful/</link>
+      <guid>https://elliotbonneville.com/the-internet-is-about-to-get-weird-and-beautiful/</guid>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>How to Nerd Snipe Hacker News</title>
       <description>I built a free signature maker. It hit #7 on Hacker News under the title "Famous Signatures Through History.</description>
