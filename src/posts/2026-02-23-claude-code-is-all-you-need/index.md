@@ -36,7 +36,9 @@ All the claws are building the thing that already exists.
 
 ### Why shell out to the CLI
 
-BAREclaw shells out to `claude -p` instead of using Anthropic's Agent SDK, which looks wrong until you think about the billing. The SDK charges per token. The CLI goes through a Claude Max subscription, which is flat rate. I pay the same $200/month whether BAREclaw handles three messages or three hundred. For a personal daemon, that's the whole argument.
+BAREclaw shells out to `claude -p` instead of using Anthropic's Agent SDK, which looks wrong until you think about the billing. The SDK charges per token. The CLI goes through a Claude Max subscription, which is flat rate. I pay the same $200/month whether BAREclaw handles three messages or three hundred.
+
+This also keeps things clean with Anthropic's terms. In February 2026 they [cracked down](https://winbuzzer.com/2026/02/19/anthropic-bans-claude-subscription-oauth-in-third-party-apps-xcxwbn/) on third-party tools that were extracting OAuth tokens from Max subscriptions and routing them through their own API clients. That's token arbitrage, and they were right to shut it down. BAREclaw doesn't do any of that. It calls the actual `claude` binary, Anthropic's own CLI, the way it was designed to be called. Their docs show `claude -p` piping logs and running in CI pipelines. BAREclaw is just another process calling `claude -p` on my own machine. Ordinary individual usage, which is exactly how the Max plan is scoped.
 
 ### What ~1,300 lines gets you
 
