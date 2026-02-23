@@ -50,7 +50,7 @@ The server runs with `tsx watch`, so code changes hot reload instantly. Most of 
 
 I wrote my [phone-to-Mac SSH setup](/phone-to-mac-persistent-terminal/) a month ago. tmux for session persistence, Tailscale for networking. That works, but SSH on a phone is a bad experience. Tiny text, no notifications, the connection drops if you switch apps. Telegram is a real messaging client with push notifications, photo sharing, and a keyboard designed for thumbs. BAREclaw sits on top. The daemon lives in a tmux session. SSH connection drops, the daemon keeps running. Power goes out (which it did yesterday, during the worst snowstorm Rhode Island has ever recorded), the daemon comes back when the generator kicks in because the heartbeat job reinstalls itself on startup.
 
-I was managing the power outage from my phone. Checking propane, coordinating with my wife, figuring out which circuits to kill. In between, texting Claude on Telegram to fix bugs in BAREclaw's message streaming. Two conversations, same phone, different apps.
+I was managing the power outage from my phone by candlelight. Checking propane, coordinating with my wife, figuring out which circuits to kill. In between, texting Claude on Telegram to fix bugs in BAREclaw's message streaming. Two conversations, same phone, different apps.
 
 BAREclaw is a personal tool. I built it for myself in a weekend and it has rough edges. If you run it, expect to read the source and fix things. It's not a product.
 
