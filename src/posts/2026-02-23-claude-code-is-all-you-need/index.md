@@ -20,7 +20,7 @@ The architecture:
 
 Each input channel gets a transport adapter that speaks Telegram or HTTP on one side, and `claude -p` on the other. BAREclaw is the layer in between.
 
-The features I didn't write are more interesting than the ones I did. There's no orchestration layer, no tool registry, no RAG pipeline. Claude Code handles tool use, memory, and project context on its own. Every skill you've taught it, every MCP server you've configured, every `CLAUDE.md` you've written for a project — BAREclaw gets all of it for free, because it's running the same `claude` process you run in your terminal. I have a journaling system built as a Claude Code skill. The moment I connected BAREclaw, I could dictate journal entries over Telegram without changing a line of code. BAREclaw is just the plumbing that keeps the process alive and routes messages to it.
+The features I didn't write are more interesting than the ones I did. There's no orchestration layer, no tool registry, no RAG pipeline. Claude Code handles tool use, memory, and project context on its own. Every skill you've taught it, every MCP server you've configured, every `CLAUDE.md` you've written for a project — BAREclaw gets all of it for free, because it's running the same `claude` process you run in your terminal. I have a [journaling system](https://cothought.ai) built as a Claude Code skill. The moment I connected BAREclaw, I could dictate journal entries over Telegram without changing a line of code. BAREclaw is just the plumbing that keeps the process alive and routes messages to it.
 
 ### The bitter lesson, applied to agents
 
