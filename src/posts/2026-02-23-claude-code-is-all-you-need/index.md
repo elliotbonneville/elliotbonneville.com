@@ -42,7 +42,7 @@ BAREclaw shells out to `claude -p` instead of using Anthropic's Agent SDK, which
 
 Each channel gets its own Claude process. Sessions survive restarts and crashes. If I send three texts in a row while it's thinking, they get coalesced into a single turn instead of three separate ones (this matters more than you'd expect when you're firing off thoughts from your phone). There's a heartbeat that fires hourly and restarts the daemon if it died. I can send it photos. It can message me first.
 
-Most of this was built by the daemon itself. I'd describe what I wanted over Telegram and watch it edit its own source code, commit, and restart to pick up the changes. The snake eats its tail again.
+The server runs with `tsx watch`, so code changes hot reload instantly. Most of this was built by the daemon itself. I'd describe what I wanted over Telegram, watch it edit its own source, and the server would pick up the changes before I finished reading the diff. The snake eats its tail again.
 
 ### The stack
 
