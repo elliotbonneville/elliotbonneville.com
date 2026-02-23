@@ -20,7 +20,7 @@ The architecture:
 
 Each input channel gets a transport adapter that speaks Telegram or HTTP on one side, and `claude -p` on the other. BAREclaw is the layer in between.
 
-The features I didn't write are more interesting than the ones I did. There's no orchestration layer, no tool registry, no RAG pipeline. Claude Code handles tool use, memory, and project context on its own. Every skill you've taught it, every MCP server you've configured, every `CLAUDE.md` you've written for a project — BAREclaw gets all of it for free, because it's running the same `claude` process you run in your terminal. BAREclaw is just the plumbing that keeps that process alive and routes messages to it.
+The features I didn't write are more interesting than the ones I did. There's no orchestration layer, no tool registry, no RAG pipeline. Claude Code handles tool use, memory, and project context on its own. Every skill you've taught it, every MCP server you've configured, every `CLAUDE.md` you've written for a project — BAREclaw gets all of it for free, because it's running the same `claude` process you run in your terminal. I have a journaling system built as a Claude Code skill. The moment I connected BAREclaw, I could dictate journal entries over Telegram without changing a line of code. BAREclaw is just the plumbing that keeps the process alive and routes messages to it.
 
 ### The bitter lesson, applied to agents
 
@@ -48,7 +48,7 @@ The server runs with `tsx watch`, so code changes hot reload instantly. Most of 
 
 ### The stack
 
-I wrote my [phone-to-Mac SSH setup](/phone-to-mac-persistent-terminal/) a month ago. tmux for session persistence, Tailscale for networking. BAREclaw sits on top. The daemon lives in a tmux session. SSH connection drops, the daemon keeps running. Power goes out (which it did yesterday, during a blizzard), the daemon comes back when the Mac reboots because the heartbeat job reinstalls itself on startup.
+I wrote my [phone-to-Mac SSH setup](/phone-to-mac-persistent-terminal/) a month ago. tmux for session persistence, Tailscale for networking. That works, but SSH on a phone is a bad experience. Tiny text, no notifications, the connection drops if you switch apps. Telegram is a real messaging client with push notifications, photo sharing, and a keyboard designed for thumbs. BAREclaw sits on top. The daemon lives in a tmux session. SSH connection drops, the daemon keeps running. Power goes out (which it did yesterday, during a blizzard), the daemon comes back when the Mac reboots because the heartbeat job reinstalls itself on startup.
 
 I was managing the power outage from my phone. Checking propane, coordinating with my wife, figuring out which circuits to kill. In between, texting Claude on Telegram to fix bugs in BAREclaw's message streaming. Two conversations, same phone, different apps.
 
