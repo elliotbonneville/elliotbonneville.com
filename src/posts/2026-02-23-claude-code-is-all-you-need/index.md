@@ -4,7 +4,7 @@ date: 2026-02-23
 description: All the claws are building the thing that already exists. BAREclaw is proof.
 ---
 
-Two days ago this was a bullet point in a note. "What if I could just text Claude from my phone?" Forty-eight hours later I have a daemon running on my Mac that routes Telegram messages into persistent Claude Code sessions. It reads my files. Runs shell commands. Edits its own source code and restarts itself. I'm using it to write this post, from my phone, during a blizzard.
+Two days ago this was a bullet point in a note. "What if I could just text Claude from my phone?" Forty-eight hours later I have a daemon running on my Mac that routes Telegram messages into persistent Claude Code sessions. It reads my files. Runs shell commands. Edits its own source code and restarts itself. I'm using it to write this post, from my phone, while Rhode Island gets buried under its biggest snowstorm on record. The power's out. I'm on a backup generator.
 
 The project is called [BAREclaw](https://github.com/elliotbonneville/bareclaw). ~1,300 lines of TypeScript across 9 commits. One daemon, many mouths, one brain.
 
@@ -28,7 +28,7 @@ Rich Sutton wrote [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/Bi
 
 Andrej Karpathy bought a Mac Mini a few days ago to [tinker with "claws" over the weekend](https://simonwillison.net/2026/Feb/21/claws/). His take: "just as LLM agents were a new layer on top of LLMs, Claws are now a new layer on top of LLM agents." He liked [NanoClaw](https://github.com/qwibitai/nanoclaw) because its core engine is ~4,000 lines of auditable code and runs everything in containers. He was less enthusiastic about OpenClaw's 400,000 lines of "vibe coded" code with its exposed instances and RCE vulnerabilities.
 
-I think even NanoClaw is building too much. Its core is 4,000 lines of agent framework. BAREclaw's is ~400 lines of process management. BAREclaw doesn't implement an agent because Claude Code already is one. It already has skills, tool use, memory, MCP servers, project context, self-modification. NanoClaw reimplements orchestration that Claude Code ships out of the box.
+I think even NanoClaw is building too much. Its core is 4,000 lines of agent framework. BAREclaw's is ~400 lines of process management. BAREclaw doesn't implement an agent because Claude Code already is one. It already has skills, tool use, memory, MCP servers, project context, self-modification. NanoClaw reimplements orchestration that Claude Code ships out of the box. Security too. Claude Code already has a permissions model, tool allowlists, and a marketplace of vetted MCP servers. Every agent framework that rolls its own permission system is another attack surface to audit. BAREclaw inherits Claude Code's security for the same reason it inherits everything else: it's just calling `claude`.
 
 Yohei Nakajima, the BabyAGI guy, has [this line](https://x.com/yoheinakajima/status/2025235222993010708) I keep thinking about: "build the simplest thing that can build itself." BAREclaw takes that literally. Claude running through BAREclaw can open its own source code, rewrite the Telegram adapter, commit, and trigger a restart. I watched it do this yesterday while I was describing what I wanted over text.
 
@@ -42,14 +42,16 @@ This also keeps things clean with Anthropic's terms. In February 2026 they [crac
 
 ### What ~1,300 lines gets you
 
-Each channel gets its own Claude process. Sessions survive restarts and crashes. If I send three texts in a row while it's thinking, they get coalesced into a single turn instead of three separate ones (this matters more than you'd expect when you're firing off thoughts from your phone). There's a heartbeat that fires hourly and restarts the daemon if it died. I can send it photos. It can message me first.
+Each channel gets its own Claude process. Sessions survive restarts and crashes. Messages queue when the server is busy and wait if it's down entirely. Nothing gets swallowed. If I send three texts in a row while it's thinking, they get coalesced into a single turn instead of three separate ones (this matters more than you'd expect when you're firing off thoughts from your phone). There's a heartbeat that fires hourly and restarts the daemon if it died. I can send it photos. It can message me first.
 
 The server runs with `tsx watch`, so code changes hot reload instantly. Most of this was built by the daemon itself. I'd describe what I wanted over Telegram, watch it edit its own source, and the server would pick up the changes before I finished reading the diff. The snake eats its tail again.
 
 ### The stack
 
-I wrote my [phone-to-Mac SSH setup](/phone-to-mac-persistent-terminal/) a month ago. tmux for session persistence, Tailscale for networking. That works, but SSH on a phone is a bad experience. Tiny text, no notifications, the connection drops if you switch apps. Telegram is a real messaging client with push notifications, photo sharing, and a keyboard designed for thumbs. BAREclaw sits on top. The daemon lives in a tmux session. SSH connection drops, the daemon keeps running. Power goes out (which it did yesterday, during a blizzard), the daemon comes back when the Mac reboots because the heartbeat job reinstalls itself on startup.
+I wrote my [phone-to-Mac SSH setup](/phone-to-mac-persistent-terminal/) a month ago. tmux for session persistence, Tailscale for networking. That works, but SSH on a phone is a bad experience. Tiny text, no notifications, the connection drops if you switch apps. Telegram is a real messaging client with push notifications, photo sharing, and a keyboard designed for thumbs. BAREclaw sits on top. The daemon lives in a tmux session. SSH connection drops, the daemon keeps running. Power goes out (which it did yesterday, during the worst snowstorm Rhode Island has ever recorded), the daemon comes back when the generator kicks in because the heartbeat job reinstalls itself on startup.
 
 I was managing the power outage from my phone. Checking propane, coordinating with my wife, figuring out which circuits to kill. In between, texting Claude on Telegram to fix bugs in BAREclaw's message streaming. Two conversations, same phone, different apps.
 
-I don't know if anyone else will use it. I'm not even sure the agent framework ecosystem is solving a real problem anymore. Claude Code is already the agent. The only thing it was missing was a way to reach it from my pocket.
+BAREclaw is a personal tool. I built it for myself in a weekend and it has rough edges. If you run it, expect to read the source and fix things. It's not a product.
+
+But I'm not sure the agent framework ecosystem is solving a real problem anymore. Claude Code is already the agent. The only thing it was missing was a way to reach it from my pocket.
