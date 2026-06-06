@@ -4,9 +4,44 @@
     <title>Elliot Bonneville</title>
     <description>A minimal coding blog</description>
     <link>https://elliotbonneville.com</link>
-    <lastBuildDate>Sun, 22 Feb 2026 02:03:53 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2026 21:34:26 GMT</lastBuildDate>
     <language>en-US</language>
     
+    <item>
+      <title>Programmers Aren't People</title>
+      <description>Computer" was a job title for a human being before the machines took the word. "Programmer" is the same kind of word.</description>
+      <link>https://elliotbonneville.com/programmers-arent-people/</link>
+      <guid>https://elliotbonneville.com/programmers-arent-people/</guid>
+      <pubDate>Sat, 06 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>The Schoolhouse</title>
+      <description>The word for leisure became the word for compulsion, and nobody talks about it.</description>
+      <link>https://elliotbonneville.com/the-schoolhouse/</link>
+      <guid>https://elliotbonneville.com/the-schoolhouse/</guid>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>It Really Ought To Be A Pull Door</title>
+      <description>Algorithmic feeds trained you to consume whatever arrives. The prompt box asks you to want something first.</description>
+      <link>https://elliotbonneville.com/it-really-ought-to-be-a-pull-door/</link>
+      <guid>https://elliotbonneville.com/it-really-ought-to-be-a-pull-door/</guid>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Iterate on the Plan, Not the Product</title>
+      <description>The first draft an LLM produces is more internally consistent than what you end up with after iterating on it. The fix belongs in the spec, not the artifact.</description>
+      <link>https://elliotbonneville.com/iterate-on-the-plan-not-the-product/</link>
+      <guid>https://elliotbonneville.com/iterate-on-the-plan-not-the-product/</guid>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Claude Code Is All You Need</title>
+      <description>All the claws are building the thing that already exists. bareclaw is proof.</description>
+      <link>https://elliotbonneville.com/claude-code-is-all-you-need/</link>
+      <guid>https://elliotbonneville.com/claude-code-is-all-you-need/</guid>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Of the Greate Liberation of Websytes</title>
       <description>AI commoditized the boring startup landing page. What comes next is weirder, more personal, and more beautiful than anything we've had before.</description>

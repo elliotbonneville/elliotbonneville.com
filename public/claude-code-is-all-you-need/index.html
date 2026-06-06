@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude Code Is All You Need - Elliot Bonneville</title>
+  <meta name="description" content="All the claws are building the thing that already exists. bareclaw is proof.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+  <style>/* Typography */
+body {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 1.75;
+  font-weight: 420;
+  font-optical-sizing: auto;
+  max-width: 58ch;
+  margin: 60px auto;
+  padding: 0 24px;
+  color: #2b2b2b;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: 3em;
+  padding-bottom: 1.2em;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 0.02em;
+}
+
+nav h1 {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0;
+}
+
+nav div {
+  display: flex;
+  gap: 1.2em;
+}
+
+nav a {
+  color: #2b2b2b;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a:visited {
+  color: #2b2b2b;
+}
+
+/* Links */
+a {
+  color: #3d5a80;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: #6b5b7b;
+}
+
+a:hover {
+  color: #2c4466;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.8em 0 0.5em;
+  line-height: 1.25;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.35em; margin-top: 2em; }
+h3 { font-size: 1.1em; }
+
+article header {
+  margin-bottom: 2.5em;
+}
+
+article header h1 {
+  font-size: 2.1em;
+  margin-top: 0;
+  margin-bottom: 0.15em;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+article header time {
+  color: #888;
+  font-size: 0.82em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Paragraphs */
+p {
+  margin: 1.3em 0;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 1.8em 0;
+  padding: 0 0 0 1.5em;
+  border-left: 2px solid #d0d0d0;
+  color: #555;
+  font-style: italic;
+}
+
+blockquote p:first-child { margin-top: 0; }
+blockquote p:last-child { margin-bottom: 0; }
+
+/* Horizontal rules */
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2.5em 0;
+}
+
+/* Code blocks */
+pre {
+  background: #f7f6f3;
+  padding: 1.2em 1.4em;
+  overflow-x: auto;
+  margin: 1.8em 0;
+  line-height: 1.5;
+  border-radius: 4px;
+  font-size: 0.82em;
+  border: 1px solid #eae8e4;
+}
+
+code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, monospace;
+  font-size: 0.88em;
+  background: #f7f6f3;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Prism syntax highlighting */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #708090;
+}
+
+.token.punctuation {
+  color: #999;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #07a;
+}
+
+.token.function,
+.token.class-name {
+  color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90;
+}
+
+/* Interactive examples */
+.example {
+  margin: 2em 0;
+  border-left: 2px solid #3d5a80;
+  padding-left: 1.2em;
+}
+
+.example button {
+  font: inherit;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #2b2b2b;
+}
+
+.example button:hover {
+  background: #f7f6f3;
+}
+
+.example input, .example textarea {
+  font: inherit;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+.example textarea {
+  font-family: ui-monospace, monospace;
+  width: 100%;
+  min-height: 100px;
+}
+
+/* Post list */
+.post-item {
+  margin: 1.8em 0;
+}
+
+.post-item time {
+  color: #888;
+  font-size: 0.78em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: 0.1em;
+}
+
+.post-item a {
+  font-size: 1.1em;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+.post-item a:visited {
+  color: #1a1a1a;
+}
+
+.post-item a:hover {
+  text-decoration: underline;
+}
+
+/* Footnotes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.footnotes {
+  margin-top: 3.5em;
+  padding-top: 1.5em;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.8em;
+  line-height: 1.6;
+  color: #555;
+}
+
+.footnotes ol {
+  padding-left: 1.4em;
+  margin: 0;
+}
+
+.footnotes li {
+  margin: 0.55em 0;
+}
+
+.footnotes li::marker {
+  color: #999;
+}
+
+.footnotes p {
+  margin: 0.2em 0;
+}
+
+[data-footnote-ref] {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0 0.15em;
+}
+
+[data-footnote-backref] {
+  text-decoration: none;
+  margin-left: 0.35em;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body {
+    font-size: 18px;
+    margin: 32px auto;
+    padding: 0 20px;
+  }
+
+  article header h1 {
+    font-size: 1.75em;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #161616;
+    color: #d4d4d4;
+  }
+
+  nav {
+    border-color: #333;
+  }
+
+  nav a, nav a:visited {
+    color: #d4d4d4;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #e8e8e8;
+  }
+
+  article header h1 {
+    color: #f0f0f0;
+  }
+
+  pre {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+  }
+
+  code {
+    background: #1e1e1e;
+  }
+
+  a {
+    color: #7eb8da;
+  }
+
+  a:visited {
+    color: #a89bc2;
+  }
+
+  a:hover {
+    color: #9ccbea;
+  }
+
+  blockquote {
+    border-color: #444;
+    color: #999;
+  }
+
+  hr {
+    border-color: #333;
+  }
+
+  .post-item a, .post-item a:visited {
+    color: #e8e8e8;
+  }
+
+  .example {
+    border-color: #7eb8da;
+  }
+
+  .example button {
+    background: #161616;
+    border-color: #d4d4d4;
+    color: #d4d4d4;
+  }
+
+  .example button:hover {
+    background: #1e1e1e;
+  }
+
+  .example input, .example textarea {
+    background: #1e1e1e;
+    border-color: #333;
+    color: #d4d4d4;
+  }
+
+  article header time, .post-item time {
+    color: #888;
+  }
+
+  /* Syntax highlighting in dark mode */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #8292a2;
+  }
+
+  .token.punctuation {
+    color: #a1a1a1;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol {
+    color: #f97583;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin {
+    color: #9ecbff;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: #ffab70;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #f97583;
+  }
+
+  .token.function,
+  .token.class-name {
+    color: #b392f0;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #ffab70;
+  }
+
+  .footnotes {
+    border-color: #333;
+    color: #999;
+  }
+
+  .footnotes li::marker {
+    color: #777;
+  }
+}
+</style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ELQ40R6NTG');
+</script>
+</head>
+<body>
+  <nav>
+    <a href="/">Elliot Bonneville</a>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+  </nav>
+  <main>
+    <article>
+      <header>
+        <h1>Claude Code Is All You Need</h1>
+        <time>February 22, 2026</time>
+      </header>
+      <p>Two days ago this was a bullet point in a note. &quot;What if I could just text Claude from my phone?&quot; Forty-eight hours later I have a daemon running on my Mac that routes Telegram messages into persistent Claude Code sessions. It reads my files. Runs shell commands. Edits its own source code and restarts itself. I&#39;m using it to write this post, from my phone, while Rhode Island gets buried under its biggest snowstorm on record. The power&#39;s out. I&#39;m on a backup generator.</p>
+<p>The project is called <a href="https://github.com/elliotbonneville/bareclaw">bareclaw</a>. ~1,300 lines of TypeScript across 9 commits. One daemon, many mouths, one brain.</p>
+<p>The architecture:</p>
+<pre><code>[Telegram / curl / HTTP / whatever]
+    -> thin adapter (translates protocol)
+        -> ProcessManager (one queue per channel)
+            -> persistent claude -p process
+    <- response via same channel</code></pre><p>Each input channel gets a transport adapter that speaks Telegram or HTTP on one side, and <code>claude -p</code> on the other. bareclaw is the layer in between.</p>
+<p>The features I didn&#39;t write are more interesting than the ones I did. There&#39;s no orchestration layer, no tool registry, no RAG pipeline. Claude Code handles tool use, memory, and project context on its own. Every skill you&#39;ve taught it, every MCP server you&#39;ve configured, every <code>CLAUDE.md</code> you&#39;ve written for a project — bareclaw gets all of it for free, because it&#39;s running the same <code>claude</code> process you run in your terminal. I have a <a href="https://cothought.ai">journaling system</a> built as a Claude Code skill. The moment I connected bareclaw, I could dictate journal entries over Telegram without changing a line of code. bareclaw is just the plumbing that keeps the process alive and routes messages to it.</p>
+<h3>The bitter lesson, applied to agents</h3>
+<p>Rich Sutton wrote <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">The Bitter Lesson</a> in 2019. The short version: 70 years of AI research shows that general methods which scale with computation always beat hand-crafted domain-specific systems. Chess engines that searched deeper beat chess engines stuffed with grandmaster knowledge. Neural networks that learned from raw data beat computer vision systems with hand-coded edge detectors. The people who built those hand-crafted systems were brilliant, and it didn&#39;t matter, because compute got cheaper faster than their cleverness could compound.</p>
+<p>Andrej Karpathy bought a Mac Mini a few days ago to <a href="https://simonwillison.net/2026/Feb/21/claws/">tinker with &quot;claws&quot; over the weekend</a>. His take: &quot;just as LLM agents were a new layer on top of LLMs, Claws are now a new layer on top of LLM agents.&quot; He liked <a href="https://github.com/qwibitai/nanoclaw">NanoClaw</a> because its core engine is ~4,000 lines of auditable code and runs everything in containers. He was less enthusiastic about OpenClaw&#39;s 400,000 lines of &quot;vibe coded&quot; code with its exposed instances and RCE vulnerabilities.</p>
+<p>I think even NanoClaw is building too much. Its core is 4,000 lines of agent framework. bareclaw&#39;s is ~400 lines of process management. bareclaw doesn&#39;t implement an agent because Claude Code already is one. It already has skills, tool use, memory, MCP servers, project context, self-modification. NanoClaw reimplements orchestration that Claude Code ships out of the box. Security too. Claude Code already has a permissions model, tool allowlists, and a marketplace of vetted MCP servers. Every agent framework that rolls its own permission system is another attack surface to audit. bareclaw inherits Claude Code&#39;s security for the same reason it inherits everything else: it&#39;s just calling <code>claude</code>.</p>
+<p>Yohei Nakajima, the BabyAGI guy, has <a href="https://x.com/yoheinakajima/status/2025235222993010708">this line</a> I keep thinking about: &quot;build the simplest thing that can build itself.&quot; bareclaw takes that literally. Claude running through bareclaw can open its own source code, rewrite the Telegram adapter, commit, and trigger a restart. I watched it do this yesterday while I was describing what I wanted over text.</p>
+<p>All the claws are building the thing that already exists.</p>
+<h3>Why shell out to the CLI</h3>
+<p>bareclaw shells out to <code>claude -p</code> instead of using Anthropic&#39;s Agent SDK, which looks wrong until you think about the billing. The SDK charges per token. The CLI goes through a Claude Max subscription, which is flat rate. I pay the same $200/month whether bareclaw handles three messages or three hundred.</p>
+<p>This also keeps things clean with Anthropic&#39;s terms. In February 2026 they <a href="https://winbuzzer.com/2026/02/19/anthropic-bans-claude-subscription-oauth-in-third-party-apps-xcxwbn/">cracked down</a> on third-party tools that were extracting OAuth tokens from Max subscriptions and routing them through their own API clients. That&#39;s token arbitrage, and they were right to shut it down. bareclaw doesn&#39;t do any of that. It calls the actual <code>claude</code> binary, Anthropic&#39;s own CLI, the way it was designed to be called. Their docs show <code>claude -p</code> piping logs and running in CI pipelines. bareclaw is just another process calling <code>claude -p</code> on my own machine. Ordinary individual usage, which is exactly how the Max plan is scoped.</p>
+<h3>What ~1,300 lines gets you</h3>
+<p>Each channel gets its own Claude process. Sessions survive restarts and crashes. Messages queue when the server is busy and wait if it&#39;s down entirely. Nothing gets swallowed. If I send three texts in a row while it&#39;s thinking, they get coalesced into a single turn instead of three separate ones (this matters more than you&#39;d expect when you&#39;re firing off thoughts from your phone). There&#39;s a heartbeat that fires hourly and restarts the daemon if it died. I can send it photos. It can message me first.</p>
+<p>The server runs with <code>tsx watch</code>, so code changes hot reload instantly. Most of this was built by the daemon itself. I&#39;d describe what I wanted over Telegram, watch it edit its own source, and the server would pick up the changes before I finished reading the diff. The snake eats its tail again.</p>
+<h3>The stack</h3>
+<p>I wrote my <a href="/phone-to-mac-persistent-terminal/">phone-to-Mac SSH setup</a> a month ago. tmux for session persistence, Tailscale for networking. That works, but SSH on a phone is a bad experience. Tiny text, no notifications, the connection drops if you switch apps. Telegram is a real messaging client with push notifications, photo sharing, and a keyboard designed for thumbs. bareclaw sits on top. The daemon lives in a tmux session. SSH connection drops, the daemon keeps running. Power goes out (which it did yesterday, during the worst snowstorm Rhode Island has ever recorded), the daemon comes back when the generator kicks in because the heartbeat job reinstalls itself on startup.</p>
+<p>I was managing the power outage from my phone by candlelight. Checking propane, coordinating with my wife, figuring out which circuits to kill. In between, texting Claude on Telegram to fix bugs in bareclaw&#39;s message streaming. Two conversations, same phone, different apps.</p>
+<p>bareclaw is a personal tool. I built it for myself in a weekend and it has rough edges. If you run it, expect to read the source and fix things. It&#39;s not a product.</p>
+<p>But I&#39;m not sure the agent framework ecosystem is solving a real problem anymore. Claude Code is already the agent. The only thing it was missing was a way to reach it from my pocket.</p>
+
+    </article>
+  </main>
+</body>
+</html>

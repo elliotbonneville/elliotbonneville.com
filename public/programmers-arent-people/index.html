@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programmers Aren't People - Elliot Bonneville</title>
+  <meta name="description" content="Computer" was a job title for a human being before the machines took the word. "Programmer" is the same kind of word.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+  <style>/* Typography */
+body {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 1.75;
+  font-weight: 420;
+  font-optical-sizing: auto;
+  max-width: 58ch;
+  margin: 60px auto;
+  padding: 0 24px;
+  color: #2b2b2b;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: 3em;
+  padding-bottom: 1.2em;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 0.02em;
+}
+
+nav h1 {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0;
+}
+
+nav div {
+  display: flex;
+  gap: 1.2em;
+}
+
+nav a {
+  color: #2b2b2b;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a:visited {
+  color: #2b2b2b;
+}
+
+/* Links */
+a {
+  color: #3d5a80;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: #6b5b7b;
+}
+
+a:hover {
+  color: #2c4466;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.8em 0 0.5em;
+  line-height: 1.25;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.35em; margin-top: 2em; }
+h3 { font-size: 1.1em; }
+
+article header {
+  margin-bottom: 2.5em;
+}
+
+article header h1 {
+  font-size: 2.1em;
+  margin-top: 0;
+  margin-bottom: 0.15em;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+article header time {
+  color: #888;
+  font-size: 0.82em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Paragraphs */
+p {
+  margin: 1.3em 0;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 1.8em 0;
+  padding: 0 0 0 1.5em;
+  border-left: 2px solid #d0d0d0;
+  color: #555;
+  font-style: italic;
+}
+
+blockquote p:first-child { margin-top: 0; }
+blockquote p:last-child { margin-bottom: 0; }
+
+/* Horizontal rules */
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2.5em 0;
+}
+
+/* Code blocks */
+pre {
+  background: #f7f6f3;
+  padding: 1.2em 1.4em;
+  overflow-x: auto;
+  margin: 1.8em 0;
+  line-height: 1.5;
+  border-radius: 4px;
+  font-size: 0.82em;
+  border: 1px solid #eae8e4;
+}
+
+code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, monospace;
+  font-size: 0.88em;
+  background: #f7f6f3;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Prism syntax highlighting */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #708090;
+}
+
+.token.punctuation {
+  color: #999;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #07a;
+}
+
+.token.function,
+.token.class-name {
+  color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90;
+}
+
+/* Interactive examples */
+.example {
+  margin: 2em 0;
+  border-left: 2px solid #3d5a80;
+  padding-left: 1.2em;
+}
+
+.example button {
+  font: inherit;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #2b2b2b;
+}
+
+.example button:hover {
+  background: #f7f6f3;
+}
+
+.example input, .example textarea {
+  font: inherit;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+.example textarea {
+  font-family: ui-monospace, monospace;
+  width: 100%;
+  min-height: 100px;
+}
+
+/* Post list */
+.post-item {
+  margin: 1.8em 0;
+}
+
+.post-item time {
+  color: #888;
+  font-size: 0.78em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: 0.1em;
+}
+
+.post-item a {
+  font-size: 1.1em;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+.post-item a:visited {
+  color: #1a1a1a;
+}
+
+.post-item a:hover {
+  text-decoration: underline;
+}
+
+/* Footnotes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.footnotes {
+  margin-top: 3.5em;
+  padding-top: 1.5em;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.8em;
+  line-height: 1.6;
+  color: #555;
+}
+
+.footnotes ol {
+  padding-left: 1.4em;
+  margin: 0;
+}
+
+.footnotes li {
+  margin: 0.55em 0;
+}
+
+.footnotes li::marker {
+  color: #999;
+}
+
+.footnotes p {
+  margin: 0.2em 0;
+}
+
+[data-footnote-ref] {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0 0.15em;
+}
+
+[data-footnote-backref] {
+  text-decoration: none;
+  margin-left: 0.35em;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body {
+    font-size: 18px;
+    margin: 32px auto;
+    padding: 0 20px;
+  }
+
+  article header h1 {
+    font-size: 1.75em;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #161616;
+    color: #d4d4d4;
+  }
+
+  nav {
+    border-color: #333;
+  }
+
+  nav a, nav a:visited {
+    color: #d4d4d4;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #e8e8e8;
+  }
+
+  article header h1 {
+    color: #f0f0f0;
+  }
+
+  pre {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+  }
+
+  code {
+    background: #1e1e1e;
+  }
+
+  a {
+    color: #7eb8da;
+  }
+
+  a:visited {
+    color: #a89bc2;
+  }
+
+  a:hover {
+    color: #9ccbea;
+  }
+
+  blockquote {
+    border-color: #444;
+    color: #999;
+  }
+
+  hr {
+    border-color: #333;
+  }
+
+  .post-item a, .post-item a:visited {
+    color: #e8e8e8;
+  }
+
+  .example {
+    border-color: #7eb8da;
+  }
+
+  .example button {
+    background: #161616;
+    border-color: #d4d4d4;
+    color: #d4d4d4;
+  }
+
+  .example button:hover {
+    background: #1e1e1e;
+  }
+
+  .example input, .example textarea {
+    background: #1e1e1e;
+    border-color: #333;
+    color: #d4d4d4;
+  }
+
+  article header time, .post-item time {
+    color: #888;
+  }
+
+  /* Syntax highlighting in dark mode */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #8292a2;
+  }
+
+  .token.punctuation {
+    color: #a1a1a1;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol {
+    color: #f97583;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin {
+    color: #9ecbff;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: #ffab70;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #f97583;
+  }
+
+  .token.function,
+  .token.class-name {
+    color: #b392f0;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #ffab70;
+  }
+
+  .footnotes {
+    border-color: #333;
+    color: #999;
+  }
+
+  .footnotes li::marker {
+    color: #777;
+  }
+}
+</style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ELQ40R6NTG');
+</script>
+</head>
+<body>
+  <nav>
+    <a href="/">Elliot Bonneville</a>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+  </nav>
+  <main>
+    <article>
+      <header>
+        <h1>Programmers Aren't People</h1>
+        <time>June 5, 2026</time>
+      </header>
+      <p>In 1892 the New York Times printed a small classified ad under the headline A Computer Wanted.<sup><a id="footnote-ref-1" href="#footnote-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup> The Naval Observatory had two openings. One paid a thousand dollars a year, the other fourteen hundred. To apply you sat a civil service exam in algebra, geometry, trigonometry, and astronomy.</p>
+<p>The computer they wanted to hire was a person.</p>
+<p>For about three hundred years that was the only thing the word meant. The earliest written use the OED can find is from 1613, where a writer praises a man as the truest computer of times and the best arithmetician that ever breathed.<sup><a id="footnote-ref-2" href="#footnote-2" data-footnote-ref aria-describedby="footnote-label">2</a></sup> A computer was someone who computed, the way a baker bakes and a writer writes.</p>
+<p>It&#39;s one of those words English assembles by gluing <em>-er</em> onto a verb. The thing that does the verb. We build <em>printer</em> and <em>calculator</em> the same way, and those were people too once. A printer was a man who ran a press. A calculator was a person who worked sums, long before it was a thing on your desk and then a thing inside your phone.<sup><a id="footnote-ref-3" href="#footnote-3" data-footnote-ref aria-describedby="footnote-label">3</a></sup> The suffix never specified <em>flesh</em>. It just pointed at whoever was doing the work.</p>
+<p>For most of those three centuries the work was done by people, sometimes in rooms full of them. When revolutionary France needed fresh logarithm tables, Gaspard de Prony organized a workforce of eighty or ninety computers, a good number of them hairdressers thrown out of work because the aristocrats whose hair they used to arrange had been sent to the guillotine.<sup><a id="footnote-ref-4" href="#footnote-4" data-footnote-ref aria-describedby="footnote-label">4</a></sup> At Harvard in the 1880s the observatory hired women to catalog the heavens and called them computers. Williamina Fleming, Annie Jump Cannon, and Henrietta Leavitt mapped the structure of the sky for an hourly wage, under a director whose all-female staff got nicknamed Pickering&#39;s Harem.<sup><a id="footnote-ref-5" href="#footnote-5" data-footnote-ref aria-describedby="footnote-label">5</a></sup></p>
+<p>At Langley, through the 1940s and 50s, the agency that became NASA ran whole rooms of women doing the arithmetic that put rockets in the air. Their job title, printed on the paycheck, was computer. Katherine Johnson was a computer. Dorothy Vaughan supervised a section of them.<sup><a id="footnote-ref-6" href="#footnote-6" data-footnote-ref aria-describedby="footnote-label">6</a></sup> If you have seen <em>Hidden Figures</em>, you&#39;ve already met them (though the film keeps having to explain the word, because by the time it reached theaters the word had been repossessed).</p>
+<p>In 1945, a machine called ENIAC switched on, and the people describing it needed a new noun. The answer was standing in front of them.<sup><a id="footnote-ref-7" href="#footnote-7" data-footnote-ref aria-describedby="footnote-label">7</a></sup> Within two decades, &quot;computer&quot; meant a machine so completely that the older sense needed a footnote. The people didn&#39;t disappear. The word left them.</p>
+<p>There is a dreadful symmetry at play here, which, once I saw it, would not come out except by writing this post. The word didn&#39;t betray anyone. It did exactly what that kind of word does. &quot;Computer&quot; was never a description of a human being. It described an activity, with a person standing in as the thing that happened to perform it. The moment something else could perform it, the word slid over, because the word was only ever fastened to the function.</p>
+<p>I am – was? – a programmer.</p>
+<p>&quot;Programmer&quot; feels like a kind of person. It goes on business cards, mortgage applications. It&#39;s the quiet sketch you carry of yourself at two in the morning. It feels like a verb you earned the right to wear as a noun. I program, therefore I&#39;m a programmer, therefore programmer is a thing a person can be.</p>
+<p>But etymologically, it is the identical word as computer. A verb with <em>-er</em> on the end. A tag English fastens to whatever happens to be doing the programming. It&#39;s not a fact about you. It&#39;s a slot, and you are standing in it. We treat it as a verb we perform and a career we are. It&#39;s neither. It&#39;s a noun, and nouns go wherever the work goes. They have throughout all of history.</p>
+<p>The women at Langley understood this before almost anyone. When the IBM machines arrived to take their job and their title, Dorothy Vaughan instead taught herself to program them out of a FORTRAN manual and taught the language to her team so they would still have work on the far side of the change.<sup><a id="footnote-ref-8" href="#footnote-8" data-footnote-ref aria-describedby="footnote-label">8</a></sup> She watched the word get repossessed and climbed into the next word up. Computer became programmer. One rung higher on the same ladder.</p>
+<p>The trouble is that <em>it&#39;s still the same ladder</em>. And the thing that chased her up it is now standing on the rung she climbed to.</p>
+<p>I write code for a living. I&#39;m good at it, and for most of my life that felt safe. Secure. It felt the way, I imagine, being a computer felt to a sharp young woman with a math degree in 1955. Lately I watch the machine do in a minute the thing I could have billed a morning for, and I can feel the word starting to loosen the way a tooth loosens well before you are willing to admit it&#39;s coming out. (Yes, my son just lost his first tooth, why do you ask? Ahem.)</p>
+<p>&quot;Computer&quot; sits in a museum case now with a little card explaining that it used to mean a person.</p>
+<p>I wonder what card they&#39;ll set next to &quot;programmer,&quot; and who will be around to read it.</p>
+<section class="footnotes" data-footnotes>
+<h2 id="footnote-label" class="sr-only">Footnotes</h2>
+<ol>
+<li id="footnote-1">
+<p>&quot;A Computer Wanted,&quot; <em>The New York Times</em>, May 2, 1892 — a Naval Observatory listing for the Nautical Almanac Office. <a href="https://danwin.com/2013/02/the-first-mention-of-computer-in-the-new-york-times/">Reproduced and discussed here</a>. <a href="#footnote-ref-1" data-footnote-backref aria-label="Back to reference 1">↩</a></p>
+</li>
+<li id="footnote-2">
+<p><a href="https://en.wikipedia.org/wiki/Computer_(occupation)">Wikipedia, &quot;Computer (occupation)&quot;</a>; <a href="https://www.wordorigins.org/big-list-entries/computer">Wordorigins, &quot;computer&quot;</a> (the 1613 Richard Brathwait citation, per the OED). See also David Alan Grier, <a href="https://press.princeton.edu/books/paperback/9780691133829/when-computers-were-human"><em>When Computers Were Human</em></a> (Princeton University Press, 2005). <a href="#footnote-ref-2" data-footnote-backref aria-label="Back to reference 2">↩</a></p>
+</li>
+<li id="footnote-3">
+<p><a href="https://www.etymonline.com/word/calculator">Etymonline, &quot;calculator&quot;</a> (person, late 14c.; machine, 1784; electronic, 1946); <a href="https://www.etymonline.com/word/printer">Etymonline, &quot;printer&quot;</a> (person, c. 1500; device, 1859). <a href="#footnote-ref-3" data-footnote-backref aria-label="Back to reference 3">↩</a></p>
+</li>
+<li id="footnote-4">
+<p><a href="https://en.wikipedia.org/wiki/Gaspard_de_Prony">Wikipedia, &quot;Gaspard de Prony&quot;</a>; the hairdresser detail traces to I. Grattan-Guinness, &quot;Work for the Hairdressers: The Production of de Prony&#39;s Logarithmic and Trigonometric Tables.&quot; <a href="#footnote-ref-4" data-footnote-backref aria-label="Back to reference 4">↩</a></p>
+</li>
+<li id="footnote-5">
+<p><a href="https://en.wikipedia.org/wiki/Harvard_Computers">Wikipedia, &quot;Harvard Computers&quot;</a> (the group was nicknamed &quot;Pickering&#39;s Harem&quot;). <a href="#footnote-ref-5" data-footnote-backref aria-label="Back to reference 5">↩</a></p>
+</li>
+<li id="footnote-6">
+<p><a href="https://airandspace.si.edu/stories/editorial/hidden-figures-and-human-computers">Smithsonian, &quot;Hidden Figures and the Human Computers&quot;</a>; <a href="https://en.wikipedia.org/wiki/West_Area_Computers">Wikipedia, &quot;West Area Computers&quot;</a>; <a href="https://www.nasa.gov/people/dorothy-vaughan/">NASA, &quot;Dorothy Vaughan&quot;</a>. <a href="#footnote-ref-6" data-footnote-backref aria-label="Back to reference 6">↩</a></p>
+</li>
+<li id="footnote-7">
+<p><a href="https://www.etymonline.com/word/computer">Etymonline, &quot;computer&quot;</a> (machine sense, late 1800s; electronic device, 1945); <a href="https://en.wikipedia.org/wiki/ENIAC">Wikipedia, &quot;ENIAC&quot;</a>. <a href="#footnote-ref-7" data-footnote-backref aria-label="Back to reference 7">↩</a></p>
+</li>
+<li id="footnote-8">
+<p><a href="https://www.nasa.gov/people/dorothy-vaughan/">NASA, &quot;Dorothy Vaughan&quot;</a> (an &quot;expert FORTRAN programmer&quot;); <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Wikipedia, &quot;Dorothy Vaughan&quot;</a> (taught herself FORTRAN and taught it to her team). <a href="#footnote-ref-8" data-footnote-backref aria-label="Back to reference 8">↩</a></p>
+</li>
+</ol>
+</section>
+
+    </article>
+  </main>
+</body>
+</html>

@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, statSync, copyFileSync } from 'fs';
 import { join, basename, extname } from 'path';
-import { marked } from 'marked';
+import { Marked } from 'marked';
+import markedFootnote from 'marked-footnote';
 import Prism from 'prismjs';
 import { config } from '../config.js';
 
@@ -15,22 +16,20 @@ import 'prismjs/components/prism-markup.js';
 import 'prismjs/components/prism-bash.js';
 import 'prismjs/components/prism-json.js';
 
-// Create custom renderer
-const renderer = new marked.Renderer();
-
-// Override code block rendering
-renderer.code = function(code, language) {
-  if (language && Prism.languages[language]) {
-    const highlighted = Prism.highlight(code, Prism.languages[language], language);
-    return `<pre><code class="language-${language}">${highlighted}</code></pre>`;
+// Create marked instance with footnote support and custom renderer
+const renderer = {
+  code(code, language) {
+    if (language && Prism.languages[language]) {
+      const highlighted = Prism.highlight(code, Prism.languages[language], language);
+      return `<pre><code class="language-${language}">${highlighted}</code></pre>`;
+    }
+    return `<pre><code>${code}</code></pre>`;
   }
-  return `<pre><code>${code}</code></pre>`;
 };
 
-// Configure marked with custom renderer
-marked.setOptions({
-  renderer: renderer
-});
+const marked = new Marked()
+  .use({ renderer })
+  .use(markedFootnote());
 
 // Parse frontmatter from markdown content
 function parseFrontmatter(content) {
@@ -163,7 +162,7 @@ function build() {
     const { frontmatter, content: markdownContent } = parseFrontmatter(content);
     
     const slug = createSlug(dirName);
-    const html = marked(markdownContent);
+    const html = marked.parse(markdownContent);
     const formattedDate = formatDate(frontmatter.date);
     
     // Create post object

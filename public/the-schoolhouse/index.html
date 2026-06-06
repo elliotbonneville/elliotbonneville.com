@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Schoolhouse - Elliot Bonneville</title>
+  <meta name="description" content="The word for leisure became the word for compulsion, and nobody talks about it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&display=swap" rel="stylesheet">
+  <style>/* Typography */
+body {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  line-height: 1.75;
+  font-weight: 420;
+  font-optical-sizing: auto;
+  max-width: 58ch;
+  margin: 60px auto;
+  padding: 0 24px;
+  color: #2b2b2b;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: 3em;
+  padding-bottom: 1.2em;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 0.02em;
+}
+
+nav h1 {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0;
+}
+
+nav div {
+  display: flex;
+  gap: 1.2em;
+}
+
+nav a {
+  color: #2b2b2b;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a:visited {
+  color: #2b2b2b;
+}
+
+/* Links */
+a {
+  color: #3d5a80;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: #6b5b7b;
+}
+
+a:hover {
+  color: #2c4466;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.8em 0 0.5em;
+  line-height: 1.25;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.35em; margin-top: 2em; }
+h3 { font-size: 1.1em; }
+
+article header {
+  margin-bottom: 2.5em;
+}
+
+article header h1 {
+  font-size: 2.1em;
+  margin-top: 0;
+  margin-bottom: 0.15em;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+article header time {
+  color: #888;
+  font-size: 0.82em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Paragraphs */
+p {
+  margin: 1.3em 0;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 1.8em 0;
+  padding: 0 0 0 1.5em;
+  border-left: 2px solid #d0d0d0;
+  color: #555;
+  font-style: italic;
+}
+
+blockquote p:first-child { margin-top: 0; }
+blockquote p:last-child { margin-bottom: 0; }
+
+/* Horizontal rules */
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2.5em 0;
+}
+
+/* Code blocks */
+pre {
+  background: #f7f6f3;
+  padding: 1.2em 1.4em;
+  overflow-x: auto;
+  margin: 1.8em 0;
+  line-height: 1.5;
+  border-radius: 4px;
+  font-size: 0.82em;
+  border: 1px solid #eae8e4;
+}
+
+code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, monospace;
+  font-size: 0.88em;
+  background: #f7f6f3;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Prism syntax highlighting */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #708090;
+}
+
+.token.punctuation {
+  color: #999;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #07a;
+}
+
+.token.function,
+.token.class-name {
+  color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90;
+}
+
+/* Interactive examples */
+.example {
+  margin: 2em 0;
+  border-left: 2px solid #3d5a80;
+  padding-left: 1.2em;
+}
+
+.example button {
+  font: inherit;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #2b2b2b;
+}
+
+.example button:hover {
+  background: #f7f6f3;
+}
+
+.example input, .example textarea {
+  font: inherit;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+.example textarea {
+  font-family: ui-monospace, monospace;
+  width: 100%;
+  min-height: 100px;
+}
+
+/* Post list */
+.post-item {
+  margin: 1.8em 0;
+}
+
+.post-item time {
+  color: #888;
+  font-size: 0.78em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: 0.1em;
+}
+
+.post-item a {
+  font-size: 1.1em;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+.post-item a:visited {
+  color: #1a1a1a;
+}
+
+.post-item a:hover {
+  text-decoration: underline;
+}
+
+/* Footnotes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.footnotes {
+  margin-top: 3.5em;
+  padding-top: 1.5em;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.8em;
+  line-height: 1.6;
+  color: #555;
+}
+
+.footnotes ol {
+  padding-left: 1.4em;
+  margin: 0;
+}
+
+.footnotes li {
+  margin: 0.55em 0;
+}
+
+.footnotes li::marker {
+  color: #999;
+}
+
+.footnotes p {
+  margin: 0.2em 0;
+}
+
+[data-footnote-ref] {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0 0.15em;
+}
+
+[data-footnote-backref] {
+  text-decoration: none;
+  margin-left: 0.35em;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body {
+    font-size: 18px;
+    margin: 32px auto;
+    padding: 0 20px;
+  }
+
+  article header h1 {
+    font-size: 1.75em;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #161616;
+    color: #d4d4d4;
+  }
+
+  nav {
+    border-color: #333;
+  }
+
+  nav a, nav a:visited {
+    color: #d4d4d4;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #e8e8e8;
+  }
+
+  article header h1 {
+    color: #f0f0f0;
+  }
+
+  pre {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+  }
+
+  code {
+    background: #1e1e1e;
+  }
+
+  a {
+    color: #7eb8da;
+  }
+
+  a:visited {
+    color: #a89bc2;
+  }
+
+  a:hover {
+    color: #9ccbea;
+  }
+
+  blockquote {
+    border-color: #444;
+    color: #999;
+  }
+
+  hr {
+    border-color: #333;
+  }
+
+  .post-item a, .post-item a:visited {
+    color: #e8e8e8;
+  }
+
+  .example {
+    border-color: #7eb8da;
+  }
+
+  .example button {
+    background: #161616;
+    border-color: #d4d4d4;
+    color: #d4d4d4;
+  }
+
+  .example button:hover {
+    background: #1e1e1e;
+  }
+
+  .example input, .example textarea {
+    background: #1e1e1e;
+    border-color: #333;
+    color: #d4d4d4;
+  }
+
+  article header time, .post-item time {
+    color: #888;
+  }
+
+  /* Syntax highlighting in dark mode */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #8292a2;
+  }
+
+  .token.punctuation {
+    color: #a1a1a1;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol {
+    color: #f97583;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin {
+    color: #9ecbff;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: #ffab70;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: #f97583;
+  }
+
+  .token.function,
+  .token.class-name {
+    color: #b392f0;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #ffab70;
+  }
+
+  .footnotes {
+    border-color: #333;
+    color: #999;
+  }
+
+  .footnotes li::marker {
+    color: #777;
+  }
+}
+</style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ELQ40R6NTG');
+</script>
+</head>
+<body>
+  <nav>
+    <a href="/">Elliot Bonneville</a>
+    <div>
+      <a href="/about/">About</a>
+      <a href="/rss.xml">RSS</a>
+    </div>
+  </nav>
+  <main>
+    <article>
+      <header>
+        <h1>The Schoolhouse</h1>
+        <time>March 15, 2026</time>
+      </header>
+      <p>There&#39;s a small white building at the end of a road in southern Rhode Island. It&#39;s a one-room schoolhouse. It was in use for something close to two hundred years. Now it just sits there, paint peeling a little, looking like the kind of thing you&#39;d put on a postcard if you wanted people to feel nostalgic about New England.</p>
+<p>I drive past it most days and don&#39;t think about it. But my oldest is about to turn six, and now I find myself thinking about it constantly.</p>
+<p>My wife and I were both homeschooled. We turned out fine. Better than fine, honestly. We came out literate, curious, and capable of teaching ourselves whatever we needed. We plan to homeschool our own kids. That decision was made a long time ago, and I always figured it was a personal preference, maybe a little countercultural, maybe a little eccentric. I didn&#39;t think there was much more to say about it.</p>
+<p>But I&#39;ve been pulling threads lately. And what I keep finding underneath is worse than I expected.</p>
+<hr>
+<p>Start with the word itself.</p>
+<p>&quot;School&quot; comes from the Greek <em>schole</em>.<sup><a id="footnote-ref-1" href="#footnote-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup> It meant leisure. Not laziness, not summer vacation. Leisure in the old sense: free time devoted to thinking for its own sake. Unhurried contemplation. Learning because you wanted to, not because someone made you. The Greeks considered it the highest use of a person&#39;s time. Their word for work was <em>ascholia</em>, literally &quot;not-leisure.&quot; Work was defined by the absence of the good thing, not the other way around.</p>
+<p>And &quot;liberal&quot; in &quot;liberal arts&quot; comes from <em>liber</em>, meaning free. A liberal education was the education of a free person. Not vocational training. Not job preparation. The formation of a mind.</p>
+<p>The classical model had two stages. The trivium came first: grammar, logic, rhetoric. Grammar teaches you the structure of a subject. Logic teaches you to reason about it. Rhetoric teaches you to express what you&#39;ve learned. Together they teach you how to think. After the trivium came the quadrivium: arithmetic, geometry, music, astronomy. The trivium gives you the tools. The quadrivium gives you the world to use them on.</p>
+<p>A fourteen-year-old in a colonial grammar school could read Cicero, Virgil, and Ovid in the original Latin. Harvard&#39;s 1869 entrance exam required Greek composition, Latin translation, algebra, and trigonometry.<sup><a id="footnote-ref-2" href="#footnote-2" data-footnote-ref aria-describedby="footnote-label">2</a></sup> Eighty-eight percent of applicants passed it.</p>
+<p>It&#39;s easy to romanticize this. But only about two percent of the population attended any secondary school at all.<sup><a id="footnote-ref-3" href="#footnote-3" data-footnote-ref aria-describedby="footnote-label">3</a></sup> The classical model produced extraordinary minds, but it produced very few of them. It was education for the privileged. Compare the top two percent of today&#39;s students and you&#39;ll find kids doing multivariable calculus, writing publishable research, coding full applications, speaking multiple languages. The elite have always been fine.</p>
+<p>The question isn&#39;t whether students were smarter then. It&#39;s what we sacrificed in the method when we decided to educate everyone, and whether that sacrifice was necessary.</p>
+<p>Because something was lost. Not the Latin. The trivium. The part that taught you <em>how</em> to think, not <em>what</em> to know.</p>
+<hr>
+<p>The schoolhouse at the end of my road was part of this older tradition, or at least a rural echo of it.</p>
+<p>One-room schoolhouses were the default in America from the 1640s through the early 1900s.<sup><a id="footnote-ref-4" href="#footnote-4" data-footnote-ref aria-describedby="footnote-label">4</a></sup> They worked like this: one teacher, one room, all ages from about five to sixteen. The teacher would rotate through groups, calling a few students to a recitation bench to demonstrate what they&#39;d learned out loud. While one group was reciting, the rest worked independently or quietly helped each other. Older kids naturally mentored younger ones. A twelve-year-old explaining long division to an eight-year-old learned it better than either of them would have alone.</p>
+<p>There was no &quot;grade level.&quot; You moved at your own pace because there was no alternative. The teacher couldn&#39;t give the same lecture to a room containing both five-year-olds and fifteen-year-olds, so she didn&#39;t try. She met each student where they were.</p>
+<p>In 1918, there were 190,000 of these schoolhouses in the United States.<sup><a id="footnote-ref-5" href="#footnote-5" data-footnote-ref aria-describedby="footnote-label">5</a></sup> My small town in Rhode Island alone had thirteen, scattered across the township, each serving a small district. By 1960, there were fewer than 20,000 one-room schools left in the whole country. Our last ones closed in 1952.</p>
+<p>What killed them wasn&#39;t a failure of the model. It was a deliberate replacement by something designed to do a different job.</p>
+<hr>
+<p>In 1843, a Massachusetts education reformer named Horace Mann traveled to Europe to study national school systems. He was most impressed by Prussia.</p>
+<p>Now, Prussia&#39;s system needs a little context. It was built in the aftermath of a military humiliation. Napoleon had crushed the Prussian army at Jena in 1806,<sup><a id="footnote-ref-6" href="#footnote-6" data-footnote-ref aria-describedby="footnote-label">6</a></sup> and the state concluded that the problem wasn&#39;t tactics or weapons. The problem was that the people were too independent-minded. The solution was a school system designed, explicitly, to produce obedient citizens loyal to the state. Johann Gottlieb Fichte, the philosopher tasked with designing the intellectual framework for Prussian education, was startlingly frank about what he had in mind:</p>
+<blockquote>
+<p>&quot;The new education must consist essentially in this, that it completely destroys freedom of will in the soil which it undertakes to cultivate, and produces on the contrary strict necessity in the decisions of the will, the opposite being impossible.&quot;<sup><a id="footnote-ref-7" href="#footnote-7" data-footnote-ref aria-describedby="footnote-label">7</a></sup></p>
+</blockquote>
+<p>And, in case that wasn&#39;t clear enough:</p>
+<blockquote>
+<p>&quot;If you want to influence him at all, you must do more than merely talk to him; you must fashion him, and fashion him in such a way that he simply cannot will otherwise than you wish him to will.&quot;<sup><a id="footnote-ref-7-2" href="#footnote-7" data-footnote-ref aria-describedby="footnote-label">7</a></sup></p>
+</blockquote>
+<p>The Prussian model introduced everything we now consider &quot;normal&quot; about school. Students grouped strictly by age. A standardized curriculum that everyone moved through at the same pace. State-certified teachers. Bells and periods. The one-room schoolhouse, with its mixed ages, self-paced learning, and organic mentorship, was exactly the kind of thing the Prussians were trying to eliminate.</p>
+<p>Mann brought this model back to Massachusetts and built the American &quot;common school&quot; on top of it. By 1852, Massachusetts had adopted it. Other states followed. The school bus arrived in the 1920s, making physical consolidation possible. Within forty years, the one-room schoolhouse was essentially extinct.</p>
+<p>This is usually where the history lesson ends. Schools were modernized, the old model was quaint but inefficient, progress marches on. That&#39;s the version most of us learned.</p>
+<p>But there&#39;s a document that complicates that story considerably.</p>
+<p>In 1918, Alexander Inglis published <em>Principles of Secondary Education</em><sup><a id="footnote-ref-8" href="#footnote-8" data-footnote-ref aria-describedby="footnote-label">8</a></sup>, which outlined the six functions of the system as it was actually designed to operate. Not what the system says it does. What it was built to do. John Taylor Gatto,<sup><a id="footnote-ref-9" href="#footnote-9" data-footnote-ref aria-describedby="footnote-label">9</a></sup> who won New York State Teacher of the Year three times and spent the rest of his career trying to dismantle the institution that honored him, brought these to wider attention. Here they are:</p>
+<ol>
+<li><strong>Adjustive.</strong> Establish fixed habits of reaction to authority, precluding critical judgment.</li>
+<li><strong>Integrating.</strong> Make children as alike as possible. Conformity equals predictability.</li>
+<li><strong>Diagnostic.</strong> Determine each student&#39;s &quot;proper&quot; social role.</li>
+<li><strong>Differentiating.</strong> Sort children by role and train them only so far.</li>
+<li><strong>Selective.</strong> Tag the unfit with poor grades and remedial placement.</li>
+<li><strong>Propaedeutic.</strong> Cultivate a small elite to manage the system itself.</li>
+</ol>
+<p>I want to be careful here. It would be easy to present this as a grand conspiracy, and I don&#39;t think that&#39;s what it is. These functions emerged from a particular historical moment. Prussia needed obedient soldiers. Industrial America needed factory workers. The system was designed to produce what was needed, and what was needed was compliance. The people who built it weren&#39;t villains. They were engineers solving for a specific output.</p>
+<p>But the output they solved for was not education. And the system they built is still the one we use.</p>
+<p>Woodrow Wilson, then president of Princeton, said as much in 1909: &quot;We want one class of persons to have a liberal education, and we want another class of persons, a very much larger class, of necessity, in every society, to forego the privileges of a liberal education and fit themselves to perform specific difficult manual tasks.&quot;<sup><a id="footnote-ref-10" href="#footnote-10" data-footnote-ref aria-describedby="footnote-label">10</a></sup></p>
+<p>The trivium for the few. Compliance training for everyone else. He wasn&#39;t being sinister. He was describing what the system already was.</p>
+<hr>
+<p>If you still believe the primary purpose of school is education, the spring of 2020 settled that question.</p>
+<p>When schools closed in March of that year, the national conversation was not about children&#39;s learning. It was about whether parents could go to work. Women&#39;s unemployment quadrupled in a single month, from 4.4% to 16.5%.<sup><a id="footnote-ref-11" href="#footnote-11" data-footnote-ref aria-describedby="footnote-label">11</a></sup> Thirteen percent of working parents lost their jobs or reduced hours. When the reopening debate began, it was framed almost entirely around economic necessity. Can parents go back to work? Can essential workers keep showing up? The learning loss conversation came later, almost as an afterthought.</p>
+<p>The Census Bureau has since found that 61% of parents with children under seventeen have no formal childcare arrangement beyond school.<sup><a id="footnote-ref-12" href="#footnote-12" data-footnote-ref aria-describedby="footnote-label">12</a></sup> For the majority of American families, school is the childcare. The daily schedule runs from roughly 8am to 3pm because that&#39;s when parents need to be at work, not because the science of learning has anything particular to say about those hours. The &quot;3pm problem,&quot; when school lets out but the workday doesn&#39;t, drives a fifty-billion-dollar afterschool care industry.</p>
+<p>You can degrade the educational quality of American schools for decades, and the evidence suggests we have, and nothing visibly breaks. The economy keeps functioning. Parents keep going to work. But remove the custodial function for even a few weeks and the labor market seizes up. That tells you which function is load-bearing.</p>
+<p>Gatto, characteristically, put it bluntly: &quot;Children do not learn in school; they are babysat.&quot;<sup><a id="footnote-ref-13" href="#footnote-13" data-footnote-ref aria-describedby="footnote-label">13</a></sup></p>
+<p>That&#39;s too harsh. Plenty of children learn in school. Plenty of teachers pour their hearts into making it work. But the system those teachers operate inside was not designed to support what they&#39;re trying to do. It was designed to do something else, and it does that other thing very well.</p>
+<hr>
+<p>Here&#39;s the part that makes me angry, and I should probably admit that before presenting the numbers.</p>
+<p>The United States spends $15,500 per student per year on K-12 education.<sup><a id="footnote-ref-14" href="#footnote-14" data-footnote-ref aria-describedby="footnote-label">14</a></sup> That&#39;s 38% above the average for the OECD, the club of thirty-eight developed nations that tracks this sort of thing. We are the fifth-highest spender in the world. We rank about eighteenth in outcomes.<sup><a id="footnote-ref-15" href="#footnote-15" data-footnote-ref aria-describedby="footnote-label">15</a></sup></p>
+<p>Between 1950 and 2009, student enrollment increased 96%. The number of teachers increased 252%. The number of administrators and non-teaching staff increased 702%.<sup><a id="footnote-ref-16" href="#footnote-16" data-footnote-ref aria-describedby="footnote-label">16</a></sup></p>
+<p>I&#39;ll say that again. Students roughly doubled. Administration grew sevenfold.</p>
+<p>By 2015, non-teaching staff outnumbered teachers in public schools for the first time in American history.<sup><a id="footnote-ref-17" href="#footnote-17" data-footnote-ref aria-describedby="footnote-label">17</a></sup> If non-teaching staff had grown at the same rate as students from 1992 to 2009, there would have been an additional $37.2 billion per year in the system.<sup><a id="footnote-ref-16-2" href="#footnote-16" data-footnote-ref aria-describedby="footnote-label">16</a></sup> That&#39;s enough for an $11,700 raise for every teacher in the country.</p>
+<p>Where did the money go? Into compliance. Every major federal education law creates roles that never sunset. IDEA (1975) requires such detailed documentation that special education teachers now spend more time on paperwork than on grading, communicating with parents, and attending IEP meetings combined.<sup><a id="footnote-ref-18" href="#footnote-18" data-footnote-ref aria-describedby="footnote-label">18</a></sup> New York alone imposed over two hundred state-level special education requirements on top of the federal ones<sup><a id="footnote-ref-18-2" href="#footnote-18" data-footnote-ref aria-describedby="footnote-label">18</a></sup>, including a mandatory forty-six-page handbook that must be given to parents upon referral. No Child Left Behind (2001) introduced eighty-nine new accountability measures and created testing coordinator positions in every district. Title IX requires designated compliance coordinators. Section 504 and the ADA require more. Federal regulations affecting schools have grown 269% since 1990.<sup><a id="footnote-ref-19" href="#footnote-19" data-footnote-ref aria-describedby="footnote-label">19</a></sup></p>
+<p>Each of these mandates, taken individually, is reasonable. Protecting disabled students is reasonable. Preventing discrimination is reasonable. Ensuring accountability is reasonable. But collectively, they&#39;ve built a bureaucracy that consumes more resources than the teaching it was supposed to support. The bureaucracy that measures education has grown faster than the education itself.</p>
+<p>I have friends who teach. Good ones. The kind who stay late, who spend their own money on supplies, who lie awake thinking about specific kids. They are miserable. Not because teaching is hard, though it is. Because the system they work inside was not designed for people who care. The $37.2 billion that went to administrators and compliance officers instead of to them? Those are their raises. The paperwork they bring home every night? Those are their evenings. The standardized tests that reduce their students to data points? Those are their professional evaluations.</p>
+<p>The system doesn&#39;t fail despite good teachers. It fails good teachers. And the people who actually teach your children are the least funded part of the most expensive education system in the world.</p>
+<hr>
+<p>So what did we get for all this money? You don&#39;t have to compare us to 1869 to see the problem. You can compare us to countries that are educating their children right now, today, with less money and different methods.</p>
+<p>Finland spends about twenty-three percent less per student than the United States. They don&#39;t start school until age seven. They give almost no standardized tests. Their school days are shorter, with fifty-minute recesses built in. Getting into a Finnish teaching program is harder than getting into medical school: the acceptance rate is 6.8%.<sup><a id="footnote-ref-24a" href="#footnote-24a" data-footnote-ref aria-describedby="footnote-label">20</a></sup> Finnish teachers earn ninety-two percent of what comparably educated professionals make. American teachers earn closer to sixty.<sup><a id="footnote-ref-24b" href="#footnote-24b" data-footnote-ref aria-describedby="footnote-label">21</a></sup></p>
+<p>Estonia was a post-Soviet country that had to rebuild its entire education system from scratch after 1991. They spend about thirty percent below the OECD average, roughly half what the US spends per student. They are now first in Europe in reading and science.<sup><a id="footnote-ref-24c" href="#footnote-24c" data-footnote-ref aria-describedby="footnote-label">22</a></sup></p>
+<p>Singapore&#39;s weakest students, their bottom quartile, score higher in math than the American average.<sup><a id="footnote-ref-24d" href="#footnote-24d" data-footnote-ref aria-describedby="footnote-label">23</a></sup> Only seven percent of American students qualify as top math performers. In Singapore it&#39;s forty-one percent.</p>
+<p>What do these countries have in common? Almost nothing, except this: they treat teaching as a prestigious, selective, well-supported profession. They spend less on administration and more on the people in the room with the children. They trusted their schools instead of auditing them into paralysis.</p>
+<p>Meanwhile, forty percent of American eighth graders cannot explain, even roughly, why the colonists fought the Revolutionary War.<sup><a id="footnote-ref-20" href="#footnote-20" data-footnote-ref aria-describedby="footnote-label">24</a></sup> Forty-three percent of the high school class of 2024 walked across a stage, received a diploma, and could not demonstrate readiness for an entry-level college course in any subject.<sup><a id="footnote-ref-21" href="#footnote-21" data-footnote-ref aria-describedby="footnote-label">25</a></sup> Nearly half of college freshmen pay tuition to relearn material their high school was supposed to have taught them.<sup><a id="footnote-ref-22" href="#footnote-22" data-footnote-ref aria-describedby="footnote-label">26</a></sup> Fifty-four percent of American adults read below a sixth-grade level,<sup><a id="footnote-ref-23" href="#footnote-23" data-footnote-ref aria-describedby="footnote-label">27</a></sup> which means they struggle with a lease agreement, a prescription label, or a ballot measure. After four years of college, thirty-six percent of students show no measurable improvement in critical thinking, reasoning, or writing.<sup><a id="footnote-ref-24e" href="#footnote-24e" data-footnote-ref aria-describedby="footnote-label">28</a></sup></p>
+<p>We spend more per student than almost any country on earth. These are the results. The method matters. And the method we chose was optimized for the wrong thing.</p>
+<p>In 1984, a researcher named Benjamin Bloom published a finding that should have changed everything.<sup><a id="footnote-ref-24" href="#footnote-24" data-footnote-ref aria-describedby="footnote-label">29</a></sup> He compared three groups: students taught in a conventional classroom, students taught with mastery learning (same classroom, but you had to demonstrate understanding before moving on), and students tutored one-on-one. The tutored students scored two standard deviations above the conventional classroom. In practical terms, the average tutored student outperformed 98% of the students who learned in a traditional setting. Ninety percent of tutored students reached a level that only the top twenty percent achieved in a classroom.</p>
+<p>Bloom called it the &quot;2 Sigma Problem.&quot; The results were clear, but one-on-one tutoring was economically impossible at scale. He posed it as a challenge to the field: can we find a way to teach thirty students as effectively as we teach one?</p>
+<p>The one-room schoolhouse, with its mixed ages, self-pacing, and peer tutoring, was structurally closer to Bloom&#39;s winning condition than anything that replaced it. We had something that worked. We tore it down. Then we spent a century trying to figure out how to get it back.</p>
+<p>In 2014, Elon Musk pulled his five sons out of a gifted school in Los Angeles and hired one of their teachers to build something from scratch. The school he built, Ad Astra, had no grades and no grade levels. Students were grouped by ability and interest. They worked on ethical dilemmas with no right answer and learned to reason from first principles. It cost millions of dollars to build a school that, when you strip away the branding, is a one-room schoolhouse. Mixed ages, self-paced, problem-driven. A one-room schoolhouse with a Silicon Valley vocabulary.</p>
+<p>Ad Astra operated on the SpaceX campus for six years with about forty students. When Musk&#39;s kids graduated, the founding teacher, Joshua Dahn, spun it into two things: <a href="https://www.astranova.org/">Astra Nova</a>, an online school now serving around 315 students from 45 countries, and Synthesis, a platform that packages the collaborative game-based learning for anyone to use. Astra Nova is WASC-accredited, charges $2,400 per class hour per year, and meets 100% of demonstrated financial need. It&#39;s small. But the kids who go through it are, by all accounts, formidable thinkers.</p>
+<p>The irony is that Musk spent millions and years building something that the schoolhouse at the end of my road already was. The only thing Ad Astra added was the self-awareness to know why it worked. The one-room schoolhouse stumbled into the right model by necessity. Ad Astra chose it on purpose. Both arrived at the same place: mixed ages, no grades, real problems, students who move at their own pace.</p>
+<hr>
+<p>Prometheus comes to mind. He didn&#39;t teach anyone anything. He gave people fire. Fire let them see in the dark, cook their own food, forge their own tools. It didn&#39;t replace human capability. It removed the barriers to it. And the gods punished him for it, because universal access to a powerful primitive is dangerous to anyone whose authority depends on controlling it.</p>
+<p>Bloom said one-on-one tutoring couldn&#39;t scale. In 1984, that was true. It&#39;s not true anymore.</p>
+<p>Khan Academy&#39;s AI tutor, <a href="https://www.khanmigo.ai/">Khanmigo</a>, went from 40,000 students to 700,000 in a single school year<sup><a id="footnote-ref-25" href="#footnote-25" data-footnote-ref aria-describedby="footnote-label">30</a></sup>, using Socratic questioning to guide kids through problems instead of handing them answers. <a href="https://www.synthesis.com/tutor">Synthesis</a>, the platform that grew out of Musk&#39;s Ad Astra school, has 21,500 kids enrolled in collaborative problem-solving sessions.<sup><a id="footnote-ref-26" href="#footnote-26" data-footnote-ref aria-describedby="footnote-label">31</a></sup> <a href="https://alpha.school/">Alpha School</a> in Austin does two hours of AI-guided academics per day, then spends the rest of the day on life skills and projects. No traditional teachers. Just guides.</p>
+<p>And then there&#39;s <a href="https://x.com/jessegenet">Jesse Genet</a>. She&#39;s a former startup CEO who sold her company in 2021 and now homeschools her four kids, all five and under, with a team of five AI agents running on Mac Minis in her house. One of them plans the entire curriculum. She photographs whole textbooks and feeds them to the agent, which ingests the material and generates personalized daily lesson plans. She had never opened a terminal before six months ago. She built a custom kids&#39; TV app and deployed it to her television. This is a woman who is, right now, doing what the Prussian model was designed to prevent: educating her own children, on her own terms, using tools that didn&#39;t exist two years ago.</p>
+<p>For the autodidact, the person who wants to learn but lacks access or guidance, the bottleneck has always been two things: finding the knowledge, and getting feedback on whether you understand it. An LLM does both. Not perfectly. Not without caveats. But the barrier just dropped from prohibitive to essentially zero. That&#39;s what fire does. It doesn&#39;t make you smarter. It makes your existing intelligence useful in more places.</p>
+<p>The Prussian model works because the state decides what you learn, when, and how fast. An LLM doesn&#39;t care about the state&#39;s curriculum. A child with access to a patient, knowledgeable, infinitely available tutor doesn&#39;t need to wait for a bell to ring or a teacher to reach her row. She can follow her curiosity wherever it goes, at whatever pace she&#39;s capable of. That&#39;s not a reform of the existing system. That&#39;s a threat to its reason for existing.</p>
+<p>I don&#39;t know what this means at scale. I don&#39;t know if an AI can teach the trivium, can actually teach a child to reason and argue and express herself, or if it only makes the quadrivium more accessible. I don&#39;t know what&#39;s lost when there&#39;s no Socrates in the room, no teacher at the recitation bench calling you forward to show what you know. These are real questions and I don&#39;t have answers.</p>
+<p>But I know some things that I didn&#39;t know before I started pulling threads.</p>
+<p>I know that the word for leisure became the word for compulsion, and nobody talks about that. I know the system we have was designed, on purpose, by people who wrote down their purposes, to produce obedience rather than thought. I know the money is there and I know it doesn&#39;t reach the classroom. I know the model that actually works, the one Bloom confirmed and Musk reinvented, looks a lot more like the building at the end of my road than like anything in the Department of Education&#39;s budget.</p>
+<p>And I know my son is almost six, and he&#39;s curious, and he&#39;s already trying to solve problems that matter to him. I will not send him somewhere that was built to train that out of him.</p>
+<p>The schoolhouse at the end of my road has been empty for a long time. But the model it represents, the one where a child learns at their own pace, where older kids teach younger kids, where the community is small enough to know every student by name, is still the best answer anyone has found. Maybe it&#39;s time to stop driving past.</p>
+<hr>
+<section class="footnotes" data-footnotes>
+<h2 id="footnote-label" class="sr-only">Footnotes</h2>
+<ol>
+<li id="footnote-1">
+<p><a href="https://www.etymonline.com/word/school">Etymonline, &quot;school&quot;</a>; <a href="https://www.merriam-webster.com/wordplay/get-schooled-on-the-origins-of-school-twice">Merriam-Webster, origins of &quot;school&quot;</a> <a href="#footnote-ref-1" data-footnote-backref aria-label="Back to reference 1">↩</a></p>
+</li>
+<li id="footnote-2">
+<p><a href="https://bibletranslation.ws/down/Harvard_Entrance_Exam_1869.pdf">Harvard 1869 Entrance Exam (PDF)</a>; <a href="https://www.mentalfloss.com/article/609506/harvard-university-1869-entrance-exam">Mental Floss, &quot;Do You Have the Smarts to Pass Harvard&#39;s 1869 Exam?&quot;</a> <a href="#footnote-ref-2" data-footnote-backref aria-label="Back to reference 2">↩</a></p>
+</li>
+<li id="footnote-3">
+<p><a href="https://www.gilderlehrman.org/history-resources/teacher-resources/statistics-education-america-1860-1950">Gilder Lehrman Institute, &quot;Statistics: Education in America, 1860-1950&quot;</a> <a href="#footnote-ref-3" data-footnote-backref aria-label="Back to reference 3">↩</a></p>
+</li>
+<li id="footnote-4">
+<p><a href="https://en.wikipedia.org/wiki/One-room_school">Wikipedia, &quot;One-room school&quot;</a>; <a href="https://newenglandhistoricalsociety.com/six-historic-one-room-schoolhousessix-historic-one-room-schoolhouses/">New England Historical Society, &quot;Six Historic One-Room Schoolhouses&quot;</a> <a href="#footnote-ref-4" data-footnote-backref aria-label="Back to reference 4">↩</a></p>
+</li>
+<li id="footnote-5">
+<p><a href="https://en.wikipedia.org/wiki/One-room_school">Wikipedia, &quot;One-room school&quot;</a> <a href="#footnote-ref-5" data-footnote-backref aria-label="Back to reference 5">↩</a></p>
+</li>
+<li id="footnote-6">
+<p><a href="https://en.wikipedia.org/wiki/Prussian_education_system">Wikipedia, &quot;Prussian education system&quot;</a> <a href="#footnote-ref-6" data-footnote-backref aria-label="Back to reference 6">↩</a></p>
+</li>
+<li id="footnote-7">
+<p>Johann Gottlieb Fichte, <em>Addresses to the German Nation</em>, Second Address, trans. R.F. Jones and G.H. Turnbull (Chicago: The Open Court Publishing Company, 1922), pp. 20-21. <a href="https://dhspriory.org/kenny/PhilTexts/Fichte/AddressesGermanNation.htm">Full text</a>; <a href="https://archive.org/details/addressestothege00fichuoft">Scanned 1922 edition</a> <a href="#footnote-ref-7" data-footnote-backref aria-label="Back to reference 7">↩</a> <a href="#footnote-ref-7-2" data-footnote-backref aria-label="Back to reference 7">↩<sup>2</sup></a></p>
+</li>
+<li id="footnote-8">
+<p>Alexander Inglis, <em>Principles of Secondary Education</em> (Boston: Houghton Mifflin, 1918) <a href="#footnote-ref-8" data-footnote-backref aria-label="Back to reference 8">↩</a></p>
+</li>
+<li id="footnote-9">
+<p>John Taylor Gatto, <em>Dumbing Us Down: The Hidden Curriculum of Compulsory Schooling</em> (New Society Publishers, 1992); <a href="https://www.everettsd.org/cms/lib07/WA01920133/Centricity/Domain/947/ENG.Against%20school.pdf">Against School (PDF)</a> <a href="#footnote-ref-9" data-footnote-backref aria-label="Back to reference 9">↩</a></p>
+</li>
+<li id="footnote-10">
+<p><a href="https://www.goodreads.com/quotes/35754-we-want-one-class-of-persons-to-have-a-liberal">Woodrow Wilson, address to the New York City High School Teachers Association, January 9, 1909</a> <a href="#footnote-ref-10" data-footnote-backref aria-label="Back to reference 10">↩</a></p>
+</li>
+<li id="footnote-11">
+<p><a href="https://www.richmondfed.org/publications/research/economic_brief/2022/eb_22-16">Richmond Fed, &quot;The Pandemic, Child Care and Women&#39;s Labor Force Participation&quot;</a> <a href="#footnote-ref-11" data-footnote-backref aria-label="Back to reference 11">↩</a></p>
+</li>
+<li id="footnote-12">
+<p><a href="https://www.census.gov/library/stories/2023/11/child-care.html">U.S. Census Bureau, &quot;Most Parents Don&#39;t Have Any Formal Child Care Arrangements Beyond School&quot;</a> <a href="#footnote-ref-12" data-footnote-backref aria-label="Back to reference 12">↩</a></p>
+</li>
+<li id="footnote-13">
+<p>John Taylor Gatto, <em>The Underground History of American Education</em> (Oxford Village Press, 2000) <a href="#footnote-ref-13" data-footnote-backref aria-label="Back to reference 13">↩</a></p>
+</li>
+<li id="footnote-14">
+<p><a href="https://nces.ed.gov/programs/coe/indicator/cmd/education-expenditures-by-country">NCES, &quot;Education Expenditures by Country&quot;</a> <a href="#footnote-ref-14" data-footnote-backref aria-label="Back to reference 14">↩</a></p>
+</li>
+<li id="footnote-15">
+<p><a href="https://theeduway.com/pisa-2022-rankings/">PISA 2022 Rankings</a>; <a href="https://www.factcheck.org/2025/02/trump-wrong-about-u-s-rank-in-education-spending-and-outcomes/">FactCheck.org, &quot;Trump Wrong About U.S. Rank in Education Spending and Outcomes&quot;</a> <a href="#footnote-ref-15" data-footnote-backref aria-label="Back to reference 15">↩</a></p>
+</li>
+<li id="footnote-16">
+<p>Benjamin Scafidi, <a href="https://eric.ed.gov/?id=ED536674">&quot;The School Staffing Surge: Decades of Employment Growth in America&#39;s Public Schools&quot;</a>, Friedman Foundation for Educational Choice, 2012. Underlying data: <a href="https://nces.ed.gov/programs/digest/d23/tables/dt23_213.10.asp">NCES Digest of Education Statistics, Table 213.10</a> <a href="#footnote-ref-16" data-footnote-backref aria-label="Back to reference 16">↩</a> <a href="#footnote-ref-16-2" data-footnote-backref aria-label="Back to reference 16">↩<sup>2</sup></a></p>
+</li>
+<li id="footnote-17">
+<p>Mark Perry, <a href="https://www.aei.org/carpe-diem/animated-chart-of-the-day-public-school-enrollment-staff-and-inflation-adjusted-cost-per-pupil-1970-to-2017/">&quot;Animated Chart of the Day: Public School Enrollment, Staff, and Inflation-Adjusted Cost per Pupil, 1970 to 2017&quot;</a>, AEI, 2019 <a href="#footnote-ref-17" data-footnote-backref aria-label="Back to reference 17">↩</a></p>
+</li>
+<li id="footnote-18">
+<p><a href="https://www.gao.gov/products/gao-16-25">GAO-16-25, &quot;IDEA: Federal Actions Needed to Address Data Challenges and Improve Research to Inform Fiscal Oversight&quot;</a> <a href="#footnote-ref-18" data-footnote-backref aria-label="Back to reference 18">↩</a> <a href="#footnote-ref-18-2" data-footnote-backref aria-label="Back to reference 18">↩<sup>2</sup></a></p>
+</li>
+<li id="footnote-19">
+<p><a href="https://blog.lucid-north.com/https-blog-lucid-north-com-school-admin-crisis-tools-and-rules/">Lucid North, &quot;School Admin Crisis: Tools and Rules&quot;</a>, 2024 <a href="#footnote-ref-19" data-footnote-backref aria-label="Back to reference 19">↩</a></p>
+</li>
+<li id="footnote-24a">
+<p><a href="https://edpolicy.stanford.edu/news/articles/553.html">How the Finnish School System Outshines U.S. Education, Stanford</a>; <a href="https://mathandmovement.com/finlands-education-system-vs-the-us-the-interesting-and-surprising-differences/">Finland&#39;s Education System vs. the US</a> <a href="#footnote-ref-24a" data-footnote-backref aria-label="Back to reference 24a">↩</a></p>
+</li>
+<li id="footnote-24b">
+<p><a href="https://www.oecd.org/en/publications/2025/09/education-at-a-glance-2025_c58fc9ae/full-report/how-much-are-teachers-and-school-heads-paid_5daf5678.html">OECD, Education at a Glance 2025, Indicator D3</a>; <a href="https://www.epi.org/publication/the-teacher-pay-penalty-reached-a-record-high-in-2024-three-decades-of-leaving-public-school-teachers-behind/">EPI, &quot;The Teacher Pay Penalty Reached a Record High in 2024&quot;</a> <a href="#footnote-ref-24b" data-footnote-backref aria-label="Back to reference 24b">↩</a></p>
+</li>
+<li id="footnote-24c">
+<p><a href="https://www.educationestonia.org/estonias-pisa-2022-results-consistently-among-the-worlds-best/">Estonia&#39;s PISA 2022 Results</a> <a href="#footnote-ref-24c" data-footnote-backref aria-label="Back to reference 24c">↩</a></p>
+</li>
+<li id="footnote-24d">
+<p><a href="https://www.oecd.org/en/publications/pisa-2022-results-volume-i-and-ii-country-notes_ed6fbcc5-en/united-states_a78ba65a-en.html">OECD PISA 2022, U.S. Country Note</a> <a href="#footnote-ref-24d" data-footnote-backref aria-label="Back to reference 24d">↩</a></p>
+</li>
+<li id="footnote-20">
+<p><a href="https://www.nagb.gov/news-and-events/news-releases/2023/eighth-grade-scores-decline-in-civics-and-us-history.html">NAGB, &quot;Eighth-Grade Scores Decline in Civics and U.S. History,&quot; 2023</a> <a href="#footnote-ref-20" data-footnote-backref aria-label="Back to reference 20">↩</a></p>
+</li>
+<li id="footnote-21">
+<p><a href="https://www.act.org/content/dam/act/unsecured/documents/2024-act-national-graduating-class-profile-report.pdf">ACT Graduating Class 2024 National Profile Report (PDF)</a> <a href="#footnote-ref-21" data-footnote-backref aria-label="Back to reference 21">↩</a></p>
+</li>
+<li id="footnote-22">
+<p><a href="https://www.brookings.edu/articles/rethinking-remedial-programs-to-promote-college-student-success/">Brookings Institution, &quot;Rethinking Remedial Programs to Promote College Student Success&quot;</a> <a href="#footnote-ref-22" data-footnote-backref aria-label="Back to reference 22">↩</a></p>
+</li>
+<li id="footnote-23">
+<p><a href="https://www.thenationalliteracyinstitute.com/2024-2025-literacy-statistics">National Literacy Institute, 2024-2025 U.S. Literacy Statistics</a> <a href="#footnote-ref-23" data-footnote-backref aria-label="Back to reference 23">↩</a></p>
+</li>
+<li id="footnote-24e">
+<p>Richard Arum and Josipa Roksa, <em>Academically Adrift: Limited Learning on College Campuses</em> (University of Chicago Press, 2011). <a href="https://www.insidehighered.com/news/2011/01/18/academically-adrift">Summary at Inside Higher Ed</a>; <a href="https://opportunityamericaonline.org/wp-content/uploads/2017/06/EXCLUSIVE-TEST-DATA-MANY-COLLEGES-FAIL-TO-IMPROVE-CRITICAL-THINKING-SKILLS.pdf">Wall Street Journal / CLA+ data</a> <a href="#footnote-ref-24e" data-footnote-backref aria-label="Back to reference 24e">↩</a></p>
+</li>
+<li id="footnote-24">
+<p>Benjamin Bloom, &quot;The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring,&quot; <em>Educational Researcher</em> 13, no. 6 (1984): 4-16. <a href="https://web.mit.edu/5.95/www/readings/bloom-two-sigma.pdf">PDF via MIT</a> <a href="#footnote-ref-24" data-footnote-backref aria-label="Back to reference 24">↩</a></p>
+</li>
+<li id="footnote-25">
+<p><a href="https://www.globalsociety.earth/post/khan-academy-rolls-out-ai-powered-teaching-tools-as-school-districts-scale-up-adoption">Global Society, &quot;Khan Academy Rolls Out AI-Powered Teaching Tools&quot;</a> <a href="#footnote-ref-25" data-footnote-backref aria-label="Back to reference 25">↩</a></p>
+</li>
+<li id="footnote-26">
+<p><a href="https://thehustle.co/meet-synthesis-the-edtech-startup-scaling-elon-musks-ad-astra-school">The Hustle, &quot;Meet Synthesis, the Edtech Startup Scaling Elon Musk&#39;s Ad Astra School&quot;</a> <a href="#footnote-ref-26" data-footnote-backref aria-label="Back to reference 26">↩</a></p>
+</li>
+</ol>
+</section>
+
+    </article>
+  </main>
+</body>
+</html>
