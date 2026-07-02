@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, statSync, copyFileSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, statSync, copyFileSync, cpSync } from 'fs';
 import { join, basename, extname } from 'path';
 import { Marked } from 'marked';
 import markedFootnote from 'marked-footnote';
@@ -224,7 +224,14 @@ function build() {
   const rss = generateRSS(blogPosts);
   writeFileSync('public/rss.xml', rss);
   console.log('Generated: rss.xml');
-  
+
+  // Copy static/ passthrough (pre-built apps and other assets deployed as-is,
+  // e.g. static/rig -> /rig/). public/ is wiped above, so these must live here.
+  if (existsSync('static')) {
+    cpSync('static', 'public', { recursive: true });
+    console.log('Copied: static/ passthrough');
+  }
+
   console.log(`\nBuild complete! Generated ${posts.length} posts.`);
 }
 
