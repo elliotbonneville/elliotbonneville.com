@@ -197,10 +197,30 @@
       #info { transition: none; }
       .caret { transition: none; }
     }
+    /* ---- boot loader: visible from the first byte of HTML, fades on reveal ---- */
+    #loader { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 18px; background: var(--ink-0);
+      transition: opacity .55s ease; }
+    #loader.done { opacity: 0; pointer-events: none; }
+    #loader .ring { width: 46px; height: 46px; border-radius: 50%;
+      border: 2px solid var(--line-strong); border-top-color: var(--azure);
+      animation: ldspin .85s linear infinite; }
+    @keyframes ldspin { to { transform: rotate(360deg); } }
+    #loader-label { color: var(--mute); font-size: 11px; letter-spacing: .18em; }
+    #loader .bar { width: 240px; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+    #loader-fill { width: 0%; height: 100%; background: var(--azure); transition: width .18s ease; }
+    #loader-pct { color: var(--faint); font-size: 11px; font-variant-numeric: tabular-nums; letter-spacing: .12em; }
+    @media (prefers-reduced-motion: reduce) { #loader .ring { animation: none; border-top-color: var(--line-strong); } }
   </style>
-  <script type="module" crossorigin src="./assets/index-DquCnyvb.js"></script>
+  <script type="module" crossorigin src="./assets/index-D5B6K65D.js"></script>
 </head>
 <body>
+  <div id="loader">
+    <div class="ring"></div>
+    <div id="loader-label">LOADING VENDOR CAD</div>
+    <div class="bar"><div id="loader-fill"></div></div>
+    <div id="loader-pct">0%</div>
+  </div>
   <div id="app"></div>
   <div id="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
