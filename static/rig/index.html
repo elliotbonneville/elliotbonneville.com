@@ -211,8 +211,18 @@
     #loader-fill { width: 0%; height: 100%; background: var(--azure); transition: width .18s ease; }
     #loader-pct { color: var(--faint); font-size: 11px; font-variant-numeric: tabular-nums; letter-spacing: .12em; }
     @media (prefers-reduced-motion: reduce) { #loader .ring { animation: none; border-top-color: var(--line-strong); } }
+    /* ---- routing chip: the loom re-shuffles live while the worker solves ---- */
+    #routing { position: fixed; bottom: 18px; left: 50%; transform: translate(-50%, 8px);
+      display: flex; align-items: center; gap: 10px; padding: 8px 14px; z-index: 40;
+      background: var(--panel); border: 1px solid var(--line-strong); border-radius: 4px;
+      color: var(--mute); font-size: 10.5px; letter-spacing: .14em;
+      opacity: 0; pointer-events: none; transition: opacity .35s ease, transform .35s ease; }
+    #routing.on { opacity: 1; transform: translate(-50%, 0); }
+    #routing .ring { width: 13px; height: 13px; border-radius: 50%; flex: 0 0 auto;
+      border: 2px solid var(--line-strong); border-top-color: var(--azure);
+      animation: ldspin .85s linear infinite; }
   </style>
-  <script type="module" crossorigin src="./assets/index-D5B6K65D.js"></script>
+  <script type="module" crossorigin src="./assets/index-Cup0NVnE.js"></script>
 </head>
 <body>
   <div id="loader">
@@ -222,6 +232,7 @@
     <div id="loader-pct">0%</div>
   </div>
   <div id="app"></div>
+  <div id="routing" aria-live="polite"><div class="ring"></div><span id="routing-text">ROUTING CABLE LOOM</span></div>
   <div id="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
   <div id="rail">
