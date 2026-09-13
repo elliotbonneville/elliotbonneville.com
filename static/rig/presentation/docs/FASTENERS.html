@@ -1,0 +1,160 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fasteners · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Tightening and loosening prevention</h1>
+<p>September 13, 2026. Use this with the exact stacks in <a href="/rig/presentation/docs/BUILD-MANUAL.html">BUILD-MANUAL.md</a>.
+The frame, shelf, PCB and cooler screws have different jobs. A torque setting
+for one must not be reused on the others. Work unpowered, with the part supported.</p>
+<h2>Joint-by-joint instructions</h2>
+<table>
+<thead>
+<tr>
+<th>Joint</th>
+<th>Tightening method</th>
+<th>Loosening prevention / check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Included CBM5-8 / HNTP5-5 pairs in HBLSS5-SEP angles and HPTLS5-SEP plates</td>
+<td><strong>6.0 N·m assembly target</strong>, straight 4 mm hex blade, after squaring the empty frame</td>
+<td>Clean seated joint, bolt preload, witness marks and initial-load inspection; no added lubricant or threadlocker</td>
+</tr>
+<tr>
+<td>M5×16 shelf bolts / nylon-insert M5 nuts</td>
+<td>Counter-hold the head; tighten until the foot and backing washer clamp firmly, without dimpling the shelf or tilting the foot</td>
+<td>Nylon insert must fully engage; aim for at least one complete thread beyond it. Reposition if washer bearing is inadequate</td>
+</tr>
+<tr>
+<td>M3 standoff bases into HNTF5-3 slot nuts</td>
+<td>With PCB removed, use the standoff flats and a small wrench; seat the exact washer stack and snug until the body no longer turns by hand</td>
+<td>Recheck before placing the board; counter-hold the body whenever installing/removing its top screw</td>
+</tr>
+<tr>
+<td>M3×6 PCB top screws</td>
+<td>Start every screw by hand; use a small driver with fingertips and stop when the washer just seats firmly</td>
+<td>No PCB bow, no sideways pull and no free washer rattle; inspect after initial operation. No chemical applied at the PCB</td>
+</tr>
+<tr>
+<td>M3 GPU bracket clamp / spacer / slot nut</td>
+<td>Seat the card and both supports first; hold the bracket aligned while gently snugging the screw with a 2 mm key</td>
+<td>Metal stack must clamp without lifting the GPU out of its slot or bending its bracket; inspect after initial operation</td>
+</tr>
+<tr>
+<td>Two M3 host-retimer bracket-tab clamps</td>
+<td>Start the nut by hand and counter-hold; gently snug the aligned metal tab</td>
+<td>Slot/card alignment carries no clamp-induced strain; inspect after initial operation; keep chemicals away from the card</td>
+</tr>
+<tr>
+<td>Eight M3 switch-standoff bottom nuts and four M3 radiator-stand shelf nuts</td>
+<td>Complete the dry fit, then follow the threadlocker sequence below with electronics removed</td>
+<td>Selected low-strength threadlocker and activator on twelve metal-only nut joints; preserve existing washer/nut stacks</td>
+</tr>
+<tr>
+<td>Eight reserved M3 PSU-mount nuts</td>
+<td>Leave unused pending replacement mount selection</td>
+<td>Mount geometry, hardware and locking method must be reconciled before installation</td>
+</tr>
+<tr>
+<td>Four original SilverStone radiator case screws</td>
+<td>Use the correct short case screws; hand snug against the stands, checking for bottoming</td>
+<td>Do not use the long fan screws through the thin stands or infer thread type from the stand's supplied screws</td>
+</tr>
+<tr>
+<td>Existing XE360-TR5 cooler block mounting</td>
+<td>Leave untouched throughout transfer</td>
+<td>No loosening, retightening or thermal-interface work in this plan</td>
+</tr>
+</tbody>
+</table>
+<p>&quot;Snug&quot; here means that the mating surfaces have seated and the joint has no
+free movement. It does not mean tightening until the tool can no longer turn.
+For PCB screws, use the small tool with two fingers, not the leverage of a long
+key or ratchet. If a joint still moves after it is seated, investigate bottoming,
+misalignment or inadequate bearing instead of applying more force. The shelf
+fasteners deliberately have no invented numerical torque: the actual vent and
+thin-sheet bearing condition controls that assembly.</p>
+<h2>Basis for the frame's 6.0 N·m target</h2>
+<p>MISUMI's <a href="https://jp.misumi-ec.com/pdf/fa/2014/p2_563.pdf">HNTP5 catalogue</a>
+gives <strong>6.8 N·m reference tightening torque for M5</strong>. Its
+<a href="https://us.misumi-ec.com/pdf/fa/2019/2019_US_2700.pdf">bracket catalogue</a>
+specifies CBM5-8 / HNTP5-5 for HBLSS5-SEP. The selected top-plate kits use the
+same screw/nut family. The bracket table's allowable-load figure is not a
+complete-frame moment or sway rating.</p>
+<p><strong>6.0 N·m is our engineering assembly target, not a separately published
+HBLSS5-SEP joint torque or a structural certification.</strong> With a ±6% tool, its
+5.64–6.36 N·m range stays below the nut's published reference value. It gives
+a repeatable assembly setting with allowance for tool accuracy. Actual clamp
+seating, square joints, loaded deflection and loosening remain receiving/build
+checks. Do not use the nut reference as a reason to tighten a slipping joint
+harder or to apply 6 N·m to sheet-metal or M3 hardware.</p>
+<p>Selected tool: <a href="https://www.wihatools.com/products/torque-screwdrivers?variant=43073110016256">Wiha 28655, 2–7 N·m, no adapter</a>
+with <a href="https://www.wihatools.com/products/hex-metric-torque-blades-4-0mm">Wiha 28549 straight 4 mm TorqueControl blade</a>.
+The <a href="https://cdn.wihatoolsus.com/pdfs/WihaHexCatalog.pdf">Wiha catalogue</a> gives
+0.25 N·m increments, ±6% accuracy and an 8 N·m blade rating. The blade inserts
+directly into the standard handle. Verify the received scale, setting tool and
+calibration certificate. Label the frame tool <strong>FRAME 6.0 N·m</strong>. No cooler-specific tool is required for this transfer.</p>
+<p>Assemble and square each empty frame loosely, then tighten progressively around
+it. Keep the bit straight, turn smoothly and stop at the first torque release.
+Use an accessible orientation of the empty frame instead of an angled ball end
+for final tightening. If a nut spins or the bracket will not seat, remove and
+inspect it. After final adjustment, draw a small witness line across the bolt
+head and bracket; a moved line later signals inspection. The line itself does
+not lock the screw. Check all 78 installed kit screw/nut pairs, including the
+single-pair shelf feet and retimer-support angles.</p>
+<h2>Selected low-strength locking system for twelve metal-only M3 nuts</h2>
+<p>Use <strong>LOCTITE 222MS</strong>, 10 ml, <strong>22221 / IDH 135333</strong>, with <strong>LOCTITE SF 7649</strong>
+activator, <strong>37509 / IDH 494147</strong>, for the plated metal interfaces. The
+<a href="https://datasheets.tdx.henkel.com/LOCTITE-222MS-en_GL.pdf">222MS data sheet</a>
+supports small fasteners and disassembly with hand tools and calls for an
+activator on inactive metals. The
+<a href="https://datasheets.tdx.henkel.com/LOCTITE-SF-7649-en_GL.pdf">SF 7649 data sheet</a>
+permits brush or spray application, followed by complete solvent evaporation.
+This selection avoids adding a thicker locknut to the short switch studs.</p>
+<p>Online sources: <a href="https://www.newark.com/loctite/22221/adhesive-acrylic-bottle-10ml/dp/00Z781">22221 at Newark</a>
+and <a href="https://www.pegasusautoracing.com/productdetails.asp?RecID=32170">37509 at Pegasus</a>.
+Neither supply is included in the 26 ordered mechanical lines, and ownership
+is unconfirmed. Check existing supplies before buying one container of each;
+see <a href="/rig/presentation/docs/TOOLS.html">TOOLS.md</a>. Its prices and cart receipts are historical references.
+The mounting procedure depends on having these supplies available.</p>
+<ol>
+<li>Dry-fit the empty stands and the switch standoffs, washers and nuts. Establish
+usable shelf bearing and adjustment before any adhesive is used. Mark positions.</li>
+<li>Remove the hardware for cleaning. Keep all electronics away. Clean mating
+metal threads using the selected IPA wipes, inspect for
+remaining oil/fibres and let them dry. Use ventilation and
+follow the container's handling instructions; protect eyes and skin.</li>
+<li>Apply activator to the mating threads away from the rig; let it evaporate
+fully. Never spray an assembled computer, its connectors, pads or plastics.
+Never mix liquid activator directly into the threadlocker bottle.</li>
+<li>Shake the 222MS bottle as instructed by Henkel. Apply only enough 222MS to wet the small nut-engagement region, then assemble
+immediately and snug the metal joint. Keep the bottle nozzle off metal and
+remove excess. Do not put adhesive into the female PCB standoff end.</li>
+<li>Plan a <strong>24-hour undisturbed cure at normal room temperature</strong> before loading
+these mounts. This is a build allowance based on the data sheet's typical
+cure evaluation, not a promise for every plating/temperature. Make a spare
+nut/bolt sample alongside the assembly to confirm curing occurred; uncured
+material or an unexpected surface finish requires inspection before loading.</li>
+<li>Inspect bearing and add witness marks. Install electronics only after this
+work and cleanup are complete. If a treated joint is later loosened for
+adjustment, clean and reapply; do not count broken adhesive as a fresh lock.</li>
+</ol>
+<p>Use hand tools for later removal and counter-hold standoff flats. Do not heat
+hardware beside electronics to overcome a stuck joint. Stop and remove the
+affected assembly for review if normal hand removal fails. Do not substitute
+medium/high-strength or wicking threadlocker in this small-fastener procedure.</p>
+<h2>Checks after assembly</h2>
+<p>Before installing expensive hardware, check that the empty anchored frame does
+not rock, the joints do not slide under gentle hand pressure and the rails stay
+square. Populate it in place; do not lift it by the GPUs or move a loaded rack.
+After the first controlled load cycle and again after the first day, shut down,
+disconnect power and inspect witness marks, supports and cable strain. A moved
+joint is a reason to unload and investigate, not to tighten a loaded PCB/frame.</p>
+<p>This closes the selected tightening/locking method for the listed joints. It
+does not establish actual shelf bearing, complete-frame load
+assessment or delivered-fit work in BUILD-TODO.md.</p>
+</main></body></html>

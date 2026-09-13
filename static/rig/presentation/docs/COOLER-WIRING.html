@@ -1,0 +1,117 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cooler Wiring · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>CPU cooler wiring and first-start checks</h1>
+<p>Planning map, September 8, 2026. This uses the <strong>original SilverStone XE360-TR5</strong>
+and ASRock WRX90 WS EVO. Keep the complete liquid loop. Final power release,
+fan-label current and lead reach remain prerequisites; this is not an instruction
+to power the current case or dismantle it now.</p>
+<p>Schematic of the two cooler connections, separate fan splitter and pump lead</p>
+<h2>Preferred connection map</h2>
+<table>
+<thead>
+<tr>
+<th>Label to put on cable</th>
+<th>Connection</th>
+<th>Configuration / electrical check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUMP</td>
+<td>Radiator pump's 3-pin plug → <strong>CPU_FAN2/WP</strong>, motherboard layout No. 9</td>
+<td>Align the keyed housing with pins 1–3; leave pin 4 unused. W_PUMP / full speed, stable 12 V. Original pump 0.38 A; header supports 2 A</td>
+</tr>
+<tr>
+<td>RAD-FANS</td>
+<td>Three original 4-pin fan plugs → supplied three-way splitter D → <strong>CHA_FAN3/WP</strong>, layout No. 14</td>
+<td>Combined maximum current, including any published startup current, must fit this 2 A header and the splitter. Initial full speed; later PWM control with <strong>Temp Source = Monitor CPU</strong></td>
+</tr>
+<tr>
+<td>CPU_FAN1</td>
+<td>Unused in this map</td>
+<td>Do not mistake an unused header's zero reading for a stopped pump; identify each sensor by the cable label</td>
+</tr>
+<tr>
+<td>PERIPHERAL ADAPTER C</td>
+<td>Retain with cooler accessories</td>
+<td>Not used when the pump is powered directly by CPU_FAN2/WP; do not connect two power sources to the pump</td>
+</tr>
+</tbody>
+</table>
+<p>The supplied splitter keeps the assembly to two motherboard connections and
+avoids buying a fan hub. CHA_FAN3/WP offers more current capacity than the 1 A
+CPU_FAN1 header. ASRock explicitly permits using another header for radiator
+fans provided its temperature source is changed to CPU. This is a selected
+logical map, <strong>conditional on the actual three fan labels and splitter</strong>; the
+original SilverStone sheet lists pump current but does not establish each fan's
+current. Do not apply the pump's 0.38 A figure to the fans.</p>
+<p>If the three fan currents exceed the header/splitter allowance, the map needs
+revision to separate headers or a rated powered hub before purchase release.
+Do not force this arrangement through by lowering fan speed: that does not
+establish adequate electrical capacity or startup behavior. Record fan labels
+and existing splitter condition without taking fans off the radiator just to
+read them. Check lead reach along the relaxed route before ordering extensions.</p>
+<h2>Identify the two headers</h2>
+<p>Read the PCB printing, not just the drawing's orientation. CPU_FAN2/WP is beside
+CPU_FAN1 and the board's power/reset area. CHA_FAN3/WP is by the same outer edge,
+near the 24-pin motherboard-power region. Their exact positions are shown on
+printed page 6 of the <a href="https://download.asrock.com/Manual/WRX90%20WS%20EVO.pdf">ASRock user manual</a>.
+Neither is the nearby 3-pin ATX_CON1 secondary-PSU control connector or a 5 V
+addressable-lighting header. No jumper wires or guessed pin arrangements.</p>
+<p>With power disconnected, align each housing's guide with the header's plastic
+key. Start squarely, supporting the board. If it needs unusual force, inspect
+orientation; do not push the pins sideways. Keep leads outside the fan blades,
+away from sharp shelf edges and clear of the motherboard support hardware.</p>
+<h2>Configure before the first CPU load</h2>
+<p>ASRock's <a href="https://download.asrock.com/Manual/Others/Guideline/Guideline%20ASRock%20WRX90%20WS%20EVO.pdf">November 10, 2025 guidelines, page 2</a>
+identify CPU_FAN2/WP as a pump connection with W_PUMP/full-speed defaults. An
+existing system may have changed settings; a documented default is not a check
+of this board's saved configuration.</p>
+<ol>
+<li>Record the existing fan settings as part of the transfer notes. On the
+assembled receiving rig, use its supported fan-control interface to confirm
+PUMP is full-speed/stable 12 V and RAD-FANS is initially full speed. If the
+firmware exposes a temperature source, choose <strong>Monitor CPU</strong> for RAD-FANS.</li>
+<li>The board supports BMC/IPMI access while the CPU is off with appropriate
+motherboard standby power. Use the completed power map and the dedicated
+IPMI port on a trusted local network. Do not power a loose board or attach
+an arbitrary secondary supply just to reach this interface.</li>
+<li>Photograph the actual control page and sensor names. The exact menu varies
+with firmware; do not follow raw IPMI fan commands copied from another board.
+If controls cannot be verified, keep CPU load testing pending. Do not flash
+firmware or clear CMOS as an automatic first troubleshooting step.</li>
+<li>At first host start, observe all three radiator fans turning. The splitter
+normally returns only one fan's tachometer signal: one RPM reading does not
+prove three functioning fans. Record which fan feeds that signal if marked.</li>
+<li>Check pump speed and CPU temperature. The original pump's published nominal
+speed is 4,000 ±10% RPM at 12 V. A zero, intermittent or markedly different
+reading requires review of sensor mapping and operation before load. A normal
+RPM reading alone does not prove coolant flow or correct cold-plate contact.</li>
+</ol>
+<p>For a noise/temperature fault, stop the workload first. If the pump or required
+fans have failed or temperature continues rising, shut down the host using
+COMMISSIONING.md. Do not unplug a pump or fan while powered.
+Keep hands and tools out of the running radiator fans.</p>
+<h2>Optional existing temperature probes</h2>
+<p>ASRock lists two thermistor cables among its accessories; the user manual marks
+these optional, so ownership is unconfirmed. If present, T_SENSOR1 / T_SENSOR2
+can support an inlet/nearby-air comparison after their readings are verified.
+Keep probe tips secured away from electrical contacts and fan blades. A probe
+attached to a heatsink reads that surface, not inlet air or GPU memory junction.
+Do not use a guessed replacement thermistor specification.</p>
+<h2>Sources and remaining receiving evidence</h2>
+<ul>
+<li><a href="https://gzhls.at/blob/ldb/b/6/8/9/bb5593592c1d110fe2633e3c3db201906f3a.pdf">Original SilverStone installation diagram, page 2</a>: pump lead and optional peripheral adapter C; three-way fan lead D.</li>
+<li><a href="https://gzhls.at/blob/ldb/a/6/2/d/b1489baf226ceb66d3c367cc57afdbea8610.pdf">Original SilverStone specification</a>: stable 12 V pump supply, 0.38 A, 3-pin, 4,000 ±10% RPM.</li>
+<li><a href="https://download.asrock.com/Manual/Others/Guideline/Guideline%20ASRock%20WRX90%20WS%20EVO.pdf">ASRock board guidelines</a>: pump header/default and CPU temperature source for alternate radiator headers.</li>
+<li><a href="https://download.asrock.com/Manual/WRX90%20WS%20EVO.pdf">ASRock user manual</a>: printed pages 5–8, 45–47 and 60; ratings, keyed headers and probes.</li>
+</ul>
+<p>Still needed: fan label currents, splitter identity/condition, relaxed cable
+lengths, actual firmware controls and recorded sensor mapping. No pump/fan
+operation or future-rack thermal result has been observed in this research.</p>
+</main></body></html>

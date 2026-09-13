@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shelf Fit · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Current shelf attachment inspection — depth row and host</h1>
+<p>Updated 2026-09-07. The active model has four GPU-frame feet and four host-frame
+feet on separate ADJSHELFHDV shelves. Existing vents are preferred; no vent map
+has been measured. These are nominal frame bores, not drilling coordinates.</p>
+<p>Current diagram · Current combined order</p>
+<p>Measure from each shelf's <strong>left and front flat-deck edges</strong>, not rack ears or
+support arms. Left is model X = −223 mm; rack front is Z = +350 mm. Distances
+are left-to-right and front-to-rear respectively. GPU exhaust is to the left.
+The nominal flat deck is 446 × 700 mm.</p>
+<table>
+<thead>
+<tr>
+<th>Foot</th>
+<th style="text-align:right">From left edge, mm</th>
+<th style="text-align:right">From front edge, mm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPU-1</td>
+<td style="text-align:right">83.45</td>
+<td style="text-align:right">642.5</td>
+</tr>
+<tr>
+<td>GPU-2</td>
+<td style="text-align:right">323</td>
+<td style="text-align:right">642.5</td>
+</tr>
+<tr>
+<td>GPU-3</td>
+<td style="text-align:right">83.45</td>
+<td style="text-align:right">57.5</td>
+</tr>
+<tr>
+<td>GPU-4</td>
+<td style="text-align:right">323</td>
+<td style="text-align:right">57.5</td>
+</tr>
+<tr>
+<td>Host-1</td>
+<td style="text-align:right">58</td>
+<td style="text-align:right">535</td>
+</tr>
+<tr>
+<td>Host-2</td>
+<td style="text-align:right">58</td>
+<td style="text-align:right">165</td>
+</tr>
+<tr>
+<td>Host-3</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">535</td>
+</tr>
+<tr>
+<td>Host-4</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">165</td>
+</tr>
+</tbody>
+</table>
+<p>GPU anchor rectangle: <strong>239.55 mm across × 585 mm deep</strong>. Host anchor rectangle:
+<strong>330 mm across × 370 mm deep</strong>. Coordinates come from the active bracket bores
+via <code>scripts/export-order-fit.mjs</code>. The old <code>cad/out/gpu-shelf-fit.*</code> files and
+<code>shelf_fit_diagram.py</code> output belong to the saved 4×2 manifest; their 365 mm span
+is superseded and must not be used for the row.</p>
+<p>During empty-frame assembly, inspect the nearest vent centre, opening width/length, direction,
+local deck thickness and clear space below for the washer, nut and tool. Check
+both the bracket's upper bearing area and the lower washer's bearing area.
+All four direct host legs also need sound shelf contact under their 20 mm ends.
+A total shelf load rating does not establish a local vent's bearing strength.</p>
+<p>Check the eight switch supports separately against their actual mounting holes
+and shelf vents. Use the selected stacks with supported existing openings or the authorized drilled-hole fallback.</p>
+<p>The frames can translate only while preserving all attachment, card, cable and
+equipment clearances. Feet are tied to their posts; do not assume independent
+lateral adjustment at every foot. If existing vents cannot serve the measured
+positions, use the user's allowed drilling fallback, transferring the actual assembled foot bore to sound sheet.
+Do not order a custom bridge plate. Remove electronics before any drilling,
+deburr and clean, and never use this nominal drawing as the drilling template.</p>
+<p>No pre-order shelf photos or measured vent map are required. Existing-hole attachment is preferred, but cannot be guaranteed from undimensioned perforations. Use the actual assembled mounts as the transfer reference. PSU brackets add eight M3 stacks; see <a href="/rig/presentation/docs/PSU-MOUNT.html">PSU-MOUNT.md</a>.</p>
+</main></body></html>

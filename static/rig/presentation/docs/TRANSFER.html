@@ -1,0 +1,140 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transfer · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Disassembly and transfer plan</h1>
+<p>Revised September 9, 2026: the CPU cooler block stays attached. The receiving mounts, final power plan
+and tool/consumable list must be complete before this procedure starts. This
+plan assumes one person handling the hardware, with Codex reviewing checkpoint
+photos. It does not depend on having another person hold a radiator in midair.</p>
+<p>The recorded case is a Meshify 3 XL. Use the <a href="/rig/presentation/docs/CASE-ACCESS.html">case-specific access guide</a>
+alongside this sequence: it identifies the removable top radiator carrier,
+PSU rear plate and concealed cable-cover screw from the factory manual.</p>
+<h2>T0 — Keep a route back to the known-working machine</h2>
+<p>Before shutdown, verify a current backup of important data and configuration.
+Record the installed drives, boot drive, network cables and working settings;
+do not reinstall the operating system, update firmware or uninstall the GPU
+driver as part of a mechanical move. Keep the case, original brackets and all
+original fasteners until the rack has passed commissioning.</p>
+<p>Arrange downtime for anything using the computer. Finish the empty-frame trial,
+parts inventory and receiving-mount checks before ending service. Prepare a
+clear route between the case and rack and a protected resting place for every
+component. Do not carry a loaded case or shelf into a position you cannot reach
+and control comfortably.</p>
+<p>Photograph the case interior, motherboard connections, GPU brackets/latches,
+radiator mounts and PSU cable labels. Label both ends of cables before removing
+them. Use labels such as OLD-GPU-1 and BOOT-SSD; avoid relying on remembered
+positions. Keep original case screws separate from the new M3/M5 hardware.</p>
+<p><strong>Checkpoint:</strong> recoverable data, known drive map, original configuration
+record, ready receiving frame, and no loose hardware mixed with components.</p>
+<h2>T1 — Shut down and disconnect</h2>
+<p>Shut down the OS normally and wait for shutdown to finish. Turn off and unplug
+all PSUs supplying the machine, including any secondary supply. Disconnect
+external cables that could snag during the move. Wait for fans to stop and
+standby indicators to extinguish. A stationary PSU fan alone does not prove
+power is disconnected. Never open a PSU enclosure.</p>
+<p>Use appropriate static-conscious handling: avoid carpet/static-generating
+clothing, handle boards by their edges and use an ESD work surface/strap per
+its instructions if available. Never improvise a connection to a mains pin.
+Put each removed card in its original protective packaging or on the prepared
+ESD surface; do not stack bare cards or rest solder joints on metal.</p>
+<p><strong>Checkpoint:</strong> all power sources physically disconnected; case cool enough to
+handle; clean workspace and no cable pulling against the machine.</p>
+<h2>T2 — Remove the four existing GPUs one at a time</h2>
+<p>Begin with the extender-mounted card if it provides the clearest access and
+can be independently supported. Identify its bracket screws, any extra support,
+the power-connector latch, and the extender's slot latch before undoing anything.
+Use a light or phone close-up to inspect hidden latches while unpowered.</p>
+<ol>
+<li>Support the card's weight and unlatch its power connector. Grip the plastic
+connector body, not its wires. Remove display/other cables too.</li>
+<li>Keep supporting the card while removing its case bracket screws and any
+auxiliary restraint. Store those pieces in that card's original-case bag.</li>
+<li>Release the actual motherboard or extender slot latch. Do not guess its
+direction from a generic illustration; the model and view of the real latch
+set this step. Never reach in with a metal screwdriver to pry it open.</li>
+<li>Lift the card evenly out of the slot, without twisting its edge connector.
+If one end remains attached, set it back down and inspect the latch and
+bracket before continuing. Do not overcome resistance by rocking harder.</li>
+<li>Place it in its prepared storage and label it. Repeat for the next card
+with the clearest access. Remove the now-unused extender after its card.</li>
+</ol>
+<p><strong>Checkpoint after each card:</strong> intact connector/bracket, no unexplained force,
+all screws accounted for and remaining hardware stable. A blocked latch is a
+pause for a close-up review, not a reason to force the card out.</p>
+<h2>T3 — Support the connected radiator; leave the CPU cooler mounted</h2>
+<p>Do not loosen the cold-plate screws, CPU socket mechanism or hose fittings.
+Leave the CPU, RAM and installed M.2 drives in place. Label and disconnect the
+pump/fan electrical leads as needed; this does not open the sealed loop.</p>
+<p>Prepare stable, padded radiator support beside the case and a receiving surface
+for the motherboard frame. Both must be within the actual relaxed hose reach
+at every stage. The radiator must stand securely without a hand holding it.
+Rehearse the support positions and board exit path before removing the last
+radiator-carrier or motherboard screw. Never pull the radiator around by its tubes.</p>
+<p>Follow <a href="/rig/presentation/docs/CASE-ACCESS.html">CASE-ACCESS.md</a> to release only the radiator's case/carrier
+fasteners while its weight is supported. Set the radiator on its prepared
+support while the motherboard remains secured. Keep the fan assembly attached.
+If a case opening traps a hose or the radiator cannot rest securely beside the
+board's exit path, stop and revise the support/access arrangement. Removing
+the CPU cooler block is not a fallback in this plan.</p>
+<p><strong>Checkpoint:</strong> cooler block untouched; radiator stable; all hoses slack;
+board and radiator can be supported through the entire planned movement.</p>
+<h2>T4 — Transfer the motherboard with its cooler block attached</h2>
+<p>Preassemble and square the empty host frame. Disconnect remaining labeled
+motherboard leads and inspect for concealed front-panel, fan, USB and storage
+connections. Release the case screws with the board supported. Lift only by
+appropriate board edges, keeping the radiator stationary on its stable support.
+Do not lift by the cooler, RAM, heatsinks or socket, or let hose tension twist
+the board. Make short, supported moves between prepared landing positions;
+never carry the board and a loose radiator together in two hands.</p>
+<p>Align all eleven supports in <a href="/rig/presentation/docs/HOST-MOUNT.html">HOST-MOUNT.md</a> to actual mounting
+holes. The board never rests on steel or loose extrusion. Adjust and tighten
+standoff bases with the board clear; return it to its protected landing surface
+as needed while keeping the connected radiator supported. Start all board
+screws by hand before gently seating them. Do not use a screw to pull the
+board sideways or down onto a mismatched support.</p>
+<p><strong>Checkpoint:</strong> all mounting holes supported, no PCB bow, cooler mounting
+undisturbed, radiator independently supported and hoses still relaxed.</p>
+<h2>T5 — Secure the still-connected radiator</h2>
+<p>With the board secured, move the radiator from its temporary support to the
+<a href="/rig/presentation/docs/RADIATOR-MOUNT.html">XSPC stands</a>, supporting its body throughout. Reuse only
+the appropriate short radiator case screws; leave the fan screws in place.
+Check stand position and hose reach before fastening the radiator to the shelf.
+If the hoses cannot reach without tension, adjust the receiving arrangement;
+do not detach the block or force a fitting.</p>
+<p>Reconnect using <a href="/rig/presentation/docs/COOLER-WIRING.html">COOLER-WIRING.md</a>: the 3-pin pump lead to
+CPU_FAN2/WP (pins 1–3, stable 12 V/full speed), and the supplied radiator-fan
+splitter to CHA_FAN3/WP with CPU as its temperature source. The latter is
+conditional on the real three fan labels and splitter fitting its 2 A rating;
+0.38 A is the pump rating, not each fan's current. Verify lead reach and sensor
+mapping before the staged first-start procedure.</p>
+<p><strong>Checkpoint:</strong> undisturbed cooler mounting, positively mounted radiator,
+relaxed hoses, working pump/fan connections and no unaccounted screws. The first
+power-on still waits for the completed electrical review.</p>
+<h2>T6 — Transfer PSUs and fit the initial test configuration</h2>
+<p>Keep each PSU's modular cables with its own unit. For the cased supply, follow
+the <a href="/rig/presentation/docs/CASE-ACCESS.html">rear-plate withdrawal sequence</a> with a supported landing
+behind the case. Fit the resolved feet and
+positive restraints before connecting anything; never drill or open the PSU.
+Populate the initial retimer/switch/one-GPU configuration in the final bring-up
+plan. Use the documented support stacks and the labeled power/MCIO map. Install
+further cards only after that initial configuration passes its checks.</p>
+<p>Pause here for the pre-power review. Photograph both ends of every initial
+power connection, the GPU's slot seating, the cooler connections and the area
+under the board. Record any departure from the planned stack or routing before
+turning on power.</p>
+<h2>Recovery if the transfer stops</h2>
+<p>Leave the hardware unpowered, supported and protected. A missing part or failed
+fit does not require putting everything back immediately. Preserve the labels
+and photographs so work can resume from a known checkpoint. If returning to the
+case is necessary, use the recorded original mounts and wiring while keeping
+the cooler block attached and radiator independently supported.</p>
+<p>Sources: <a href="https://download.asrock.com/Manual/WRX90%20WS%20EVO.pdf">ASRock motherboard manual</a>,
+<a href="https://gzhls.at/blob/ldb/b/6/8/9/bb5593592c1d110fe2633e3c3db201906f3a.pdf">SilverStone installation manual</a>,
+<a href="https://gzhls.at/blob/ldb/a/6/2/d/b1489baf226ceb66d3c367cc57afdbea8610.pdf">original cooler specification</a>.
+The case's actual latch access, solo handling clearances and final power map
+remain preparation dependencies. No current hardware has been disconnected.</p>
+</main></body></html>

@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Host Mount · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Adjustable host mounting — September 7, 2026</h1>
+<p>Use stock HFS5-2020 rails and catalogue fasteners. The motherboard mounts on
+eleven 20 mm M3 standoffs, each secured to a sliding M3 slot nut. Four longitudinal
+rails slide across two transverse end beams. The rails set one coordinate; the
+eleven nuts set the other. No custom tray, drilled extrusion or supplier inquiry.</p>
+<p>ASRock's <a href="https://download.asrock.com/Manual/InstallEATXMB/Install%20EEB%20Motherboard_WRX90%20WS%20EVO.pdf">installation notice</a>
+identifies eleven mounting holes and requires removal of unmatched standoffs.
+Its illustration shows four rows across the board. Displayed positions are
+diagram-derived setup targets, not measured hole coordinates or a drilling template.
+Adjust the empty support assembly to the actual holes; never force the PCB into
+alignment. The mounting method does not depend on ordering hole-specific parts.</p>
+<p><a href="/rig/">Open the updated visualizer</a> ·
+View the exposed support rails</p>
+<h2>Structure and clearance</h2>
+<p>The eight rail-to-end-beam angles occupy the open corner <strong>outside the left
+face of each longitudinal rail</strong>, facing inward from the end beam. Both angle
+plates must remain outside the extrusion bodies; their screws enter the side
+slots of the rail and end beam. The September 8 correction reverses the rail
+joint's lateral direction, which had incorrectly placed the angle inside the
+rail. It changes no cuts, quantities or mounting-hole targets.</p>
+<ul>
+<li>Four 350 mm longitudinal support rails, between two 400 mm end beams.</li>
+<li>Four 150 mm legs; platform top 170 mm above the shelf, with 48.1 mm nominal
+clearance over the existing 101.9 mm PSU/foot envelope.</li>
+<li>Two 125 mm host-card retention posts mounted on the rear end beam.</li>
+<li>Twenty HBLSS5-SEP angle kits: twelve platform joints, four shelf feet,
+two retention-post bases, and two height-adjustable card clamps.</li>
+<li>Installed host shelf is U11; GPU shelf is U18; the empty bottom shelf is U4.
+Shelf-top separation becomes 311.15 mm; highest host posts are 295 mm above
+the host shelf, leaving 16.15 mm nominal clearance to the GPU shelf surface.
+Subtract actual underside protrusions when installing the shelves.</li>
+<li>Host footprint is 400 × 390 mm before small bracket/screw projections.</li>
+</ul>
+<p>This replaces the three 360 mm rails, two 330 mm beams and four 106 mm legs.
+The GPU frame cuts do not change. Stock tray candidates were investigated;
+the sliding rails retain more adjustment without another supplier or tray clamps.</p>
+<h2>Complete motherboard fastener stack</h2>
+<p>Each support, bottom to top: HNTF5-3 nut in the rail, two 0.5 mm M3 washers,
+Harwin R30-3002002 20 mm male/female standoff, motherboard, M3×6 low-head screw.
+The washers span the 6 mm slot. The PCB underside is 21 mm above the rail;
+only standoff tops may contact the intended motherboard mounting pads.
+No loose metal, extra unused standoff or metal tray touches the PCB underside.</p>
+<p><a href="https://cdn.harwin.com/pdfs/R30-300.pdf">Harwin's drawing</a> specifies the 6 mm
+male stud and at least 6 mm usable female thread for this length. With 1 mm
+base washers, stud projection is 5 mm, matching the previously checked adapter
+slot-nut stack. M3×6 screw engagement is 3.5 mm with the modeled 2.5 mm PCB,
+or 4.4 mm for a 1.6 mm PCB; check the delivered board and screw seating.
+Use no top washer unless its diameter clears nearby parts and engagement is rechecked.
+Do not torque these screws as structural M5 joints.</p>
+<p>Buy fifteen standoffs for eleven installed. Add eleven M3 slot nuts to the
+combined requirement (35 needed, 40 purchased), eleven M3×6 screws (35 needed,
+two packs of 25), and 22 base washers. The two host-card clamps also consume
+four M3 washers, two M3×16 screws and two M3 hex nuts, from the shared packs.
+Combined M3 standard washers: 106 needed, two packs of 100.</p>
+<h2>PCIe host-card retention</h2>
+<p>Each retimer gets its own 125 mm vertical post behind the motherboard, a normal
+angle at the post base, and a second angle that slides vertically. The retimer's
+metal mounting tab rests on that second angle. An M3×16 screw, washer above
+the tab, washer below the angle, and M3 hex nut clamp the tab. The upper angle
+uses one included M5 screw/nut pair into the post; its second kit pair is spare.
+The post base slides across the rear beam to align with the card tab.</p>
+<p>The vendor Astera CAD has a low-profile bracket: its mounting-tab underside is
+local Y=33.722 mm, with a usable slot axis at local X=17.1, Z=95.3 mm.
+These values come from the original <code>host-retimer.obj</code>, not the old fallback's
+invented full-height tab. Board position along the rails can be adjusted to match
+the rear beam, and clamp height follows a fully seated card. Restrain cables to
+the frame so they do not pull on the slot or retimer. Delivered bracket revision
+and seated contact remain normal assembly checks.</p>
+<h2>Assembly sequence</h2>
+<ol>
+<li>Assemble and square the empty platform; leave support rails adjustable.</li>
+<li>Locate all eleven holes on the disconnected board. Position the four rails
+and eleven standoffs to match, without any unmatched support underneath.</li>
+<li>Tighten the rail joints and standoff bases with the board removed. Check all
+support tops with a straightedge, then lower the board and start every M3
+screw by hand. Stop if any screw needs to pull the board sideways or downward.</li>
+<li>Install the retimers fully, bring their support angles up to the metal tabs,
+then tighten the angle/post joints and tab clamps without lifting the cards.</li>
+<li>Set the shelves at the stated separation and check actual overhead clearance,
+PSU clearance, cables, cooler tubes and shelf anchors before power-on.</li>
+</ol>
+<p>This resolves the motherboard/host-card mounting architecture and its selected
+hardware. Radiator supports are specified in <a href="/rig/presentation/docs/RADIATOR-MOUNT.html">RADIATOR-MOUNT.md</a>.
+PSU feet/restraints and shelf-vent alignment remain
+separate incomplete interfaces; this is not a release of the entire rig kit.</p>
+<h2>Verification</h2>
+<p>All 53 geometry/order checks, three worksheet checks and the production build
+pass. Native retimer shaft probes
+cover all three bracket partitions. Browser routing verification and screenshots
+are in <code>row/out/installed-layout-browser.json</code> and <code>row/out/installed-shelves.png</code>. These checks
+validate the model and selected quantities, not physical assembly or cooling.
+The September 8 bracket regression first reproduced the embedded rail angles;
+after correction it checks all twenty host angle bodies against every host
+extrusion, plus both side-slot contact axes at each of the eight rail joints.
+The earlier passing suite did not cover these bracket-to-extrusion intersections.</p>
+<p>Final sizing uses <strong>150 mm legs and 125 mm retimer posts</strong>. Swapping these two
+existing cut sizes raises the motherboard 25 mm while preserving the 295 mm
+overall post height and the same price. The final native-CAD browser route check
+finds a 621 mm maximum path at the installed shelf levels; adding the prior 12% allowance gives 695.52 mm
+against the owned 750 mm cables. This is a routing allowance, not physical cable
+fit or signal-integrity validation.</p>
+</main></body></html>

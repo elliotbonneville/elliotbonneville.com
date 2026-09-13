@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 790" role="img" aria-labelledby="title desc">
+<title id="title">Twenty MCIO cables in two four-GPU banks</title>
+<desc id="desc">Each host uses two cables to switch ports 11 and 12. Four GPU device adapters use ports 1 through 8 on each switch. G1 is at the rack rear; G8 is at the front. This is a logical diagram, not a cable routing or assembly drawing.</desc>
+<rect width="1000" height="790" fill="#f7faf9"/>
+<style>text{font-family:Arial,sans-serif;fill:#183e3c;font-size:17px}.head{font-size:25px;font-weight:bold}.bold{font-weight:bold}.note{font-size:15px}.box{fill:white;stroke:#476a69;stroke-width:2}.link{fill:none;stroke:#417d9c;stroke-width:3}</style>
+<text x="32" y="42" class="head" text-anchor="start">PCIe data connections · two banks</text>
+<text x="32" y="70" class="note" text-anchor="start">Logical pairs only; each line below represents TWO separate 750 mm cables.</text>
+<rect class="box" x="30" y="95" width="450" height="120" rx="8"/>
+<text x="255" y="126" class="bold" text-anchor="middle">H1 · motherboard PCIE5</text>
+<text x="50" y="158" class="" text-anchor="start">CN1 (near heatsink) → switch CN11</text>
+<text x="50" y="186" class="" text-anchor="start">CN2 (far end) → switch CN12</text>
+<path class="link" d="M255 215 V265"/>
+<text x="269" y="246" class="note" text-anchor="start">H1-A / H1-B</text>
+<rect class="box" x="115" y="265" width="280" height="75" rx="8"/>
+<text x="255" y="294" class="bold" text-anchor="middle">S1 · rear switch</text>
+<text x="255" y="322" class="" text-anchor="middle">Host input: CN11 + CN12</text>
+<path class="link" d="M130 340 V400 H170"/>
+<rect class="box" x="170" y="375" width="290" height="53" rx="8"/>
+<text x="181" y="396" class="bold" text-anchor="start">G1 + D1   ·   S1 CN1 / CN2</text>
+<text x="181" y="418" class="note" text-anchor="start">G1-A → D1 CN1;  G1-B → D1 CN2</text>
+<path class="link" d="M130 340 V470 H170"/>
+<rect class="box" x="170" y="445" width="290" height="53" rx="8"/>
+<text x="181" y="466" class="bold" text-anchor="start">G2 + D2   ·   S1 CN3 / CN4</text>
+<text x="181" y="488" class="note" text-anchor="start">G2-A → D2 CN1;  G2-B → D2 CN2</text>
+<path class="link" d="M130 340 V540 H170"/>
+<rect class="box" x="170" y="515" width="290" height="53" rx="8"/>
+<text x="181" y="536" class="bold" text-anchor="start">G3 + D3   ·   S1 CN5 / CN6</text>
+<text x="181" y="558" class="note" text-anchor="start">G3-A → D3 CN1;  G3-B → D3 CN2</text>
+<path class="link" d="M130 340 V610 H170"/>
+<rect class="box" x="170" y="585" width="290" height="53" rx="8"/>
+<text x="181" y="606" class="bold" text-anchor="start">G4 + D4   ·   S1 CN7 / CN8</text>
+<text x="181" y="628" class="note" text-anchor="start">G4-A → D4 CN1;  G4-B → D4 CN2</text>
+<rect class="box" x="520" y="95" width="450" height="120" rx="8"/>
+<text x="745" y="126" class="bold" text-anchor="middle">H2 · motherboard PCIE1</text>
+<text x="540" y="158" class="" text-anchor="start">CN1 (near heatsink) → switch CN11</text>
+<text x="540" y="186" class="" text-anchor="start">CN2 (far end) → switch CN12</text>
+<path class="link" d="M745 215 V265"/>
+<text x="759" y="246" class="note" text-anchor="start">H2-A / H2-B</text>
+<rect class="box" x="605" y="265" width="280" height="75" rx="8"/>
+<text x="745" y="294" class="bold" text-anchor="middle">S2 · front switch</text>
+<text x="745" y="322" class="" text-anchor="middle">Host input: CN11 + CN12</text>
+<path class="link" d="M620 340 V400 H660"/>
+<rect class="box" x="660" y="375" width="290" height="53" rx="8"/>
+<text x="671" y="396" class="bold" text-anchor="start">G5 + D5   ·   S2 CN1 / CN2</text>
+<text x="671" y="418" class="note" text-anchor="start">G5-A → D5 CN1;  G5-B → D5 CN2</text>
+<path class="link" d="M620 340 V470 H660"/>
+<rect class="box" x="660" y="445" width="290" height="53" rx="8"/>
+<text x="671" y="466" class="bold" text-anchor="start">G6 + D6   ·   S2 CN3 / CN4</text>
+<text x="671" y="488" class="note" text-anchor="start">G6-A → D6 CN1;  G6-B → D6 CN2</text>
+<path class="link" d="M620 340 V540 H660"/>
+<rect class="box" x="660" y="515" width="290" height="53" rx="8"/>
+<text x="671" y="536" class="bold" text-anchor="start">G7 + D7   ·   S2 CN5 / CN6</text>
+<text x="671" y="558" class="note" text-anchor="start">G7-A → D7 CN1;  G7-B → D7 CN2</text>
+<path class="link" d="M620 340 V610 H660"/>
+<rect class="box" x="660" y="585" width="290" height="53" rx="8"/>
+<text x="671" y="606" class="bold" text-anchor="start">G8 + D8   ·   S2 CN7 / CN8</text>
+<text x="671" y="628" class="note" text-anchor="start">G8-A → D8 CN1;  G8-B → D8 CN2</text>
+<text x="32" y="674" class="bold" text-anchor="start">Device CN1 is nearer its power input. Device CN2 is farther away.</text>
+<text x="32" y="704" class="bold" text-anchor="start">Label G1 at the REAR of the rack, through G8 at the FRONT.</text>
+<text x="32" y="734" class="note" text-anchor="start">Unused on each switch: CN9/CN10 and CN13. Four MCIO cables remain spare.</text>
+<text x="32" y="762" class="note" text-anchor="start">Power feeds, startup timing and physical cable routes are separate checks.</text>
+</svg>

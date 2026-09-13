@@ -1,0 +1,27 @@
+sku,supplier,url,required_quantity,purchase_quantity,purchase_unit,label
+HFS5-2020-615,MISUMI,https://us.misumi-ec.com/vona2/detail/110302683830/?HissuCode=HFS5-2020-615,4,4,piece,GPU longitudinal rails
+HFS5-2020-220,MISUMI,https://us.misumi-ec.com/vona2/detail/110302683830/?HissuCode=HFS5-2020-220,4,4,piece,GPU posts
+HFS5-2020-219.5,MISUMI,https://us.misumi-ec.com/vona2/detail/110302683830/?HissuCode=HFS5-2020-219.5,4,4,piece,GPU end ties
+HFS5-2020-350,MISUMI,https://us.misumi-ec.com/vona2/detail/110302683830/?HissuCode=HFS5-2020-350,4,4,piece,Host sliding motherboard rails
+HFS5-2020-400,MISUMI,https://us.misumi-ec.com/vona2/detail/110302683830/?HissuCode=HFS5-2020-400,2,2,piece,Host transverse end beams
+HFS5-2020-125,MISUMI,https://us.misumi-ec.com/vona2/detail/110302683830/?HissuCode=HFS5-2020-125,2,2,piece,Host retimer posts
+HFS5-2020-150,MISUMI,https://us.misumi-ec.com/vona2/detail/110302683830/?HissuCode=HFS5-2020-150,4,4,piece,Host legs
+HBLSS5-SEP,MISUMI,https://us.misumi-ec.com/vona2/detail/110300438930/?HissuCode=HBLSS5-SEP,36,36,kit,Angle kits: 26 frame joints + 8 feet + 2 host-card clamps
+HPTLS5-SEP,MISUMI,https://us.misumi-ec.com/order/cart,4,4,kit,Four GPU top-corner plate kits
+HNTF5-3,MISUMI,https://us.misumi-ec.com/vona2/detail/110300461850/?HissuCode=HNTF5-3,35,40,piece,M3 slot nuts: 16 adapters + 8 GPU clamps + 11 motherboard
+R30-3003002,DigiKey,https://www.digikey.com/en/products/detail/harwin-inc/R30-3003002/2264494,16,20,piece,30 mm adapter standoffs
+R30-3002002,DigiKey,https://www.digikey.com/en/products/detail/harwin-inc/R30-3002002/2264491,11,15,piece,20 mm motherboard standoffs
+R30-3000702,DigiKey,https://www.digikey.com/en/products/detail/harwin-inc/R30-3000702/2264479,8,10,piece,7 mm switch standoffs
+R30-6010902,DigiKey,https://www.digikey.com/en/products/detail/harwin-inc/R30-6010902/2264547,8,10,piece,9 mm GPU clamp spacers
+92855A307,McMaster,https://www.mcmaster.com/92855A307/,35,2,25-pack,M3 × 6: 16 adapters + 8 switches + 11 motherboard
+92855A316,McMaster,https://www.mcmaster.com/92855A316/,22,1,25-pack,M3 × 16: 14 GPU/host/radiator screws + 8 provisional PSU reserve
+93475A210,McMaster,https://www.mcmaster.com/93475A210/,106,2,100-pack,M3 0.5 mm washers: 72 GPU + 8 switch + 22 motherboard + 4 host clamps
+92855A516,McMaster,https://www.mcmaster.com/92855A516/,8,1,25-pack,M5 × 16 shelf screws
+93475A240,McMaster,https://www.mcmaster.com/93475A240/,8,1,100-pack,M5 shelf washers
+93413A212,McMaster,https://www.mcmaster.com/93413A212/,8,2,5-pack,M5 15 mm OD shelf backing washers
+90576A104,McMaster,https://www.mcmaster.com/90576A104/,8,1,100-pack,M5 shelf locknuts
+91116A120,McMaster,https://www.mcmaster.com/91116A120/,40,1,100-pack,M3 wide washers: 16 switch + 8 radiator + 16 provisional PSU reserve
+90591A250,McMaster,https://www.mcmaster.com/90591A250/,22,1,100-pack,M3 nuts: 8 switch + 2 host + 4 radiator + 8 provisional PSU reserve
+8525T261,McMaster,https://www.mcmaster.com/8525T261/,20,3,1/2x36-inch strip,Silicone stock: 1720 mm cuts plus leveling spare
+XSPC-RADSTAND-120-V2,Performance-PCs,https://www.performance-pcs.com/products/xspc-120mm-radstand-universal-120mm-radiator-stand-v2,1,1,pair,Radiator stands: pair of mirrored feet
+90924,Amazon,https://www.amazon.com/dp/B000F5K82A,30,1,50-pack,"Reusable cable ties, 8 x 0.5 inch, black/gray"

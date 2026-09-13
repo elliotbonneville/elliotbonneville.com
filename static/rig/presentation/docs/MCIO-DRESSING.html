@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mcio Dressing · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Selected MCIO cable dressing</h1>
+<p>September 8, 2026. Use all twenty assigned 750 mm cables; keep four spares.
+No connector/bundle photos or extra MCIO purchases are required. The
+connection map supplies all labels and port pairs.</p>
+<h2>Support the surplus on the shelf</h2>
+<p>The surplus rests in two padded areas along the GPU shelf's right edge (+X),
+away from leftward exhaust and outside the inter-card fan gaps. Rear group:
+G1–G4's eight data cables. Front group: G5–G8's eight cables. Host cables climb
+separately from U11, with their smaller surplus dressed along the supported
+route. The shelf carries the cable weight; loose reusable wraps organize and
+retain it. This replaces the unsupported elevated-loop proposal.</p>
+<table>
+<thead>
+<tr>
+<th>Bank</th>
+<th>X range</th>
+<th>Z range</th>
+<th>Height allowance above pads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rear</td>
+<td>156–220 mm</td>
+<td>−302 to −15 mm</td>
+<td>72 mm</td>
+</tr>
+<tr>
+<td>Front</td>
+<td>156–220 mm</td>
+<td>+15 to +302 mm</td>
+<td>72 mm</td>
+</tr>
+</tbody>
+</table>
+<p>Coordinates are model setup references, not measured cable dimensions. Each
+bank clears native solids and modeled switch fan keepouts. The shelf surface
+is Y=799.875 mm; pads are nominally 1.5875 mm thick. See the repeatable
+space assessment.</p>
+<p>Cut four 250 mm and four 60 mm lengths from the selected 12.7 mm-wide silicone
+stock. The longer strips support the sides of the cable bights; shorter cross
+strips protect the curved ends. Position them to suit the relaxed real cable,
+keeping all wire off sharp edges. The material allocation is 1,240 mm here,
+320 mm for the eight GPU pads and 160 mm for four PSU far-end pads: 1,720 mm.
+Three 914.4 mm strips leave 1023.2 mm for leveling and installation spare.</p>
+<p>Use stock reusable hook-and-loop cable wraps, such as
+<a href="https://www.partssource.com/parts/velcro/90924">VELCRO ONE-WRAP 90924</a>,
+8 × 1/2 inch, 50-pack. Allocate two loose wraps per device pair (16), two per
+host pair (4), and up to ten additional frame/route retainers; twenty remain
+spare. The wrap is a retainer, not a suspended weight-bearing cable tray. Do
+not wrap tightly around a PCB, connector boot or fan grille. Keep both plugs'
+latches accessible and put the same cable ID on both ends.</p>
+<h2>Assembly sequence and adjustment</h2>
+<ol>
+<li>With all power disconnected, seat one supported device adapter's cable pair
+before the neighboring GPUs obstruct its underside latches.</li>
+<li>Route to its assigned switch with straight, relaxed exits behind both plugs.
+Form broad bights from the remaining length on the padded shelf; do not
+kink, sharply fold or cinch the twinax bundle. The bights need not match a
+mathematically exact oval or all have identical shapes.</li>
+<li>Secure each pair independently. Lift or release one pair without pulling on
+its neighbors. Keep the switch fans and GPU gaps open. Adjust the unloaded
+support rail height together if additional underside plug room is needed;
+preserve the aligned GPU/adapter support planes.</li>
+<li>Repeat, distributing bights along the two banks. Dress the four host cables
+separately around the shelf edge. Never pass a cable through an unverified
+sharp perforation or hold the shelf up with its connector.</li>
+<li>Before power-on, inspect the entire length of every cable, both latches,
+all fan paths and the ability to remove one card. If cable stiffness makes
+a bend resist the chosen route, spread/reposition the bight; do not force
+it into the rendered shape. The open-frame layout permits this adjustment.</li>
+</ol>
+<p>The current renderer displays connection/approach paths, not every millimetre
+of the 750 mm stock. The earlier path ledger totals 9,539 mm of surplus before
+rerouting; approach changes consume some of that length. A 25 mm-radius oval
+and 6.8 mm bundle diameter are space-study assumptions, not cable-maker limits.
+At those assumptions the worst 598 mm surplus occupies about 62.8 × 283.3 mm
+including clearance; eight layers occupy 67.4 mm. Thicker cables require a
+shallower, more distributed arrangement rather than compression.</p>
+<p><a href="https://c-payne.com/products/mcio-sff-ta-1016-8i-cable-pcie-gen5">C-Payne's listing</a>
+identifies AWG30 twinax and the 75 cm option but publishes no bend radius.
+No unsupported minimum-radius certification is implied. Actual seating and
+Gen5 stability are checked during staged commissioning, not by a photo request.</p>
+</main></body></html>

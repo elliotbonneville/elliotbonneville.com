@@ -1,0 +1,376 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build Manual · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><blockquote>
+<p>September 13 audit: keep the CPU cooler block attached. The PSU bracket supplier
+was rejected; the old bracket drawings are layout reservations only. Resolve
+<a href="/rig/presentation/docs/PSU-MOUNT.html">replacement mounting</a> before the PSU installation session.</p>
+</blockquote>
+<h1>Building the rack together</h1>
+<p>Preparation edition — September 13, 2026. Read one session at a time. The final
+power/startup map is still open; receiving and dry-fit checks are specified in BUILD-TODO.md. This manual does not
+authorize powering an incomplete installation. It makes the established frame
+work explicit while those decisions are finished.</p>
+<p>Start with INVENTORY.md. Keep the working computer intact until
+the receiving frames and transfer plan are ready. Set the rack in its final
+location before loading it; do not plan to wheel a populated open rig around.</p>
+<h2>1. Prepare the workspace and label the parts</h2>
+<p>Use a clear, well-lit table beside the rack, a separate electronics handling
+area, small labeled containers and somewhere safe for each removed component.
+Keep drinks, loose screws and cutting work out of the electronics area. Use
+manufacturer packaging for storage; an antistatic bag is packaging, not a
+powered bench surface. Cover parts elsewhere while cutting pads or drilling.</p>
+<p>Use <a href="/rig/presentation/docs/TOOLS.html">TOOLS.md</a> for the missing-tool checklist.
+Stage a metric ruler/tape, square, straightedge, caliper, spirit level, matching
+setup blocks, small clamps and a light. For fasteners, stage metric hex keys
+including 2, 3 and 4 mm, a Phillips screwdriver and small nut drivers/wrenches.
+M3 plain nuts are 5.5 mm across flats; M5 nuts are 8 mm. Harwin's drawing gives
+4.8 mm across the standoff flats; select a close-fitting tool rather than
+rounding them with pliers. A small adjustable wrench is useful for holding a
+standoff during an unpowered trial. Follow <a href="/rig/presentation/docs/FASTENERS.html">FASTENERS.md</a>: the
+included structural M5 pairs use the selected 6.0 N·m assembly target; shelf
+and PCB joints have separate instructions. Leave the CPU cooler block mounting untouched. Never use an electric impact driver on these parts.</p>
+<p>Scissors, a cutting mat, removable labels and a pen complete the sorting kit.
+Drill, bits, deburring tool, eye protection and swarf cleanup belong to the
+shelf-hole fallback only. Their exact sizes depend on the selected attachment;
+keep that work separate from the computer.</p>
+<p>Apply these part IDs with removable labels, away from mating faces:</p>
+<table>
+<thead>
+<tr>
+<th>IDs</th>
+<th>Pieces</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G-L1 / G-L2</td>
+<td>Two 615 mm rails</td>
+<td>Device-adapter support rails</td>
+</tr>
+<tr>
+<td>G-L3</td>
+<td>One 615 mm rail</td>
+<td>GPU bracket clamp rail, exhaust side</td>
+</tr>
+<tr>
+<td>G-L4</td>
+<td>One 615 mm rail</td>
+<td>Padded rear shroud support</td>
+</tr>
+<tr>
+<td>G-P1–G-P4</td>
+<td>Four 220 mm posts</td>
+<td>GPU frame corners</td>
+</tr>
+<tr>
+<td>G-T1 / G-T2</td>
+<td>Two 219.5 mm ties</td>
+<td>Lower front/rear end-frame ties</td>
+</tr>
+<tr>
+<td>G-T3 / G-T4</td>
+<td>Two 219.5 mm ties</td>
+<td>Top front/rear end-frame ties</td>
+</tr>
+<tr>
+<td>H-R1–H-R4</td>
+<td>Four 350 mm rails</td>
+<td>Sliding motherboard supports</td>
+</tr>
+<tr>
+<td>H-E1 / H-E2</td>
+<td>Two 400 mm beams</td>
+<td>Host front/rear ends</td>
+</tr>
+<tr>
+<td>H-L1–H-L4</td>
+<td>Four 150 mm legs</td>
+<td>Host platform</td>
+</tr>
+<tr>
+<td>H-P1 / H-P2</td>
+<td>Two 125 mm posts</td>
+<td>Retimer bracket supports</td>
+</tr>
+</tbody>
+</table>
+<p>The stock profile is MISUMI HFS5-2020 with a 6 mm slot. Do not mix generic
+2020 nuts into the kit because the outside dimensions look similar.</p>
+<p>Sort hardware using ASSEMBLY-BAGS.csv. Quantities are
+installed pieces, not packs. Keep each supplier label with its bag. Put surplus
+hardware into a separate SPARES container rather than trying to use everything.</p>
+<table>
+<thead>
+<tr>
+<th>Bag</th>
+<th>Contents / allocation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G-FRAME</td>
+<td>Twelve GPU extrusions; 16 angle kits; four flat L-plate kits</td>
+</tr>
+<tr>
+<td>H-FRAME</td>
+<td>Ten host platform extrusions; 16 angle kits</td>
+</tr>
+<tr>
+<td>H-CARDS</td>
+<td>Two 125 mm posts; four angle kits; two M3×16 screws; four standard M3 washers; two M3 nuts</td>
+</tr>
+<tr>
+<td>GPU-01 through GPU-08, each</td>
+<td>Two 30 mm standoffs; three M3 slot nuts; two M3×6 screws; one M3×16 screw; one 9 mm spacer; nine standard M3 washers</td>
+</tr>
+<tr>
+<td>H-BOARD</td>
+<td>Eleven 20 mm standoffs; eleven M3 slot nuts; eleven M3×6 screws; 22 standard M3 washers</td>
+</tr>
+<tr>
+<td>SWITCH-1 / SWITCH-2, each</td>
+<td>Four 7 mm standoffs; four M3×6 screws; four standard M3 washers; eight wide M3 washers; four M3 nuts</td>
+</tr>
+<tr>
+<td>G-ANCHORS / H-ANCHORS, each</td>
+<td>Four M5×16 screws; four standard M5 washers; four 15 mm OD backing washers; four M5 locknuts</td>
+</tr>
+<tr>
+<td>RADIATOR</td>
+<td>One stand pair; four M3×16 screws; eight wide M3 washers; four M3 nuts; four owned SilverStone short case screws kept separately</td>
+</tr>
+<tr>
+<td>PADS</td>
+<td>Eight 40 mm GPU pads, four 250 mm and four 60 mm cable pads; reserve stock for four provisional 40 mm PSU pads. All are 12.7 mm wide</td>
+</tr>
+<tr>
+<td>PSU-RESERVE</td>
+<td>Eight M3×16 screws, sixteen wide M3 washers and eight M3 nuts; reconcile after choosing the replacement mounts</td>
+</tr>
+<tr>
+<td>CABLE-DRESSING</td>
+<td>Thirty reusable ties; twenty additional ties stay in spares</td>
+</tr>
+</tbody>
+</table>
+<p>The 26 ordered lines cover these allocations and purchasing spares. No PSU
+brackets are included. Leave the PSU pad stock uncut and the PSU-RESERVE bag
+unused until <a href="/rig/presentation/docs/PSU-MOUNT.html">replacement mounting</a> specifies the actual stacks.</p>
+<p>Angle kits include two M5 screw/nut pairs. Flat plate kits include four. Eight
+shelf-foot angles and two retimer-clamp angles each use only one included pair.
+That leaves ten spare M5 pairs out of 88 supplied. The eight through-shelf M5
+bolts are separate; do not replace them with the short kit screws.</p>
+<p><strong>Checkpoint:</strong> 24 labeled extrusion pieces; no unexplained mismatch to the
+cut list; M3 and M5 hardware in different containers. Photograph the sorted
+pieces and labels. A wrong cut or missing kit gets resolved before disassembly.</p>
+<h2>2. Practice one extrusion joint</h2>
+<p><img src="/rig/presentation/diagrams/slot-nut.svg" alt="How a slot nut holds a bracket" /></p>
+<p>The screw passes through the bracket and threads into a nut inside the same
+face's slot. You turn the screw from outside; you do not hold a loose nut behind
+the entire extrusion. Only the later shelf-through attachments need an
+underside nut.</p>
+<p>Practice with an empty extrusion and one HBLSS5-SEP kit. Insert the matching
+HNTP5-5 post-assembly spring nut through the accessible slot, following its
+manufacturer insertion orientation. It must sit below the slot lips. The spring
+holds its position while you align the bracket and start the M5×8 screw by hand.
+Leave it loose enough to slide for positioning. Check the bracket contacts both
+members squarely and the screw clamps it before running out of thread travel.</p>
+<p>HNTF5-3 device nuts are a different, smaller part without the same spring
+holding feature. Pre-position them while the empty rail's working slot faces
+up. For the underside GPU clamp nuts, install and retain the hardware while
+you can still turn the empty frame over. Never invert the frame with GPUs in it.</p>
+<p><strong>Checkpoint:</strong> the bracket can be positioned when loose and held when snug;
+the nut stays captured below both lips. If it spins, lifts through the slot or
+the screw becomes tight while the bracket remains loose, remove it and inspect
+its orientation and screw stack. More force is not the fix.</p>
+<h2>3. Assemble the empty GPU frame</h2>
+<p>Use the <a href="/rig/">original visualizer</a> with GPUs and cables hidden,
+and the current rack view for orientation.
+Rack front is the side from which shelf measurements start. Cards run in a row
+from front to rear, and their exhaust points out the rack's left side.</p>
+<ol>
+<li>On the flat table, build two matching end frames. Each has two 220 mm posts,
+one lower 219.5 mm tie and one top 219.5 mm tie. Top tie surfaces finish flush
+with the post tops. Put one flat L plate on the outward face at each upper
+corner, with two screws in the post slot and two in the top tie slot. Use an
+angle at each lower tie/post corner. Keep these joints adjustable initially.</li>
+<li>Join the end frames with G-L1 and G-L2, the two 615 mm adapter rails. Their
+upper faces start 30 mm above the shelf datum: 10 mm lower tie clearance plus
+20 mm profile. Their center spacing follows the two adapter mounting holes,
+nominally 100 mm. Four angles join these rails to the lower end ties.</li>
+<li>Add the 615 mm clamp and rear support rails, each with an angle at both ends.
+Their final heights follow the fully seated GPU; do not lock them to a ruler
+dimension before that trial. Keep the rear rail low enough not to lift a card
+during the first seating check.</li>
+<li>Add one shelf-foot angle at the bottom of each post, oriented inward along
+the row as shown in the shelf guide. Its vertical hole gets one kit screw
+and nut; its horizontal hole is reserved for a shelf bolt.</li>
+<li>Compare the two end frames, check their corners with a square, and compare
+both diagonals across the same outer rectangle. Check all four post bottoms
+sit on the table without rocking. Equal diagonals supplement the square;
+they do not excuse bent members or a twisted assembly.</li>
+<li>Set the two adapter rail tops in one plane with equal blocks and a
+straightedge at the front and rear. Work through opposite joints gradually,
+rechecking alignment after tightening. Use the 6.0 N·m target and dry-thread
+procedure in <a href="/rig/presentation/docs/FASTENERS.html">FASTENERS.md</a> for the included M5 kit pairs only.
+Check clamp seating before loading; this is not a torque for PCB hardware.</li>
+</ol>
+<p>The bare frame is nominally 655 mm long; plates/screw projections extend the
+modeled envelope to 671.4 mm. Do not mistake the 615 mm cut for the outside size.
+No diagonal braces belong to the current design. Lower ties start 10 mm above
+the shelf, while top ties are flush with the 220 mm posts.</p>
+<p><strong>Checkpoint:</strong> twelve members, sixteen angles including four feet, four flat
+plates; all feet touch and the adapter rails are coplanar. Confirm end screw
+access inside the rack before installing cards.</p>
+<h2>4. Fit the empty host platform</h2>
+<p>Use the host support view and
+<a href="/rig/presentation/docs/HOST-MOUNT.html">HOST-MOUNT.md</a>. On the bench, join the two 400 mm end beams to
+four 150 mm legs. The beam tops finish 170 mm above the shelf. Four angles join
+legs to beams; four more act as shelf feet.</p>
+<p>Fit four 350 mm rails between the end beams, using eight angles. These angles
+sit in the open corner beside each rail, facing inward from the end beam; they
+do not sit inside the rail's aluminum. Leave the rails movable across the beams.
+The motherboard's actual holes will set their final positions.</p>
+<p>Fit the two 125 mm retimer posts and their four angles from H-CARDS loosely.
+The upper angle of each post supports a card's metal bracket tab. Do not tighten
+that tab before the retimer is fully seated in the motherboard.</p>
+<p><strong>Checkpoint:</strong> twelve host members and twenty angles overall; 400 × 390 mm
+nominal footprint, platform top 170 mm above the shelf. All four legs touch;
+none falls into a vent or lands on an unsupported edge. Final motherboard
+standoff alignment happens with the disconnected board during transfer.</p>
+<h2>5. Trial shelf attachment before covering the fasteners</h2>
+<p>Use <a href="/rig/presentation/docs/SHELF-FIT.html">SHELF-FIT.md</a>. Check U11 and U18 shelf separation and the
+underside clearance above the retimer posts. Start all shelf mounting hardware
+before tightening it; the shelves must be secured at matching heights on all
+four rack rails according to StarTech's instructions.</p>
+<p>Place the empty frames. For each foot, verify the bracket and underside washer
+bear on sound steel, there is a tool path below, and the screw reaches through
+the locknut's locking section. Existing vents are preferred. Nominal coordinates
+are not drilling marks. If a foot cannot be supported and secured there, keep
+that interface open for the documented fallback rather than balancing it on a
+perforation edge.</p>
+<p>The shelf stack is M5×16 screw → standard M5 washer → foot angle → shelf →
+15 mm OD backing washer → M5 locknut. Do not attach electronics until every
+foot is securely retained and the shelf remains flat. Hold the nut with its
+wrench while turning the screw; locking resistance is normal after the screw
+enters the nylon section, unlike resistance while first starting the metal thread.</p>
+<p>Fit switch supports and radiator feet while the area is accessible. The radiator
+must come off its stands for the hidden shelf bolts to be installed; fasten the
+empty stands first. Treat the eight switch-bottom and four radiator-shelf nuts
+using <a href="/rig/presentation/docs/FASTENERS.html">FASTENERS.md</a>, with PCBs and radiator removed; allow the
+planned 24-hour cure and complete cleanup before loading these mounts. Then
+reattach the radiator. Follow
+<a href="/rig/presentation/docs/RADIATOR-MOUNT.html">RADIATOR-MOUNT.md</a>.</p>
+<p><strong>PSU installation remains on hold pending <a href="/rig/presentation/docs/PSU-MOUNT.html">replacement mounting</a>.</strong>
+The drawing below reserves space for the two owned supplies; it is not an
+installation template. Do not mark shelf holes, cut the four reserved PSU pads,
+or apply threadlocker to the reserved fasteners from this drawing. The selected
+replacement must supply its own fit and fastening procedure before PSU installation
+and motherboard transfer. Keep fan and connector access clear in that procedure.</p>
+<p><img src="/rig/presentation/diagrams/psu-installation.svg" alt="PSU placement and mount reservations" /></p>
+<p>Apply the eight cable-cushioning strips on the right side of the GPU shelf as shown in <a href="/rig/presentation/docs/MCIO-DRESSING.html">MCIO-DRESSING.md</a>. Rest loose cable bights on these pads and retain them with reusable wraps. Keep connector latches accessible and the shelf carrying cable weight.</p>
+<p><strong>Checkpoint:</strong> photographs above and below all anchors; no rocking, unsupported
+washers, fastener contact with a PCB, or unaccounted protruding screw. Complete
+all drilling, deburring and cleanup away from electronics before the transfer.</p>
+<h2>6. Trial one GPU and its powered slot adapter</h2>
+<p><img src="/rig/presentation/diagrams/standoffs.svg" alt="Device and motherboard support stacks" /></p>
+<p>Use one GPU bag first. Each adapter support is: M3 slot nut → two standard
+0.5 mm washers → 30 mm standoff → adapter PCB → 0.5 mm washer → M3×6 screw.
+The base washers span the slot. The two standoffs must match in height and align
+with the adapter's two actual holes without pulling the PCB sideways.</p>
+<p>Support the GPU independently while aligning its keyed edge connector with the
+adapter. A C-Payne switch is electrically connected by cables; the GPU does not
+plug directly into the switch or use it as a physical support.</p>
+<p>GPU clamp stack and screw approach</p>
+<p>After fully seating the GPU, bring its bracket clamp and rear padded rail to the
+card. The clamp uses its large central bracket opening: from below, M3×16 screw,
+standard washer, GPU bracket, standard washer, 9 mm spacer, standard washer,
+and the underside slot nut. The uppermost washer is necessary to span the slot.
+Pre-position the underside slot nut on the empty rail and lay out the remaining
+stack in order. The closed GPU bracket opening still requires the final screw
+to be inserted through the supported card; do not promise a fully preassembled
+clamp can simply slide over that opening. The exact tool path with a delivered
+card is a trial requirement; do not fill the row until that first clamp can be
+installed and released without levering on the card.</p>
+<p>Raise the padded rear rail evenly until it contacts the intended solid shroud
+surface without lifting or twisting the GPU. It must not press a PCB, fan,
+connector or exposed component. Adhesive goes on the rail side of the pad.</p>
+<p><strong>Checkpoint:</strong> full connector seating remains unchanged as supports are snugged;
+no bowed board, lifted bracket or rocking support. Record actual clamp stack and
+adjustments, then repeat the proven method for the other seven positions. Use
+75 mm nominal card centers and check the actual gaps remain open. Do not use a
+common rail to force mismatched cards into alignment.</p>
+<h2>7. Wiring and bring-up are separate sessions</h2>
+<p>Follow <a href="/rig/presentation/docs/TRANSFER.html">TRANSFER.md</a> for the planned solo move, including the
+CPU cooler handling and remount requirements. Use the final labeled power map
+once POWER.md is resolved. Slot and
+main power for a GPU must belong to its assigned PSU. Use the numbered
+MCIO map and twenty cable labels for the data
+connections, with G1 at the rack rear and G8 at the front. MCIO pairs need correct
+lane ordering and independent strain relief. Keep enough service slack to reach
+latches; leave fan openings clear and avoid tight cable ties around connectors.
+No live insertion/removal is planned.</p>
+<p>Before first power, account for every screw, reconnect and configure the complete
+CPU cooler, verify the initial test configuration, and review the connection
+photos. First establish host cooling and device detection. Add cards between
+complete shutdowns; simultaneous full load comes only after staged checks pass.</p>
+<h2>If something does not fit</h2>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Next action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Screw resists immediately</td>
+<td>Back it out; check size, thread and alignment. Do not drive it through resistance.</td>
+</tr>
+<tr>
+<td>Screw is tight but the part moves</td>
+<td>Check bottoming, missing washers and nut capture before changing length.</td>
+</tr>
+<tr>
+<td>Frame rocks</td>
+<td>Unload, check the work surface and joint alignment; do not tighten it flat against a PCB or shelf.</td>
+</tr>
+<tr>
+<td>GPU latch or connector will not release</td>
+<td>Support the card, inspect with a light and follow the actual latch; never pry with a screwdriver.</td>
+</tr>
+<tr>
+<td>Standoff turns with a top screw</td>
+<td>Hold its flats with the correct tool while unpowered; recheck the base afterward.</td>
+</tr>
+<tr>
+<td>Screw falls into equipment</td>
+<td>Stop. Disconnect power and recover it before continuing; do not shake a populated frame.</td>
+</tr>
+<tr>
+<td>Hose/cable reaches only under tension</td>
+<td>Stop and revise the route or component position. Do not stretch it into place.</td>
+</tr>
+<tr>
+<td>A washer overlaps another vent</td>
+<td>Treat bearing as unverified; move to a supported location or use the resolved fallback.</td>
+</tr>
+</tbody>
+</table>
+<h2>Evidence and remaining release work</h2>
+<p>Hardware counts come from the current procurement ledger and model. Drawings
+are assembly schematics, not scale drawings or physical fit evidence. Tightening
+and metal-nut locking methods are selected in FASTENERS.md; received fit and
+curing still need checks. Actual vent bearing, cooler-transfer
+handling and the final power map prevent calling this a complete build kit.</p>
+<p>Primary references: <a href="https://us.misumi-ec.com/pdf/fa/2019/2019_US_2700.pdf">MISUMI angle kit table</a>,
+<a href="https://us.misumi-ec.com/pdf/fa/2012/p2_0537_002.pdf">MISUMI nut guidance</a>,
+<a href="https://cdn.harwin.com/pdfs/R30-300.pdf">Harwin standoff drawing</a>.</p>
+<p>Use <a href="/rig/presentation/docs/COOLER-WIRING.html">the cooler connection map</a> and staged first-start guide after their remaining power and receiving prerequisites are resolved.</p>
+</main></body></html>

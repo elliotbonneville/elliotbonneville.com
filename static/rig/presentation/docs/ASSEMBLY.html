@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assembly · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Assembly and adjustment — technical reference</h1>
+<p>Start with the <a href="/rig/presentation/docs/BUILD-MANUAL.html">beginner build manual</a> for ordered sessions,
+part labels and hardware bags. This page retains the dimensional stack analysis.</p>
+<p><strong>Planning guide; physical fit, restraint and loaded cooling remain unverified.</strong>
+The current central-opening clamp has nominal mesh clearance,
+replacing the earlier unverified edge-slot arrangement. Complete the remaining
+host, shelf, PSU and radiator attachments before moving equipment.</p>
+<h2>Retain the CPU cooling system</h2>
+<p>The confirmed SilverStone XE360-TR5 must be completely installed for operation,
+with its pump and radiator fans connected. For the solo transfer, follow
+<a href="/rig/presentation/docs/TRANSFER.html">TRANSFER.md</a>: the proposed sequence removes and remounts the cold
+plate so the motherboard and radiator can be carried separately. The Vornado stand fan supplements airflow
+around the rack. It cannot replace the CPU cooler. Secure the radiator, protect
+its tubes from kinks/pulls, and check the pump/radiator installation instructions.
+Do not power the CPU with its cooler removed.</p>
+<h2>Level and square the eventual frame</h2>
+<ol>
+<li>Level and stabilize the rack using its manufacturer provisions. Attach the
+shelf at matching rack heights on all four rails. Check the deck for rocking
+or twist with a straightedge; do not assume perforated steel is perfectly flat.</li>
+<li>Assemble the empty frame on a flat bench. Keep joints snug initially. Use a
+square and compare diagonals. Use the selected SEP kits' post-assembly spring nuts through the slot opening;
+the spring holds the nut while starting the screw. Verify actual engagement.</li>
+<li>Set paired adapter rails coplanar using a straightedge and equal setup blocks.
+Measure heights from the same base datum. Match heights at both ends of the single eight-card row.
+A spirit level does not establish PCIe mating height.</li>
+<li>Install the two top bars and four flat corner plates, then tighten progressively while rechecking squareness. Use
+selected hardware torque guidance; do not apply an M5 torque to M3 PCB screws.</li>
+<li>Position the frame over the actual shelf vents. Use positive attachment with
+appropriate bearing/backing. If required positions cannot use vents, the user
+permits drilling. Mark only from actual fit, with electronics removed; deburr
+and clean before reinstalling them. Do not fabricate a vent map from the render.</li>
+<li>Dry-fit one GPU and adapter with power disconnected and the GPU independently
+supported. Confirm PCIe key orientation and full seating. Bring the rear
+support and central-opening bracket clamp to the seated card, not the reverse.</li>
+<li>Repeat across the row, distributing the load along the frame. Verify
+that tightening a support does not bow the adapter or lift the edge connector.</li>
+</ol>
+<p>Useful tools: square, straightedge, caliper, matched setup blocks, small clamps,
+feeler gauges, proper hex drivers, and rigid shims. Never pull a twisted assembly
+flat with its mounting screws or use a PCB as the alignment jig.</p>
+<h2>Corrected adapter supports</h2>
+<p>Each adapter has two main mounting holes at 100 mm pitch. The initial CAD stack
+is two 0.5 mm M3 DIN 125 washers (7 mm OD) beneath a 30 mm Harwin R30-3003002 body.
+The support height is 31 mm; its separate 6 mm male stud is below the body.
+There are sixteen bodies and thirty-two base washers for eight adapters.</p>
+<p>Use HNTF5-3 nuts in matching HFS5 slots. Based on nominal slot/nut dimensions,
+a 6±0.2 mm stud and two 0.4–0.6 mm washers give 4.6–5.4 mm stud projection:
+~3.4–4.1 mm geometric overlap and ≥0.6 mm nominal floor reserve. This excludes
+unspecified nut/profile tolerances and thread-end chamfers. Verify clamping on
+one actual assembly. The earlier 9 mm adjacent-nut-fit claim is irrelevant:
+the actual adapter has no such pair of holes.</p>
+<p>Nominal top fastener: M3x6 low-head screw, 0.5 mm washer, 1.6 mm PCB. Nominal
+female engagement is 3.9 mm against the standoff's ≥6 mm threaded depth. Add
+small rigid shims above the body for measured fit; change the top screw length
+when necessary and check bottoming. Keep matched support heights, no springs.
+The 7 mm base washer is needed because the body alone does not span a 6 mm slot.</p>
+<p>Whole-tier ±5 mm vertical movement remains a geometric setup allowance, performed
+unloaded. All adapter and GPU supports belonging to that tier move together and
+are reclamped. Slot travel cannot repair the wrong hole pattern, wrong key
+orientation, bad cut length or an incompatible bracket clamp.</p>
+<h2>PCIe connections and cooling check</h2>
+<p>GPU → its own C-Payne x16 slot → two MCIO 8i cables → one PM50100 → two MCIO
+8i cables → a motherboard host retimer. Four GPUs share each switch's upstream
+x16 link. The switch never physically supports a GPU.</p>
+<p>Use <strong>Expose PCIe sockets</strong> to inspect the adapters and cables. The corrected
+viewer retains the actual GPU PCB in the normal assembled view. The adapter
+rotates 180° from the rejected draft to align its key.</p>
+<p>After the mechanical and power interfaces are complete, commission progressively
+with the Vornado delivering fresh air to the eight-card row, while retaining all component
+fans. Check actual inlets, backplate/memory cooling, GPU/CPU power and thermal
+limiting under representative simultaneous load. No loaded cooling result has
+been obtained from this future rack layout.</p>
+<h2>Central-opening GPU clamp</h2>
+<p>Use the large central oval opening, not either narrow outer slot. Nominally:
+M3×16 head below a 0.5 mm washer, bracket fold, 0.5 mm washer, 9 mm R30-6010902
+spacer, then another 0.5 mm washer against the rail and an inverted HNTF5-3 nut.
+That last washer prevents the narrow spacer from entering the extrusion slot.
+There is one clamp per card. The rear support remains necessary.</p>
+<p>Set rail bottom 60.48 mm above the GPU placement datum as a starting dimension;
+the actual fully seated GPU and measured stack set final height. Nut overlap is
+3.4 mm nominal. The 9 mm spacer's specified ±0.10 mm and three washers each
+0.4–0.6 mm give 3.0–3.8 mm overlap with nominal screw, bracket and nut dimensions;
+those latter tolerances are not included. Check screw bottoming and washer
+bearing without bowing the bracket or adapter. Do not infer torque from CAD.
+The active frame has four 220 mm posts. Set support height from the seated card;
+do not use the historical two-tier post dimensions.</p>
+<h2>Switch mounting stack</h2>
+<p>SWITCH-MOUNT.md replaces the floating 7 mm supports with a
+complete candidate: top screw/washer, PCB, 7 mm male/female body, 9 mm wide
+washer, shelf, second wide washer, M3 hex nut. Nominal switch placement rises
+0.422 mm to seat the reference PCB. Check the actual vent centres and sheet
+thickness before using this stack. A thicker locking nut will not fit the
+same 6 mm stud by assumption. Cable restraint and loosening resistance remain
+required; the reference geometry alone does not settle either.</p>
+<p>Rear GPU support: <a href="/rig/presentation/docs/REAR-SUPPORT.html">selected silicone pads and contact adjustment</a>.</p>
+</main></body></html>

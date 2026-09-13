@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rear Support · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Rear GPU supports — standard silicone pads</h1>
+<p>The catalogue lists -80°F to 450°F for this adhesive-backed product. Separate
+adhesive temperature and thickness/compression tolerances are not given on the
+product page; do not carry over the old sheet's adhesive specification.</p>
+<p>The strip is already the required <strong>12.7 mm width</strong>. Cut eight <strong>40 mm lengths</strong>
+with scissors on a suitable surface; 320 mm of its nominal 914.4 mm length is
+used, leaving ample spare material and an additional trial pad. Apply adhesive to the clean rail,
+not to the GPU. The front clamp supplies retention; the pad cushions the rear
+shroud's bearing on the rail and is not a structural adhesive bond to the GPU.</p>
+<h2>Corrected seating geometry</h2>
+<p>Clipping all original GPU reference triangles to local x=[-20,20], z=[-106.35,-93.65]
+finds the lowest plane at native Y=5.67, hence local y=−42.03. Coplanar shroud
+regions total about 232.029 mm² within the footprint. The whole footprint does
+not contact the curved underside. The surface belongs to A_COVER_B6000_PG153,
+not a PCB or fan. The former −41.6 support plane intruded by 0.43 mm.
+Independent evidence records the mesh hash and method.</p>
+<p>The nominal pad is 25.4/16=1.5875 mm thick. Rear rail top is therefore
+<code>GPU origin Y − 42.03 − 1.5875</code>. Compared with the previous 2.2 mm pad and
+incorrect shroud datum, the metal rail rises <strong>0.1825 mm</strong>, while pad top drops
+0.43 mm. GPU positions, card gaps, tier spacing and all extrusion cut lengths
+remain unchanged. The CAD now shows eight discrete pads rather than two
+unassigned full-length strips.</p>
+<h2>Assembly adjustment</h2>
+<p>Seat and support the GPU/adapter stack first. Leave the rear crossrail's two
+end joints loose enough to slide vertically. Raise the padded rail evenly until
+both rear shroud contact regions bear without lifting or twisting the card;
+then tighten its specified joints. Do not tighten the GPU clamp to force the
+card down to an incorrectly positioned rail. Check all eight cards along
+the row for contact; do not force one common rail to compensate for unequal
+card or support heights. Reposition or shim individual pads if delivered parts
+require it, then recheck seating. Rigid shim material and thickness must be selected before
+using that fallback; do not improvise with loose scraps. Record any added shim
+before changing CAD.</p>
+<p>Rubber is not a precision height datum. Contact-based setup accommodates actual
+strip/adhesive thickness and small compression; no assumed compression percentage
+has been built into the dimensions. The catalog's material properties and the
+reference contact area do not establish complete shroud load capacity or long-term
+adhesion. Delivered contact and retention still require the unpowered fit check.</p>
+</main></body></html>

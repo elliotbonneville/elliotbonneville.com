@@ -121,6 +121,7 @@
       margin: 0; padding: 8px 15px 10px; border-top: 1px solid var(--line); }
 
     #toolbar { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+    #pcie-view { text-decoration: none; flex: 1 1 100%; text-align: center; }
     #bom-btn { flex: 1 1 100%; text-align: center; }
 
     /* ---- hint (drawing note, bottom right) ---- */
@@ -222,7 +223,8 @@
       border: 2px solid var(--line-strong); border-top-color: var(--azure);
       animation: ldspin .85s linear infinite; }
   </style>
-  <script type="module" crossorigin src="./assets/index-Cup0NVnE.js"></script>
+  <script type="module" crossorigin src="/rig/assets/main-CKTWCr6L.js"></script>
+  <link rel="modulepreload" crossorigin href="/rig/assets/ground-DkmENXYg.js">
 </head>
 <body>
   <div id="loader">
@@ -240,12 +242,12 @@
       <div class="tb-main">
         <div class="tb-eyebrow">Open-frame fabric build</div>
         <h1>8× RTX PRO 6000</h1>
-        <p class="tb-sub">PCIe Gen5 switch fabric on a StarTech 25U open rack — zero drilled holes</p>
+        <p class="tb-sub">One row · side exhaust · 34.4 mm nominal gaps</p>
       </div>
       <div class="tb-cells">
         <div><span>Units</span><b>mm</b></div>
-        <div><span>Power</span><b>2× 120V 20A</b></div>
-        <div><span>GPU zone</span><b>4–5U</b></div>
+        <div><span>Power</span><b>Unverified</b></div>
+        <div><span>GPUs</span><b>8 planned</b></div>
       </div>
     </header>
 
@@ -254,7 +256,13 @@
     <div id="toolbar">
       <button class="btn" id="spin">Start spin</button>
       <button class="btn" id="fit">Reset view</button>
+      <a class="btn" id="pcie-view" href="?hide=gpus,rack,shelves,frame,psus,network&amp;show=cables&amp;cam=-650,1050,700,0,740,-70" title="Hide GPUs and supports to expose the PCIe sockets and cable connections">Expose PCIe sockets</a>
+      <button class="btn" id="view-shelf">GPU shelf</button>
+      <button class="btn" id="view-top">Top view</button>
+      <button class="btn" id="view-exhaust">Exhaust side</button>
+      <button class="btn" id="view-radiator">Radiator mount</button>
       <button class="btn" id="bom-btn">Bill of materials</button>
+      <a class="btn" href="./presentation/">Parts and build guide</a>
     </div>
   </div>
 
@@ -263,7 +271,7 @@
       <button id="bom-close" class="x" title="Close">×</button>
       <div id="bom-head">
         <h2>Bill of materials</h2>
-        <p class="bom-sub">Generated live from this layout — every routed run is measured against purchasable stock lengths</p>
+        <p class="bom-sub">Depth-row concept inventory — live cable routing checks; cuts are not released for ordering</p>
       </div>
       <div id="bom-body"></div>
       <div id="bom-foot">

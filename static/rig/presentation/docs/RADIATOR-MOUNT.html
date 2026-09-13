@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Radiator Mount · Rig build guide</title>
+<link rel="stylesheet" href="/rig/presentation/styles.css"></head>
+<body class="document"><header><a href="/rig/">3D rig</a>
+<a href="/rig/presentation/">Parts and build status</a>
+<a href="/rig/presentation/docs/TOOLS.html">Tools</a></header>
+<main><h1>Radiator mounting — September 13, 2026</h1>
+<p>Mount the owned SilverStone XE360-TR5 upright across the front of the U11 host shelf
+on <strong>one pair of XSPC 120mm Universal Radstand V2 brackets</strong>. The feet extend
+under the radiator and its fans, toward the front of the shelf. They do not
+extend backward away from the radiator's weight. No extrusion changes or custom
+parts are needed. This completes the proposed radiator support and fastener
+arrangement; installation and delivered fit are not yet physically verified.</p>
+<p><a href="/rig/">Model</a> · Mount view</p>
+<h2>Parts and interfaces</h2>
+<h2>Position and adjustability</h2>
+<p>The XSPC manufacturer drawing specifies 130 mm height, 60 mm width, 62 mm depth,
+2 mm steel, 105 mm upright hole pitch, 5 mm upright holes, and 5 mm-wide base
+slots with 17 mm between their end centers. The two base slot rows are 30 mm
+apart. Bend radii and cosmetic details are simplified in the model.</p>
+<p>The reference places the upright contact face at Z=265 mm, with feet extending
+to Z=325 mm, 25 mm behind the shelf front edge. Radiator and fans occupy
+Z=265–318 mm. Their nominal 394 mm width leaves 26 mm on each side of the
+446 mm shelf. Brackets sit at the outer fan-hole columns; their separation is
+set by the actual radiator, not a custom crosspiece. Model hole-column positions
+and the un-dimensioned vertical hole datum are setup estimates, not machining
+coordinates. Both stands must sit flat when all four radiator screws are snug.</p>
+<p>The four nominal shelf bolt centers are X=±167.5 mm and Z=280/310 mm:
+55.5/390.5 mm from the left shelf edge and 70/40 mm back from the front edge.
+These are <strong>stand-slot positions, not measured shelf vents</strong>. Use the base slots
+and translate the whole radiator within its clearance to find suitable existing
+vents. Each washer must bear on sound steel on both sides of the opening.
+If four suitable positions cannot be found, use the already authorized shelf
+hole fallback: remove the shelf and electronics, mark through the actual stand,
+drill four 3.5 mm clearance holes on sound steel, deburr and remove all swarf.
+Do not drill the radiator, stand, or extrusion. Do not use the diagram as a drill
+jig. The kit is not dependent on a guessed perforation pattern.</p>
+<h2>Cooling and assembly</h2>
+<p>Keep the full CPU cooling loop: block, pump, radiator and three fans. Aim fan
+exhaust toward the open front (+Z), with air drawn from behind the radiator.
+The room fan supplements this cooler; it does not replace it. Orient the radiator
+with its hose end toward the CPU side and keep the radiator-integrated pump
+below the highest coolant-filled part of the loop; verify the delivered cooler's
+pump location before final tightening. Do not apply generic block-pump orientation
+advice to this radiator-pump cooler.</p>
+<ol>
+<li>With power disconnected, attach the two stands loosely to the bare radiator
+face using the four owned short case screws. Confirm free thread engagement.</li>
+<li>Place both feet flat on the shelf, underneath the radiator/fan mass. Snug the
+four mounting screws without twisting the radiator or pulling on its tubes.</li>
+<li>Trial the attached tubes to the seated CPU block before marking shelf holes.
+The original cooler has 460 mm tubes. Route smooth curves above/around the
+front host beam, clear of DIMMs, fans, sharp edges and connectors. The model
+retains approximate fittings: actual bend radius and hose fit must be checked.</li>
+<li>Mark the four foot positions, then remove the radiator from the stands for
+tool access. Use existing vents where suitable, otherwise the shelf-hole
+fallback above. Secure the <strong>empty stands first</strong> with all four shelf screws,
+upper/lower washers and nuts. The radiator/fans sit over these screw heads
+after installation, so do not plan to tighten them from above afterward.
+Reattach the radiator using the four short case screws from the rear. The
+feet carry the weight; bolts prevent movement. Never use tubes as restraints.</li>
+<li>Check fans turn freely and retain unobstructed intake/exhaust, then reconnect
+the pump and fans as directed by SilverStone. Its sheet requires stable 12 V
+at the pump header. Check pump/fan operation and CPU temperature on first boot.</li>
+</ol>
+<h2>Sources and limits</h2>
+<ul>
+<li><a href="https://www.xs-pc.com/fans-radiator-accessories/120mm-universal-radstand">XSPC product and dimension drawing</a>
+— stock support geometry; local source image in <code>research/radiator/</code>.</li>
+<li><a href="https://gzhls.at/blob/ldb/a/6/2/d/b1489baf226ceb66d3c367cc57afdbea8610.pdf">Original XE360-TR5 manufacturer sheet</a>
+— 394×120×28 mm radiator, 25 mm fans, 460 mm tubes, radiator-integrated pump.</li>
+<li><a href="https://gzhls.at/blob/ldb/b/6/8/9/bb5593592c1d110fe2633e3c3db201906f3a.pdf">SilverStone installation manual</a>
+— distinguishes short case screws B from long fan screws A.</li>
+</ul>
+<p>Geometry checks establish nominal contact, fastener stacks, shelf bounds and
+component separation. They do not certify physical fit, screw engagement inside
+the delivered radiator, tube bends, shelf-vent bearing or loaded cooling.</p>
+<h2>Model verification at the installed shelf levels</h2>
+<p>U4/U11/U18 were checked in the original browser visualizer. The new radiator
+checks cover stand-to-radiator contact, open mounting bores/slots, all eight
+fastener positions, shelf fastener stacks, shelf bounds and separation from
+the board, PSUs and host frame. All 53 geometry/order checks pass. The browser
+reports 20 MCIO routes, no route failures or sampled cable/component collisions,
+and a 621 mm maximum route. This does not establish physical tube routing.
+Evidence: <code>row/out/installed-layout-browser.json</code>.</p>
+</main></body></html>
