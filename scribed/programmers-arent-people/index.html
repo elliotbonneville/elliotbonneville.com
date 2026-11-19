@@ -13,15 +13,26 @@
 <meta property="og:site_name" content="Elliot Bonneville">
 <meta property="article:published_time" content="2026-06-06">
 <meta name="theme-color" content="#30241a">
+<meta property="og:image" content="https://elliotbonneville.com/programmers-arent-people/share.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Programmers Aren't People in manuscript lettering with an illuminated opening initial on vellum, framed by a wooden desk.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Programmers Aren't People">
+<meta name="twitter:description" content="Computer&quot; was a job title for a human being before the machines took the word. &quot;Programmer&quot; is the same kind of word.">
+<meta name="twitter:image" content="https://elliotbonneville.com/programmers-arent-people/share.jpg">
+<meta name="twitter:image:alt" content="Programmers Aren't People in manuscript lettering with an illuminated opening initial on vellum, framed by a wooden desk.">
 <link rel="alternate" type="application/rss+xml" title="Elliot Bonneville" href="/rss.xml">
 <link rel="preload" href="/fonts/StonebrookQuill-Plain.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="modulepreload" href="/pkg/page.js">
+<script defer src="/pkg/reader.js"></script>
 <style>
 @font-face{font-family:"Stonebrook";src:url(/fonts/StonebrookQuill-Plain.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Stonebrook";font-style:italic;src:url(/fonts/StonebrookQuill-Italic.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Stonebrook Roman";src:url(/fonts/StonebrookQuill-Roman.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Rowanbeck Uncial";src:url(/fonts/RowanbeckReed-Uncial.woff2) format("woff2");font-display:swap}
-:root{--lead:30px;--size:22px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
+:root{--lead:34px;--size:25px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
 html{background:var(--desk);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0}
 .page-opening{display:none}
@@ -54,12 +65,12 @@ html.opening .page-opening{position:fixed;inset:0;z-index:2;display:grid;align-c
 .pool{display:none}
 .scene.live .pool{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply;background:radial-gradient(150% 140% at 18% 4%,#fff 0%,rgb(224,204,189) 30%,rgb(204,178,158) 62%,rgb(184,153,133) 100%)}
 /* The leaf's own box is the sheet's nominal rectangle; --over is how far the sheet runs on past it at the sides. */
-.leaf{--over:0px;max-width:554px;margin:44px auto;padding:72px 84px 120px 122px;background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
+.leaf{--over:0px;max-width:630px;margin:44px auto;padding:78px clamp(44px,8vw,96px) 136px clamp(58px,11vw,138px);background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
 article{position:relative;z-index:1;font:var(--size)/var(--lead) "Stonebrook",Georgia,serif;color:var(--ink);overflow-wrap:break-word}
 ::selection{background:rgba(180,48,29,.22)}
-header{margin:0}
+header{position:relative;margin:0}
 .date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
-h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
+h1{font:400 45px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
 p{margin:0 0 var(--lead)}
 h2,h3,h4{position:relative;font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
 .hd{color:inherit;--hue:inherit}
@@ -72,7 +83,8 @@ a{color:var(--indigo);--hue:1;text-decoration:none}
 a:focus-visible{outline:1.5px solid var(--indigo);outline-offset:3px;border-radius:2px}
 sup{line-height:0;font-size:.62em}
 sup a{color:var(--verm);--hue:0;padding:0 1px}
-blockquote{margin:0 0 var(--lead) 1.6em;font-style:italic}
+blockquote{position:relative;margin:0 0 var(--lead) 1.5em;font-style:italic}
+.quote-rule{position:absolute;left:-.77em;top:.22em;bottom:.22em;width:2px;background:var(--verm);opacity:.74;clip-path:polygon(40% 0,100% 1%,70% 56%,95% 98%,25% 100%,0 97%,18% 45%,0 2%)}
 blockquote em{font-style:normal}
 ol,ul{margin:0 0 var(--lead);padding:0;list-style:none}
 li{padding-left:1.7em;text-indent:-1.7em}
@@ -82,11 +94,11 @@ hr{border:0;height:var(--lead);width:45px;margin:0 auto var(--lead);background:r
 hr.pen{width:42%;height:1.5px;margin:calc(.5*var(--lead) - 1px) 0 calc(.5*var(--lead) - .5px);background:var(--verm)}
 /* The initial: the paragraph's first letter in a box of its own, and the words after it in small capitals. */
 .initial{float:left;color:var(--verm);--hue:0;letter-spacing:normal}
-p.first .initial{box-sizing:border-box;width:1em;height:1em;text-align:center;font:400 108px/88px "Rowanbeck Uncial",Georgia,serif;padding:12px 0 8px;margin:5px 13px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
+p.first .initial{box-sizing:border-box;width:1em;height:1em;text-align:center;font:400 120px/98px "Rowanbeck Uncial",Georgia,serif;padding:13px 0 9px;margin:5px 14px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
 .lead{font-family:"Stonebrook Roman",Georgia,serif;font-size:.8em;letter-spacing:.06em}
 /* A later passage opens with a smaller initial; the text ends with a tailpiece. */
 /* (red letters and blue by turns, as the pen draws them) */
-p.versal .initial{font:400 52px/46px "Rowanbeck Uncial",Georgia,serif;padding:4px 0 0;margin:2px 10px 0 0}
+p.versal .initial{font:400 58px/51px "Rowanbeck Uncial",Georgia,serif;padding:5px 0 0;margin:2px 11px 0 0}
 p.versal.b .initial{color:var(--azure);--hue:1}
 hr.tail{width:200px;height:124px;margin:0 auto;background:none}
 .notes{font-size:.78em;line-height:24px;margin-top:var(--lead)}
@@ -94,6 +106,34 @@ hr.tail{width:200px;height:124px;margin:0 auto;background:none}
 .notes ol{margin:0}
 .notes li{margin-bottom:12px;padding-left:2em;text-indent:-2em}
 .notes .mk{width:2em}
+.notes li:target{outline:1px solid #907353;outline-offset:4px}
+.inspect-ink,.end-tools,.lens-bar,.ink-lens{display:none}
+.inspect-short{display:none}
+@media screen{
+  html.can-inspect.reader-tools .end-tools{display:block;position:relative;z-index:1;text-align:center;height:0}
+  html.can-inspect.reader-tools .inspect-ink{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:2px 4px;border:0;background:transparent;color:var(--indigo);font:italic 17px/1.2 Georgia,serif;cursor:zoom-in}
+  .end-tools .inspect-ink{transform:translateY(14px)}
+  header .inspect-ink{position:absolute;right:0;top:-4px}
+  .inspect-ink::before{content:"";width:12px;height:12px;margin-right:4px;border:1.5px solid currentColor;border-radius:50%;background:linear-gradient(135deg,#fff6,transparent)}
+  .inspect-ink::after{content:"";position:absolute;width:7px;height:2px;margin:12px 0 0 11px;background:currentColor;transform:rotate(45deg);border-radius:2px}
+  .inspect-ink:focus-visible,.lens-bar button:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
+  .lens-bar:not([hidden]){position:fixed;z-index:5;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:14px;white-space:nowrap;padding:4px 5px 4px 14px;border:1px solid #917958;border-radius:24px;background:#f4ebd6;color:var(--ink);box-shadow:0 2px 8px #31231b44;font:14px Georgia,serif}
+  .lens-bar button{min-height:36px;color:var(--indigo);font:inherit;cursor:pointer;padding:0 12px;border:0;border-left:1px solid #ab997b;background:transparent}
+  .ink-lens:not([hidden]){position:fixed;z-index:4;left:0;top:0;display:block;width:clamp(150px,16vw,192px);aspect-ratio:1;box-sizing:border-box;border:5px solid #927749;border-radius:50%;box-shadow:inset 0 0 0 1px #534023,0 0 0 1px #514331,0 0 0 2px #dac397,2px 6px 13px #2d201b5c;overflow:hidden;touch-action:none;cursor:grab;background:var(--sheet)}
+  .ink-lens:active{cursor:grabbing}
+  .ink-lens canvas{display:block;width:100%;height:100%}
+}
+@media screen and (min-width:1000px){
+  .leaf.with-notes{--note-width:clamp(168px,16vw,218px);--note-gap:32px;padding-left:clamp(72px,8vw,112px);padding-right:calc(var(--note-gap) + var(--note-width) + 40px)}
+  .with-notes article{display:grid;grid-template-columns:100% var(--note-width);column-gap:var(--note-gap);align-items:start}
+  .with-notes article>:not(.notes){grid-column:1;grid-row:var(--note-row,auto) / span var(--note-span,1)}
+  .notes,.notes ol{display:contents}
+  .notes hr{display:none}
+  .notes li{grid-column:2;grid-row:var(--note-row);box-sizing:border-box;width:var(--note-width);padding-left:1.25em;text-indent:-1.25em;margin:0 0 15px;font:17px/22px "Stonebrook",Georgia,serif;overflow-wrap:anywhere}
+  .notes .mk{width:1.25em}
+  .with-notes article.placed-notes{display:block;padding-bottom:var(--note-overhang,0px)}
+  .placed-notes .notes li{position:absolute;left:calc(100% + var(--note-gap));top:var(--note-top,0px)}
+}
 /* Code is set as it stands, in type, beside the scribe's work rather than in it: the program draws no ink for it. */
 pre{margin:0 0 var(--lead);padding:6px 0 6px 1.1em;border-left:1.5px solid rgba(180,48,29,.5);overflow-x:auto;font:13.5px/20px ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--ink);white-space:pre;tab-size:4}
 pre code{font:inherit}
@@ -114,14 +154,20 @@ p.first.ink .initial{background:transparent;box-shadow:none}
 hr.ink{background:none}
 @media (max-width:700px){
 .scene.live .pool{display:none}
-:root{--lead:27px;--size:20px}
-.leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 20px 72px 26px;box-shadow:none}
-h1{font-size:31px}
-p.first .initial{font-size:82px;line-height:66px;padding:10px 0 6px;margin:5px 10px 0 0}
-p.versal .initial{font-size:46px;line-height:41px;padding:3px 0 0;margin:2px 9px 0 0}
+:root{--lead:30px;--size:22px}
+.leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 16px 76px 21px;box-shadow:none}
+h1{font-size:35px}
+p.first .initial{font-size:88px;line-height:71px;padding:11px 0 6px;margin:5px 11px 0 0}
+p.versal .initial{font-size:49px;line-height:44px;padding:3px 0 0;margin:2px 9px 0 0}
 pre{font-size:12px;line-height:18px;padding-left:.8em}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:370px){
+  header .inspect-label{display:none}
+  header .inspect-short{display:inline}
+  header .home{padding-right:80px}
+}
+@media print{.strips,.pool{display:none!important}.ink,.ink *{color:revert!important}.leaf{box-shadow:none;margin:0;padding:0}.notes li{break-inside:avoid}}
 </style>
 <script>
 function readNow() {
@@ -147,47 +193,50 @@ if (pageProgram) {
 </div>
 <div class="scene">
 <div class="pool" aria-hidden="true"></div>
-<main class="leaf" data-seed="2356597378" data-age="0.0050" data-ornaments="ornaments.bin" data-desk="/desk/">
+<main class="leaf with-notes" data-seed="2356597378" data-age="0.0050" data-ornaments="ornaments.bin" data-desk="/desk/">
 <article>
 <header>
 <p class="home"><a href="/">Elliot Bonneville</a></p>
 <p class="date"><time datetime="2026-06-06">The sixth of June, 2026</time></p>
 <h1>Programmers Aren't People</h1>
 <hr class="pen" aria-hidden="true">
-</header>
-<p class="first"><span class="lead"><span class="initial">I</span>n 1892 the</span> New York Times printed a small classified ad under the headline A Computer Wanted.<sup><a href="#n1" id="r1" role="doc-noteref" aria-label="Note 1">1</a></sup> The Naval Observatory had two openings. One paid a thousand dollars a year, the other fourteen hundred. To apply you sat a civil service exam in algebra, geometry, trigonometry, and astronomy.</p>
-<p>The computer they wanted to hire was a person.</p>
-<p>For about three hundred years that was the only thing the word meant. The earliest written use the OED can find is from 1613, where a writer praises a man as the truest computer of times and the best arithmetician that ever breathed.<sup><a href="#n2" id="r2" role="doc-noteref" aria-label="Note 2">2</a></sup> A computer was someone who computed, the way a baker bakes and a writer writes.</p>
-<p>It's one of those words English assembles by gluing <em>-er</em> onto a verb. The thing that does the verb. We build <em>printer</em> and <em>calculator</em> the same way, and those were people too once. A printer was a man who ran a press. A calculator was a person who worked sums, long before it was a thing on your desk and then a thing inside your phone.<sup><a href="#n3" id="r3" role="doc-noteref" aria-label="Note 3">3</a></sup> The suffix never specified <em>flesh</em>. It just pointed at whoever was doing the work.</p>
-<p>For most of those three centuries the work was done by people, sometimes in rooms full of them. When revolutionary France needed fresh logarithm tables, Gaspard de Prony organized a workforce of eighty or ninety computers, a good number of them hairdressers thrown out of work because the aristocrats whose hair they used to arrange had been sent to the guillotine.<sup><a href="#n4" id="r4" role="doc-noteref" aria-label="Note 4">4</a></sup> At Harvard in the 1880s the observatory hired women to catalog the heavens and called them computers. Williamina Fleming, Annie Jump Cannon, and Henrietta Leavitt mapped the structure of the sky for an hourly wage, under a director whose all-female staff got nicknamed Pickering's Harem.<sup><a href="#n5" id="r5" role="doc-noteref" aria-label="Note 5">5</a></sup></p>
-<p>At Langley, through the 1940s and 50s, the agency that became NASA ran whole rooms of women doing the arithmetic that put rockets in the air. Their job title, printed on the paycheck, was computer. Katherine Johnson was a computer. Dorothy Vaughan supervised a section of them.<sup><a href="#n6" id="r6" role="doc-noteref" aria-label="Note 6">6</a></sup> If you have seen <em>Hidden Figures</em>, you've already met them (though the film keeps having to explain the word, because by the time it reached theaters the word had been repossessed).</p>
-<p>In 1945, a machine called ENIAC switched on, and the people describing it needed a new noun. The answer was standing in front of them.<sup><a href="#n7" id="r7" role="doc-noteref" aria-label="Note 7">7</a></sup> Within two decades, &quot;computer&quot; meant a machine so completely that the older sense needed a footnote. The people didn't disappear. The word left them.</p>
-<p>There is a dreadful symmetry at play here, which, once I saw it, would not come out except by writing this post. The word didn't betray anyone. It did exactly what that kind of word does. &quot;Computer&quot; was never a description of a human being. It described an activity, with a person standing in as the thing that happened to perform it. The moment something else could perform it, the word slid over, because the word was only ever fastened to the function.</p>
-<p>I am – was? – a programmer.</p>
-<p>&quot;Programmer&quot; feels like a kind of person. It goes on business cards, mortgage applications. It's the quiet sketch you carry of yourself at two in the morning. It feels like a verb you earned the right to wear as a noun. I program, therefore I'm a programmer, therefore programmer is a thing a person can be.</p>
-<p>But etymologically, it is the identical word as computer. A verb with <em>-er</em> on the end. A tag English fastens to whatever happens to be doing the programming. It's not a fact about you. It's a slot, and you are standing in it. We treat it as a verb we perform and a career we are. It's neither. It's a noun, and nouns go wherever the work goes. They have throughout all of history.</p>
-<p>The women at Langley understood this before almost anyone. When the IBM machines arrived to take their job and their title, Dorothy Vaughan instead taught herself to program them out of a FORTRAN manual and taught the language to her team so they would still have work on the far side of the change.<sup><a href="#n8" id="r8" role="doc-noteref" aria-label="Note 8">8</a></sup> She watched the word get repossessed and climbed into the next word up. Computer became programmer. One rung higher on the same ladder.</p>
-<p>The trouble is that <em>it's still the same ladder</em>. And the thing that chased her up it is now standing on the rung she climbed to.</p>
-<p>I write code for a living. I'm good at it, and for most of my life that felt safe. Secure. It felt the way, I imagine, being a computer felt to a sharp young woman with a math degree in 1955. Lately I watch the machine do in a minute the thing I could have billed a morning for, and I can feel the word starting to loosen the way a tooth loosens well before you are willing to admit it's coming out. (Yes, my son just lost his first tooth, why do you ask? Ahem.)</p>
-<p>&quot;Computer&quot; sits in a museum case now with a little card explaining that it used to mean a person.</p>
-<p>I wonder what card they'll set next to &quot;programmer,&quot; and who will be around to read it.</p>
+<button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></header>
+<p class="first" style="--note-row:2;--note-span:1"><span class="lead"><span class="initial">I</span>n 1892 the</span> New York Times printed a small classified ad under the headline A Computer Wanted.<sup><a href="#n1" id="r1" role="doc-noteref" aria-label="Note 1">1</a></sup> The Naval Observatory had two openings. One paid a thousand dollars a year, the other fourteen hundred. To apply you sat a civil service exam in algebra, geometry, trigonometry, and astronomy.</p>
+<p style="--note-row:3;--note-span:1">The computer they wanted to hire was a person.</p>
+<p style="--note-row:4;--note-span:1">For about three hundred years that was the only thing the word meant. The earliest written use the OED can find is from 1613, where a writer praises a man as the truest computer of times and the best arithmetician that ever breathed.<sup><a href="#n2" id="r2" role="doc-noteref" aria-label="Note 2">2</a></sup> A computer was someone who computed, the way a baker bakes and a writer writes.</p>
+<p style="--note-row:5;--note-span:1">It's one of those words English assembles by gluing <em>-er</em> onto a verb. The thing that does the verb. We build <em>printer</em> and <em>calculator</em> the same way, and those were people too once. A printer was a man who ran a press. A calculator was a person who worked sums, long before it was a thing on your desk and then a thing inside your phone.<sup><a href="#n3" id="r3" role="doc-noteref" aria-label="Note 3">3</a></sup> The suffix never specified <em>flesh</em>. It just pointed at whoever was doing the work.</p>
+<p style="--note-row:6;--note-span:2">For most of those three centuries the work was done by people, sometimes in rooms full of them. When revolutionary France needed fresh logarithm tables, Gaspard de Prony organized a workforce of eighty or ninety computers, a good number of them hairdressers thrown out of work because the aristocrats whose hair they used to arrange had been sent to the guillotine.<sup><a href="#n4" id="r4" role="doc-noteref" aria-label="Note 4">4</a></sup> At Harvard in the 1880s the observatory hired women to catalog the heavens and called them computers. Williamina Fleming, Annie Jump Cannon, and Henrietta Leavitt mapped the structure of the sky for an hourly wage, under a director whose all-female staff got nicknamed Pickering's Harem.<sup><a href="#n5" id="r5" role="doc-noteref" aria-label="Note 5">5</a></sup></p>
+<p style="--note-row:8;--note-span:1">At Langley, through the 1940s and 50s, the agency that became NASA ran whole rooms of women doing the arithmetic that put rockets in the air. Their job title, printed on the paycheck, was computer. Katherine Johnson was a computer. Dorothy Vaughan supervised a section of them.<sup><a href="#n6" id="r6" role="doc-noteref" aria-label="Note 6">6</a></sup> If you have seen <em>Hidden Figures</em>, you've already met them (though the film keeps having to explain the word, because by the time it reached theaters the word had been repossessed).</p>
+<p style="--note-row:9;--note-span:1">In 1945, a machine called ENIAC switched on, and the people describing it needed a new noun. The answer was standing in front of them.<sup><a href="#n7" id="r7" role="doc-noteref" aria-label="Note 7">7</a></sup> Within two decades, &quot;computer&quot; meant a machine so completely that the older sense needed a footnote. The people didn't disappear. The word left them.</p>
+<p style="--note-row:10;--note-span:1">There is a dreadful symmetry at play here, which, once I saw it, would not come out except by writing this post. The word didn't betray anyone. It did exactly what that kind of word does. &quot;Computer&quot; was never a description of a human being. It described an activity, with a person standing in as the thing that happened to perform it. The moment something else could perform it, the word slid over, because the word was only ever fastened to the function.</p>
+<p style="--note-row:11;--note-span:1">I am – was? – a programmer.</p>
+<p style="--note-row:12;--note-span:1">&quot;Programmer&quot; feels like a kind of person. It goes on business cards, mortgage applications. It's the quiet sketch you carry of yourself at two in the morning. It feels like a verb you earned the right to wear as a noun. I program, therefore I'm a programmer, therefore programmer is a thing a person can be.</p>
+<p style="--note-row:13;--note-span:1">But etymologically, it is the identical word as computer. A verb with <em>-er</em> on the end. A tag English fastens to whatever happens to be doing the programming. It's not a fact about you. It's a slot, and you are standing in it. We treat it as a verb we perform and a career we are. It's neither. It's a noun, and nouns go wherever the work goes. They have throughout all of history.</p>
+<p style="--note-row:14;--note-span:1">The women at Langley understood this before almost anyone. When the IBM machines arrived to take their job and their title, Dorothy Vaughan instead taught herself to program them out of a FORTRAN manual and taught the language to her team so they would still have work on the far side of the change.<sup><a href="#n8" id="r8" role="doc-noteref" aria-label="Note 8">8</a></sup> She watched the word get repossessed and climbed into the next word up. Computer became programmer. One rung higher on the same ladder.</p>
+<p style="--note-row:15;--note-span:1">The trouble is that <em>it's still the same ladder</em>. And the thing that chased her up it is now standing on the rung she climbed to.</p>
+<p style="--note-row:16;--note-span:1">I write code for a living. I'm good at it, and for most of my life that felt safe. Secure. It felt the way, I imagine, being a computer felt to a sharp young woman with a math degree in 1955. Lately I watch the machine do in a minute the thing I could have billed a morning for, and I can feel the word starting to loosen the way a tooth loosens well before you are willing to admit it's coming out. (Yes, my son just lost his first tooth, why do you ask? Ahem.)</p>
+<p style="--note-row:17;--note-span:1">&quot;Computer&quot; sits in a museum case now with a little card explaining that it used to mean a person.</p>
+<p style="--note-row:18;--note-span:1">I wonder what card they'll set next to &quot;programmer,&quot; and who will be around to read it.</p>
 <hr class="tail" aria-hidden="true">
 <section class="notes" role="doc-endnotes" aria-label="Notes">
 <hr class="pen" aria-hidden="true">
 <ol role="list">
-<li id="n1"><a class="mk" href="#r1" role="doc-backlink" aria-label="Note 1, back to the text">1</a>&quot;A Computer Wanted,&quot; <em>The New York Times</em>, May 2, 1892 — a Naval Observatory listing for the Nautical Almanac Office. <a href="https://danwin.com/2013/02/the-first-mention-of-computer-in-the-new-york-times/">Reproduced and discussed here</a>.</li>
-<li id="n2"><a class="mk" href="#r2" role="doc-backlink" aria-label="Note 2, back to the text">2</a><a href="https://en.wikipedia.org/wiki/Computer_(occupation)">Wikipedia, &quot;Computer (occupation)&quot;</a>; <a href="https://www.wordorigins.org/big-list-entries/computer">Wordorigins, &quot;computer&quot;</a> (the 1613 Richard Brathwait citation, per the OED). See also David Alan Grier, <a href="https://press.princeton.edu/books/paperback/9780691133829/when-computers-were-human"><em>When Computers Were Human</em></a> (Princeton University Press, 2005).</li>
-<li id="n3"><a class="mk" href="#r3" role="doc-backlink" aria-label="Note 3, back to the text">3</a><a href="https://www.etymonline.com/word/calculator">Etymonline, &quot;calculator&quot;</a> (person, late 14c.; machine, 1784; electronic, 1946); <a href="https://www.etymonline.com/word/printer">Etymonline, &quot;printer&quot;</a> (person, c. 1500; device, 1859).</li>
-<li id="n4"><a class="mk" href="#r4" role="doc-backlink" aria-label="Note 4, back to the text">4</a><a href="https://en.wikipedia.org/wiki/Gaspard_de_Prony">Wikipedia, &quot;Gaspard de Prony&quot;</a>; the hairdresser detail traces to I. Grattan-Guinness, &quot;Work for the Hairdressers: The Production of de Prony's Logarithmic and Trigonometric Tables.&quot;</li>
-<li id="n5"><a class="mk" href="#r5" role="doc-backlink" aria-label="Note 5, back to the text">5</a><a href="https://en.wikipedia.org/wiki/Harvard_Computers">Wikipedia, &quot;Harvard Computers&quot;</a> (the group was nicknamed &quot;Pickering's Harem&quot;).</li>
-<li id="n6"><a class="mk" href="#r6" role="doc-backlink" aria-label="Note 6, back to the text">6</a><a href="https://airandspace.si.edu/stories/editorial/hidden-figures-and-human-computers">Smithsonian, &quot;Hidden Figures and the Human Computers&quot;</a>; <a href="https://en.wikipedia.org/wiki/West_Area_Computers">Wikipedia, &quot;West Area Computers&quot;</a>; <a href="https://www.nasa.gov/people/dorothy-vaughan/">NASA, &quot;Dorothy Vaughan&quot;</a>.</li>
-<li id="n7"><a class="mk" href="#r7" role="doc-backlink" aria-label="Note 7, back to the text">7</a><a href="https://www.etymonline.com/word/computer">Etymonline, &quot;computer&quot;</a> (machine sense, late 1800s; electronic device, 1945); <a href="https://en.wikipedia.org/wiki/ENIAC">Wikipedia, &quot;ENIAC&quot;</a>.</li>
-<li id="n8"><a class="mk" href="#r8" role="doc-backlink" aria-label="Note 8, back to the text">8</a><a href="https://www.nasa.gov/people/dorothy-vaughan/">NASA, &quot;Dorothy Vaughan&quot;</a> (an &quot;expert FORTRAN programmer&quot;); <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Wikipedia, &quot;Dorothy Vaughan&quot;</a> (taught herself FORTRAN and taught it to her team).</li>
+<li id="n1" style="--note-row:2" tabindex="-1"><a class="mk" href="#r1" role="doc-backlink" aria-label="Note 1, back to the text">1</a>&quot;A Computer Wanted,&quot; <em>The New York Times</em>, May 2, 1892 — a Naval Observatory listing for the Nautical Almanac Office. <a href="https://danwin.com/2013/02/the-first-mention-of-computer-in-the-new-york-times/">Reproduced and discussed here</a>.</li>
+<li id="n2" style="--note-row:4" tabindex="-1"><a class="mk" href="#r2" role="doc-backlink" aria-label="Note 2, back to the text">2</a><a href="https://en.wikipedia.org/wiki/Computer_(occupation)">Wikipedia, &quot;Computer (occupation)&quot;</a>; <a href="https://www.wordorigins.org/big-list-entries/computer">Wordorigins, &quot;computer&quot;</a> (the 1613 Richard Brathwait citation, per the OED). See also David Alan Grier, <a href="https://press.princeton.edu/books/paperback/9780691133829/when-computers-were-human"><em>When Computers Were Human</em></a> (Princeton University Press, 2005).</li>
+<li id="n3" style="--note-row:5" tabindex="-1"><a class="mk" href="#r3" role="doc-backlink" aria-label="Note 3, back to the text">3</a><a href="https://www.etymonline.com/word/calculator">Etymonline, &quot;calculator&quot;</a> (person, late 14c.; machine, 1784; electronic, 1946); <a href="https://www.etymonline.com/word/printer">Etymonline, &quot;printer&quot;</a> (person, c. 1500; device, 1859).</li>
+<li id="n4" style="--note-row:6" tabindex="-1"><a class="mk" href="#r4" role="doc-backlink" aria-label="Note 4, back to the text">4</a><a href="https://en.wikipedia.org/wiki/Gaspard_de_Prony">Wikipedia, &quot;Gaspard de Prony&quot;</a>; the hairdresser detail traces to I. Grattan-Guinness, &quot;Work for the Hairdressers: The Production of de Prony's Logarithmic and Trigonometric Tables.&quot;</li>
+<li id="n5" style="--note-row:7" tabindex="-1"><a class="mk" href="#r5" role="doc-backlink" aria-label="Note 5, back to the text">5</a><a href="https://en.wikipedia.org/wiki/Harvard_Computers">Wikipedia, &quot;Harvard Computers&quot;</a> (the group was nicknamed &quot;Pickering's Harem&quot;).</li>
+<li id="n6" style="--note-row:8" tabindex="-1"><a class="mk" href="#r6" role="doc-backlink" aria-label="Note 6, back to the text">6</a><a href="https://airandspace.si.edu/stories/editorial/hidden-figures-and-human-computers">Smithsonian, &quot;Hidden Figures and the Human Computers&quot;</a>; <a href="https://en.wikipedia.org/wiki/West_Area_Computers">Wikipedia, &quot;West Area Computers&quot;</a>; <a href="https://www.nasa.gov/people/dorothy-vaughan/">NASA, &quot;Dorothy Vaughan&quot;</a>.</li>
+<li id="n7" style="--note-row:9" tabindex="-1"><a class="mk" href="#r7" role="doc-backlink" aria-label="Note 7, back to the text">7</a><a href="https://www.etymonline.com/word/computer">Etymonline, &quot;computer&quot;</a> (machine sense, late 1800s; electronic device, 1945); <a href="https://en.wikipedia.org/wiki/ENIAC">Wikipedia, &quot;ENIAC&quot;</a>.</li>
+<li id="n8" style="--note-row:14" tabindex="-1"><a class="mk" href="#r8" role="doc-backlink" aria-label="Note 8, back to the text">8</a><a href="https://www.nasa.gov/people/dorothy-vaughan/">NASA, &quot;Dorothy Vaughan&quot;</a> (an &quot;expert FORTRAN programmer&quot;); <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Wikipedia, &quot;Dorothy Vaughan&quot;</a> (taught herself FORTRAN and taught it to her team).</li>
 </ol>
 </section>
 </article>
+<div class="end-tools"><button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></div>
 </main>
 </div>
+<div class="ink-lens" id="manuscript-lens" aria-hidden="true" hidden><canvas width="0" height="0"></canvas></div>
+<div class="lens-bar" hidden><span>Drag or use arrow keys</span><button type="button" aria-label="Close ink loupe">Close</button></div>
 <script type="text/plain" id="desk-list"># The desk, baked: one period of it in tiles of four pictures. crates/wood/src/tiles.rs says what the lines mean, desk.glsl how the pictures are lit.
 desk 1
 period 8218

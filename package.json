@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "build": "node bin/build.js",
+    "cards": "node bin/share-cards.mjs",
     "dev": "node bin/watch.js",
     "deploy": "./bin/deploy.sh"
   },
   "devDependencies": {
     "marked": "^12.0.0",
+    "playwright-core": "1.62.1",
     "prismjs": "^1.29.0"
   },
   "dependencies": {

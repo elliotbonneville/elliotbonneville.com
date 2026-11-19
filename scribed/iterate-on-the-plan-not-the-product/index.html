@@ -13,15 +13,26 @@
 <meta property="og:site_name" content="Elliot Bonneville">
 <meta property="article:published_time" content="2026-03-15">
 <meta name="theme-color" content="#30241a">
+<meta property="og:image" content="https://elliotbonneville.com/iterate-on-the-plan-not-the-product/share.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Iterate on the Plan, Not the Product in manuscript lettering with an illuminated opening initial on vellum, framed by a wooden desk.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Iterate on the Plan, Not the Product">
+<meta name="twitter:description" content="The first draft an LLM produces is more internally consistent than what you end up with after iterating on it. The fix belongs in the spec, not the artifact.">
+<meta name="twitter:image" content="https://elliotbonneville.com/iterate-on-the-plan-not-the-product/share.jpg">
+<meta name="twitter:image:alt" content="Iterate on the Plan, Not the Product in manuscript lettering with an illuminated opening initial on vellum, framed by a wooden desk.">
 <link rel="alternate" type="application/rss+xml" title="Elliot Bonneville" href="/rss.xml">
 <link rel="preload" href="/fonts/StonebrookQuill-Plain.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="modulepreload" href="/pkg/page.js">
+<script defer src="/pkg/reader.js"></script>
 <style>
 @font-face{font-family:"Stonebrook";src:url(/fonts/StonebrookQuill-Plain.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Stonebrook";font-style:italic;src:url(/fonts/StonebrookQuill-Italic.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Stonebrook Roman";src:url(/fonts/StonebrookQuill-Roman.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Rowanbeck Uncial";src:url(/fonts/RowanbeckReed-Uncial.woff2) format("woff2");font-display:swap}
-:root{--lead:30px;--size:22px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
+:root{--lead:34px;--size:25px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
 html{background:var(--desk);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0}
 .page-opening{display:none}
@@ -54,12 +65,12 @@ html.opening .page-opening{position:fixed;inset:0;z-index:2;display:grid;align-c
 .pool{display:none}
 .scene.live .pool{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply;background:radial-gradient(150% 140% at 18% 4%,#fff 0%,rgb(224,204,189) 30%,rgb(204,178,158) 62%,rgb(184,153,133) 100%)}
 /* The leaf's own box is the sheet's nominal rectangle; --over is how far the sheet runs on past it at the sides. */
-.leaf{--over:0px;max-width:554px;margin:44px auto;padding:72px 84px 120px 122px;background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
+.leaf{--over:0px;max-width:630px;margin:44px auto;padding:78px clamp(44px,8vw,96px) 136px clamp(58px,11vw,138px);background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
 article{position:relative;z-index:1;font:var(--size)/var(--lead) "Stonebrook",Georgia,serif;color:var(--ink);overflow-wrap:break-word}
 ::selection{background:rgba(180,48,29,.22)}
-header{margin:0}
+header{position:relative;margin:0}
 .date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
-h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
+h1{font:400 45px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
 p{margin:0 0 var(--lead)}
 h2,h3,h4{position:relative;font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
 .hd{color:inherit;--hue:inherit}
@@ -72,7 +83,8 @@ a{color:var(--indigo);--hue:1;text-decoration:none}
 a:focus-visible{outline:1.5px solid var(--indigo);outline-offset:3px;border-radius:2px}
 sup{line-height:0;font-size:.62em}
 sup a{color:var(--verm);--hue:0;padding:0 1px}
-blockquote{margin:0 0 var(--lead) 1.6em;font-style:italic}
+blockquote{position:relative;margin:0 0 var(--lead) 1.5em;font-style:italic}
+.quote-rule{position:absolute;left:-.77em;top:.22em;bottom:.22em;width:2px;background:var(--verm);opacity:.74;clip-path:polygon(40% 0,100% 1%,70% 56%,95% 98%,25% 100%,0 97%,18% 45%,0 2%)}
 blockquote em{font-style:normal}
 ol,ul{margin:0 0 var(--lead);padding:0;list-style:none}
 li{padding-left:1.7em;text-indent:-1.7em}
@@ -82,11 +94,11 @@ hr{border:0;height:var(--lead);width:45px;margin:0 auto var(--lead);background:r
 hr.pen{width:42%;height:1.5px;margin:calc(.5*var(--lead) - 1px) 0 calc(.5*var(--lead) - .5px);background:var(--verm)}
 /* The initial: the paragraph's first letter in a box of its own, and the words after it in small capitals. */
 .initial{float:left;color:var(--verm);--hue:0;letter-spacing:normal}
-p.first .initial{box-sizing:border-box;width:1em;height:1em;text-align:center;font:400 108px/88px "Rowanbeck Uncial",Georgia,serif;padding:12px 0 8px;margin:5px 13px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
+p.first .initial{box-sizing:border-box;width:1em;height:1em;text-align:center;font:400 120px/98px "Rowanbeck Uncial",Georgia,serif;padding:13px 0 9px;margin:5px 14px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
 .lead{font-family:"Stonebrook Roman",Georgia,serif;font-size:.8em;letter-spacing:.06em}
 /* A later passage opens with a smaller initial; the text ends with a tailpiece. */
 /* (red letters and blue by turns, as the pen draws them) */
-p.versal .initial{font:400 52px/46px "Rowanbeck Uncial",Georgia,serif;padding:4px 0 0;margin:2px 10px 0 0}
+p.versal .initial{font:400 58px/51px "Rowanbeck Uncial",Georgia,serif;padding:5px 0 0;margin:2px 11px 0 0}
 p.versal.b .initial{color:var(--azure);--hue:1}
 hr.tail{width:200px;height:124px;margin:0 auto;background:none}
 .notes{font-size:.78em;line-height:24px;margin-top:var(--lead)}
@@ -94,6 +106,34 @@ hr.tail{width:200px;height:124px;margin:0 auto;background:none}
 .notes ol{margin:0}
 .notes li{margin-bottom:12px;padding-left:2em;text-indent:-2em}
 .notes .mk{width:2em}
+.notes li:target{outline:1px solid #907353;outline-offset:4px}
+.inspect-ink,.end-tools,.lens-bar,.ink-lens{display:none}
+.inspect-short{display:none}
+@media screen{
+  html.can-inspect.reader-tools .end-tools{display:block;position:relative;z-index:1;text-align:center;height:0}
+  html.can-inspect.reader-tools .inspect-ink{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:2px 4px;border:0;background:transparent;color:var(--indigo);font:italic 17px/1.2 Georgia,serif;cursor:zoom-in}
+  .end-tools .inspect-ink{transform:translateY(14px)}
+  header .inspect-ink{position:absolute;right:0;top:-4px}
+  .inspect-ink::before{content:"";width:12px;height:12px;margin-right:4px;border:1.5px solid currentColor;border-radius:50%;background:linear-gradient(135deg,#fff6,transparent)}
+  .inspect-ink::after{content:"";position:absolute;width:7px;height:2px;margin:12px 0 0 11px;background:currentColor;transform:rotate(45deg);border-radius:2px}
+  .inspect-ink:focus-visible,.lens-bar button:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
+  .lens-bar:not([hidden]){position:fixed;z-index:5;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:14px;white-space:nowrap;padding:4px 5px 4px 14px;border:1px solid #917958;border-radius:24px;background:#f4ebd6;color:var(--ink);box-shadow:0 2px 8px #31231b44;font:14px Georgia,serif}
+  .lens-bar button{min-height:36px;color:var(--indigo);font:inherit;cursor:pointer;padding:0 12px;border:0;border-left:1px solid #ab997b;background:transparent}
+  .ink-lens:not([hidden]){position:fixed;z-index:4;left:0;top:0;display:block;width:clamp(150px,16vw,192px);aspect-ratio:1;box-sizing:border-box;border:5px solid #927749;border-radius:50%;box-shadow:inset 0 0 0 1px #534023,0 0 0 1px #514331,0 0 0 2px #dac397,2px 6px 13px #2d201b5c;overflow:hidden;touch-action:none;cursor:grab;background:var(--sheet)}
+  .ink-lens:active{cursor:grabbing}
+  .ink-lens canvas{display:block;width:100%;height:100%}
+}
+@media screen and (min-width:1000px){
+  .leaf.with-notes{--note-width:clamp(168px,16vw,218px);--note-gap:32px;padding-left:clamp(72px,8vw,112px);padding-right:calc(var(--note-gap) + var(--note-width) + 40px)}
+  .with-notes article{display:grid;grid-template-columns:100% var(--note-width);column-gap:var(--note-gap);align-items:start}
+  .with-notes article>:not(.notes){grid-column:1;grid-row:var(--note-row,auto) / span var(--note-span,1)}
+  .notes,.notes ol{display:contents}
+  .notes hr{display:none}
+  .notes li{grid-column:2;grid-row:var(--note-row);box-sizing:border-box;width:var(--note-width);padding-left:1.25em;text-indent:-1.25em;margin:0 0 15px;font:17px/22px "Stonebrook",Georgia,serif;overflow-wrap:anywhere}
+  .notes .mk{width:1.25em}
+  .with-notes article.placed-notes{display:block;padding-bottom:var(--note-overhang,0px)}
+  .placed-notes .notes li{position:absolute;left:calc(100% + var(--note-gap));top:var(--note-top,0px)}
+}
 /* Code is set as it stands, in type, beside the scribe's work rather than in it: the program draws no ink for it. */
 pre{margin:0 0 var(--lead);padding:6px 0 6px 1.1em;border-left:1.5px solid rgba(180,48,29,.5);overflow-x:auto;font:13.5px/20px ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--ink);white-space:pre;tab-size:4}
 pre code{font:inherit}
@@ -114,14 +154,20 @@ p.first.ink .initial{background:transparent;box-shadow:none}
 hr.ink{background:none}
 @media (max-width:700px){
 .scene.live .pool{display:none}
-:root{--lead:27px;--size:20px}
-.leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 20px 72px 26px;box-shadow:none}
-h1{font-size:31px}
-p.first .initial{font-size:82px;line-height:66px;padding:10px 0 6px;margin:5px 10px 0 0}
-p.versal .initial{font-size:46px;line-height:41px;padding:3px 0 0;margin:2px 9px 0 0}
+:root{--lead:30px;--size:22px}
+.leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 16px 76px 21px;box-shadow:none}
+h1{font-size:35px}
+p.first .initial{font-size:88px;line-height:71px;padding:11px 0 6px;margin:5px 11px 0 0}
+p.versal .initial{font-size:49px;line-height:44px;padding:3px 0 0;margin:2px 9px 0 0}
 pre{font-size:12px;line-height:18px;padding-left:.8em}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:370px){
+  header .inspect-label{display:none}
+  header .inspect-short{display:inline}
+  header .home{padding-right:80px}
+}
+@media print{.strips,.pool{display:none!important}.ink,.ink *{color:revert!important}.leaf{box-shadow:none;margin:0;padding:0}.notes li{break-inside:avoid}}
 </style>
 <script>
 function readNow() {
@@ -154,7 +200,7 @@ if (pageProgram) {
 <p class="date"><time datetime="2026-03-15">The fifteenth of March, 2026</time></p>
 <h1>Iterate on the Plan, Not the Product</h1>
 <hr class="pen" aria-hidden="true">
-</header>
+<button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></header>
 <p class="first"><span class="lead"><span class="initial">T</span>he first draft</span> of something an LLM produces is often more internally consistent than what I end up with after pushing and pulling ideas into and out of the product — whether a blog post, a game, a website, or something else. The initial un-tainted output from the model before I ask it to produce anything is better than what I find myself with after a bunch of iterating on that first output.</p>
 <p>The model is good at turning a vision into something coherent, but once you start futzing with the output you lack the context the model had during generation and end up breaking things. The model held the whole design in its head at once. I'm patching it locally, one edit at a time, without that holistic view.</p>
 <p>The better workflow: iterate on the <em>plan</em>, not the <em>artifact</em>. Stay at the 10,000-foot level. When I notice something wrong with the output, most of the time it's me realizing a constraint on the design — not a defect in the execution. The right move is to update the spec and regenerate, not to surgically fix the artifact. The initial generation step feels expensive, so it feels easier to iterate on the output instead, but that's not strictly true in the long run. The accumulated cost of patching a coherent artifact into incoherence is higher than regenerating from a better plan.</p>
@@ -163,8 +209,11 @@ if (pageProgram) {
 <p>The right workflow is closer to &quot;spec, generate, evaluate, revise spec, regenerate&quot; than &quot;generate, edit, edit, edit.&quot; The sunk cost of the first generation is a trap. Regeneration from a better plan is almost always cheaper than patching.</p>
 <hr class="tail" aria-hidden="true">
 </article>
+<div class="end-tools"><button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></div>
 </main>
 </div>
+<div class="ink-lens" id="manuscript-lens" aria-hidden="true" hidden><canvas width="0" height="0"></canvas></div>
+<div class="lens-bar" hidden><span>Drag or use arrow keys</span><button type="button" aria-label="Close ink loupe">Close</button></div>
 <script type="text/plain" id="desk-list"># The desk, baked: one period of it in tiles of four pictures. crates/wood/src/tiles.rs says what the lines mean, desk.glsl how the pictures are lit.
 desk 1
 period 8218

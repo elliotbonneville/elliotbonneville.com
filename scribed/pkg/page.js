@@ -72,6 +72,19 @@ export function desk_stats() {
 }
 
 /**
+ * Draw the same ink and paper again at the magnification of a physical loupe.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} x
+ * @param {number} y
+ * @param {number} span
+ * @returns {boolean}
+ */
+export function inspect_ink(ctx, x, y, span) {
+    const ret = wasm.inspect_ink(ctx, x, y, span);
+    return ret !== 0;
+}
+
+/**
  * For checking that no penwork lies on the writing: read the whole page's
  * words, and say where each of the pen's drawings stands (its kind, and its
  * box in the scene: left, top, right, bottom).
@@ -200,6 +213,10 @@ function __wbg_get_imports() {
             const ret = arg0.call(arg1, arg2, arg3);
             return ret;
         }, arguments); },
+        __wbg_canvas_43beb1d6fd797313: function(arg0) {
+            const ret = arg0.canvas;
+            return isLikeNone(ret) ? 0 : addToExternrefTable0(ret);
+        },
         __wbg_childNodes_4a28c927bffc821b: function(arg0) {
             const ret = arg0.childNodes;
             return ret;
@@ -630,10 +647,6 @@ function __wbg_get_imports() {
         __wbg_pixelStorei_6dd56b4da047c480: function(arg0, arg1, arg2) {
             arg0.pixelStorei(arg1 >>> 0, arg2);
         },
-        __wbg_previousElementSibling_29f2c318b9a10c1f: function(arg0) {
-            const ret = arg0.previousElementSibling;
-            return isLikeNone(ret) ? 0 : addToExternrefTable0(ret);
-        },
         __wbg_prototypesetcall_13162965d1fe7aa3: function(arg0, arg1, arg2) {
             Uint8Array.prototype.set.call(getArrayU8FromWasm0(arg0, arg1), arg2);
         },
@@ -879,12 +892,12 @@ function __wbg_get_imports() {
             return ret;
         },
         __wbindgen_generic_0000000000000001: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 15, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 16, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
             const ret = makeMutClosure(arg0, arg1, wasm_bindgen_121c56c349916178___convert__closures_____invoke___wasm_bindgen_121c56c349916178___JsValue______true_);
             return ret;
         },
         __wbindgen_generic_0000000000000002: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [], shim_idx: 14, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [], shim_idx: 15, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
             const ret = makeMutClosure(arg0, arg1, wasm_bindgen_121c56c349916178___convert__closures_____invoke_______true_);
             return ret;
         },

@@ -4,6 +4,7 @@ import { Marked } from 'marked';
 import markedFootnote from 'marked-footnote';
 import Prism from 'prismjs';
 import { config } from '../config.js';
+import { renderShareCards } from './share-cards.mjs';
 
 // Import language support for syntax highlighting
 import 'prismjs/components/prism-javascript.js';
@@ -127,8 +128,19 @@ function generateAnalytics() {
 </script>`;
 }
 
-// Main build function
-function build() {
+function socialMeta(title, description, slug) {
+  const escape = value => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const url = new URL(slug ? `/${slug}/` : '/', config.site.url);
+  const image = new URL('share.jpg', url).href;
+  const alt = `${title} in manuscript lettering with an opening drop cap on vellum, framed by a wooden desk.`;
+  const og = {type: slug ? 'article' : 'website', site_name: config.site.name, title, description, url: url.href,
+    image, 'image:type': 'image/jpeg', 'image:width': '1200', 'image:height': '630', 'image:alt': alt};
+  const card = {card: 'summary_large_image', title, description, image, 'image:alt': alt};
+  return [...Object.entries(og).map(([key,value]) => `<meta property="og:${key}" content="${escape(value)}">`),
+    ...Object.entries(card).map(([key,value]) => `<meta name="twitter:${key}" content="${escape(value)}">`)].join('\n  ');
+}
+
+async function build() {
   // Read templates and CSS
   const template = readFileSync('src/template.html', 'utf8');
   const indexTemplate = readFileSync('src/index-template.html', 'utf8');
@@ -179,6 +191,7 @@ function build() {
     
     // Generate individual post HTML
     const postHtml = template
+      .replace('{{socialMeta}}', () => socialMeta(post.title, post.description, slug))
       .replace(/\{\{title\}\}/g, post.title)
       .replace(/\{\{siteName\}\}/g, config.site.name)
       .replace(/\{\{description\}\}/g, post.description)
@@ -211,6 +224,7 @@ function build() {
     </div>`).join('');
   
   const indexHtml = indexTemplate
+    .replace('{{socialMeta}}', () => socialMeta(config.site.name, config.site.description, ''))
     .replace(/\{\{siteName\}\}/g, config.site.name)
     .replace(/\{\{siteDescription\}\}/g, config.site.description)
     .replace(/\{\{posts\}\}/g, postsList)
@@ -240,9 +254,10 @@ function build() {
     cpSync('scribed', 'public', { recursive: true });
     console.log('Copied: scribed/ (the hand-written site)');
   }
+  await renderShareCards('public', ['', ...posts.map(post => post.slug)], true);
 
   console.log(`\nBuild complete! Generated ${posts.length} posts.`);
 }
 
 // Run the build
-build();
+await build();
