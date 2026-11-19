@@ -4,6 +4,28 @@ import { extname } from 'node:path';
 import test from 'node:test';
 import { chromium } from 'playwright-core';
 
+async function openManuscript(page, slug) {
+  const root = new URL('../scribed/', import.meta.url);
+  const types = {'.html':'text/html','.js':'text/javascript','.wasm':'application/wasm',
+    '.woff2':'font/woff2','.ttf':'font/ttf'};
+  await page.route('**/*', async route => {
+    const url = new URL(route.request().url());
+    if (url.origin !== 'https://loupe.test') return route.abort();
+    const name = url.pathname.slice(1) + (url.pathname.endsWith('/') ? 'index.html' : '');
+    let body;
+    try {
+      body = await readFile(new URL(name,root));
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+      return route.fulfill({status:404});
+    }
+    await route.fulfill({body, contentType:types[extname(name)] || 'application/octet-stream'});
+  });
+  await page.goto(`https://loupe.test/${slug}/?desk=off`);
+  await page.waitForFunction(() => document.querySelector('.first.ink') &&
+    document.documentElement.classList.contains('can-inspect'), null, {timeout:60000});
+}
+
 test('the loupe bends a straight line at the rim and separates its colors off axis', async () => {
   const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
   try {
@@ -65,19 +87,7 @@ test('moving the loupe preserves the red I on the rendering-engine post', async 
   const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
   try {
     const page = await browser.newPage({viewport:{width:390,height:844}, deviceScaleFactor:2});
-    const root = new URL('../scribed/', import.meta.url);
-    const types = {'.html':'text/html','.js':'text/javascript','.wasm':'application/wasm',
-      '.woff2':'font/woff2','.ttf':'font/ttf'};
-    await page.route('**/*', async route => {
-      const url = new URL(route.request().url());
-      if (url.origin !== 'https://loupe.test') return route.abort();
-      const name = url.pathname.slice(1) + (url.pathname.endsWith('/') ? 'index.html' : '');
-      await route.fulfill({body:await readFile(new URL(name,root)),
-        contentType:types[extname(name)] || 'application/octet-stream'});
-    });
-    await page.goto('https://loupe.test/a-rendering-engine-that-happens-to-have-text/?desk=off');
-    await page.waitForFunction(() => document.querySelector('.first.ink') &&
-      document.documentElement.classList.contains('can-inspect'), null, {timeout:60000});
+    await openManuscript(page, 'a-rendering-engine-that-happens-to-have-text');
     const result = await page.evaluate(() => {
       const cap = document.querySelector('.first .initial').getBoundingClientRect();
       const x = cap.left + cap.width/2, y = cap.top + cap.height/2;
@@ -102,6 +112,52 @@ test('moving the loupe preserves the red I on the rendering-engine post', async 
     });
     assert.ok(result.red > 1000);
     assert.equal(result.changed, 0, 'moving the lens must sample the same pigment at a given spot');
+  } finally {
+    await browser.close();
+  }
+});
+
+test('the illuminated P keeps its blue pigment right up to the red curl', async () => {
+  const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
+  try {
+    const page = await browser.newPage({viewport:{width:1080,height:850}});
+    await openManuscript(page, 'the-only-moat-left-is-money');
+    const cap = page.locator('p.versal .initial').filter({hasText:/^P$/}).first();
+    await cap.evaluate(el => el.scrollIntoView({block:'center', behavior:'instant'}));
+    const painted = page.locator('p.versal.ink .initial').filter({hasText:/^P$/}).first();
+    const sample = await painted.evaluate(el => {
+      const box = el.getBoundingClientRect();
+      const size = 504;
+      const canvas = document.createElement('canvas');
+      canvas.width = canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      if (!scriptorium.inspect_ink(ctx, box.x + box.width/2, box.y + box.height/2, box.height * 1.38)) {
+        throw Error('The illuminated P did not render');
+      }
+      const pixels = ctx.getImageData(0, 0, size, size).data;
+      const blue = (x, y) => {
+        const i = 4 * (y * size + x);
+        return pixels[i + 2] - pixels[i];
+      };
+      // Locate the right edge of the stem in the gap between its two red curls.
+      let edge = size / 2;
+      while (edge > 0 && blue(edge, 348) < 55) edge--;
+      if (!edge) throw Error('Blue stem missing from loupe sample');
+
+      // Compare the paint at the join with paint deeper in the same stroke.
+      const core = [], join = [];
+      let red = 0;
+      for (let y = 295; y < 312; y++) {
+        for (let x = edge - 25; x < edge - 15; x++) core.push(blue(x, y));
+        for (let x = edge - 8; x < edge - 2; x++) join.push(blue(x, y));
+        for (let x = edge + 3; x < edge + 55; x++) if (blue(x, y) < -70) red++;
+      }
+      const median = values => values.sort((a, b) => a - b)[Math.floor(values.length / 2)];
+      return {core:median(core), join:median(join), red};
+    });
+    assert.ok(sample.core > 70 && sample.red > 70, 'both blue paint and the fine red curl must be visible');
+    assert.ok(sample.join > 0.85 * sample.core,
+      `blue beside the curl fell to ${sample.join} from ${sample.core} inside the stem`);
   } finally {
     await browser.close();
   }
