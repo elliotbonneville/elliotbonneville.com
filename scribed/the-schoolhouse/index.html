@@ -64,12 +64,13 @@ li{padding-left:1.7em;text-indent:-1.7em}
 hr{border:0;height:var(--lead);width:45px;margin:0 auto var(--lead);background:radial-gradient(circle,var(--verm) 0 1.2px,transparent 1.8px) 50% 50%/15px 100% repeat-x}
 hr.pen{width:42%;height:1.5px;margin:calc(.5*var(--lead) - 1px) 0 calc(.5*var(--lead) - .5px);background:var(--verm)}
 /* The initial: the paragraph's first letter in a box of its own, and the words after it in small capitals. */
-p.first::first-letter{float:left;font:400 108px/88px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:12px var(--ipad,14px) 8px;margin:5px 13px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
+.initial{float:left;color:var(--verm);--hue:0;letter-spacing:normal}
+p.first .initial{box-sizing:border-box;width:1em;height:1em;text-align:center;font:400 108px/88px "Rowanbeck Uncial",Georgia,serif;padding:12px 0 8px;margin:5px 13px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
 .lead{font-family:"Stonebrook Roman",Georgia,serif;font-size:.8em;letter-spacing:.06em}
 /* A later passage opens with a smaller initial; the text ends with a tailpiece. */
 /* (red letters and blue by turns, as the pen draws them) */
-p.versal::first-letter{float:left;font:400 52px/46px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:4px 0 0;margin:2px 10px 0 0}
-p.versal.b::first-letter{color:var(--azure)}
+p.versal .initial{font:400 52px/46px "Rowanbeck Uncial",Georgia,serif;padding:4px 0 0;margin:2px 10px 0 0}
+p.versal.b .initial{color:var(--azure);--hue:1}
 hr.tail{width:200px;height:124px;margin:0 auto;background:none}
 .notes{font-size:.78em;line-height:24px;margin-top:var(--lead)}
 .notes hr.pen{width:24%;margin:0 0 var(--lead)}
@@ -92,16 +93,15 @@ pre code{font:inherit}
 /* Where the program has drawn the ink, the page's own text steps back: still there to select, search and follow. */
 .ink,.ink *{color:transparent!important}
 .ink::selection,.ink *::selection{color:transparent;background:rgba(180,48,29,.22)}
-p.first.ink::first-letter{color:transparent;background:transparent;box-shadow:none}
-p.versal.ink::first-letter{color:transparent}
+p.first.ink .initial{background:transparent;box-shadow:none}
 hr.ink{background:none}
 @media (max-width:700px){
 .scene.live .pool{display:none}
 :root{--lead:27px;--size:20px}
 .leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 20px 72px 26px;box-shadow:none}
 h1{font-size:31px}
-p.first::first-letter{font-size:82px;line-height:66px;padding:10px var(--ipad,11px) 6px;margin:5px 10px 0 0}
-p.versal::first-letter{font-size:46px;line-height:41px;padding:3px 0 0;margin:2px 9px 0 0}
+p.first .initial{font-size:82px;line-height:66px;padding:10px 0 6px;margin:5px 10px 0 0}
+p.versal .initial{font-size:46px;line-height:41px;padding:3px 0 0;margin:2px 9px 0 0}
 pre{font-size:12px;line-height:18px;padding-left:.8em}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -120,12 +120,12 @@ pre{font-size:12px;line-height:18px;padding-left:.8em}
 <h1>The Schoolhouse</h1>
 <hr class="pen" aria-hidden="true">
 </header>
-<p class="first"><span class="lead">There's a small</span> white building at the end of a road in southern Rhode Island. It's a one-room schoolhouse. It was in use for something close to two hundred years. Now it just sits there, paint peeling a little, looking like the kind of thing you'd put on a postcard if you wanted people to feel nostalgic about New England.</p>
+<p class="first"><span class="lead"><span class="initial">T</span>here's a small</span> white building at the end of a road in southern Rhode Island. It's a one-room schoolhouse. It was in use for something close to two hundred years. Now it just sits there, paint peeling a little, looking like the kind of thing you'd put on a postcard if you wanted people to feel nostalgic about New England.</p>
 <p>I drive past it most days and don't think about it. But my oldest is about to turn six, and now I find myself thinking about it constantly.</p>
 <p>My wife and I were both homeschooled. We turned out fine. Better than fine, honestly. We came out literate, curious, and capable of teaching ourselves whatever we needed. We plan to homeschool our own kids. That decision was made a long time ago, and I always figured it was a personal preference, maybe a little countercultural, maybe a little eccentric. I didn't think there was much more to say about it.</p>
 <p>But I've been pulling threads lately. And what I keep finding underneath is worse than I expected.</p>
 <hr>
-<p class="versal b">Start with the word itself.</p>
+<p class="versal b"><span class="initial">S</span>tart with the word itself.</p>
 <p>&quot;School&quot; comes from the Greek <em>schole</em>.<sup><a href="#n1" id="r1" role="doc-noteref" aria-label="Note 1">1</a></sup> It meant leisure. Not laziness, not summer vacation. Leisure in the old sense: free time devoted to thinking for its own sake. Unhurried contemplation. Learning because you wanted to, not because someone made you. The Greeks considered it the highest use of a person's time. Their word for work was <em>ascholia</em>, literally &quot;not-leisure.&quot; Work was defined by the absence of the good thing, not the other way around.</p>
 <p>And &quot;liberal&quot; in &quot;liberal arts&quot; comes from <em>liber</em>, meaning free. A liberal education was the education of a free person. Not vocational training. Not job preparation. The formation of a mind.</p>
 <p>The classical model had two stages. The trivium came first: grammar, logic, rhetoric. Grammar teaches you the structure of a subject. Logic teaches you to reason about it. Rhetoric teaches you to express what you've learned. Together they teach you how to think. After the trivium came the quadrivium: arithmetic, geometry, music, astronomy. The trivium gives you the tools. The quadrivium gives you the world to use them on.</p>
@@ -134,13 +134,13 @@ pre{font-size:12px;line-height:18px;padding-left:.8em}
 <p>The question isn't whether students were smarter then. It's what we sacrificed in the method when we decided to educate everyone, and whether that sacrifice was necessary.</p>
 <p>Because something was lost. Not the Latin. The trivium. The part that taught you <em>how</em> to think, not <em>what</em> to know.</p>
 <hr>
-<p class="versal">The schoolhouse at the end of my road was part of this older tradition, or at least a rural echo of it.</p>
+<p class="versal"><span class="initial">T</span>he schoolhouse at the end of my road was part of this older tradition, or at least a rural echo of it.</p>
 <p>One-room schoolhouses were the default in America from the 1640s through the early 1900s.<sup><a href="#n4" id="r4" role="doc-noteref" aria-label="Note 4">4</a></sup> They worked like this: one teacher, one room, all ages from about five to sixteen. The teacher would rotate through groups, calling a few students to a recitation bench to demonstrate what they'd learned out loud. While one group was reciting, the rest worked independently or quietly helped each other. Older kids naturally mentored younger ones. A twelve-year-old explaining long division to an eight-year-old learned it better than either of them would have alone.</p>
 <p>There was no &quot;grade level.&quot; You moved at your own pace because there was no alternative. The teacher couldn't give the same lecture to a room containing both five-year-olds and fifteen-year-olds, so she didn't try. She met each student where they were.</p>
 <p>In 1918, there were 190,000 of these schoolhouses in the United States.<sup><a href="#n5" id="r5" role="doc-noteref" aria-label="Note 5">5</a></sup> My small town in Rhode Island alone had thirteen, scattered across the township, each serving a small district. By 1960, there were fewer than 20,000 one-room schools left in the whole country. Our last ones closed in 1952.</p>
 <p>What killed them wasn't a failure of the model. It was a deliberate replacement by something designed to do a different job.</p>
 <hr>
-<p class="versal b">In 1843, a Massachusetts education reformer named Horace Mann traveled to Europe to study national school systems. He was most impressed by Prussia.</p>
+<p class="versal b"><span class="initial">I</span>n 1843, a Massachusetts education reformer named Horace Mann traveled to Europe to study national school systems. He was most impressed by Prussia.</p>
 <p>Now, Prussia's system needs a little context. It was built in the aftermath of a military humiliation. Napoleon had crushed the Prussian army at Jena in 1806,<sup><a href="#n6" id="r6" role="doc-noteref" aria-label="Note 6">6</a></sup> and the state concluded that the problem wasn't tactics or weapons. The problem was that the people were too independent-minded. The solution was a school system designed, explicitly, to produce obedient citizens loyal to the state. Johann Gottlieb Fichte, the philosopher tasked with designing the intellectual framework for Prussian education, was startlingly frank about what he had in mind:</p>
 <blockquote>
 <p>&quot;The new education must consist essentially in this, that it completely destroys freedom of will in the soil which it undertakes to cultivate, and produces on the contrary strict necessity in the decisions of the will, the opposite being impossible.&quot;<sup><a href="#n7" id="r7" role="doc-noteref" aria-label="Note 7">7</a></sup></p>
@@ -167,14 +167,14 @@ pre{font-size:12px;line-height:18px;padding-left:.8em}
 <p>Woodrow Wilson, then president of Princeton, said as much in 1909: &quot;We want one class of persons to have a liberal education, and we want another class of persons, a very much larger class, of necessity, in every society, to forego the privileges of a liberal education and fit themselves to perform specific difficult manual tasks.&quot;<sup><a href="#n10" id="r10" role="doc-noteref" aria-label="Note 10">10</a></sup></p>
 <p>The trivium for the few. Compliance training for everyone else. He wasn't being sinister. He was describing what the system already was.</p>
 <hr>
-<p class="versal">If you still believe the primary purpose of school is education, the spring of 2020 settled that question.</p>
+<p class="versal"><span class="initial">I</span>f you still believe the primary purpose of school is education, the spring of 2020 settled that question.</p>
 <p>When schools closed in March of that year, the national conversation was not about children's learning. It was about whether parents could go to work. Women's unemployment quadrupled in a single month, from 4.4% to 16.5%.<sup><a href="#n11" id="r11" role="doc-noteref" aria-label="Note 11">11</a></sup> Thirteen percent of working parents lost their jobs or reduced hours. When the reopening debate began, it was framed almost entirely around economic necessity. Can parents go back to work? Can essential workers keep showing up? The learning loss conversation came later, almost as an afterthought.</p>
 <p>The Census Bureau has since found that 61% of parents with children under seventeen have no formal childcare arrangement beyond school.<sup><a href="#n12" id="r12" role="doc-noteref" aria-label="Note 12">12</a></sup> For the majority of American families, school is the childcare. The daily schedule runs from roughly 8am to 3pm because that's when parents need to be at work, not because the science of learning has anything particular to say about those hours. The &quot;3pm problem,&quot; when school lets out but the workday doesn't, drives a fifty-billion-dollar afterschool care industry.</p>
 <p>You can degrade the educational quality of American schools for decades, and the evidence suggests we have, and nothing visibly breaks. The economy keeps functioning. Parents keep going to work. But remove the custodial function for even a few weeks and the labor market seizes up. That tells you which function is load-bearing.</p>
 <p>Gatto, characteristically, put it bluntly: &quot;Children do not learn in school; they are babysat.&quot;<sup><a href="#n13" id="r13" role="doc-noteref" aria-label="Note 13">13</a></sup></p>
 <p>That's too harsh. Plenty of children learn in school. Plenty of teachers pour their hearts into making it work. But the system those teachers operate inside was not designed to support what they're trying to do. It was designed to do something else, and it does that other thing very well.</p>
 <hr>
-<p class="versal b">Here's the part that makes me angry, and I should probably admit that before presenting the numbers.</p>
+<p class="versal b"><span class="initial">H</span>ere's the part that makes me angry, and I should probably admit that before presenting the numbers.</p>
 <p>The United States spends $15,500 per student per year on K-12 education.<sup><a href="#n14" id="r14" role="doc-noteref" aria-label="Note 14">14</a></sup> That's 38% above the average for the OECD, the club of thirty-eight developed nations that tracks this sort of thing. We are the fifth-highest spender in the world. We rank about eighteenth in outcomes.<sup><a href="#n15" id="r15" role="doc-noteref" aria-label="Note 15">15</a></sup></p>
 <p>Between 1950 and 2009, student enrollment increased 96%. The number of teachers increased 252%. The number of administrators and non-teaching staff increased 702%.<sup><a href="#n16" id="r16" role="doc-noteref" aria-label="Note 16">16</a></sup></p>
 <p>I'll say that again. Students roughly doubled. Administration grew sevenfold.</p>
@@ -184,7 +184,7 @@ pre{font-size:12px;line-height:18px;padding-left:.8em}
 <p>I have friends who teach. Good ones. The kind who stay late, who spend their own money on supplies, who lie awake thinking about specific kids. They are miserable. Not because teaching is hard, though it is. Because the system they work inside was not designed for people who care. The $37.2 billion that went to administrators and compliance officers instead of to them? Those are their raises. The paperwork they bring home every night? Those are their evenings. The standardized tests that reduce their students to data points? Those are their professional evaluations.</p>
 <p>The system doesn't fail despite good teachers. It fails good teachers. And the people who actually teach your children are the least funded part of the most expensive education system in the world.</p>
 <hr>
-<p class="versal">So what did we get for all this money? You don't have to compare us to 1869 to see the problem. You can compare us to countries that are educating their children right now, today, with less money and different methods.</p>
+<p class="versal"><span class="initial">S</span>o what did we get for all this money? You don't have to compare us to 1869 to see the problem. You can compare us to countries that are educating their children right now, today, with less money and different methods.</p>
 <p>Finland spends about twenty-three percent less per student than the United States. They don't start school until age seven. They give almost no standardized tests. Their school days are shorter, with fifty-minute recesses built in. Getting into a Finnish teaching program is harder than getting into medical school: the acceptance rate is 6.8%.<sup><a href="#n20" id="r20" role="doc-noteref" aria-label="Note 20">20</a></sup> Finnish teachers earn ninety-two percent of what comparably educated professionals make. American teachers earn closer to sixty.<sup><a href="#n21" id="r21" role="doc-noteref" aria-label="Note 21">21</a></sup></p>
 <p>Estonia was a post-Soviet country that had to rebuild its entire education system from scratch after 1991. They spend about thirty percent below the OECD average, roughly half what the US spends per student. They are now first in Europe in reading and science.<sup><a href="#n22" id="r22" role="doc-noteref" aria-label="Note 22">22</a></sup></p>
 <p>Singapore's weakest students, their bottom quartile, score higher in math than the American average.<sup><a href="#n23" id="r23" role="doc-noteref" aria-label="Note 23">23</a></sup> Only seven percent of American students qualify as top math performers. In Singapore it's forty-one percent.</p>
@@ -198,7 +198,7 @@ pre{font-size:12px;line-height:18px;padding-left:.8em}
 <p>Ad Astra operated on the SpaceX campus for six years with about forty students. When Musk's kids graduated, the founding teacher, Joshua Dahn, spun it into two things: <a href="https://www.astranova.org/">Astra Nova</a>, an online school now serving around 315 students from 45 countries, and Synthesis, a platform that packages the collaborative game-based learning for anyone to use. Astra Nova is WASC-accredited, charges $2,400 per class hour per year, and meets 100% of demonstrated financial need. It's small. But the kids who go through it are, by all accounts, formidable thinkers.</p>
 <p>The irony is that Musk spent millions and years building something that the schoolhouse at the end of my road already was. The only thing Ad Astra added was the self-awareness to know why it worked. The one-room schoolhouse stumbled into the right model by necessity. Ad Astra chose it on purpose. Both arrived at the same place: mixed ages, no grades, real problems, students who move at their own pace.</p>
 <hr>
-<p class="versal b">Prometheus comes to mind. He didn't teach anyone anything. He gave people fire. Fire let them see in the dark, cook their own food, forge their own tools. It didn't replace human capability. It removed the barriers to it. And the gods punished him for it, because universal access to a powerful primitive is dangerous to anyone whose authority depends on controlling it.</p>
+<p class="versal b"><span class="initial">P</span>rometheus comes to mind. He didn't teach anyone anything. He gave people fire. Fire let them see in the dark, cook their own food, forge their own tools. It didn't replace human capability. It removed the barriers to it. And the gods punished him for it, because universal access to a powerful primitive is dangerous to anyone whose authority depends on controlling it.</p>
 <p>Bloom said one-on-one tutoring couldn't scale. In 1984, that was true. It's not true anymore.</p>
 <p>Khan Academy's AI tutor, <a href="https://www.khanmigo.ai/">Khanmigo</a>, went from 40,000 students to 700,000 in a single school year<sup><a href="#n30" id="r30" role="doc-noteref" aria-label="Note 30">30</a></sup>, using Socratic questioning to guide kids through problems instead of handing them answers. <a href="https://www.synthesis.com/tutor">Synthesis</a>, the platform that grew out of Musk's Ad Astra school, has 21,500 kids enrolled in collaborative problem-solving sessions.<sup><a href="#n31" id="r31" role="doc-noteref" aria-label="Note 31">31</a></sup> <a href="https://alpha.school/">Alpha School</a> in Austin does two hours of AI-guided academics per day, then spends the rest of the day on life skills and projects. No traditional teachers. Just guides.</p>
 <p>And then there's <a href="https://x.com/jessegenet">Jesse Genet</a>. She's a former startup CEO who sold her company in 2021 and now homeschools her four kids, all five and under, with a team of five AI agents running on Mac Minis in her house. One of them plans the entire curriculum. She photographs whole textbooks and feeds them to the agent, which ingests the material and generates personalized daily lesson plans. She had never opened a terminal before six months ago. She built a custom kids' TV app and deployed it to her television. This is a woman who is, right now, doing what the Prussian model was designed to prevent: educating her own children, on her own terms, using tools that didn't exist two years ago.</p>
