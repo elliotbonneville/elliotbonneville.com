@@ -104,6 +104,14 @@
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault(); open(i, a);
   }));
+  // a caption's plate number ("Plate XII", a link to its plate) opens that plate's first picture
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest?.('a[href^="#plate-"]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    const first = document.getElementById(a.getAttribute('href').slice(1))?.querySelector('a[data-w]');
+    if (!first) return;
+    e.preventDefault(); open(links.indexOf(first), a);
+  });
   box.querySelector('.plv-close').addEventListener('click', close);
   box.querySelector('.plv-prev').addEventListener('click', () => show(at - 1));
   box.querySelector('.plv-next').addEventListener('click', () => show(at + 1));
