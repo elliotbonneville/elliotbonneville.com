@@ -83,41 +83,46 @@ test('the loupe bends a straight line at the rim and separates its colors off ax
   }
 });
 
+async function assertPigmentStaysPut(initial, sampling) {
+  const result = await initial.evaluate((el, {size, span, offsetX, offsetY, channel}) => {
+    const cap = el.getBoundingClientRect();
+    const x = cap.left + cap.width / 2, y = cap.top + cap.height / 2;
+    function capture(dx, dy) {
+      const canvas = document.createElement('canvas');
+      canvas.width = canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      if (!window.scriptorium.inspect_ink(ctx, x + dx, y + dy, span)) throw Error('Ink unavailable');
+      return ctx.getImageData(0, 0, size, size).data;
+    }
+    const before = capture(0, 0), after = capture(offsetX, offsetY);
+    const dx = offsetX * size / span, dy = offsetY * size / span;
+    let inked = 0, changed = 0;
+    for (let row = dy + 2; row < size - 2; row++) for (let col = dx + 2; col < size - 2; col++) {
+      const i = 4 * (row * size + col), j = 4 * ((row - dy) * size + col - dx);
+      if (before[i + channel] <= Math.max(before[i + 1], before[i + 2 - channel]) + 38) continue;
+      inked++;
+      if ([0, 1, 2].some(ch => Math.abs(before[i + ch] - after[j + ch]) > 1)) changed++;
+    }
+    return {inked, changed};
+  }, sampling);
+  assert.ok(result.inked > 1000);
+  assert.equal(result.changed, 0, 'moving the lens must sample the same pigment at a given spot');
+}
+
 test('moving the loupe preserves the red I on the rendering-engine post', async () => {
   const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
   try {
     const page = await browser.newPage({viewport:{width:390,height:844}, deviceScaleFactor:2});
     await openManuscript(page, 'a-rendering-engine-that-happens-to-have-text');
-    const result = await page.evaluate(() => {
-      const cap = document.querySelector('.first .initial').getBoundingClientRect();
-      const x = cap.left + cap.width/2, y = cap.top + cap.height/2;
-      const size = 336, span = 84;
-      function capture(dx, dy) {
-        const canvas = document.createElement('canvas');
-        canvas.width = canvas.height = size;
-        const ctx = canvas.getContext('2d');
-        if (!window.scriptorium.inspect_ink(ctx,x+dx,y+dy,span)) throw Error('Ink unavailable');
-        return ctx.getImageData(0,0,size,size).data;
-      }
-      const before = capture(0,0), after = capture(5.25,4.25);
-      const dx = 5.25*size/span, dy = 4.25*size/span;
-      let red = 0, changed = 0;
-      for (let row = dy+2; row < size-2; row++) for (let col = dx+2; col < size-2; col++) {
-        const i = 4*(row*size+col), j = 4*((row-dy)*size+col-dx);
-        if (before[i] <= Math.max(before[i+1],before[i+2])+38) continue;
-        red++;
-        if ([0,1,2].some(ch => Math.abs(before[i+ch]-after[j+ch]) > 1)) changed++;
-      }
-      return {red, changed};
+    await assertPigmentStaysPut(page.locator('p.first .initial'), {
+      size:336, span:84, offsetX:5.25, offsetY:4.25, channel:0,
     });
-    assert.ok(result.red > 1000);
-    assert.equal(result.changed, 0, 'moving the lens must sample the same pigment at a given spot');
   } finally {
     await browser.close();
   }
 });
 
-test('the illuminated P keeps its blue pigment right up to the red curl', async () => {
+test('the illuminated P shows variation within the blue stroke and keeps its color at the red curl', async () => {
   const browser = await chromium.launch({ args: ['--enable-unsafe-swiftshader'] });
   try {
     const page = await browser.newPage({viewport:{width:1080,height:850}});
@@ -153,11 +158,31 @@ test('the illuminated P keeps its blue pigment right up to the red curl', async 
         for (let x = edge + 3; x < edge + 55; x++) if (blue(x, y) < -70) red++;
       }
       const median = values => values.sort((a, b) => a - b)[Math.floor(values.length / 2)];
-      return {core:median(core), join:median(join), red};
+
+      // Average small patches inside the stem so individual sensor-grain pixels
+      // cannot stand in for visible variation in the paint.
+      const tones = [];
+      for (let y = 160; y < 368; y += 8) {
+        for (let x = edge - 32; x < edge - 14; x += 6) {
+          let sum = 0;
+          for (let row = y; row < y + 5; row++) {
+            for (let col = x; col < x + 5; col++) {
+              const i = 4 * (row * size + col);
+              sum += 0.2126 * pixels[i] + 0.7152 * pixels[i + 1] + 0.0722 * pixels[i + 2];
+            }
+          }
+          tones.push(sum / 25);
+        }
+      }
+      tones.sort((a, b) => a - b);
+      const toneRange = tones[Math.floor(tones.length * 0.9)] - tones[Math.floor(tones.length * 0.1)];
+      return {core:median(core), join:median(join), red, toneRange};
     });
     assert.ok(sample.core > 70 && sample.red > 70, 'both blue paint and the fine red curl must be visible');
     assert.ok(sample.join > 0.85 * sample.core,
       `blue beside the curl fell to ${sample.join} from ${sample.core} inside the stem`);
+    assert.ok(sample.toneRange > 6, `paint inside the downstroke looks flat (tonal range ${sample.toneRange})`);
+    await assertPigmentStaysPut(painted, {size:384, span:32, offsetX:2.5, offsetY:3.25, channel:2});
   } finally {
     await browser.close();
   }
