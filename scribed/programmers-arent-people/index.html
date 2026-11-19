@@ -61,7 +61,10 @@ header{margin:0}
 .date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
 h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
 p{margin:0 0 var(--lead)}
-h2,h3,h4{font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+h2,h3,h4{position:relative;font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+.hd{color:inherit;--hue:inherit}
+.hd::before{content:"\00a7";position:absolute;right:100%;margin-right:.4em;font:400 .9em Georgia,serif;line-height:var(--lead);color:var(--verm);opacity:0;transition:opacity .15s}
+.hd:hover::before,.hd:focus-visible::before{opacity:.6}
 em{font-style:italic}
 strong{font-weight:400;-webkit-text-stroke:.8px currentColor}
 code{font:inherit}

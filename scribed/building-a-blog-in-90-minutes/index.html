@@ -61,7 +61,10 @@ header{margin:0}
 .date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
 h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
 p{margin:0 0 var(--lead)}
-h2,h3,h4{font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+h2,h3,h4{position:relative;font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+.hd{color:inherit;--hue:inherit}
+.hd::before{content:"\00a7";position:absolute;right:100%;margin-right:.4em;font:400 .9em Georgia,serif;line-height:var(--lead);color:var(--verm);opacity:0;transition:opacity .15s}
+.hd:hover::before,.hd:focus-visible::before{opacity:.6}
 em{font-style:italic}
 strong{font-weight:400;-webkit-text-stroke:.8px currentColor}
 code{font:inherit}
@@ -153,13 +156,13 @@ if (pageProgram) {
 <hr class="pen" aria-hidden="true">
 </header>
 <p class="first"><span class="lead"><span class="initial">I</span> just built</span> this blog from scratch in about 90 minutes. It's exactly 233 LOC of build code, deploys with one command, and will probably outlive your Medium posts. Actually, let me rephrase that - it'll outlive Medium as a platform.</p>
-<h3>Magic 8-Ball Development</h3>
+<h3 id="magic-8-ball-development"><a class="hd" href="#magic-8-ball-development">Magic 8-Ball Development</a></h3>
 <p>I did it using Claude Code.</p>
 <p>My humble contribution to the agentic engineering discourse is something I don't see talked about a lot: agentic engineering speeds up development so much on greenfield projects that you can avoid pulling in tons of dependencies. Instead of reaching for a framework because building from scratch would take too long, you can build exactly what you need in the time it would take to configure someone else's solution.</p>
 <p>Maybe it's a naive approach. Maybe it won't scale. But honestly, that's the point. You're speed-running the iterative development cycle that platforms go through over decades - but only building what you actually want. No advertising considerations, no investor demands, no feature creep from committee decisions. Just the refined solution that serves your actual needs.</p>
 <p>There's something intoxicating about starting from a blank terminal and describing what you want: &quot;a minimal blog that renders fast and will work forever.&quot; No starter templates, no boilerplate, no inherited decisions. Just <strong>complete control</strong> - every line of code exists for a reason, every decision intentional. No mystery meat in the <code>node_modules</code> folder, no configuration you're afraid to touch, no build process you don't understand.</p>
 <p>When you build from scratch with an AI pair programmer, you're not fighting the tool - you're having a conversation about what you actually need. And it turns out, for a blog, you need surprisingly little.</p>
-<h3>The Constraints</h3>
+<h3 id="the-constraints"><a class="hd" href="#the-constraints">The Constraints</a></h3>
 <p>My goal was to build a brutalist, hyper-minimalist blog where every element serves a purpose. I started with several clear opinions:</p>
 <ul role="list">
 <li><span class="mk">-</span><strong>Speed is essential</strong> - Why go slow, when you can go fast?</li>
@@ -171,7 +174,7 @@ if (pageProgram) {
 <li><span class="mk">-</span><strong>Fast syntax highlighting</strong> - Pre-rendered, not client-side</li>
 <li><span class="mk">-</span><strong>Interactive demos</strong> - But only where needed</li>
 </ul>
-<h3>The Stack</h3>
+<h3 id="the-stack"><a class="hd" href="#the-stack">The Stack</a></h3>
 <pre><code class="language-javascript">{
   &quot;build&quot;: &quot;node (233 LOC)&quot;,
   &quot;parse&quot;: &quot;marked (17kb)&quot;,
@@ -184,7 +187,7 @@ if (pageProgram) {
   &quot;server&quot;: &quot;nginx on Ubuntu&quot;
 }</code></pre>
 <p>That's it. The entire build script is shorter than most webpack configs. It runs on a vanilla Linux server - just nginx serving static files from a DigitalOcean droplet. No containers, no orchestration, no managed services. HTML files on a hard drive, the way the web started.</p>
-<h3>How It Works</h3>
+<h3 id="how-it-works"><a class="hd" href="#how-it-works">How It Works</a></h3>
 <p>Write markdown files with frontmatter in <code>src/posts/</code>:</p>
 <pre><code class="language-markdown">---
 title: Your Post Title
@@ -206,7 +209,7 @@ Your content here...</code></pre>
 <li><span class="mk">5.</span>Writes static files</li>
 </ol>
 <p>No hot reloading, no <code>webpack</code>, no <code>babel</code>, no virtual DOM. Just files.</p>
-<h3>Interactive Examples (When Needed)</h3>
+<h3 id="interactive-examples-when-needed"><a class="hd" href="#interactive-examples-when-needed">Interactive Examples (When Needed)</a></h3>
 <p>While the blog is static, you can embed JavaScript directly in markdown when you actually need interactivity:</p>
 <div class="raw">
 <div class="example">
@@ -225,12 +228,12 @@ Your content here...</code></pre>
 </script>
 </div>
 <p>This works because Markdown passes HTML through untouched.</p>
-<h3>The Philosophy</h3>
+<h3 id="the-philosophy"><a class="hd" href="#the-philosophy">The Philosophy</a></h3>
 <p><strong>Durability over features.</strong> This blog will work in 20 years.</p>
 <p><strong>Speed over developer experience.</strong> Pages load in 50ms. No JavaScript required.</p>
 <p><strong>Ownership over convenience.</strong> My server, my domain, my rules. No platform risk.</p>
 <p><strong>Simplicity over scalability.</strong> It's a blog, not Facebook. It doesn't need to scale.</p>
-<h3>The Numbers</h3>
+<h3 id="the-numbers"><a class="hd" href="#the-numbers">The Numbers</a></h3>
 <ul role="list">
 <li><span class="mk">-</span><strong>Build time:</strong> &lt; 1 second for 100 posts</li>
 <li><span class="mk">-</span><strong>Page weight:</strong> ~15KB per post</li>
@@ -239,12 +242,12 @@ Your content here...</code></pre>
 <li><span class="mk">-</span><strong>Monthly cost:</strong> $0-6 (free on GitHub Pages, or VPS)</li>
 <li><span class="mk">-</span><strong>Setup time:</strong> 90 minutes</li>
 </ul>
-<h3>Why Not [Insert Platform]?</h3>
+<h3 id="why-not-insert-platform"><a class="hd" href="#why-not-insert-platform">Why Not [Insert Platform]?</a></h3>
 <p><strong>Medium/Substack/Ghost:</strong> Platform risk. They own your audience.</p>
 <p><strong>Gatsby/Next.js:</strong> 500MB of node_modules to generate HTML.</p>
 <p><strong>Jekyll/Hugo:</strong> Fine choices, but even they're overkill for a blog. It gets back to the control I was talking about earlier.</p>
 <p><strong>WordPress:</strong> It's 2025.</p>
-<h3>The Code</h3>
+<h3 id="the-code"><a class="hd" href="#the-code">The Code</a></h3>
 <p>The entire build script fits in a single file. Here's the core:</p>
 <pre><code class="language-javascript">// Read all posts
 const posts = readdirSync('./src/posts')
@@ -267,12 +270,12 @@ const index = indexTemplate
   ).join(''));
 writeFileSync('public/index.html', index);</code></pre>
 <p>That's basically it.</p>
-<h3>Will It Scale?</h3>
+<h3 id="will-it-scale"><a class="hd" href="#will-it-scale">Will It Scale?</a></h3>
 <p>It's static HTML. It scales infinitely. But more importantly: it's a personal blog. It doesn't need to scale. I'm not building the next Twitter here.</p>
-<h3>The Source</h3>
+<h3 id="the-source"><a class="hd" href="#the-source">The Source</a></h3>
 <p><a href="https://github.com/elliotbonneville/elliotbonneville.com">Fork this blog on GitHub</a></p>
 <p>Feel free to fork it. The entire thing is MIT licensed and documented. You can have your own blog running in 90 minutes too.</p>
-<h3>The Point</h3>
+<h3 id="the-point"><a class="hd" href="#the-point">The Point</a></h3>
 <p>We've forgotten that websites can be simple. A blog doesn't need a framework. It doesn't need a build pipeline. It doesn't need to be a single-page application.</p>
 <p>Sometimes the best technical decision is to not make one. HTML is already a pretty good document format. Browsers are already pretty good at displaying it.</p>
 <p>The web is good at being the web. Let it.</p>

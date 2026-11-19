@@ -61,7 +61,10 @@ header{margin:0}
 .date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
 h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
 p{margin:0 0 var(--lead)}
-h2,h3,h4{font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+h2,h3,h4{position:relative;font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+.hd{color:inherit;--hue:inherit}
+.hd::before{content:"\00a7";position:absolute;right:100%;margin-right:.4em;font:400 .9em Georgia,serif;line-height:var(--lead);color:var(--verm);opacity:0;transition:opacity .15s}
+.hd:hover::before,.hd:focus-visible::before{opacity:.6}
 em{font-style:italic}
 strong{font-weight:400;-webkit-text-stroke:.8px currentColor}
 code{font:inherit}
@@ -157,10 +160,10 @@ if (pageProgram) {
 <p>Now may a bookseller's establishment upon the internett feel as though one doth crosse his threshold, complete with the groaning of ancient timber and pages yellowed at the edges. A potter's collection may appeare as if one gazeth directly into his burning furnace. Tavern-keepers may fashion sytes that transport the visitor straightaway to their very table. Some youth's shrine to their beloved volume may mirror exactly the booke itself. A minstrel's dwelling-page may deposite thee within a shadowed chamber, its walles thick with broadsides announcing performances. And speak nothing yet of the splendours that await in personall websytes, where a man's owne character may be displayed in full and magnificent peculiarity.</p>
 <p>All such wonders did formerly require a company of artificers and considerable treasure – tens of thousands of pieces merely to commence. That spare elegance was no aesthetick preference. 'Twas naught but the limitations of one's coffer.</p>
 <p>That constraint hath now been lifted entire.</p>
-<h2>Upon the Matter of Oysteres</h2>
+<h2 id="upon-the-matter-of-oysteres"><a class="hd" href="#upon-the-matter-of-oysteres">Upon the Matter of Oysteres</a></h2>
 <p>&quot;The worlde is thine oystre.&quot;</p>
 <p>Half of those who receive this wisdom comprehend it forthwith. The remainder regard thee as though thou dost recite the King's tax rolls. Both responses carry reason. This saying doth not speak to all souls – only to those who spy fortune within the very chaos that others name calamity.</p>
-<h2>What Trulie Signifies</h2>
+<h2 id="what-trulie-signifies"><a class="hd" href="#what-trulie-signifies">What Trulie Signifies</a></h2>
 <p>Agencye coupled with constancie equals triumph. There lies the whole of the matter.</p>
 <p>A man may possess talents most extraordinary, yet lacking the courage to act upon his designs, he remains merely another soul with opinions. Add constancie to the mixture and thou becomest truly formidable. Thou art he who builds whilst others endlessly scheme to build.</p>
 <p>Most men withdraw after the first refusal or stumble. Those who remaine come to governe whatsoever game they chose to play.</p>

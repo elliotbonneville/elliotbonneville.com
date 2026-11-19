@@ -61,7 +61,10 @@ header{margin:0}
 .date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
 h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
 p{margin:0 0 var(--lead)}
-h2,h3,h4{font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+h2,h3,h4{position:relative;font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+.hd{color:inherit;--hue:inherit}
+.hd::before{content:"\00a7";position:absolute;right:100%;margin-right:.4em;font:400 .9em Georgia,serif;line-height:var(--lead);color:var(--verm);opacity:0;transition:opacity .15s}
+.hd:hover::before,.hd:focus-visible::before{opacity:.6}
 em{font-style:italic}
 strong{font-weight:400;-webkit-text-stroke:.8px currentColor}
 code{font:inherit}
@@ -161,7 +164,7 @@ if (pageProgram) {
 <li><span class="mk">3.</span><strong>Mobile UX</strong> - Tiny keyboard, no modifier keys, scrolling with your thumb</li>
 </ol>
 <p>I solved all three with about 80 lines of configuration: Tailscale for networking, tmux for persistence, and some careful keybindings for mobile usability.</p>
-<h3>Part 1: Tailscale for Networking</h3>
+<h3 id="part-1-tailscale-for-networking"><a class="hd" href="#part-1-tailscale-for-networking">Part 1: Tailscale for Networking</a></h3>
 <p>Tailscale creates a private mesh network between your devices using WireGuard. No port forwarding, no dynamic DNS, no firewall rules. It just works through NAT, hotel WiFi, cellular networks - everywhere.</p>
 <p>Install it on your Mac, install it on your phone, sign in with the same account, and you can SSH between them using hostnames like <code>ssh macbook</code>.</p>
 <p>Setup takes 5 minutes:</p>
@@ -172,7 +175,7 @@ if (pageProgram) {
 <li><span class="mk">4.</span>Optional: Enable Tailscale SSH for keyless auth</li>
 </ol>
 <p>That's the networking solved. Your Mac is now reachable from anywhere in the world, through any network, with end-to-end encryption. Free for up to 100 devices.</p>
-<h3>Part 2: tmux for Persistence</h3>
+<h3 id="part-2-tmux-for-persistence"><a class="hd" href="#part-2-tmux-for-persistence">Part 2: tmux for Persistence</a></h3>
 <p>SSH from a phone is unreliable. Connections drop. Apps get backgrounded by iOS. You walk through a cellular dead zone. Without session persistence, you lose everything when the connection dies.</p>
 <p>tmux solves this. Your shell runs inside tmux, and tmux keeps running even when you disconnect. Reconnect later and pick up exactly where you left off.</p>
 <p>But I didn't want to think about tmux. I wanted every terminal to just be persistent automatically. So I wrote this:</p>
@@ -220,7 +223,7 @@ fi</code></pre>
 <p><strong>SSH sessions persist.</strong> When your phone connection drops (and it will), the session keeps running. Reconnect later and pick up where you left off. You can also create fresh SSH sessions with fun names by selecting <code>+ new session</code> from the picker.</p>
 <p>The magic: I can start a long-running process in <code>brave-otter</code> on my Mac, SSH in from my phone, attach to <code>brave-otter</code>, and see exactly where I left off. Close the SSH app, reopen it later, attach again - still there.</p>
 <p>This is especially powerful with Claude Code. Normally if you want to continue a session from a different device, you'd need to use <code>/resume</code> to reload the conversation context. But with tmux, you're attaching to the <em>same running process</em> - Claude Code is still right there, mid-thought, no resume needed. True seamless handoff between devices.</p>
-<h3>Part 3: Mobile-Friendly tmux Bindings</h3>
+<h3 id="part-3-mobile-friendly-tmux-bindings"><a class="hd" href="#part-3-mobile-friendly-tmux-bindings">Part 3: Mobile-Friendly tmux Bindings</a></h3>
 <p>Here's where most tutorials stop. But there's a usability problem: tmux's default prefix is <code>Ctrl+b</code>, and mobile keyboards make modifier keys painful. Scrolling is especially bad - you need <code>Ctrl+b</code> then <code>[</code> to enter copy mode, then arrow keys to scroll.</p>
 <p>My fix: bind PageUp and F1 directly to copy mode, no prefix required.</p>
 <pre><code class="language-bash"># ~/.dotfiles/tmux/tmux.conf
@@ -241,10 +244,10 @@ bind -n F1 copy-mode          # F1 enters scroll mode</code></pre>
 <li><span class="mk">-</span><a href="https://github.com/elliotbonneville/dotfiles/blob/main/shell/config/tmux.zsh">tmux.zsh</a> - auto-session logic</li>
 <li><span class="mk">-</span><a href="https://github.com/elliotbonneville/dotfiles/blob/main/tmux/tmux.conf">tmux.conf</a> - keybindings</li>
 </ul>
-<h3>The Point</h3>
+<h3 id="the-point"><a class="hd" href="#the-point">The Point</a></h3>
 <p>Mobile SSH doesn't have to suck. With the right config, your phone becomes a legitimate terminal into your development machine - like VNC, but faster and works over cellular. Not a toy, not emergency-only - actually usable for real work.</p>
 <p>Your Mac is always one tap away.</p>
-<h3>Meta: How This Got Built</h3>
+<h3 id="meta-how-this-got-built"><a class="hd" href="#meta-how-this-got-built">Meta: How This Got Built</a></h3>
 <p>I vibe coded this entire setup with Claude Code over about an hour. Here's the actual progression of prompts:</p>
 <ol role="list">
 <li><span class="mk">1.</span><strong>&quot;I want to allow SSHing into this terminal from my phone from anywhere. Best way to do that?&quot;</strong> - Claude suggested Tailscale, explained why it beats port forwarding, and wrote the install script changes.</li>
