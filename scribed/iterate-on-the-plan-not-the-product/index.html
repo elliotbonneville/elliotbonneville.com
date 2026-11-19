@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iterate on the Plan, Not the Product - Elliot Bonneville</title>
+<meta name="description" content="The first draft an LLM produces is more internally consistent than what you end up with after iterating on it. The fix belongs in the spec, not the artifact.">
+<link rel="canonical" href="https://elliotbonneville.com/iterate-on-the-plan-not-the-product/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Iterate on the Plan, Not the Product">
+<meta property="og:description" content="The first draft an LLM produces is more internally consistent than what you end up with after iterating on it. The fix belongs in the spec, not the artifact.">
+<meta property="og:url" content="https://elliotbonneville.com/iterate-on-the-plan-not-the-product/">
+<meta property="og:site_name" content="Elliot Bonneville">
+<meta property="article:published_time" content="2026-03-15">
+<meta name="theme-color" content="#30241a">
+<link rel="alternate" type="application/rss+xml" title="Elliot Bonneville" href="/rss.xml">
+<link rel="preload" href="/fonts/StonebrookQuill-Plain.ttf" as="font" type="font/ttf" crossorigin>
+<style>
+@font-face{font-family:"Stonebrook";src:url(/fonts/StonebrookQuill-Plain.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Stonebrook";font-style:italic;src:url(/fonts/StonebrookQuill-Italic.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Stonebrook Roman";src:url(/fonts/StonebrookQuill-Roman.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Rowanbeck Uncial";src:url(/fonts/RowanbeckReed-Uncial.ttf) format("truetype");font-display:swap}
+:root{--lead:30px;--size:22px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
+html{background:var(--desk);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0}
+/* The scene is everything the program draws: the desk and the sheet on it. Its strips lie behind the text. */
+.scene{position:relative;z-index:0;display:flow-root;min-height:100vh}
+.strips{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.desk{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
+.strip{position:absolute;opacity:0;transition:opacity .25s ease-out}
+.strip.soft{transition:none}
+.desk.on,.strip.on{opacity:1}
+/* The desk of baked wood: a coarse picture of all of it, and full pictures in strips as their tiles come. */
+.far,.dk{position:absolute;opacity:0}
+.far{left:0;top:0;width:100%;height:100%}
+.dk{transition:opacity .35s ease-out}
+.far.on,.dk.on{opacity:1}
+/* The lamp stays where it is while the page slides under it. Nearest it (up and to the left) the desk is as its tiles are lit; from there its light only falls away, gently, with distance. Nothing is made brighter, and the sheet is not touched: the program lays this between the desk and the sheet. */
+.pool{display:none}
+.scene.live .pool{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply;background:radial-gradient(150% 140% at 18% 4%,#fff 0%,rgb(224,204,189) 30%,rgb(204,178,158) 62%,rgb(184,153,133) 100%)}
+/* The leaf's own box is the sheet's nominal rectangle; --over is how far the sheet runs on past it at the sides. */
+.leaf{--over:0px;max-width:554px;margin:44px auto;padding:72px 84px 120px 122px;background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
+article{position:relative;z-index:1;font:var(--size)/var(--lead) "Stonebrook",Georgia,serif;color:var(--ink);overflow-wrap:break-word}
+article,article *{transition:color .3s ease-out}
+::selection{background:rgba(180,48,29,.22)}
+header{margin:0}
+.date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
+h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
+p{margin:0 0 var(--lead)}
+h2,h3,h4{font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+em{font-style:italic}
+strong{font-weight:400;-webkit-text-stroke:.8px currentColor}
+code{font:inherit}
+a{color:var(--indigo);--hue:1;text-decoration:none}
+a:focus-visible{outline:1.5px solid var(--indigo);outline-offset:3px;border-radius:2px}
+sup{line-height:0;font-size:.62em}
+sup a{color:var(--verm);--hue:0;padding:0 1px}
+blockquote{margin:0 0 var(--lead) 1.6em;font-style:italic}
+blockquote em{font-style:normal}
+ol,ul{margin:0 0 var(--lead);padding:0;list-style:none}
+li{padding-left:1.7em;text-indent:-1.7em}
+.mk{display:inline-block;width:1.7em;text-indent:0;color:var(--verm);--hue:0}
+/* Between passages: three pen dots. Under the title and over the notes: a pen rule. */
+hr{border:0;height:var(--lead);width:45px;margin:0 auto var(--lead);background:radial-gradient(circle,var(--verm) 0 1.2px,transparent 1.8px) 50% 50%/15px 100% repeat-x}
+hr.pen{width:42%;height:1.5px;margin:calc(.5*var(--lead) - 1px) 0 calc(.5*var(--lead) - .5px);background:var(--verm)}
+/* The initial: the paragraph's first letter in a box of its own, and the words after it in small capitals. */
+p.first::first-letter{float:left;font:400 108px/88px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:12px var(--ipad,14px) 8px;margin:5px 13px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
+.lead{font-family:"Stonebrook Roman",Georgia,serif;font-size:.8em;letter-spacing:.06em}
+/* A later passage opens with a smaller initial; the text ends with a tailpiece. */
+/* (red letters and blue by turns, as the pen draws them) */
+p.versal::first-letter{float:left;font:400 52px/46px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:4px 0 0;margin:2px 10px 0 0}
+p.versal.b::first-letter{color:var(--azure)}
+hr.tail{width:200px;height:124px;margin:0 auto;background:none}
+.notes{font-size:.78em;line-height:24px;margin-top:var(--lead)}
+.notes hr.pen{width:24%;margin:0 0 var(--lead)}
+.notes ol{margin:0}
+.notes li{margin-bottom:12px;padding-left:2em;text-indent:-2em}
+.notes .mk{width:2em}
+/* Code is set as it stands, in type, beside the scribe's work rather than in it: the program draws no ink for it. */
+pre{margin:0 0 var(--lead);padding:6px 0 6px 1.1em;border-left:1.5px solid rgba(180,48,29,.5);overflow-x:auto;font:13.5px/20px ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--ink);white-space:pre;tab-size:4}
+pre code{font:inherit}
+/* What a post embeds as HTML stands as it is. */
+.raw{margin:0 0 var(--lead)}
+.raw button{font:inherit;color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:3px;padding:0 .6em;margin-right:.6em;cursor:pointer}
+/* Over the title, the way back to the contents. */
+.home{margin:0;font:400 .8em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.06em}
+/* The contents open with a few words beside the initial, and go on below it. */
+.intro{min-height:calc(4*var(--lead))}
+/* The contents: each writing by its title, and when it was written under it. */
+.toc li{padding-left:0;text-indent:0;margin:0 0 var(--lead)}
+.toc .when{display:block;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
+/* Where the program has drawn the ink, the page's own text steps back: still there to select, search and follow. */
+.ink,.ink *{color:transparent!important}
+.ink::selection,.ink *::selection{color:transparent;background:rgba(180,48,29,.22)}
+p.first.ink::first-letter{color:transparent;background:transparent;box-shadow:none}
+p.versal.ink::first-letter{color:transparent}
+hr.ink{background:none}
+@media (max-width:700px){
+.scene.live .pool{display:none}
+:root{--lead:27px;--size:20px}
+.leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 20px 72px 26px;box-shadow:none}
+h1{font-size:31px}
+p.first::first-letter{font-size:82px;line-height:66px;padding:10px var(--ipad,11px) 6px;margin:5px 10px 0 0}
+p.versal::first-letter{font-size:46px;line-height:41px;padding:3px 0 0;margin:2px 9px 0 0}
+pre{font-size:12px;line-height:18px;padding-left:.8em}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ELQ40R6NTG');</script>
+</head>
+<body>
+<div class="scene">
+<div class="pool" aria-hidden="true"></div>
+<main class="leaf" data-seed="2935311612" data-age="0.0075" data-ornaments="ornaments.bin" data-desk="/desk/">
+<article>
+<header>
+<p class="home"><a href="/">Elliot Bonneville</a></p>
+<p class="date"><time datetime="2026-03-15">The fifteenth of March, 2026</time></p>
+<h1>Iterate on the Plan, Not the Product</h1>
+<hr class="pen" aria-hidden="true">
+</header>
+<p class="first"><span class="lead">The first draft</span> of something an LLM produces is often more internally consistent than what I end up with after pushing and pulling ideas into and out of the product — whether a blog post, a game, a website, or something else. The initial un-tainted output from the model before I ask it to produce anything is better than what I find myself with after a bunch of iterating on that first output.</p>
+<p>The model is good at turning a vision into something coherent, but once you start futzing with the output you lack the context the model had during generation and end up breaking things. The model held the whole design in its head at once. I'm patching it locally, one edit at a time, without that holistic view.</p>
+<p>The better workflow: iterate on the <em>plan</em>, not the <em>artifact</em>. Stay at the 10,000-foot level. When I notice something wrong with the output, most of the time it's me realizing a constraint on the design — not a defect in the execution. The right move is to update the spec and regenerate, not to surgically fix the artifact. The initial generation step feels expensive, so it feels easier to iterate on the output instead, but that's not strictly true in the long run. The accumulated cost of patching a coherent artifact into incoherence is higher than regenerating from a better plan.</p>
+<p>There's a related but separate problem where the model flattens <em>your</em> voice during multiple passes — smoothing out weirdness, regressing toward its statistical mean. But this is about the opposite direction: <em>you</em> disrupting the <em>model's</em> coherence by intervening at the wrong level of abstraction. Both are real, and they compound. Each iteration both smooths out your weirdness and breaks the model's internal logic.</p>
+<p>The key distinction: <strong>iterate on the plan, not the product.</strong></p>
+<p>The right workflow is closer to &quot;spec, generate, evaluate, revise spec, regenerate&quot; than &quot;generate, edit, edit, edit.&quot; The sunk cost of the first generation is a trap. Regeneration from a better plan is almost always cheaper than patching.</p>
+<hr class="tail" aria-hidden="true">
+</article>
+</main>
+</div>
+<script type="text/plain" id="desk-list"># The desk, baked: one period of it in tiles of four pictures. crates/wood/src/tiles.rs says what the lines mean, desk.glsl how the pictures are lit.
+desk 1
+period 8218
+picture colour webp 1
+picture relief jpg 1
+picture fibre webp 2
+picture finish webp 2
+set 2x 2 2 48764685
+set 1x 1 2 12513249
+col L6 -1500 298
+col L5 -1202 298
+col L4 -904 256
+col L3 -648 160
+col L2 -488 128
+col L1 -360 196
+col L0 -164 196
+col M0 32 232
+col M1 264 232
+col M2 496 232
+col R0 728 196
+col R1 924 196
+col R2 1120 128
+col R3 1248 160
+col R4 1408 256
+col R5 1664 298
+col R6 1962 298
+row 00 -64 512
+row 01 448 512
+row 02 960 512
+row 03 1472 512
+row 04 1984 512
+row 05 2496 512
+row 06 3008 512
+row 07 3520 512
+row 08 4032 512
+row 09 4544 512
+row 10 5056 512
+row 11 5568 512
+row 12 6080 512
+row 13 6592 512
+row 14 7104 512
+row 15 7616 538
+far far -1500 -64 3760 8218 118 257
+flat colour 94 47 27
+flat relief 128 127 73
+flat fibre 126 129 97
+flat finish 51 128 128
+</script>
+<script type="module">import init, * as page from "/pkg/page.js";
+// (the desk's pictures are fetched and decoded here, off the page's thread, and handed to the program as they come)
+window.deskLoad = (id, url) => fetch(url).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => createImageBitmap(b, { premultiplyAlpha: "none", colorSpaceConversion: "none" })).then((m) => page.desk_picture(id, m), () => page.desk_picture(id, null));
+init().then(() => { window.scriptorium = page; }).catch(() => {});</script>
+</body>
+</html>

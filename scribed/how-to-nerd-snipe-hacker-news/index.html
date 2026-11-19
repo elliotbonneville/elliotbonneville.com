@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Nerd Snipe Hacker News - Elliot Bonneville</title>
+<meta name="description" content="I built a free signature maker. It hit #7 on Hacker News under the title &quot;Famous Signatures Through History.">
+<link rel="canonical" href="https://elliotbonneville.com/how-to-nerd-snipe-hacker-news/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Nerd Snipe Hacker News">
+<meta property="og:description" content="I built a free signature maker. It hit #7 on Hacker News under the title &quot;Famous Signatures Through History.">
+<meta property="og:url" content="https://elliotbonneville.com/how-to-nerd-snipe-hacker-news/">
+<meta property="og:site_name" content="Elliot Bonneville">
+<meta property="article:published_time" content="2026-02-19">
+<meta name="theme-color" content="#30241a">
+<link rel="alternate" type="application/rss+xml" title="Elliot Bonneville" href="/rss.xml">
+<link rel="preload" href="/fonts/StonebrookQuill-Plain.ttf" as="font" type="font/ttf" crossorigin>
+<style>
+@font-face{font-family:"Stonebrook";src:url(/fonts/StonebrookQuill-Plain.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Stonebrook";font-style:italic;src:url(/fonts/StonebrookQuill-Italic.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Stonebrook Roman";src:url(/fonts/StonebrookQuill-Roman.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Rowanbeck Uncial";src:url(/fonts/RowanbeckReed-Uncial.ttf) format("truetype");font-display:swap}
+:root{--lead:30px;--size:22px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
+html{background:var(--desk);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0}
+/* The scene is everything the program draws: the desk and the sheet on it. Its strips lie behind the text. */
+.scene{position:relative;z-index:0;display:flow-root;min-height:100vh}
+.strips{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.desk{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
+.strip{position:absolute;opacity:0;transition:opacity .25s ease-out}
+.strip.soft{transition:none}
+.desk.on,.strip.on{opacity:1}
+/* The desk of baked wood: a coarse picture of all of it, and full pictures in strips as their tiles come. */
+.far,.dk{position:absolute;opacity:0}
+.far{left:0;top:0;width:100%;height:100%}
+.dk{transition:opacity .35s ease-out}
+.far.on,.dk.on{opacity:1}
+/* The lamp stays where it is while the page slides under it. Nearest it (up and to the left) the desk is as its tiles are lit; from there its light only falls away, gently, with distance. Nothing is made brighter, and the sheet is not touched: the program lays this between the desk and the sheet. */
+.pool{display:none}
+.scene.live .pool{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply;background:radial-gradient(150% 140% at 18% 4%,#fff 0%,rgb(224,204,189) 30%,rgb(204,178,158) 62%,rgb(184,153,133) 100%)}
+/* The leaf's own box is the sheet's nominal rectangle; --over is how far the sheet runs on past it at the sides. */
+.leaf{--over:0px;max-width:554px;margin:44px auto;padding:72px 84px 120px 122px;background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
+article{position:relative;z-index:1;font:var(--size)/var(--lead) "Stonebrook",Georgia,serif;color:var(--ink);overflow-wrap:break-word}
+article,article *{transition:color .3s ease-out}
+::selection{background:rgba(180,48,29,.22)}
+header{margin:0}
+.date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
+h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
+p{margin:0 0 var(--lead)}
+h2,h3,h4{font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+em{font-style:italic}
+strong{font-weight:400;-webkit-text-stroke:.8px currentColor}
+code{font:inherit}
+a{color:var(--indigo);--hue:1;text-decoration:none}
+a:focus-visible{outline:1.5px solid var(--indigo);outline-offset:3px;border-radius:2px}
+sup{line-height:0;font-size:.62em}
+sup a{color:var(--verm);--hue:0;padding:0 1px}
+blockquote{margin:0 0 var(--lead) 1.6em;font-style:italic}
+blockquote em{font-style:normal}
+ol,ul{margin:0 0 var(--lead);padding:0;list-style:none}
+li{padding-left:1.7em;text-indent:-1.7em}
+.mk{display:inline-block;width:1.7em;text-indent:0;color:var(--verm);--hue:0}
+/* Between passages: three pen dots. Under the title and over the notes: a pen rule. */
+hr{border:0;height:var(--lead);width:45px;margin:0 auto var(--lead);background:radial-gradient(circle,var(--verm) 0 1.2px,transparent 1.8px) 50% 50%/15px 100% repeat-x}
+hr.pen{width:42%;height:1.5px;margin:calc(.5*var(--lead) - 1px) 0 calc(.5*var(--lead) - .5px);background:var(--verm)}
+/* The initial: the paragraph's first letter in a box of its own, and the words after it in small capitals. */
+p.first::first-letter{float:left;font:400 108px/88px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:12px var(--ipad,14px) 8px;margin:5px 13px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
+.lead{font-family:"Stonebrook Roman",Georgia,serif;font-size:.8em;letter-spacing:.06em}
+/* A later passage opens with a smaller initial; the text ends with a tailpiece. */
+/* (red letters and blue by turns, as the pen draws them) */
+p.versal::first-letter{float:left;font:400 52px/46px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:4px 0 0;margin:2px 10px 0 0}
+p.versal.b::first-letter{color:var(--azure)}
+hr.tail{width:200px;height:124px;margin:0 auto;background:none}
+.notes{font-size:.78em;line-height:24px;margin-top:var(--lead)}
+.notes hr.pen{width:24%;margin:0 0 var(--lead)}
+.notes ol{margin:0}
+.notes li{margin-bottom:12px;padding-left:2em;text-indent:-2em}
+.notes .mk{width:2em}
+/* Code is set as it stands, in type, beside the scribe's work rather than in it: the program draws no ink for it. */
+pre{margin:0 0 var(--lead);padding:6px 0 6px 1.1em;border-left:1.5px solid rgba(180,48,29,.5);overflow-x:auto;font:13.5px/20px ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--ink);white-space:pre;tab-size:4}
+pre code{font:inherit}
+/* What a post embeds as HTML stands as it is. */
+.raw{margin:0 0 var(--lead)}
+.raw button{font:inherit;color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:3px;padding:0 .6em;margin-right:.6em;cursor:pointer}
+/* Over the title, the way back to the contents. */
+.home{margin:0;font:400 .8em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.06em}
+/* The contents open with a few words beside the initial, and go on below it. */
+.intro{min-height:calc(4*var(--lead))}
+/* The contents: each writing by its title, and when it was written under it. */
+.toc li{padding-left:0;text-indent:0;margin:0 0 var(--lead)}
+.toc .when{display:block;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
+/* Where the program has drawn the ink, the page's own text steps back: still there to select, search and follow. */
+.ink,.ink *{color:transparent!important}
+.ink::selection,.ink *::selection{color:transparent;background:rgba(180,48,29,.22)}
+p.first.ink::first-letter{color:transparent;background:transparent;box-shadow:none}
+p.versal.ink::first-letter{color:transparent}
+hr.ink{background:none}
+@media (max-width:700px){
+.scene.live .pool{display:none}
+:root{--lead:27px;--size:20px}
+.leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 20px 72px 26px;box-shadow:none}
+h1{font-size:31px}
+p.first::first-letter{font-size:82px;line-height:66px;padding:10px var(--ipad,11px) 6px;margin:5px 10px 0 0}
+p.versal::first-letter{font-size:46px;line-height:41px;padding:3px 0 0;margin:2px 9px 0 0}
+pre{font-size:12px;line-height:18px;padding-left:.8em}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ELQ40R6NTG');</script>
+</head>
+<body>
+<div class="scene">
+<div class="pool" aria-hidden="true"></div>
+<main class="leaf" data-seed="2721122374" data-age="0.0083" data-ornaments="ornaments.bin" data-desk="/desk/">
+<article>
+<header>
+<p class="home"><a href="/">Elliot Bonneville</a></p>
+<p class="date"><time datetime="2026-02-19">The nineteenth of February, 2026</time></p>
+<h1>How to Nerd Snipe Hacker News</h1>
+<hr class="pen" aria-hidden="true">
+</header>
+<p class="first"><span class="lead">I needed a</span> PNG of my signature. I was writing a manifesto for <a href="https://joinkith.com">Kith</a> and I wanted to sign it at the bottom. My actual handwriting. A real person standing behind real words.</p>
+<p>So I decided to build one myself. I'd never tried building something purely as an experiment in SEO and AI-assisted marketing, and a single-page tool targeting a high-volume keyword seemed like the right shape for that.</p>
+<p>I built <a href="https://signatory.app">Signatory</a> in an evening. One page. You draw your signature. You download it as PNG or SVG. No account, no backend, no ads.</p>
+<p>Then I posted it to Hacker News and it went to #7.</p>
+<p>The title wasn't &quot;Show HN: I Built a Signature Maker.&quot; It was <a href="https://news.ycombinator.com/item?id=47073684">&quot;Famous Signatures Through History.&quot;</a></p>
+<h4>The nerd snipe</h4>
+<p><a href="https://xkcd.com/356/">XKCD 356</a>. You present something so interesting that a specific type of person cannot walk away from it. The setup looks innocent.</p>
+<p>Signatory has a gallery of 70 historical signatures. Napoleon's jagged scrawl. Sitting Bull's pictographic self-portrait. Charlemagne's monogram, because he could barely write. King Ferdinand VII of Spain, who signed documents with just &quot;Yo el Rey.&quot; I, the king.</p>
+<p>That last one surfaced in the HN comments within the first hour. I found the SVG on Wikimedia Commons and added it live. When someone mentioned Lucas Cranach the Elder signed his paintings with a tiny winged dragon, I added that one too.</p>
+<p>Historical signatures belong to a class of digital artifact that is irresistible to the HN crowd: art that's digital, carries deep meaning, and isn't easy to find in one place. Every one has a story that tells you something about the person who made the mark. You open the page meaning to glance and you're still scrolling three minutes later reading about how Houdini's signature evolved throughout his career.</p>
+<p>And while you're there, you notice the drawing canvas at the top of the page. The one that uses velocity-sensitive strokes to make your mouse feel like a fountain pen. You try it. You draw your name. You draw it again because it actually feels kind of nice.</p>
+<p>The interesting thing and the useful thing were on the same page. I only linked to the interesting one.</p>
+<h4>The audience</h4>
+<p>Hacker News has strong opinions. A link titled &quot;Famous Signatures Through History&quot; is going to get clicked at 2pm on a Tuesday by people who should be working. &quot;Show HN: I Built a Free Signature Maker&quot; isn't. That title sounds like every other Show HN drowning in the new queue. I know, because I searched: at least two other signature makers have been posted to HN in the past year. Neither broke 15 points.</p>
+<p>Same product. The headline is the only variable.</p>
+<p>This wasn't my first time. The day before, I'd posted <a href="/the-only-moat-left-is-money/">a contrary take on AI and money</a> that briefly hit #1. That's the other route: an opinion strong enough and current enough that people need to argue with it. Two different mechanisms, same principle. Know what the audience engages with and give them exactly that.</p>
+<p>The other thing HN people do is participate. When commenters suggested additions, I didn't say &quot;great idea, we'll add that to the roadmap.&quot; I added them. In the thread. While the thread was still active. The post kept breathing because it was a conversation, not an announcement.</p>
+<h4>The thing underneath</h4>
+<p>Here's what I actually care about. &quot;Free signature maker&quot; gets 9,600 searches a month. &quot;Online signature maker&quot; gets 19,000. Signaturely, the company that currently owns most of those keywords, drives 180,000 organic visitors per month to their tool page. That traffic is worth an estimated $370,000 per year.</p>
+<p>All of it goes to a product that's deliberately worse than it needs to be, because the business model requires an upgrade.</p>
+<p>Signatory has nine variant landing pages generated from the same canvas: <code>/cursive-signature-maker</code>, <code>/signature-maker-for-pdf</code>, <code>/draw-signature-online</code>, each targeting a different keyword cluster with different meta tags and a paragraph of contextual copy. The Canva playbook, except the tool loads in under a second and there's nothing to upsell.</p>
+<p>The domains I'm competing against have thousands of backlinks and years of authority. I have a fast page and zero ads. Google says it rewards that. I'll find out if Google means it.</p>
+<h4>The technical bait</h4>
+<p>The drawing engine uses a 3KB library called <a href="https://github.com/steveruizok/perfect-freehand">perfect-freehand</a> that simulates pen pressure from mouse velocity. It measures speed from the distance between pointer events and maps that to stroke width. Draw fast, the line thins out. Draw slow, it thickens. The physics of a fountain pen, approximated in a browser.</p>
+<p>That's a nerd snipe too, by the way. &quot;Velocity-sensitive stroke width derived from inter-event distance as a proxy for pen pressure&quot; is the kind of sentence a certain type of person reads and immediately needs to see working.</p>
+<p>Nobody had built the beautiful version of this. The whole space is tools that do the job while making you feel like you're being processed. Signatory exists because I needed a signature and got annoyed, and then I realized that annoyance was shared by roughly 19,000 people a month, and none of the results respected their time.</p>
+<p>The HN traffic is a nice spike. The real bet is whether nine clean pages can chip away at a market where every incumbent is actively hostile to their own users. I'll check back in six months. If you got here by googling &quot;free signature maker,&quot; I guess I have my answer.</p>
+<hr class="tail" aria-hidden="true">
+</article>
+</main>
+</div>
+<script type="text/plain" id="desk-list"># The desk, baked: one period of it in tiles of four pictures. crates/wood/src/tiles.rs says what the lines mean, desk.glsl how the pictures are lit.
+desk 1
+period 8218
+picture colour webp 1
+picture relief jpg 1
+picture fibre webp 2
+picture finish webp 2
+set 2x 2 2 48764685
+set 1x 1 2 12513249
+col L6 -1500 298
+col L5 -1202 298
+col L4 -904 256
+col L3 -648 160
+col L2 -488 128
+col L1 -360 196
+col L0 -164 196
+col M0 32 232
+col M1 264 232
+col M2 496 232
+col R0 728 196
+col R1 924 196
+col R2 1120 128
+col R3 1248 160
+col R4 1408 256
+col R5 1664 298
+col R6 1962 298
+row 00 -64 512
+row 01 448 512
+row 02 960 512
+row 03 1472 512
+row 04 1984 512
+row 05 2496 512
+row 06 3008 512
+row 07 3520 512
+row 08 4032 512
+row 09 4544 512
+row 10 5056 512
+row 11 5568 512
+row 12 6080 512
+row 13 6592 512
+row 14 7104 512
+row 15 7616 538
+far far -1500 -64 3760 8218 118 257
+flat colour 94 47 27
+flat relief 128 127 73
+flat fibre 126 129 97
+flat finish 51 128 128
+</script>
+<script type="module">import init, * as page from "/pkg/page.js";
+// (the desk's pictures are fetched and decoded here, off the page's thread, and handed to the program as they come)
+window.deskLoad = (id, url) => fetch(url).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => createImageBitmap(b, { premultiplyAlpha: "none", colorSpaceConversion: "none" })).then((m) => page.desk_picture(id, m), () => page.desk_picture(id, null));
+init().then(() => { window.scriptorium = page; }).catch(() => {});</script>
+</body>
+</html>

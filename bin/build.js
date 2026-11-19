@@ -232,6 +232,15 @@ function build() {
     console.log('Copied: static/ passthrough');
   }
 
+  // The hand-written site (scriptorium/, `scriptorium site src/posts scribed`):
+  // the home page and every post as a leaf on the desk, laid over the pages
+  // above. It is built locally (it needs the Rust toolchain and the baked desk)
+  // and committed; a post it has no page for keeps the page built above.
+  if (existsSync('scribed')) {
+    cpSync('scribed', 'public', { recursive: true });
+    console.log('Copied: scribed/ (the hand-written site)');
+  }
+
   console.log(`\nBuild complete! Generated ${posts.length} posts.`);
 }
 

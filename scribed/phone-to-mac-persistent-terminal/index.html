@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seamless Claude Code Handoff: SSH From Your Phone With tmux - Elliot Bonneville</title>
+<meta name="description" content="How I set up Tailscale and tmux for true device handoff - attach to running Claude Code sessions from anywhere">
+<link rel="canonical" href="https://elliotbonneville.com/phone-to-mac-persistent-terminal/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seamless Claude Code Handoff: SSH From Your Phone With tmux">
+<meta property="og:description" content="How I set up Tailscale and tmux for true device handoff - attach to running Claude Code sessions from anywhere">
+<meta property="og:url" content="https://elliotbonneville.com/phone-to-mac-persistent-terminal/">
+<meta property="og:site_name" content="Elliot Bonneville">
+<meta property="article:published_time" content="2026-01-18">
+<meta name="theme-color" content="#30241a">
+<link rel="alternate" type="application/rss+xml" title="Elliot Bonneville" href="/rss.xml">
+<link rel="preload" href="/fonts/StonebrookQuill-Plain.ttf" as="font" type="font/ttf" crossorigin>
+<style>
+@font-face{font-family:"Stonebrook";src:url(/fonts/StonebrookQuill-Plain.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Stonebrook";font-style:italic;src:url(/fonts/StonebrookQuill-Italic.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Stonebrook Roman";src:url(/fonts/StonebrookQuill-Roman.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Rowanbeck Uncial";src:url(/fonts/RowanbeckReed-Uncial.ttf) format("truetype");font-display:swap}
+:root{--lead:30px;--size:22px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
+html{background:var(--desk);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0}
+/* The scene is everything the program draws: the desk and the sheet on it. Its strips lie behind the text. */
+.scene{position:relative;z-index:0;display:flow-root;min-height:100vh}
+.strips{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.desk{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
+.strip{position:absolute;opacity:0;transition:opacity .25s ease-out}
+.strip.soft{transition:none}
+.desk.on,.strip.on{opacity:1}
+/* The desk of baked wood: a coarse picture of all of it, and full pictures in strips as their tiles come. */
+.far,.dk{position:absolute;opacity:0}
+.far{left:0;top:0;width:100%;height:100%}
+.dk{transition:opacity .35s ease-out}
+.far.on,.dk.on{opacity:1}
+/* The lamp stays where it is while the page slides under it. Nearest it (up and to the left) the desk is as its tiles are lit; from there its light only falls away, gently, with distance. Nothing is made brighter, and the sheet is not touched: the program lays this between the desk and the sheet. */
+.pool{display:none}
+.scene.live .pool{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply;background:radial-gradient(150% 140% at 18% 4%,#fff 0%,rgb(224,204,189) 30%,rgb(204,178,158) 62%,rgb(184,153,133) 100%)}
+/* The leaf's own box is the sheet's nominal rectangle; --over is how far the sheet runs on past it at the sides. */
+.leaf{--over:0px;max-width:554px;margin:44px auto;padding:72px 84px 120px 122px;background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
+article{position:relative;z-index:1;font:var(--size)/var(--lead) "Stonebrook",Georgia,serif;color:var(--ink);overflow-wrap:break-word}
+article,article *{transition:color .3s ease-out}
+::selection{background:rgba(180,48,29,.22)}
+header{margin:0}
+.date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
+h1{font:400 40px/calc(2*var(--lead)) "Stonebrook Roman",Georgia,serif;letter-spacing:.01em;margin:0}
+p{margin:0 0 var(--lead)}
+h2,h3,h4{font:400 1.05em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.04em;margin:0 0 var(--lead);padding-top:var(--lead);color:var(--verm);--hue:0}
+em{font-style:italic}
+strong{font-weight:400;-webkit-text-stroke:.8px currentColor}
+code{font:inherit}
+a{color:var(--indigo);--hue:1;text-decoration:none}
+a:focus-visible{outline:1.5px solid var(--indigo);outline-offset:3px;border-radius:2px}
+sup{line-height:0;font-size:.62em}
+sup a{color:var(--verm);--hue:0;padding:0 1px}
+blockquote{margin:0 0 var(--lead) 1.6em;font-style:italic}
+blockquote em{font-style:normal}
+ol,ul{margin:0 0 var(--lead);padding:0;list-style:none}
+li{padding-left:1.7em;text-indent:-1.7em}
+.mk{display:inline-block;width:1.7em;text-indent:0;color:var(--verm);--hue:0}
+/* Between passages: three pen dots. Under the title and over the notes: a pen rule. */
+hr{border:0;height:var(--lead);width:45px;margin:0 auto var(--lead);background:radial-gradient(circle,var(--verm) 0 1.2px,transparent 1.8px) 50% 50%/15px 100% repeat-x}
+hr.pen{width:42%;height:1.5px;margin:calc(.5*var(--lead) - 1px) 0 calc(.5*var(--lead) - .5px);background:var(--verm)}
+/* The initial: the paragraph's first letter in a box of its own, and the words after it in small capitals. */
+p.first::first-letter{float:left;font:400 108px/88px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:12px var(--ipad,14px) 8px;margin:5px 13px 0 0;background:var(--ground);box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 4.5px var(--ground),inset 0 0 0 5.5px var(--ink)}
+.lead{font-family:"Stonebrook Roman",Georgia,serif;font-size:.8em;letter-spacing:.06em}
+/* A later passage opens with a smaller initial; the text ends with a tailpiece. */
+/* (red letters and blue by turns, as the pen draws them) */
+p.versal::first-letter{float:left;font:400 52px/46px "Rowanbeck Uncial",Georgia,serif;color:var(--verm);padding:4px 0 0;margin:2px 10px 0 0}
+p.versal.b::first-letter{color:var(--azure)}
+hr.tail{width:200px;height:124px;margin:0 auto;background:none}
+.notes{font-size:.78em;line-height:24px;margin-top:var(--lead)}
+.notes hr.pen{width:24%;margin:0 0 var(--lead)}
+.notes ol{margin:0}
+.notes li{margin-bottom:12px;padding-left:2em;text-indent:-2em}
+.notes .mk{width:2em}
+/* Code is set as it stands, in type, beside the scribe's work rather than in it: the program draws no ink for it. */
+pre{margin:0 0 var(--lead);padding:6px 0 6px 1.1em;border-left:1.5px solid rgba(180,48,29,.5);overflow-x:auto;font:13.5px/20px ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--ink);white-space:pre;tab-size:4}
+pre code{font:inherit}
+/* What a post embeds as HTML stands as it is. */
+.raw{margin:0 0 var(--lead)}
+.raw button{font:inherit;color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:3px;padding:0 .6em;margin-right:.6em;cursor:pointer}
+/* Over the title, the way back to the contents. */
+.home{margin:0;font:400 .8em/var(--lead) "Stonebrook Roman",Georgia,serif;letter-spacing:.06em}
+/* The contents open with a few words beside the initial, and go on below it. */
+.intro{min-height:calc(4*var(--lead))}
+/* The contents: each writing by its title, and when it was written under it. */
+.toc li{padding-left:0;text-indent:0;margin:0 0 var(--lead)}
+.toc .when{display:block;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
+/* Where the program has drawn the ink, the page's own text steps back: still there to select, search and follow. */
+.ink,.ink *{color:transparent!important}
+.ink::selection,.ink *::selection{color:transparent;background:rgba(180,48,29,.22)}
+p.first.ink::first-letter{color:transparent;background:transparent;box-shadow:none}
+p.versal.ink::first-letter{color:transparent}
+hr.ink{background:none}
+@media (max-width:700px){
+.scene.live .pool{display:none}
+:root{--lead:27px;--size:20px}
+.leaf{--over:14px;max-width:none;margin:10px 0 12px;padding:40px 20px 72px 26px;box-shadow:none}
+h1{font-size:31px}
+p.first::first-letter{font-size:82px;line-height:66px;padding:10px var(--ipad,11px) 6px;margin:5px 10px 0 0}
+p.versal::first-letter{font-size:46px;line-height:41px;padding:3px 0 0;margin:2px 9px 0 0}
+pre{font-size:12px;line-height:18px;padding-left:.8em}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ELQ40R6NTG');</script>
+</head>
+<body>
+<div class="scene">
+<div class="pool" aria-hidden="true"></div>
+<main class="leaf" data-seed="485483035" data-age="0.0092" data-ornaments="ornaments.bin" data-desk="/desk/">
+<article>
+<header>
+<p class="home"><a href="/">Elliot Bonneville</a></p>
+<p class="date"><time datetime="2026-01-18">The eighteenth of January, 2026</time></p>
+<h1>Seamless Claude Code Handoff: SSH From Your Phone With tmux</h1>
+<hr class="pen" aria-hidden="true">
+</header>
+<p class="first"><span class="lead">I wanted to</span> SSH into my Mac from my phone. Not for emergencies - for actual work. Run a quick command, check on a build, continue a Claude Code session I left running. The kind of thing that seems simple until you actually try to do it.</p>
+<p><em>This is part of an ongoing series where I'm building my</em> <a href="https://github.com/elliotbonneville/dotfiles"><em>dotfiles</em></a> <em>with Claude Code. I describe what I want, Claude writes the config, and we iterate until it works. The AI pair-programs my entire dev environment.</em></p>
+<p>The problem is threefold:</p>
+<ol role="list">
+<li><span class="mk">1.</span><strong>Network access</strong> - Your Mac is behind a router, probably on a dynamic IP, definitely behind NAT</li>
+<li><span class="mk">2.</span><strong>Session persistence</strong> - Phone SSH is flaky. WiFi drops, cellular switches towers, apps get backgrounded</li>
+<li><span class="mk">3.</span><strong>Mobile UX</strong> - Tiny keyboard, no modifier keys, scrolling with your thumb</li>
+</ol>
+<p>I solved all three with about 80 lines of configuration: Tailscale for networking, tmux for persistence, and some careful keybindings for mobile usability.</p>
+<h3>Part 1: Tailscale for Networking</h3>
+<p>Tailscale creates a private mesh network between your devices using WireGuard. No port forwarding, no dynamic DNS, no firewall rules. It just works through NAT, hotel WiFi, cellular networks - everywhere.</p>
+<p>Install it on your Mac, install it on your phone, sign in with the same account, and you can SSH between them using hostnames like <code>ssh macbook</code>.</p>
+<p>Setup takes 5 minutes:</p>
+<ol role="list">
+<li><span class="mk">1.</span>Install Tailscale from <a href="https://tailscale.com/download">tailscale.com/download</a></li>
+<li><span class="mk">2.</span>Sign in with Google/GitHub/whatever</li>
+<li><span class="mk">3.</span>Enable Remote Login on your Mac (System Settings → Sharing → Remote Login)</li>
+<li><span class="mk">4.</span>Optional: Enable Tailscale SSH for keyless auth</li>
+</ol>
+<p>That's the networking solved. Your Mac is now reachable from anywhere in the world, through any network, with end-to-end encryption. Free for up to 100 devices.</p>
+<h3>Part 2: tmux for Persistence</h3>
+<p>SSH from a phone is unreliable. Connections drop. Apps get backgrounded by iOS. You walk through a cellular dead zone. Without session persistence, you lose everything when the connection dies.</p>
+<p>tmux solves this. Your shell runs inside tmux, and tmux keeps running even when you disconnect. Reconnect later and pick up exactly where you left off.</p>
+<p>But I didn't want to think about tmux. I wanted every terminal to just be persistent automatically. So I wrote this:</p>
+<pre><code class="language-bash"># ~/.dotfiles/shell/config/tmux.zsh
+
+# Skip if already in tmux, or NOTMUX is set
+[[ -n &quot;$TMUX&quot; || -n &quot;$NOTMUX&quot; || ! -o interactive ]] &amp;&amp; return
+command -v tmux &gt;/dev/null 2&gt;&amp;1 || return
+
+# Generate fun Docker-style names
+_tmux_random_name() {
+  local adjectives=(brave calm clever cool daring eager fancy gentle happy jolly...)
+  local animals=(otter fox panda koala falcon badger lynx wolf raven hawk...)
+  echo &quot;${adjectives[$RANDOM % ${#adjectives[@]} + 1]}-${animals[$RANDOM % ${#animals[@]} + 1]}&quot;
+}
+
+# fzf picker with option to create new session
+_tmux_pick_session() {
+  local selection
+  if command -v fzf &gt;/dev/null 2&gt;&amp;1; then
+    selection=$( (echo &quot;+ new session&quot;; tmux ls -F &quot;#{session_name}: #{session_windows} windows&quot; 2&gt;/dev/null) | \
+      fzf --height 40% --reverse --prompt=&quot;tmux session&gt; &quot;)
+  else
+    selection=&quot;+ new session&quot;
+  fi
+  echo &quot;$selection&quot;
+}
+
+# SSH: show picker with existing sessions + new session option
+# Local: create session that auto-closes when tab closes
+if [[ -n &quot;$SSH_CONNECTION&quot; ]]; then
+  selection=$(_tmux_pick_session)
+  if [[ &quot;$selection&quot; == &quot;+ new session&quot; ]]; then
+    exec tmux new-session -s &quot;$(_tmux_random_name)&quot;
+  elif [[ -n &quot;$selection&quot; ]]; then
+    session=$(echo &quot;$selection&quot; | cut -d: -f1)
+    exec tmux attach -t &quot;$session&quot;
+  fi
+else
+  exec tmux new-session -s &quot;$(_tmux_random_name)&quot; \; set destroy-unattached on
+fi</code></pre>
+<p>Now every iTerm tab starts in its own tmux session with a name like <code>jolly-panda</code> or <code>swift-falcon</code>. When I SSH in from my phone, fzf shows me all my existing sessions plus a <code>+ new session</code> option at the top.</p>
+<p>The key insight is treating local and SSH sessions differently:</p>
+<p><strong>Local sessions auto-close.</strong> The <code>destroy-unattached</code> flag means when you close an iTerm tab, the tmux session dies with it. No orphaned <code>swift-falcon</code> sessions piling up in the background.</p>
+<p><strong>SSH sessions persist.</strong> When your phone connection drops (and it will), the session keeps running. Reconnect later and pick up where you left off. You can also create fresh SSH sessions with fun names by selecting <code>+ new session</code> from the picker.</p>
+<p>The magic: I can start a long-running process in <code>brave-otter</code> on my Mac, SSH in from my phone, attach to <code>brave-otter</code>, and see exactly where I left off. Close the SSH app, reopen it later, attach again - still there.</p>
+<p>This is especially powerful with Claude Code. Normally if you want to continue a session from a different device, you'd need to use <code>/resume</code> to reload the conversation context. But with tmux, you're attaching to the <em>same running process</em> - Claude Code is still right there, mid-thought, no resume needed. True seamless handoff between devices.</p>
+<h3>Part 3: Mobile-Friendly tmux Bindings</h3>
+<p>Here's where most tutorials stop. But there's a usability problem: tmux's default prefix is <code>Ctrl+b</code>, and mobile keyboards make modifier keys painful. Scrolling is especially bad - you need <code>Ctrl+b</code> then <code>[</code> to enter copy mode, then arrow keys to scroll.</p>
+<p>My fix: bind PageUp and F1 directly to copy mode, no prefix required.</p>
+<pre><code class="language-bash"># ~/.dotfiles/tmux/tmux.conf
+
+# Hide status bar (session name is in my shell prompt)
+set -g status off
+
+# Mouse mode for scroll gestures
+set -g mouse on
+
+# No-prefix bindings - hit these keys directly
+bind -n PageUp copy-mode -eu  # PageUp enters scroll mode and pages up
+bind -n F1 copy-mode          # F1 enters scroll mode</code></pre>
+<p>Termius on iOS sends PageUp when you swipe down with two fingers. Now I can scroll through output naturally, without any Ctrl-anything. Press <code>q</code> to exit scroll mode.</p>
+<p>For text input, I use <a href="https://wisprflow.ai">Wispr Flow</a> for voice-to-text. Instead of pecking at a tiny keyboard, I just talk. It handles technical terms and code surprisingly well. Between Wispr for input and the PageUp binding for scrolling, the phone keyboard becomes almost optional.</p>
+<p>The full config is in my <a href="https://github.com/elliotbonneville/dotfiles">dotfiles repo</a>:</p>
+<ul role="list">
+<li><span class="mk">-</span><a href="https://github.com/elliotbonneville/dotfiles/blob/main/shell/config/tmux.zsh">tmux.zsh</a> - auto-session logic</li>
+<li><span class="mk">-</span><a href="https://github.com/elliotbonneville/dotfiles/blob/main/tmux/tmux.conf">tmux.conf</a> - keybindings</li>
+</ul>
+<h3>The Point</h3>
+<p>Mobile SSH doesn't have to suck. With the right config, your phone becomes a legitimate terminal into your development machine - like VNC, but faster and works over cellular. Not a toy, not emergency-only - actually usable for real work.</p>
+<p>Your Mac is always one tap away.</p>
+<h3>Meta: How This Got Built</h3>
+<p>I vibe coded this entire setup with Claude Code over about an hour. Here's the actual progression of prompts:</p>
+<ol role="list">
+<li><span class="mk">1.</span><strong>&quot;I want to allow SSHing into this terminal from my phone from anywhere. Best way to do that?&quot;</strong> - Claude suggested Tailscale, explained why it beats port forwarding, and wrote the install script changes.</li>
+<li><span class="mk">2.</span><strong>&quot;how can i have a session open on my macbook and my phone at the same time?&quot;</strong> - This led to the tmux auto-session setup. Claude wrote the detection logic for SSH vs local terminals and the fzf picker.</li>
+<li><span class="mk">3.</span><strong>&quot;claude app looks bad when using tmux and ssh in from termius on my phone&quot;</strong> - We debugged terminal compatibility issues, added the <code>screen-256color</code> settings.</li>
+<li><span class="mk">4.</span><strong>&quot;how do you scroll up with tmux?&quot;</strong> - I asked this from my phone, struggling with the Ctrl+b prefix. Claude suggested the no-prefix PageUp binding and I said &quot;perfect, add that.&quot;</li>
+<li><span class="mk">5.</span><strong>&quot;write a blogpost in my blog about the tmux tailscale setup&quot;</strong> - This post. Written from my phone, over Tailscale, in a persistent tmux session, about the setup we just built.</li>
+</ol>
+<p>The fun Docker-style session names (<code>jolly-panda</code>, <code>swift-falcon</code>)? Claude's idea - I just said I wanted unique names per tab.</p>
+<p>When I asked Claude to write this post, I told it to introspect our conversation history. It read the session index at <code>~/.claude/projects/</code> and pulled out the actual prompts I'd typed over the past hour. That's how I got the numbered list above - not from memory, but from Claude reading its own logs and reconstructing the journey.</p>
+<p>Total time from &quot;I want to SSH from my phone&quot; to writing this post: maybe 90 minutes. Most of that was waiting for Tailscale to install and testing on actual hardware.</p>
+<p>The snake is eating its tail and it tastes great.</p>
+<hr class="tail" aria-hidden="true">
+</article>
+</main>
+</div>
+<script type="text/plain" id="desk-list"># The desk, baked: one period of it in tiles of four pictures. crates/wood/src/tiles.rs says what the lines mean, desk.glsl how the pictures are lit.
+desk 1
+period 8218
+picture colour webp 1
+picture relief jpg 1
+picture fibre webp 2
+picture finish webp 2
+set 2x 2 2 48764685
+set 1x 1 2 12513249
+col L6 -1500 298
+col L5 -1202 298
+col L4 -904 256
+col L3 -648 160
+col L2 -488 128
+col L1 -360 196
+col L0 -164 196
+col M0 32 232
+col M1 264 232
+col M2 496 232
+col R0 728 196
+col R1 924 196
+col R2 1120 128
+col R3 1248 160
+col R4 1408 256
+col R5 1664 298
+col R6 1962 298
+row 00 -64 512
+row 01 448 512
+row 02 960 512
+row 03 1472 512
+row 04 1984 512
+row 05 2496 512
+row 06 3008 512
+row 07 3520 512
+row 08 4032 512
+row 09 4544 512
+row 10 5056 512
+row 11 5568 512
+row 12 6080 512
+row 13 6592 512
+row 14 7104 512
+row 15 7616 538
+far far -1500 -64 3760 8218 118 257
+flat colour 94 47 27
+flat relief 128 127 73
+flat fibre 126 129 97
+flat finish 51 128 128
+</script>
+<script type="module">import init, * as page from "/pkg/page.js";
+// (the desk's pictures are fetched and decoded here, off the page's thread, and handed to the program as they come)
+window.deskLoad = (id, url) => fetch(url).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => createImageBitmap(b, { premultiplyAlpha: "none", colorSpaceConversion: "none" })).then((m) => page.desk_picture(id, m), () => page.desk_picture(id, null));
+init().then(() => { window.scriptorium = page; }).catch(() => {});</script>
+</body>
+</html>
