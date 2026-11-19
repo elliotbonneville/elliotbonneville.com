@@ -2,6 +2,7 @@ import {existsSync} from 'node:fs';
 import {readFile, readdir, rename, writeFile} from 'node:fs/promises';
 import {extname, join, resolve, sep} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {typesetProseQuotes} from './prose-quotes.mjs';
 
 const origin = 'https://manuscript.invalid';
 const mime = {'.html':'text/html','.js':'text/javascript','.wasm':'application/wasm','.bin':'application/octet-stream','.woff2':'font/woff2','.ttf':'font/ttf','.webp':'image/webp','.jpg':'image/jpeg'};
@@ -90,7 +91,7 @@ export async function renderShareCards(directory, slugs, missingOnly = false) {
     const shell = home.includes('data-ornaments=') ? home : plainShell;
     for (const slug of pending) {
       const path = (slug ? '/' + slug : '') + '/';
-      const original = await readFile(join(root,slug,'index.html'),'utf8');
+      const original = typesetProseQuotes(await readFile(join(root,slug,'index.html'),'utf8'));
       const manuscript = original.includes('data-ornaments=');
       const illustrated = manuscript || shell !== plainShell;
       const html = (manuscript ? original : shell)

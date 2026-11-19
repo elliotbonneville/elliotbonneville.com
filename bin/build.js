@@ -5,6 +5,7 @@ import markedFootnote from 'marked-footnote';
 import Prism from 'prismjs';
 import { config } from '../config.js';
 import { renderShareCards } from './share-cards.mjs';
+import { typesetProseQuotes } from './prose-quotes.mjs';
 
 // Import language support for syntax highlighting
 import 'prismjs/components/prism-javascript.js';
@@ -254,7 +255,14 @@ async function build() {
     cpSync('scribed', 'public', { recursive: true });
     console.log('Copied: scribed/ (the hand-written site)');
   }
-  await renderShareCards('public', ['', ...posts.map(post => post.slug)], true);
+  const slugs = ['', ...posts.map(post => post.slug)];
+  for (const slug of slugs) {
+    const path = join('public', slug, 'index.html');
+    const html = readFileSync(path, 'utf8');
+    const typeset = typesetProseQuotes(html);
+    if (typeset !== html) writeFileSync(path, typeset);
+  }
+  await renderShareCards('public', slugs, true);
 
   console.log(`\nBuild complete! Generated ${posts.length} posts.`);
 }

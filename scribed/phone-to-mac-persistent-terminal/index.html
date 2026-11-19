@@ -208,7 +208,7 @@ if (pageProgram) {
 <hr class="pen" aria-hidden="true">
 <button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><img src="/pkg/ink-loupe.webp" width="30" height="30" alt="" draggable="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></header>
 <p class="first"><span class="lead"><span class="initial">I</span> wanted to</span> SSH into my Mac from my phone. Not for emergencies - for actual work. Run a quick command, check on a build, continue a Claude Code session I left running. The kind of thing that seems simple until you actually try to do it.</p>
-<p><em>This is part of an ongoing series where I'm building my</em> <a href="https://github.com/elliotbonneville/dotfiles"><em>dotfiles</em></a> <em>with Claude Code. I describe what I want, Claude writes the config, and we iterate until it works. The AI pair-programs my entire dev environment.</em></p>
+<p><em>This is part of an ongoing series where I’m building my</em> <a href="https://github.com/elliotbonneville/dotfiles"><em>dotfiles</em></a> <em>with Claude Code. I describe what I want, Claude writes the config, and we iterate until it works. The AI pair-programs my entire dev environment.</em></p>
 <p>The problem is threefold:</p>
 <ol role="list">
 <li><span class="mk">1.</span><strong>Network access</strong> - Your Mac is behind a router, probably on a dynamic IP, definitely behind NAT</li>
@@ -226,11 +226,11 @@ if (pageProgram) {
 <li><span class="mk">3.</span>Enable Remote Login on your Mac (System Settings → Sharing → Remote Login)</li>
 <li><span class="mk">4.</span>Optional: Enable Tailscale SSH for keyless auth</li>
 </ol>
-<p>That's the networking solved. Your Mac is now reachable from anywhere in the world, through any network, with end-to-end encryption. Free for up to 100 devices.</p>
+<p>That’s the networking solved. Your Mac is now reachable from anywhere in the world, through any network, with end-to-end encryption. Free for up to 100 devices.</p>
 <h3 id="part-2-tmux-for-persistence"><a class="hd" href="#part-2-tmux-for-persistence">Part 2: tmux for Persistence</a></h3>
 <p>SSH from a phone is unreliable. Connections drop. Apps get backgrounded by iOS. You walk through a cellular dead zone. Without session persistence, you lose everything when the connection dies.</p>
 <p>tmux solves this. Your shell runs inside tmux, and tmux keeps running even when you disconnect. Reconnect later and pick up exactly where you left off.</p>
-<p>But I didn't want to think about tmux. I wanted every terminal to just be persistent automatically. So I wrote this:</p>
+<p>But I didn’t want to think about tmux. I wanted every terminal to just be persistent automatically. So I wrote this:</p>
 <pre><code class="language-bash"># ~/.dotfiles/shell/config/tmux.zsh
 
 # Skip if already in tmux, or NOTMUX is set
@@ -274,9 +274,9 @@ fi</code></pre>
 <p><strong>Local sessions auto-close.</strong> The <code>destroy-unattached</code> flag means when you close an iTerm tab, the tmux session dies with it. No orphaned <code>swift-falcon</code> sessions piling up in the background.</p>
 <p><strong>SSH sessions persist.</strong> When your phone connection drops (and it will), the session keeps running. Reconnect later and pick up where you left off. You can also create fresh SSH sessions with fun names by selecting <code>+ new session</code> from the picker.</p>
 <p>The magic: I can start a long-running process in <code>brave-otter</code> on my Mac, SSH in from my phone, attach to <code>brave-otter</code>, and see exactly where I left off. Close the SSH app, reopen it later, attach again - still there.</p>
-<p>This is especially powerful with Claude Code. Normally if you want to continue a session from a different device, you'd need to use <code>/resume</code> to reload the conversation context. But with tmux, you're attaching to the <em>same running process</em> - Claude Code is still right there, mid-thought, no resume needed. True seamless handoff between devices.</p>
+<p>This is especially powerful with Claude Code. Normally if you want to continue a session from a different device, you’d need to use <code>/resume</code> to reload the conversation context. But with tmux, you’re attaching to the <em>same running process</em> - Claude Code is still right there, mid-thought, no resume needed. True seamless handoff between devices.</p>
 <h3 id="part-3-mobile-friendly-tmux-bindings"><a class="hd" href="#part-3-mobile-friendly-tmux-bindings">Part 3: Mobile-Friendly tmux Bindings</a></h3>
-<p>Here's where most tutorials stop. But there's a usability problem: tmux's default prefix is <code>Ctrl+b</code>, and mobile keyboards make modifier keys painful. Scrolling is especially bad - you need <code>Ctrl+b</code> then <code>[</code> to enter copy mode, then arrow keys to scroll.</p>
+<p>Here’s where most tutorials stop. But there’s a usability problem: tmux’s default prefix is <code>Ctrl+b</code>, and mobile keyboards make modifier keys painful. Scrolling is especially bad - you need <code>Ctrl+b</code> then <code>[</code> to enter copy mode, then arrow keys to scroll.</p>
 <p>My fix: bind PageUp and F1 directly to copy mode, no prefix required.</p>
 <pre><code class="language-bash"># ~/.dotfiles/tmux/tmux.conf
 
@@ -297,20 +297,20 @@ bind -n F1 copy-mode          # F1 enters scroll mode</code></pre>
 <li><span class="mk">-</span><a href="https://github.com/elliotbonneville/dotfiles/blob/main/tmux/tmux.conf">tmux.conf</a> - keybindings</li>
 </ul>
 <h3 id="the-point"><a class="hd" href="#the-point">The Point</a></h3>
-<p>Mobile SSH doesn't have to suck. With the right config, your phone becomes a legitimate terminal into your development machine - like VNC, but faster and works over cellular. Not a toy, not emergency-only - actually usable for real work.</p>
+<p>Mobile SSH doesn’t have to suck. With the right config, your phone becomes a legitimate terminal into your development machine - like VNC, but faster and works over cellular. Not a toy, not emergency-only - actually usable for real work.</p>
 <p>Your Mac is always one tap away.</p>
 <h3 id="meta-how-this-got-built"><a class="hd" href="#meta-how-this-got-built">Meta: How This Got Built</a></h3>
-<p>I vibe coded this entire setup with Claude Code over about an hour. Here's the actual progression of prompts:</p>
+<p>I vibe coded this entire setup with Claude Code over about an hour. Here’s the actual progression of prompts:</p>
 <ol role="list">
-<li><span class="mk">1.</span><strong>&quot;I want to allow SSHing into this terminal from my phone from anywhere. Best way to do that?&quot;</strong> - Claude suggested Tailscale, explained why it beats port forwarding, and wrote the install script changes.</li>
-<li><span class="mk">2.</span><strong>&quot;how can i have a session open on my macbook and my phone at the same time?&quot;</strong> - This led to the tmux auto-session setup. Claude wrote the detection logic for SSH vs local terminals and the fzf picker.</li>
-<li><span class="mk">3.</span><strong>&quot;claude app looks bad when using tmux and ssh in from termius on my phone&quot;</strong> - We debugged terminal compatibility issues, added the <code>screen-256color</code> settings.</li>
-<li><span class="mk">4.</span><strong>&quot;how do you scroll up with tmux?&quot;</strong> - I asked this from my phone, struggling with the Ctrl+b prefix. Claude suggested the no-prefix PageUp binding and I said &quot;perfect, add that.&quot;</li>
-<li><span class="mk">5.</span><strong>&quot;write a blogpost in my blog about the tmux tailscale setup&quot;</strong> - This post. Written from my phone, over Tailscale, in a persistent tmux session, about the setup we just built.</li>
+<li><span class="mk">1.</span><strong>”I want to allow SSHing into this terminal from my phone from anywhere. Best way to do that?”</strong> - Claude suggested Tailscale, explained why it beats port forwarding, and wrote the install script changes.</li>
+<li><span class="mk">2.</span><strong>”how can i have a session open on my macbook and my phone at the same time?”</strong> - This led to the tmux auto-session setup. Claude wrote the detection logic for SSH vs local terminals and the fzf picker.</li>
+<li><span class="mk">3.</span><strong>”claude app looks bad when using tmux and ssh in from termius on my phone”</strong> - We debugged terminal compatibility issues, added the <code>screen-256color</code> settings.</li>
+<li><span class="mk">4.</span><strong>”how do you scroll up with tmux?”</strong> - I asked this from my phone, struggling with the Ctrl+b prefix. Claude suggested the no-prefix PageUp binding and I said “perfect, add that.”</li>
+<li><span class="mk">5.</span><strong>”write a blogpost in my blog about the tmux tailscale setup”</strong> - This post. Written from my phone, over Tailscale, in a persistent tmux session, about the setup we just built.</li>
 </ol>
-<p>The fun Docker-style session names (<code>jolly-panda</code>, <code>swift-falcon</code>)? Claude's idea - I just said I wanted unique names per tab.</p>
-<p>When I asked Claude to write this post, I told it to introspect our conversation history. It read the session index at <code>~/.claude/projects/</code> and pulled out the actual prompts I'd typed over the past hour. That's how I got the numbered list above - not from memory, but from Claude reading its own logs and reconstructing the journey.</p>
-<p>Total time from &quot;I want to SSH from my phone&quot; to writing this post: maybe 90 minutes. Most of that was waiting for Tailscale to install and testing on actual hardware.</p>
+<p>The fun Docker-style session names (<code>jolly-panda</code>, <code>swift-falcon</code>)? Claude’s idea - I just said I wanted unique names per tab.</p>
+<p>When I asked Claude to write this post, I told it to introspect our conversation history. It read the session index at <code>~/.claude/projects/</code> and pulled out the actual prompts I’d typed over the past hour. That’s how I got the numbered list above - not from memory, but from Claude reading its own logs and reconstructing the journey.</p>
+<p>Total time from “I want to SSH from my phone” to writing this post: maybe 90 minutes. Most of that was waiting for Tailscale to install and testing on actual hardware.</p>
 <p>The snake is eating its tail and it tastes great.</p>
 <hr class="tail" aria-hidden="true">
 </article>
