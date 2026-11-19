@@ -13,22 +13,37 @@
 <meta property="og:site_name" content="Elliot Bonneville">
 <meta name="theme-color" content="#30241a">
 <link rel="alternate" type="application/rss+xml" title="Elliot Bonneville" href="/rss.xml">
-<link rel="preload" href="/fonts/StonebrookQuill-Plain.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/fonts/StonebrookQuill-Plain.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="modulepreload" href="/pkg/page.js">
 <style>
-@font-face{font-family:"Stonebrook";src:url(/fonts/StonebrookQuill-Plain.ttf) format("truetype");font-display:swap}
-@font-face{font-family:"Stonebrook";font-style:italic;src:url(/fonts/StonebrookQuill-Italic.ttf) format("truetype");font-display:swap}
-@font-face{font-family:"Stonebrook Roman";src:url(/fonts/StonebrookQuill-Roman.ttf) format("truetype");font-display:swap}
-@font-face{font-family:"Rowanbeck Uncial";src:url(/fonts/RowanbeckReed-Uncial.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Stonebrook";src:url(/fonts/StonebrookQuill-Plain.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Stonebrook";font-style:italic;src:url(/fonts/StonebrookQuill-Italic.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Stonebrook Roman";src:url(/fonts/StonebrookQuill-Roman.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Rowanbeck Uncial";src:url(/fonts/RowanbeckReed-Uncial.woff2) format("woff2");font-display:swap}
 :root{--lead:30px;--size:22px;--ink:#2b211a;--verm:#b4301d;--indigo:#2b3f6e;--azure:#2f5596;--sheet:#e9dfc4;--desk:#30241a;--ground:#b9cccd}
 html{background:var(--desk);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0}
+.page-opening{display:none}
+@media screen{
+html.opening .scene{visibility:hidden}
+html.opening .page-opening{position:fixed;inset:0;z-index:2;display:grid;align-content:center;justify-items:center;background:radial-gradient(ellipse at 35% 28%,#f6eed9,var(--sheet) 72%,#dbceb0);color:var(--ink);font:italic 18px/1.5 Georgia,serif}
+}
+.page-opening p{margin:18px 0 6px}
+.page-opening button{border:0;background:transparent;padding:6px 12px;color:var(--indigo);font:14px Georgia,serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.opening-book{display:flex;width:68px;height:40px;filter:drop-shadow(0 2px 1px #30241a38)}
+.opening-book::before,.opening-book::after{content:"";flex:1;border:1px solid #786447;background:repeating-linear-gradient(to bottom,#9b8561 0 1px,transparent 1px 5px) center/64% 48% no-repeat,#f7efd9}
+.opening-book::before{border-radius:3px 8px 0 2px;transform:skewY(8deg)}
+.opening-book::after{border-radius:8px 3px 2px 0;transform:skewY(-8deg);transform-origin:left center;background:linear-gradient(var(--verm),var(--verm)) 28% 27%/5px 6px no-repeat,repeating-linear-gradient(to bottom,#9b8561 0 1px,transparent 1px 5px) center/64% 48% no-repeat,#f2e7cb}
+@media (prefers-reduced-motion:no-preference){.opening-book::after{animation:turn-leaf 1.7s ease-in-out infinite alternate}@keyframes turn-leaf{to{transform:perspective(100px) rotateY(-28deg) skewY(-8deg)}}}
 /* The scene is everything the program draws: the desk and the sheet on it. Its strips lie behind the text. */
 .scene{position:relative;z-index:0;display:flow-root;min-height:100vh}
 .strips{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .desk{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0}
-.strip{position:absolute;opacity:0;transition:opacity .25s ease-out}
-.strip.soft{transition:none}
-.desk.on,.strip.on{opacity:1}
+.strip{position:absolute;visibility:hidden}
+.strip.on{visibility:visible}
+.strip.soft:not(.on){visibility:visible;background:linear-gradient(var(--sheet),var(--sheet)) var(--paper-box) no-repeat}
+.strip.soft.covered{visibility:hidden}
+.desk.on{opacity:1}
 /* The desk of baked wood: a coarse picture of all of it, and full pictures in strips as their tiles come. */
 .far,.dk{position:absolute;opacity:0}
 .far{left:0;top:0;width:100%;height:100%}
@@ -40,7 +55,6 @@ body{margin:0}
 /* The leaf's own box is the sheet's nominal rectangle; --over is how far the sheet runs on past it at the sides. */
 .leaf{--over:0px;max-width:554px;margin:44px auto;padding:72px 84px 120px 122px;background:var(--sheet);box-shadow:0 1px 1px rgba(0,0,0,.5),5px 9px 22px rgba(0,0,0,.45)}
 article{position:relative;z-index:1;font:var(--size)/var(--lead) "Stonebrook",Georgia,serif;color:var(--ink);overflow-wrap:break-word}
-article,article *{transition:color .3s ease-out}
 ::selection{background:rgba(180,48,29,.22)}
 header{margin:0}
 .date{margin:0;font-style:italic;font-size:.8em;color:var(--verm);--hue:0}
@@ -105,10 +119,28 @@ pre{font-size:12px;line-height:18px;padding-left:.8em}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<script>
+function readNow() {
+  if (document.documentElement.classList.replace("opening", "reading-text")) {
+    window.dispatchEvent(new Event("scriptorium-read"));
+  }
+}
+const pageProgram = window.WebAssembly && window.WebGL2RenderingContext && fetch("/pkg/page_bg.wasm").catch(() => null);
+if (pageProgram) {
+  document.documentElement.classList.add("opening");
+  window.scriptoriumOrnaments = fetch("ornaments.bin").catch(() => null);
+  setTimeout(readNow, 10000);
+}
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ELQ40R6NTG"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ELQ40R6NTG');</script>
 </head>
 <body>
+<div class="page-opening">
+<span class="opening-book" aria-hidden="true"></span>
+<p role="status">Opening the page&hellip;</p>
+<button type="button" onclick="readNow()">Read now</button>
+</div>
 <div class="scene">
 <div class="pool" aria-hidden="true"></div>
 <main class="leaf" data-seed="561280259" data-age="0.0000" data-ornaments="ornaments.bin" data-desk="/desk/">
@@ -185,9 +217,16 @@ flat relief 128 127 73
 flat fibre 126 129 97
 flat finish 51 128 128
 </script>
-<script type="module">import init, * as page from "/pkg/page.js";
-// (the desk's pictures are fetched and decoded here, off the page's thread, and handed to the program as they come)
-window.deskLoad = (id, url) => fetch(url).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => createImageBitmap(b, { premultiplyAlpha: "none", colorSpaceConversion: "none" })).then((m) => page.desk_picture(id, m), () => page.desk_picture(id, null));
-init().then(() => { window.scriptorium = page; }).catch(() => {});</script>
+<script type="module">
+async function openManuscript() {
+  const [page, program] = await Promise.all([import("/pkg/page.js"), pageProgram]);
+  if (document.documentElement.classList.contains("reading-text")) return;
+  if (!program?.ok) throw new Error("Page renderer unavailable");
+  window.deskLoad = (id, url) => fetch(url).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => createImageBitmap(b, { premultiplyAlpha: "none", colorSpaceConversion: "none" })).then((m) => page.desk_picture(id, m), () => page.desk_picture(id, null));
+  await page.default({ module_or_path: program });
+  window.scriptorium = page;
+}
+if (pageProgram) openManuscript().catch(() => document.documentElement.classList.remove("opening"));
+</script>
 </body>
 </html>
