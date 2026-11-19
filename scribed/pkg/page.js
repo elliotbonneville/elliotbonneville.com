@@ -77,10 +77,14 @@ export function desk_stats() {
  * @param {number} x
  * @param {number} y
  * @param {number} span
+ * @param {Function | null} [optics]
  * @returns {boolean}
  */
-export function inspect_ink(ctx, x, y, span) {
-    const ret = wasm.inspect_ink(ctx, x, y, span);
+export function inspect_ink(ctx, x, y, span, optics) {
+    const val1 = +x;
+    const val2 = +y;
+    const val3 = +span;
+    const ret = wasm.inspect_ink(ctx, val1, val2, val3, isLikeNone(optics) ? 0 : addToExternrefTable0(optics));
     return ret !== 0;
 }
 
@@ -209,6 +213,10 @@ function __wbg_get_imports() {
             const ret = arg0.bottom;
             return ret;
         },
+        __wbg_call_cdab32cfeaca91b3: function() { return handleError(function (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) {
+            const ret = arg0.call(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+            return ret;
+        }, arguments); },
         __wbg_call_fc92fee6137d452d: function() { return handleError(function (arg0, arg1, arg2, arg3) {
             const ret = arg0.call(arg1, arg2, arg3);
             return ret;

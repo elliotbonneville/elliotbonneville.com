@@ -77,17 +77,17 @@ function inkLoupe(leaf) {
   const toggles = [...document.querySelectorAll(".inspect-ink")];
   const root = document.documentElement;
   let ctx, opener, drag, frame = 0, x = 0, y = 0;
-  let lastPaint = "";
-  const zoom = 3;
+  let lastPaint = "", optics, loadingOptics;
   const clamp = (v, lo, hi) => Math.min(Math.max(lo, hi), Math.max(lo, v));
 
   function paint() {
     frame = 0;
-    if (!opener) return;
+    if (!opener || !optics) return;
     const paper = leaf.getBoundingClientRect();
     const size = lens.offsetWidth;
     const glass = lens.clientWidth;
-    const radius = glass / (2 * zoom);
+    const span = glass / optics.sourceZoom;
+    const radius = span / 2;
     const left = Math.max(0, paper.left), right = Math.min(innerWidth, paper.right);
     const top = Math.max(0, paper.top), bottom = Math.min(innerHeight, paper.bottom);
     if (right - left < 2 * radius || bottom - top < 2 * radius) {
@@ -97,13 +97,15 @@ function inkLoupe(leaf) {
     x = clamp(x, left + radius, right - radius);
     y = clamp(y, top + radius, bottom - radius);
     const lx = clamp(x - size / 2, 4, innerWidth - size - 4);
-    const ly = clamp(y - size / 2, 4, innerHeight - size - 4);
-    lens.style.transform = "translate(" + Math.round(lx) + "px," + Math.round(ly) + "px)";
-    const pixels = Math.round(glass * Math.min(devicePixelRatio || 1, 2));
+    const ly = clamp(y - size / 2, 4, bar.getBoundingClientRect().top - size - 8);
+    const dpr = devicePixelRatio || 1;
+    lens.style.transform = "translate(" + Math.round(lx*dpr)/dpr + "px," + Math.round(ly*dpr)/dpr + "px)";
+    const pixels = Math.round(glass * Math.min(dpr, 2));
     if (canvas.width !== pixels) canvas.width = canvas.height = pixels;
-    const key = [Math.round(x - paper.left), Math.round(y - paper.top), pixels, paper.width, paper.height].join("/");
+    const scale = pixels / span;
+    const key = [Math.round((x - paper.left)*scale), Math.round((y - paper.top)*scale), pixels, paper.width, paper.height].join("/");
     if (key === lastPaint) { lens.style.visibility = "visible"; return; }
-    if (window.scriptorium?.inspect_ink(ctx, x, y, glass / zoom)) {
+    if (window.scriptorium?.inspect_ink(ctx, x, y, span, optics.draw)) {
       lastPaint = key;
       lens.style.visibility = "visible";
     } else {
@@ -124,6 +126,7 @@ function inkLoupe(leaf) {
     lens.hidden = bar.hidden = true;
     toggles.forEach(b => b.setAttribute("aria-pressed", "false"));
     canvas.width = canvas.height = 0;
+    optics?.release?.();
     button.focus({preventScroll:true});
   }
   function open(button) {
@@ -132,6 +135,12 @@ function inkLoupe(leaf) {
     ctx ||= canvas.getContext("2d");
     if (!ctx) return;
     opener = button;
+    if (!loadingOptics) optics = null;
+    loadingOptics ||= import("./loupe.js").then(m => m.createLoupe()).catch(() => {
+      loadingOptics = null;
+      return {sourceZoom:3};
+    });
+    loadingOptics.then(glass => { optics = glass; schedule(); });
     toggles.forEach(b => b.setAttribute("aria-pressed", "true"));
     lens.hidden = bar.hidden = false;
     lens.style.visibility = "hidden";

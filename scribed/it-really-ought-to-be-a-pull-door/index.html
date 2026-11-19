@@ -119,7 +119,14 @@ hr.tail{width:200px;height:124px;margin:0 auto;background:none}
   .inspect-ink:focus-visible,.lens-bar button:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
   .lens-bar:not([hidden]){position:fixed;z-index:5;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:14px;white-space:nowrap;padding:4px 5px 4px 14px;border:1px solid #917958;border-radius:24px;background:#f4ebd6;color:var(--ink);box-shadow:0 2px 8px #31231b44;font:14px Georgia,serif}
   .lens-bar button{min-height:36px;color:var(--indigo);font:inherit;cursor:pointer;padding:0 12px;border:0;border-left:1px solid #ab997b;background:transparent}
-  .ink-lens:not([hidden]){position:fixed;z-index:4;left:0;top:0;display:block;width:clamp(150px,16vw,192px);aspect-ratio:1;box-sizing:border-box;border:5px solid #927749;border-radius:50%;box-shadow:inset 0 0 0 1px #534023,0 0 0 1px #514331,0 0 0 2px #dac397,2px 6px 13px #2d201b5c;overflow:hidden;touch-action:none;cursor:grab;background:var(--sheet)}
+  .ink-lens:not([hidden]){
+    --diameter:min(clamp(244px,calc(200px + 13vw),352px),calc(100vw - 16px),calc(100vh - 76px - env(safe-area-inset-bottom)));
+    --available:calc(100dvh - 76px - env(safe-area-inset-bottom));
+    position:fixed;z-index:4;left:0;top:0;display:block;width:var(--diameter);height:var(--diameter);max-width:var(--available);max-height:var(--available);
+    box-sizing:border-box;border:5px solid transparent;border-radius:50%;overflow:hidden;touch-action:none;cursor:grab;
+    background:linear-gradient(var(--sheet),var(--sheet)) padding-box,conic-gradient(from -58deg,#e2ca95,#ae9059 17%,#715936 31%,#b79a65 46%,#76603e 67%,#b8a075 89%,#e2ca95) border-box;
+    box-shadow:0 0 0 1px #5a4931,0 1px 0 2px #b9a27d,3px 9px 20px #2d201b50
+  }
   .ink-lens:active{cursor:grabbing}
   .ink-lens canvas{display:block;width:100%;height:100%}
 }
