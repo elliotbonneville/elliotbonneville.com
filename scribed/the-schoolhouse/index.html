@@ -111,11 +111,10 @@ hr.tail{width:200px;height:124px;margin:0 auto;background:none}
 .inspect-short{display:none}
 @media screen{
   html.can-inspect.reader-tools .end-tools{display:block;position:relative;z-index:1;text-align:center;height:0}
-  html.can-inspect.reader-tools .inspect-ink{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:2px 4px;border:0;background:transparent;color:var(--indigo);font:italic 17px/1.2 Georgia,serif;cursor:zoom-in}
+  html.can-inspect.reader-tools .inspect-ink{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:2px 4px;border:0;background:transparent;color:var(--indigo);font:italic 17px/1.2 Georgia,serif;cursor:zoom-in}
   .end-tools .inspect-ink{transform:translateY(14px)}
   header .inspect-ink{position:absolute;right:0;top:-4px}
-  .inspect-ink::before{content:"";width:12px;height:12px;margin-right:4px;border:1.5px solid currentColor;border-radius:50%;background:linear-gradient(135deg,#fff6,transparent)}
-  .inspect-ink::after{content:"";position:absolute;width:7px;height:2px;margin:12px 0 0 11px;background:currentColor;transform:rotate(45deg);border-radius:2px}
+  .inspect-ink img{display:block;flex:none}
   .inspect-ink:focus-visible,.lens-bar button:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
   .lens-bar:not([hidden]){position:fixed;z-index:5;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:14px;white-space:nowrap;padding:4px 5px 4px 14px;border:1px solid #917958;border-radius:24px;background:#f4ebd6;color:var(--ink);box-shadow:0 2px 8px #31231b44;font:14px Georgia,serif}
   .lens-bar button{min-height:36px;color:var(--indigo);font:inherit;cursor:pointer;padding:0 12px;border:0;border-left:1px solid #ab997b;background:transparent}
@@ -207,7 +206,7 @@ if (pageProgram) {
 <p class="date"><time datetime="2026-03-16">The sixteenth of March, 2026</time></p>
 <h1>The Schoolhouse</h1>
 <hr class="pen" aria-hidden="true">
-<button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></header>
+<button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><img src="/pkg/ink-loupe.webp" width="30" height="30" alt="" draggable="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></header>
 <p class="first" style="--note-row:2;--note-span:1"><span class="lead"><span class="initial">T</span>here's a small</span> white building at the end of a road in southern Rhode Island. It's a one-room schoolhouse. It was in use for something close to two hundred years. Now it just sits there, paint peeling a little, looking like the kind of thing you'd put on a postcard if you wanted people to feel nostalgic about New England.</p>
 <p style="--note-row:3;--note-span:1">I drive past it most days and don't think about it. But my oldest is about to turn six, and now I find myself thinking about it constantly.</p>
 <p style="--note-row:4;--note-span:1">My wife and I were both homeschooled. We turned out fine. Better than fine, honestly. We came out literate, curious, and capable of teaching ourselves whatever we needed. We plan to homeschool our own kids. That decision was made a long time ago, and I always figured it was a personal preference, maybe a little countercultural, maybe a little eccentric. I didn't think there was much more to say about it.</p>
@@ -335,7 +334,7 @@ if (pageProgram) {
 </ol>
 </section>
 </article>
-<div class="end-tools"><button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></div>
+<div class="end-tools"><button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><img src="/pkg/ink-loupe.webp" width="30" height="30" alt="" draggable="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></div>
 </main>
 </div>
 <div class="ink-lens" id="manuscript-lens" aria-hidden="true" hidden><canvas width="0" height="0"></canvas></div>

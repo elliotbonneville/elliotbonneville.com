@@ -111,11 +111,10 @@ hr.tail{width:200px;height:124px;margin:0 auto;background:none}
 .inspect-short{display:none}
 @media screen{
   html.can-inspect.reader-tools .end-tools{display:block;position:relative;z-index:1;text-align:center;height:0}
-  html.can-inspect.reader-tools .inspect-ink{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:2px 4px;border:0;background:transparent;color:var(--indigo);font:italic 17px/1.2 Georgia,serif;cursor:zoom-in}
+  html.can-inspect.reader-tools .inspect-ink{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:2px 4px;border:0;background:transparent;color:var(--indigo);font:italic 17px/1.2 Georgia,serif;cursor:zoom-in}
   .end-tools .inspect-ink{transform:translateY(14px)}
   header .inspect-ink{position:absolute;right:0;top:-4px}
-  .inspect-ink::before{content:"";width:12px;height:12px;margin-right:4px;border:1.5px solid currentColor;border-radius:50%;background:linear-gradient(135deg,#fff6,transparent)}
-  .inspect-ink::after{content:"";position:absolute;width:7px;height:2px;margin:12px 0 0 11px;background:currentColor;transform:rotate(45deg);border-radius:2px}
+  .inspect-ink img{display:block;flex:none}
   .inspect-ink:focus-visible,.lens-bar button:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
   .lens-bar:not([hidden]){position:fixed;z-index:5;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:14px;white-space:nowrap;padding:4px 5px 4px 14px;border:1px solid #917958;border-radius:24px;background:#f4ebd6;color:var(--ink);box-shadow:0 2px 8px #31231b44;font:14px Georgia,serif}
   .lens-bar button{min-height:36px;color:var(--indigo);font:inherit;cursor:pointer;padding:0 12px;border:0;border-left:1px solid #ab997b;background:transparent}
@@ -207,7 +206,7 @@ if (pageProgram) {
 <p class="date"><time datetime="2026-03-15">The fifteenth of March, 2026</time></p>
 <h1>It Really Ought To Be A Pull Door</h1>
 <hr class="pen" aria-hidden="true">
-<button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></header>
+<button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><img src="/pkg/ink-loupe.webp" width="30" height="30" alt="" draggable="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></header>
 <p class="first"><span class="lead"><span class="initial">I</span> sit down</span> at my computer and my hands are already opening a browser before I've formed a single intention. The fingers know the way. Tab, R-E, enter. The feed loads and I'm three posts deep before the question forms: what did I come here for?</p>
 <p>Nothing. I came for nothing. I sat down and the reflex fired.</p>
 <p>I logged out of Reddit a few weeks ago. The hands went to Twitter. I closed Twitter and they drifted to Messages. When I blocked that too, they found Hacker News. The reflex doesn't care where the information comes from. Any incoming signal will do. The app is interchangeable. The habit is filling silence before a thought has time to form.</p>
@@ -223,7 +222,7 @@ if (pageProgram) {
 <p>The rest will keep scrolling, absorbing someone else's priorities, and remembering none of it.</p>
 <hr class="tail" aria-hidden="true">
 </article>
-<div class="end-tools"><button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></div>
+<div class="end-tools"><button type="button" class="inspect-ink" aria-label="Inspect the ink" aria-controls="manuscript-lens" aria-pressed="false"><img src="/pkg/ink-loupe.webp" width="30" height="30" alt="" draggable="false"><span class="inspect-label">Inspect the ink</span><span class="inspect-short">Loupe</span></button></div>
 </main>
 </div>
 <div class="ink-lens" id="manuscript-lens" aria-hidden="true" hidden><canvas width="0" height="0"></canvas></div>
