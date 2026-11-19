@@ -44,6 +44,10 @@ So when you highlight a sentence here, you're selecting invisible words that lie
 
 The page is cut into horizontal strips that get drawn just ahead of wherever you're reading. If you jump down the page fast enough right after it loads, you can sometimes catch a strip before it's drawn and see plain text on a plain sheet, which is more or less the blog I had before.
 
+There's also a loupe. Press "Inspect the ink" at the top of a post and a round glass appears that you can drag over the page. It doesn't enlarge what's on the screen. The program draws the ink and vellum again at about three times the size, then bends them through a simulated 40 mm lens, an uncoated biconvex singlet in a real optical glass, traced at five wavelengths. That's why the letters fringe with colour toward the rim, the way they do under a cheap magnifier.
+
+Most of what it shows was already on the page, just too small to see. A dry nib skipping over the vellum throws a few specks beside its heavier strokes, and each one is less than half a pixel across. Nobody reading at normal size will pick one out. I still think they matter. A page without them would look a little more printed, even if you couldn't say why.
+
 ## The desk
 
 I asked for the wood to be "scarred and beat up, old, 1700s wood." The first attempt looked like a texture, so I asked for it to be modeled from physics the way the ink was, researched instead of hand-generated, and lit by a real lamp.
@@ -55,6 +59,28 @@ Then the desk gets two and a half centuries of use, kept as a list of events, ea
 There are no wormholes. A comment in the code explains that the furniture beetle goes after sapwood, that a mahogany top is all heartwood, and cites English Heritage. All I'd asked for was an old desk.
 
 It bakes into about 60 MB of image tiles. The page only fetches tiles for the desk that's actually showing beside the sheet, nearest first, and on a phone, where the sheet fills the screen, it fetches none. My notes were mostly about color: "the wood needs to be darker and more subtle, more mahogany than maple," and later, "slightly lower contrast, it detracts a bit from the main post."
+
+## The years
+
+All told, the desk's history is 20,782 marks and 219 spills. Each one is worked out from where it happened, what did it and how hard, and the wood is made by replaying them in order. About a quarter of them are under the sheet, where nobody will ever see them. The whole history takes about a tenth of a second to compute.
+
+Nobody would build a prop this way by hand. Someone aging a table for a film set works from what old wood looks like, because working out every knock it took over 250 years and cutting each one in would take longer than the table is worth, and longer than most people would spend on anything. Throwing tokens at it gets you a kind of depth that's out of reach mostly because people don't live long enough to do it.
+
+The person I think of who did something like this by hand is Tolkien, and it took him most of his life. In "On Fairy-Stories" he describes the writer making a Secondary World that your mind can enter and believe while you're inside it. "The moment disbelief arises, the spell is broken." What holds it together he called "the inner consistency of reality."
+
+He went a long way to keep the spell from breaking. Inside *The Lord of the Rings*, the book isn't presented as a novel. It's a translation of the Red Book of Westmarch, a manuscript the hobbits kept, which didn't survive and is known only from copies with notes added by later hands. Tolkien is its translator and editor. An appendix explains how he rendered the hobbits' own language into English, and why their names come out the way they do.
+
+When he changed how Bilbo came by the ring, he didn't call the first edition of *The Hobbit* a mistake. Inside the story, the old version became the one Bilbo told at first, a lie to strengthen his claim on the ring.
+
+He made the objects too. For the Book of Mazarbul, the record the Fellowship finds slashed, burned and stained in Moria, he drew facsimile pages, burned their edges with his pipe, pierced holes along one side where the binding would have been stitched, and washed them with red paint for blood. He wanted them printed in the book, and the publisher left them out because they cost too much.
+
+He thought the depth was a large part of why people loved the book, and wrote of "the glimpses of a large history in the background: an attraction like that of viewing far off an unvisited island." He spent nearly sixty years on the history behind it and died with *The Silmarillion* unfinished, and his son spent decades more editing what he left.
+
+The desk is a tiny version of the same thing. Nobody will ever read its history, and a quarter of it lies under the sheet where it can't be seen at all, but it's still the reason the wood looks the way it does.
+
+Proust wrote that the only true voyage of discovery "would be not to visit strange lands but to possess other eyes." Rendering with AI has done that for me. Having tried to recreate an old desk at this fidelity, I appreciate real wood, and the history in it, far more than I did before. I know now why old scratches are dark and new ones pale, why a dent runs out along the grain, why a glass leaves a white ring in the polish and spilt ink sinks into the pores.
+
+Any desk that's been used for two and a half centuries carries all of that without anyone having worked it out. What I find beautiful about this kind of verisimilitude is how close it brings you to that depth, and how much more of it you notice afterward.
 
 ## Too much
 
