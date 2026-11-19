@@ -51,8 +51,10 @@ test('the loupe bends a straight line at the rim and separates its colors off ax
     const {center, mid, rim, opposite, error} = positions;
     assert.equal(error, 0);
     assert.ok(center.every(x => Math.abs(x) < .004), 'axial wavelengths must coincide');
-    assert.ok(rim[1] - mid[1] > .03, 'the off-axis straight stroke must bow outward');
-    assert.ok(rim[2] - rim[0] > .012, 'the blue and red stroke positions must separate');
+    // Both distances are measured on the rendered stroke, in units of the lens radius.
+    const bow = rim[1] - mid[1], fringe = rim[2] - rim[0];
+    assert.ok(bow > .035 && bow < .043, `unexpected edge curvature ${bow}`);
+    assert.ok(fringe > .019 && fringe < .025, `unexpected color separation ${fringe}`);
     assert.ok(Math.abs(opposite[1] - rim[1]) < .008, 'the glass must be radially symmetric');
   } finally {
     await browser.close();

@@ -1,18 +1,20 @@
 // A 40 mm uncoated biconvex singlet. Lengths below are in clear-aperture radii.
 // The pupil looks through the rim plane at a sheet just inside the focal length.
-const frontRadius = 2.5, backRadius = 12, thickness = 0.3155;
-const eyeZ = 24, paperZ = -thickness - 3.1566;
+const frontRadius = 2.9, backRadius = 12, thickness = 0.2846;
+const eyeZ = 24, paperZ = -thickness - 3.6054;
 const frontRimZ = Math.sqrt(frontRadius * frontRadius - 1) - frontRadius;
 const sourceZoom = 3.25;
 const samples = 512;
 
-// SCHOTT N-BK7 Sellmeier coefficients, with wavelength in micrometres.
-// https://media.schott.com/api/public/content/41e799d0bf874807a0bb8e702fbb75b5
-const bands = [0.65, 0.60, 0.55, 0.50, 0.46].map(wavelength => {
+// SCHOTT N-PK51 dispersion and 10 mm internal transmission at each wavelength (µm).
+// https://media.schott.com/api/public/content/cea4f74030c245d58bfc22ff8a9bc075
+const bands = [
+  [0.65, 0.99625], [0.60, 0.9975], [0.55, 0.998], [0.50, 0.997], [0.46, 0.995]
+].map(([wavelength, transmission10mm]) => {
   const l2 = wavelength * wavelength;
-  const index = Math.sqrt(1 + 1.03961212 * l2 / (l2 - 0.00600069867)
-    + 0.231792344 * l2 / (l2 - 0.0200179144) + 1.01046945 * l2 / (l2 - 103.560653));
-  return {index, transmission10mm:wavelength < 0.50 ? 0.997 : 0.998};
+  const index = Math.sqrt(1 + 1.15610775 * l2 / (l2 - 0.00585597402)
+    + 0.153229344 * l2 / (l2 - 0.0194072416) + 0.785618966 * l2 / (l2 - 140.537046));
+  return {index, transmission10mm};
 });
 
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1];
