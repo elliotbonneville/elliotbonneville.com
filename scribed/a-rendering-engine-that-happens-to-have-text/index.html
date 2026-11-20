@@ -217,108 +217,134 @@ if (pageProgram) {
 <p>Most of what the pen does is go wrong the way a real pen goes wrong. Pressure spreads the tines and the line swells. Every stroke drains the reservoir, so the line greys and starts skipping over the tooth of the sheet, and eventually the film of ink between the tines breaks and the stroke splits into two rails. Then the hand goes back to the well and the next stroke lands dark.</p>
 <div class="raw">
 <style>
-/* The post's pictures, as a book of this kind would have carried them.
-   On the sheet: the scribe left room for each picture and ruled a double frame round the
-   space in ink (plates.js draws it, nib and all). Into the frame went a plate: the picture
-   printed on a separate, whiter coated card, a fine keyline round it, and the card held to the
-   vellum by four gummed paper corners. The caption under it is an ordinary line of the post,
-   so the pen writes it, and its plate number is a link that opens the picture.
+/* The post's pictures, framed in the scribe's own inks.
+   On the sheet: each plate sits directly on the vellum inside a hand-ruled double border —
+   iron-gall outer frame with shaded penman's corner curls and vermilion berries, and a fine
+   vermilion inner hairline echoing the illuminated initial (plates.js draws the penwork in
+   multiply blend so the vellum grain and ruled lines show through). The caption under it is
+   an ordinary line of the post, so the pen writes it, and its plate number opens the viewer.
    On the desk (plates.js turns this on when the window leaves room beside the sheet): the
-   pictures of the wood come off the sheet and lie on the desk as loose prints with white
-   borders and brass corners, each a little askew, each with a slip bearing its plate number.
-   Their captions stay on the sheet, where the text refers to them. */
-/* ---- the space the scribe left, and the frame ruled round it ---------------------------- */
-.raw:has(> figure.pl) { position: relative; padding: 15px 15px 16px; margin-bottom: 14px; }
-.pl-frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
-/* ---- the plate ---------------------------------------------------------------------------- */
+   wood studies come off the sheet onto the mahogany as loose laid-rag folio sheets ruled in
+   the same iron-gall and vermilion inks, shaded under the room's upper-left lamp. */
+.raw:has(> figure.pl) { position: relative; padding: 0; margin-bottom: 14px; }
+/* ---- the plate on the sheet (ink directly on the vellum) ---------------------------------- */
 figure.pl {
   position: relative;
   margin: 0;
-  padding: 14px;
-  background: linear-gradient(176deg, #faf7ef, #f1ebdd);
-  box-shadow: 0 0 0 1px rgba(92, 70, 48, .14), 0 1px 2px rgba(60, 40, 22, .3), 0 5px 14px rgba(60, 40, 22, .14);
+  padding: 13px;
+  background: transparent;
   scroll-margin-top: 80px;
 }
-.pl .row { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.pl-rule {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  mix-blend-mode: multiply;
+  z-index: 2;
+}
+.pl .row { position: relative; z-index: 1; display: grid; gap: 13px; grid-template-columns: 1fr; }
 .pl.two .row, .pl.four .row { grid-template-columns: 1fr 1fr; }
-.pl.three .row { grid-template-columns: 1fr 1fr 1fr; }
+.pl.three .row { grid-template-columns: 1fr 1fr 1fr; gap: 11px; }
 .pl a { display: block; line-height: 0; cursor: zoom-in; }
 .pl a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 5px; }
 .pl img, .pl video {
-  display: block; width: 100%; height: auto; max-width: 100%;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
   background: #2b211a;
-  /* the keyline: a hair of ink a few points out from the picture */
-  outline: 1px solid rgba(34, 25, 18, .72); outline-offset: 3px;
+  box-shadow: 0 0 0 .5px rgba(43, 33, 26, .28), 0 1px 4px rgba(48, 34, 20, .12);
+  /* clean double-rule fallback before plates.js draws the hand-inked border */
+  outline: 1px solid rgba(43, 33, 26, .48);
+  outline-offset: 3px;
+  transition: filter .18s ease-out;
 }
-/* gummed paper corners holding the card to the sheet */
-figure.pl::before, figure.pl::after {
-  content: ""; position: absolute; left: -5px; right: -5px; height: 26px; pointer-events: none;
-  --c: #3d2c21; --g: #5a4434;
-  filter: drop-shadow(0 1px .5px rgba(30, 20, 12, .45));
-}
-figure.pl::before {
-  top: -5px;
-  background:
-    linear-gradient(135deg, var(--g) 0, var(--c) 46%, transparent 47%) left top / 26px 26px no-repeat,
-    linear-gradient(225deg, var(--g) 0, var(--c) 46%, transparent 47%) right top / 26px 26px no-repeat;
-}
-figure.pl::after {
-  bottom: -5px;
-  background:
-    linear-gradient(45deg, var(--c) 0, var(--g) 46%, transparent 47%) left bottom / 26px 26px no-repeat,
-    linear-gradient(315deg, var(--c) 0, var(--g) 46%, transparent 47%) right bottom / 26px 26px no-repeat;
-}
+figure.pl.pl-inked img, figure.pl.pl-inked video { outline: none; }
+.pl a:hover img { filter: contrast(1.03) brightness(1.02); }
+.pl-num { display: none; }
 /* the caption the pen writes under the plate: a smaller hand, set close beneath it */
 .raw:has(> figure.pl) + p { font-size: .8em; line-height: 24px; margin-top: -2px; }
 @media (max-width: 560px) {
-  .raw:has(> figure.pl) { padding: 11px 11px 12px; }
-  figure.pl { padding: 9px; }
+  figure.pl { padding: 10px; }
+  .pl .row { gap: 10px; }
   .pl.three .row { grid-template-columns: 1fr; }
 }
-/* ---- prints on the desk ------------------------------------------------------------------- */
+/* ---- loose inked folio plates on the mahogany desk ---------------------------------------- */
 .raw:has(> figure.pl.loose) { position: static; margin: 0; padding: 0; height: 0; }
-.raw:has(> figure.pl.loose) > .pl-frame { display: none; }
+.raw:has(> figure.pl.loose) + p { margin-top: 0; }
 figure.pl.loose {
-  position: absolute; z-index: 2; margin: 0; padding: 0;
-  display: flex; flex-direction: column; gap: 16px;
-  background: none; box-shadow: none;
-}
-.pl.loose .row { grid-template-columns: 1fr; gap: 22px; }
-/* four prints lie as a pair of pairs, smaller, rather than one tall stack */
-.pl.loose.four .row { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
-.pl.loose.four a { padding: 7px 7px 9px; }
-.pl.loose a {
-  position: relative;
-  padding: 11px 11px 13px;
-  background: linear-gradient(170deg, #f6f2e8, #ebe4d4);
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  padding: 18px 18px 40px;
+  border-radius: 1px;
+  background-color: #d8cab0;
+  background-image: var(--pl-grain, none), linear-gradient(154deg, #e1d4ba 0%, #d7c9ad 54%, #c9b999 100%);
+  background-size: 192px 192px, 100% 100%;
   transform: rotate(var(--tilt, 0deg));
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .55), 0 5px 10px rgba(0, 0, 0, .42), 0 16px 30px rgba(0, 0, 0, .3);
-  transition: transform .2s ease-out;
+  box-shadow:
+    inset 0 0 18px rgba(84, 58, 32, .10),
+    inset 0 1px 0 rgba(255, 249, 234, .38),
+    inset 1px 0 0 rgba(255, 249, 234, .24),
+    inset 0 -1px 0 rgba(48, 32, 18, .28),
+    inset -1px 0 0 rgba(48, 32, 18, .22),
+    0 1px 2px rgba(6, 3, 1, .64),
+    4px 8px 16px rgba(6, 3, 1, .50),
+    11px 20px 36px rgba(5, 2, 1, .34);
+  transition: transform .22s ease-out, box-shadow .22s ease-out;
 }
-.pl.loose a:hover { transform: rotate(var(--tilt, 0deg)) translateY(-2px); }
-.pl.loose img { outline: none; }
-/* brass corners, slipped over each print's four corners */
-.pl.loose a::after {
-  content: ""; position: absolute; inset: -3px; pointer-events: none;
-  --b: #c19a5f; --d: #6f522e;
-  background:
-    linear-gradient(135deg, var(--b) 0, var(--d) 50%, transparent 50%) top left / 24px 24px no-repeat,
-    linear-gradient(225deg, var(--b) 0, var(--d) 50%, transparent 50%) top right / 24px 24px no-repeat,
-    linear-gradient(45deg, var(--d) 0, var(--b) 50%, transparent 50%) bottom left / 24px 24px no-repeat,
-    linear-gradient(315deg, var(--d) 0, var(--b) 50%, transparent 50%) bottom right / 24px 24px no-repeat;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .45));
+figure.pl.loose.four { padding: 15px 15px 36px; }
+/* lamp falloff across the desk: left sits nearer the upper-left lamp; right sits deeper in shadow */
+figure.pl.loose::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  mix-blend-mode: multiply;
+  background: linear-gradient(132deg, rgba(255, 250, 240, .02) 0%, rgba(208, 182, 158, .22) 100%);
+  transition: opacity .22s ease-out;
 }
-/* the slip with its plate number (the paper corners belong to the sheet's plates) */
-figure.pl.loose::after { display: none; }
-figure.pl.loose::before {
-  content: "Plate " attr(data-plate); position: static; order: 2; align-self: flex-start;
-  height: auto; padding: 5px 12px 6px; margin-left: 6px;
-  background: #efe6cf; color: #a33a24; filter: none;
-  font: 400 14px/1.2 "Stonebrook Roman", Georgia, serif; letter-spacing: .1em;
-  transform: rotate(-1.2deg);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .45), 0 4px 10px rgba(0, 0, 0, .35);
+figure.pl.loose[data-side="r"]::after {
+  background: linear-gradient(126deg, rgba(210, 184, 160, .30) 0%, rgba(174, 144, 122, .48) 100%);
 }
-@media (prefers-reduced-motion: reduce) { .pl.loose a { transition: none; } }
+figure.pl.loose:hover, figure.pl.loose.pl-hl {
+  transform: rotate(var(--tilt, 0deg)) translateY(-3px);
+  box-shadow:
+    inset 0 0 18px rgba(84, 58, 32, .08),
+    inset 0 1px 0 rgba(255, 249, 234, .44),
+    inset 1px 0 0 rgba(255, 249, 234, .28),
+    inset 0 -1px 0 rgba(48, 32, 18, .28),
+    inset -1px 0 0 rgba(48, 32, 18, .22),
+    0 2px 3px rgba(6, 3, 1, .62),
+    6px 12px 22px rgba(6, 3, 1, .50),
+    15px 26px 46px rgba(5, 2, 1, .34);
+}
+figure.pl.loose:hover::after, figure.pl.loose.pl-hl::after { opacity: .72; }
+.pl.loose .row { grid-template-columns: 1fr; gap: 13px; }
+.pl.loose.four .row { grid-template-columns: 1fr 1fr; gap: 11px; }
+figure.pl.loose .pl-num {
+  display: block;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 12px;
+  z-index: 3;
+  text-align: center;
+  font: 400 14px/1 "Stonebrook Roman", Georgia, serif;
+  letter-spacing: .09em;
+  color: #8f2d1c;
+  opacity: .88;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+figure.pl.loose.four .pl-num { bottom: 10px; font-size: 13.5px; }
+@media (prefers-reduced-motion: reduce) {
+  figure.pl.loose, figure.pl.loose::after, .pl img, .pl video { transition: none; }
+}
 </style>
 <figure class="pl two" id="plate-i" data-plate="I"><div class="row"><a href="media/loupe-words-full.jpg" data-w="2560" data-h="1280"><img src="media/loupe-words.jpg" width="1400" height="700" alt="A close-up at about 13 times of the words &#x27;simulating a dip pen&#x27; and &#x27;the sheet they sit on&#x27; in brown-black calligraphic ink on cream vellum, with faint ruled lines and the grain of the skin visible." loading="lazy" decoding="async"></a><a href="media/loupe-dry-full.jpg" data-w="2560" data-h="1280"><img src="media/loupe-dry.jpg" width="1400" height="700" alt="A close-up at about 13 times of the words &#x27;greys and starts skipping&#x27; and &#x27;ink between the tines breaks&#x27; in pen lettering, the strokes slightly uneven in weight." loading="lazy" decoding="async"></a></div></figure>
 </div>
